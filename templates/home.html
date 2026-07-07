@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 relative">
+    
+    <!-- Hero Header (Premium Geometric, Minimalist) -->
+    <div class="text-center max-w-3xl mx-auto mb-20 relative z-10">
+        <div class="inline-flex items-center space-x-2 bg-cyberneon/10 border border-cyberneon/30 rounded-full px-4 py-1.5 mb-6">
+            <span class="w-2 h-2 rounded-full bg-cyberneon animate-pulse"></span>
+            <span class="text-xs font-semibold tracking-wider text-cyberneon uppercase">Enterprise Utility Suite</span>
+        </div>
+        <h1 class="text-4xl sm:text-6xl font-outfit font-extrabold tracking-tight text-white mb-6 leading-tight">
+            High-Performance <br/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyberaccent to-cyberneon">Digital Operations Matrix</span>
+        </h1>
+        <p class="text-base sm:text-lg text-gray-400 font-light max-w-2xl mx-auto">
+            Execute lightning-fast file conversions, campaign link builders, developer formatting engines, and financial analytics workflows instantly within a centralized, premium dashboard.
+        </p>
+    </div>
+
+    <!-- Categories Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+        
+        <!-- Category: Media & Design -->
+        <div id="media" class="glass-panel rounded-2xl p-8 hover:border-cyberneon/30 transition-all duration-300 group flex flex-col justify-between">
+            <div>
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="p-3 bg-cyberneon/10 rounded-xl border border-cyberneon/20 text-cyberneon">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="font-outfit font-bold text-xl text-white">Media & Design Utilities</h2>
+                        <p class="text-xs text-gray-400">Perform instant image format conversion and social media layouts sizing.</p>
+                    </div>
+                </div>
+                
+                <!-- Links subgrid -->
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Image Converters</h3>
+                        <div class="flex flex-wrap gap-2">
+                            {% for inf in tools['image-converter']['params']['input_format'] %}
+                                {% for outf in tools['image-converter']['params']['output_format'] %}
+                                    {% if inf != outf %}
+                                    <a href="/convert-{{ inf }}-to-{{ outf }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
+                                        {{ inf|upper }} to {{ outf|upper }}
+                                    </a>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="pt-2">
+                        <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Social Image Cropper</h3>
+                        <div class="flex flex-wrap gap-2">
+                            {% for ps in tools['image-cropper']['params']['platform_size'] %}
+                            <a href="/crop-image-for-{{ ps }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
+                                Crop for {{ ps.replace('-', ' ').title() }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category: Digital Marketing -->
+        <div id="marketing" class="glass-panel rounded-2xl p-8 hover:border-cyberaccent/30 transition-all duration-300 group flex flex-col justify-between">
+            <div>
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="p-3 bg-cyberaccent/10 rounded-xl border border-cyberaccent/20 text-cyberaccent">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="font-outfit font-bold text-xl text-white">Digital Marketing</h2>
+                        <p class="text-xs text-gray-400">Generate targeted tracking parameters and quick messaging links.</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">UTM Parameter Builders</h3>
+                        <div class="flex flex-wrap gap-2">
+                            {% for p in tools['utm-builder']['params']['platform'] %}
+                            <a href="/utm-builder-for-{{ p }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
+                                UTM: {{ p.replace('-ads', '').replace('-', ' ').title() }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="pt-2">
+                        <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">WhatsApp Click-to-Chat</h3>
+                        <div class="flex flex-wrap gap-2">
+                            {% for c in tools['whatsapp-generator']['params']['country'] %}
+                            <a href="/whatsapp-link-generator-for-{{ c }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
+                                Link for {{ c.replace('-', ' ').title() }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Character Counters</h3>
+                        <div class="flex flex-wrap gap-2">
+                            {% for p in tools['character-counter']['params']['platform'] %}
+                            <a href="/character-counter-for-{{ p }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
+                                {{ p.replace('-', ' ').title() }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">CPM & Ad Planners</h3>
+                        <div class="flex flex-wrap gap-2">
+                            {% for ch in tools['cpm-calculator']['params']['channel'] %}
+                            <a href="/cpm-calculator-for-{{ ch }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
+                                CPM: {{ ch.replace('-ads', '').replace('-', ' ').title() }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category: Developer Utilities -->
+        <div id="dev" class="glass-panel rounded-2xl p-8 hover:border-cyberaccent/30 transition-all duration-300 group flex flex-col justify-between">
+            <div>
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="p-3 bg-cyberaccent/10 rounded-xl border border-cyberaccent/20 text-cyberaccent">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 00-2 2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="font-outfit font-bold text-xl text-white">Developer Utilities</h2>
+                        <p class="text-xs text-gray-400">Validate, formatting, and minification tools for common formats.</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">JSON Prettifier & Validator</h3>
+                        <div class="flex flex-wrap gap-2">
+                            {% for uc in tools['json-formatter']['params']['use_case'] %}
+                            <a href="/format-json-for-{{ uc }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
+                                Format JSON for {{ uc.replace('-', ' ').title() }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Base64 File Decoders</h3>
+                        <div class="flex flex-wrap gap-2">
+                            {% for ft in tools['base64-converter']['params']['file_type'] %}
+                            <a href="/decode-base64-to-{{ ft }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
+                                Decode to {{ ft|upper }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category: Crypto & Finance -->
+        <div id="finance" class="glass-panel rounded-2xl p-8 hover:border-cyberneon/30 transition-all duration-300 group flex flex-col justify-between">
+            <div>
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="p-3 bg-cyberneon/10 rounded-xl border border-cyberneon/20 text-cyberneon">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="font-outfit font-bold text-xl text-white">Crypto & Finance</h2>
+                        <p class="text-xs text-gray-400">Professional trading utilities to calculate positions and critical swing zones.</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Position Sizing</h3>
+                        <div class="flex flex-wrap gap-2">
+                            {% for ac in tools['position-calculator']['params']['asset_class'] %}
+                            <a href="/position-size-calculator-{{ ac }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
+                                Sizing for {{ ac.replace('-', ' ').title() }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="pt-2">
+                        <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Fibonacci Retracements</h3>
+                        <div class="flex flex-wrap gap-2">
+                            {% for uc in tools['fibonacci-calculator']['params']['use_case'] %}
+                            <a href="/fibonacci-retracement-calculator-{{ uc }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
+                                Fibonacci: {{ uc.replace('-', ' ').title() }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

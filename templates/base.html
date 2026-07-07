@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Dynamic SEO Meta Tags -->
+    <title>{{ meta_title if meta_title else "WebTools - Premium Web Utilities Matrix" }}</title>
+    <meta name="description" content="{{ meta_description if meta_description else 'High-performance, secure web utility tools for marketing, media conversion, developers, and crypto traders.' }}">
+    <link rel="canonical" href="{{ request.url }}">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="{{ meta_title if meta_title else 'WebTools - Premium Web Utilities Matrix' }}">
+    <meta property="og:description" content="{{ meta_description if meta_description else 'High-performance, secure web utility tools.' }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url }}">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#080810',
+                        panelbg: 'rgba(17, 17, 28, 0.7)',
+                        cyberneon: '#06b6d4', /* cyan */
+                        cyberaccent: '#8b5cf6', /* violet */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Style Enhancements -->
+    <style>
+        body {
+            background-color: #05050b;
+            color: #f1f5f9;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        /* Grid Background Pattern */
+        .cyber-grid {
+            background-image: 
+                linear-gradient(rgba(6, 182, 212, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(6, 182, 212, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center;
+        }
+
+        /* Glowing Radial Backgrounds */
+        .neon-glow-1 {
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
+        }
+        
+        .neon-glow-2 {
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 60%);
+        }
+
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(13, 13, 23, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        
+        .glass-input {
+            background: rgba(8, 8, 16, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #f1f5f9;
+            transition: all 0.3s ease;
+        }
+        
+        .glass-input:focus {
+            border-color: #06b6d4;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+            outline: none;
+        }
+        
+        .btn-neon {
+            background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        
+        .btn-neon:hover {
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+            transform: translateY(-1px);
+        }
+
+        /* Hide Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #05050b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(6, 182, 212, 0.4);
+        }
+    </style>
+    
+    <!-- Dynamic Structured Schema Data (SEO best practice) -->
+    {% if tool_key %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "{{ h1 }}",
+      "url": "{{ request.url }}",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. HTML5 Canvas.",
+      "description": "{{ meta_description }}",
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    {% endif %}
+</head>
+<body class="cyber-grid min-h-screen flex flex-col relative">
+
+    <!-- Radial Decorative BG Glows (Human-free, Abstract) -->
+    <div class="absolute top-[-200px] left-[-200px] w-[600px] h-[600px] neon-glow-1 pointer-events-none z-0"></div>
+    <div class="absolute top-[40%) scale-120] right-[-200px] w-[700px] h-[700px] neon-glow-2 pointer-events-none z-0"></div>
+    <div class="absolute bottom-[-100px] left-[20%] w-[500px] h-[500px] neon-glow-1 pointer-events-none z-0"></div>
+
+    <!-- Navigation Header -->
+    <header class="glass-panel sticky top-0 z-50 border-b border-white/5 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center space-x-3 group">
+                <!-- Abstract Geometric Logo -->
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyberaccent to-cyberneon flex items-center justify-center shadow-lg shadow-cyberneon/20 group-hover:scale-105 transition-transform duration-300">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+                    </svg>
+                </div>
+                <span class="font-outfit font-bold text-xl tracking-wider text-white">
+                    WEB<span class="text-cyberneon">UTILITIES</span>
+                </span>
+            </a>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="/#media" class="text-gray-400 hover:text-cyberneon transition font-medium text-sm">Media</a>
+                <a href="/#marketing" class="text-gray-400 hover:text-cyberneon transition font-medium text-sm">Marketing</a>
+                <a href="/#dev" class="text-gray-400 hover:text-cyberneon transition font-medium text-sm">Developer</a>
+                <a href="/#finance" class="text-gray-400 hover:text-cyberneon transition font-medium text-sm">Finance</a>
+            </nav>
+            
+            <div>
+                <a href="/sitemap.xml" target="_blank" class="text-xs border border-cyberneon/30 hover:border-cyberneon/100 px-3 py-1.5 rounded text-cyberneon transition-all bg-cyberneon/5">
+                    Sitemap Index
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow z-10">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-panel border-t border-white/5 mt-16 z-10 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <span class="font-outfit font-bold text-lg text-white">WEB<span class="text-cyberneon">UTILITIES</span></span>
+                    <p class="mt-4 text-sm text-gray-400 max-w-sm">
+                        High-performance web utility tools built for modern digital workflows. Fast processing, enterprise-grade security, and instant execution.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-widest">Categories</h3>
+                    <ul class="mt-4 space-y-2 text-sm text-gray-400">
+                        <li><a href="/#media" class="hover:text-cyberneon transition">Media Utilities</a></li>
+                        <li><a href="/#marketing" class="hover:text-cyberneon transition">Digital Marketing</a></li>
+                        <li><a href="/#dev" class="hover:text-cyberneon transition">Developer Tools</a></li>
+                        <li><a href="/#finance" class="hover:text-cyberneon transition">Finance & Crypto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-widest">System & Sitemap</h3>
+                    <ul class="mt-4 space-y-2 text-sm text-gray-400">
+                        <li><a href="/sitemap.xml" class="hover:text-cyberneon transition">XML Sitemap</a></li>
+                        <li><span class="text-cyberneon text-xs">● Active Core Running</span></li>
+                        <li class="text-xs text-gray-500">Enterprise utility core active</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+                <p>&copy; 2026 WebUtilities Platform. All rights reserved. Operating under safe programmatic SEO infrastructure.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="/privacy" class="hover:text-gray-300">Privacy Policy</a>
+                    <a href="/terms" class="hover:text-gray-300">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    {% block scripts %}{% endblock %}
+</body>
+</html>

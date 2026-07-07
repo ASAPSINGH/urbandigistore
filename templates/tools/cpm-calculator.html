@@ -1,0 +1,104 @@
+<!-- CPM Calculator Interactive Panel -->
+<div class="space-y-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/5 pb-4 mb-6">
+        <div>
+            <h3 class="text-lg font-outfit font-bold text-white">Ad Campaign Metric Solver</h3>
+            <p class="text-xs text-gray-400">Resolve budgets, impressions, CPM, and ROAS parameters.</p>
+        </div>
+        <div class="mt-2 sm:mt-0 px-3 py-1.5 rounded-lg bg-cyberneon/10 border border-cyberneon/20 flex items-center space-x-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyberneon"></span>
+            <span class="text-[10px] text-cyberneon font-semibold uppercase tracking-wider" id="cpm-badge-channel">
+                Loading Channel...
+            </span>
+        </div>
+    </div>
+
+    <!-- Mode Selector Tab -->
+    <div>
+        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Solve For</label>
+        <div class="grid grid-cols-3 gap-2 bg-black/40 p-1 rounded-lg border border-white/5">
+            <button id="tab-cpm" class="py-2 text-xs font-semibold rounded-md transition text-white bg-cyberneon/20 border border-cyberneon/30">
+                CPM ($)
+            </button>
+            <button id="tab-cost" class="py-2 text-xs font-semibold rounded-md transition text-gray-400 hover:text-white">
+                Total Budget
+            </button>
+            <button id="tab-impressions" class="py-2 text-xs font-semibold rounded-md transition text-gray-400 hover:text-white">
+                Impressions
+            </button>
+        </div>
+    </div>
+
+    <!-- Solver Inputs Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Input Form -->
+        <div class="space-y-4">
+            <div id="group-cost">
+                <label for="cpm-cost" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Total Campaign Cost (Budget) <span class="text-red-400">*</span></label>
+                <div class="relative">
+                    <span class="absolute left-4 top-3 text-gray-500 text-sm font-mono">$</span>
+                    <input type="number" id="cpm-cost" value="1500" class="w-full pl-8 pr-4 py-3 rounded-lg glass-input text-sm font-mono" required />
+                </div>
+            </div>
+
+            <div id="group-impressions">
+                <label for="cpm-impressions" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Total Impressions (Views) <span class="text-red-400">*</span></label>
+                <input type="number" id="cpm-impressions" value="100000" class="w-full px-4 py-3 rounded-lg glass-input text-sm font-mono" required />
+            </div>
+
+            <div id="group-cpm" class="hidden">
+                <label for="cpm-value" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Cost Per Mille (CPM) <span class="text-red-400">*</span></label>
+                <div class="relative">
+                    <span class="absolute left-4 top-3 text-gray-500 text-sm font-mono">$</span>
+                    <input type="number" id="cpm-value" value="15" class="w-full pl-8 pr-4 py-3 rounded-lg glass-input text-sm font-mono" required />
+                </div>
+            </div>
+            
+            <button id="btn-calculate-cpm" class="btn-neon w-full py-3.5 rounded-xl text-sm font-semibold text-white tracking-wide uppercase">
+                Calculate Metric
+            </button>
+        </div>
+
+        <!-- Metric Output Dashboard -->
+        <div class="glass-input rounded-xl p-6 flex flex-col justify-between bg-black/45 border-white/5">
+            <div>
+                <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">Resolved Campaign Outputs</h4>
+                
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center border-b border-white/5 pb-3">
+                        <span class="text-xs text-gray-400">Campaign Cost:</span>
+                        <span class="text-sm font-bold text-white font-mono" id="out-cpm-cost">$1,500.00</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center border-b border-white/5 pb-3">
+                        <span class="text-xs text-gray-400">Total Impressions:</span>
+                        <span class="text-sm font-bold text-white font-mono" id="out-cpm-impressions">100,000</span>
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-gray-400">CPM (Cost Per 1,000 Views):</span>
+                        <span class="text-sm font-bold text-cyberneon font-mono" id="out-cpm-value">$15.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integrated Secondary Calculator (ROAS Planner) -->
+            <div class="mt-6 border-t border-white/5 pt-4 space-y-4">
+                <h5 class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Campaign ROAS Planner</h5>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="cpm-revenue" class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Generated Revenue</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-2 text-gray-500 text-xs font-mono">$</span>
+                            <input type="number" id="cpm-revenue" value="4500" class="w-full pl-6 pr-3 py-2 rounded-lg glass-input text-xs font-mono" />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Return on Spend (ROAS)</label>
+                        <p id="out-cpm-roas" class="py-2 text-xs font-bold text-green-400 font-mono">3.00x</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

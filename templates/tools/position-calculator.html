@@ -1,0 +1,92 @@
+<!-- Position Size Calculator Panel -->
+<div class="space-y-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/5 pb-4 mb-6">
+        <div>
+            <h3 class="text-lg font-outfit font-bold text-white">Risk Exposure Calculator</h3>
+            <p class="text-xs text-gray-400">Calculate perfect trade allocations based on drawdowns.</p>
+        </div>
+        <div class="mt-2 sm:mt-0 px-3 py-1.5 rounded-lg bg-cyberneon/10 border border-cyberneon/20 flex items-center space-x-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyberneon"></span>
+            <span class="text-[10px] text-cyberneon font-semibold uppercase tracking-wider" id="calc-badge-asset">
+                Loading Asset...
+            </span>
+        </div>
+    </div>
+
+    <!-- Main Form Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Input Form -->
+        <div class="space-y-4">
+            <div>
+                <label for="calc-balance" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Account Capital (Balance) <span class="text-red-400">*</span></label>
+                <div class="relative">
+                    <span class="absolute left-4 top-3 text-gray-500 text-sm font-mono">$</span>
+                    <input type="number" id="calc-balance" value="10000" class="w-full pl-8 pr-4 py-3 rounded-lg glass-input text-sm font-mono" required />
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="calc-risk" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Risk Margin (%)</label>
+                    <div class="relative">
+                        <input type="number" id="calc-risk" value="1" step="0.1" class="w-full pr-8 pl-4 py-3 rounded-lg glass-input text-sm font-mono" />
+                        <span class="absolute right-4 top-3 text-gray-500 text-sm font-mono">%</span>
+                    </div>
+                </div>
+                <div>
+                    <label for="calc-sl" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2" id="label-sl-unit">Stop Loss (Pips)</label>
+                    <input type="number" id="calc-sl" value="20" class="w-full px-4 py-3 rounded-lg glass-input text-sm font-mono" required />
+                </div>
+            </div>
+
+            <!-- Asset specific settings (Entry/SL prices) -->
+            <div id="price-fields" class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="calc-entry" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Entry Price (Optional)</label>
+                    <input type="number" id="calc-entry" placeholder="e.g. 1.1200" step="any" class="w-full px-4 py-3 rounded-lg glass-input text-sm font-mono" />
+                </div>
+                <div>
+                    <label for="calc-sl-price" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Stop Price (Optional)</label>
+                    <input type="number" id="calc-sl-price" placeholder="e.g. 1.1180" step="any" class="w-full px-4 py-3 rounded-lg glass-input text-sm font-mono" />
+                </div>
+            </div>
+            
+            <button id="btn-calculate-size" class="btn-neon w-full py-3 rounded-xl text-xs font-semibold text-white tracking-wide uppercase">
+                Calculate Sizing
+            </button>
+        </div>
+
+        <!-- Output Analytics Dashboard -->
+        <div class="glass-input rounded-xl p-6 flex flex-col justify-between bg-black/45 border-white/5">
+            <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">Calculated Risk Analysis</h4>
+            
+            <div class="space-y-4">
+                <div class="flex justify-between items-center border-b border-white/5 pb-3">
+                    <span class="text-xs text-gray-400">Total Money At Risk:</span>
+                    <span class="text-sm font-bold text-red-400 font-mono" id="out-risk-cash">$100.00</span>
+                </div>
+                
+                <div class="flex justify-between items-center border-b border-white/5 pb-3">
+                    <span class="text-xs text-gray-400" id="out-size-label-1">Standard Lot Sizing:</span>
+                    <span class="text-sm font-bold text-white font-mono" id="out-lots-standard">0.50 Lots</span>
+                </div>
+
+                <div class="flex justify-between items-center border-b border-white/5 pb-3" id="out-row-lots-mini">
+                    <span class="text-xs text-gray-400">Mini Lots Sizing:</span>
+                    <span class="text-sm font-medium text-gray-300 font-mono" id="out-lots-mini">5.00 Lots</span>
+                </div>
+
+                <div class="flex justify-between items-center" id="out-row-lots-micro">
+                    <span class="text-xs text-gray-400">Micro Lots Sizing:</span>
+                    <span class="text-sm font-medium text-gray-300 font-mono" id="out-lots-micro">50.00 Lots</span>
+                </div>
+            </div>
+
+            <div class="mt-6 p-3 bg-white/5 rounded border border-white/5 text-[10px] text-gray-400 leading-relaxed">
+                💡 Trade size limits are approximations based on standard leverage. Adjust stop-loss values dynamically to maintain risk tolerances.
+            </div>
+        </div>
+
+    </div>
+</div>

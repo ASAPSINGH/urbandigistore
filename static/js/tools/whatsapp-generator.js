@@ -1,0 +1,118 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // Get configuration details
+    const configEl = document.getElementById('tool-config');
+    const country = configEl.getAttribute('data-param-country');
+    
+    // Country to dial prefix mappings
+    const countryPrefixes = {
+        'india': { code: '91', name: 'India' },
+        'usa': { code: '1', name: 'United States' },
+        'uk': { code: '44', name: 'United Kingdom' },
+        'canada': { code: '1', name: 'Canada' },
+        'australia': { code: '61', name: 'Australia' },
+        'germany': { code: '49', name: 'Germany' },
+        'france': { code: '33', name: 'France' },
+        'brazil': { code: '55', name: 'Brazil' },
+        'united-arab-emirates': { code: '971', name: 'UAE' },
+        'singapore': { code: '65', name: 'Singapore' }
+    };
+    
+    const activeCountry = countryPrefixes[country] || { code: '1', name: 'International' };
+    
+    // UI Elements
+    const badgeCountry = document.getElementById('wa-badge-country');
+    const selectPrefix = document.getElementById('wa-prefix');
+    const inputPhone = document.getElementById('wa-phone');
+    const txtMessage = document.getElementById('wa-message');
+    const inputResult = document.getElementById('wa-result');
+    const btnCopy = document.getElementById('btn-copy-wa');
+    const btnTest = document.getElementById('btn-test-wa');
+    const btnQR = document.getElementById('btn-qr-wa');
+    
+    // QR Code inline preview elements
+    const qrContainer = document.getElementById('wa-qr-container');
+    const qrImage = document.getElementById('wa-qr-image');
+    const qrDownload = document.getElementById('wa-qr-download');
+    
+    // Initialize Defaults
+    badgeCountry.textContent = activeCountry.name;
+    selectPrefix.value = activeCountry.code;
+    
+    // Listeners
+    [selectPrefix, inputPhone, txtMessage].forEach(el => {
+        el.addEventListener('input', generateWALink);
+    });
+    
+    function generateWALink() {
+        const prefix = selectPrefix.value;
+        let phone = inputPhone.value.replace(/\D/g, ''); // strip non-numeric characters
+        
+        // Remove leading zeroes if user typed them
+        if (phone.startsWith('0')) {
+            phone = phone.substring(1);
+        }
+        
+        const message = txtMessage.value.trim();
+        
+        if (!phone) {
+            inputResult.value = '';
+            btnTest.setAttribute('disabled', 'true');
+            btnQR.classList.add('hidden');
+            qrContainer.classList.add('hidden');
+            return;
+        }
+        
+        // Build raw phone target
+        const fullPhone = prefix + phone;
+        let waUrl = `https://wa.me/${fullPhone}`;
+        
+        if (message) {
+            waUrl += `?text=${encodeURIComponent(message)}`;
+        }
+        
+        inputResult.value = waUrl;
+        btnTest.removeAttribute('disabled');
+        btnQR.classList.remove('hidden');
+    }
+    
+    // QR Code Button Click
+    btnQR.addEventListener('click', () => {
+        const waUrl = inputResult.value;
+        if (!waUrl) return;
+        
+        const qrSize = 300;
+        const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=${qrSize}x${qrSize}&data=${encodeURIComponent(waUrl)}`;
+        
+        // Set image source and reveal container
+        qrImage.src = qrApi;
+        qrDownload.href = qrApi;
+        qrContainer.classList.remove('hidden');
+    });
+    
+    // Copy Action
+    btnCopy.addEventListener('click', () => {
+        const target = inputResult.value;
+        if (!target) return;
+        
+        navigator.clipboard.writeText(target).then(() => {
+            const originalText = btnCopy.textContent;
+            btnCopy.textContent = 'Copied!';
+            btnCopy.classList.remove('bg-cyberaccent');
+            btnCopy.classList.add('bg-green-600');
+            
+            setTimeout(() => {
+                btnCopy.textContent = originalText;
+                btnCopy.classList.add('bg-cyberaccent');
+                btnCopy.classList.remove('bg-green-600');
+            }, 2000);
+        });
+    });
+    
+    // Test Action
+    btnTest.addEventListener('click', () => {
+        const target = inputResult.value;
+        if (target) {
+            window.open(target, '_blank');
+        }
+    });
+});

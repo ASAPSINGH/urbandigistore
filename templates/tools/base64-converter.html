@@ -1,0 +1,63 @@
+<!-- Base64 File Converter Panel -->
+<div class="space-y-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/5 pb-4 mb-6">
+        <div>
+            <h3 class="text-lg font-outfit font-bold text-white">Base64 File Decoder Gateway</h3>
+            <p class="text-xs text-gray-400">Securely decode and extract raw binary files.</p>
+        </div>
+        <div class="mt-2 sm:mt-0 px-3 py-1.5 rounded-lg bg-cyberaccent/10 border border-cyberaccent/20 flex items-center space-x-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyberaccent"></span>
+            <span class="text-[10px] text-cyberaccent font-semibold uppercase tracking-wider" id="b64-badge-type">
+                Loading Type...
+            </span>
+        </div>
+    </div>
+
+    <!-- Main Editor Input -->
+    <div class="space-y-2">
+        <div class="flex justify-between items-center">
+            <label for="b64-input" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Paste Base64 Data String</label>
+            <button id="btn-clear-b64" class="text-xs text-gray-500 hover:text-red-400 transition-colors">Clear</button>
+        </div>
+        <textarea id="b64-input" rows="8" placeholder="data:image/png;base64,iVBORw0KGgoAAAANS..." class="w-full px-4 py-3 rounded-lg glass-input text-xs font-mono"></textarea>
+        <p class="text-[10px] text-gray-500 mt-1">Accepts raw base64 data strings with or without MIME headers.</p>
+    </div>
+
+    <!-- Base64 Metadata Info Box (Hidden unless valid string entered) -->
+    <div id="b64-meta-panel" class="hidden p-5 rounded-xl bg-black/40 border border-white/5 space-y-3">
+        <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Resolved Data Analysis</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+            <div class="border-r border-white/5 pr-4">
+                <span class="text-gray-500 block mb-1">MIME Type:</span>
+                <span id="meta-b64-mime" class="font-bold text-white font-mono">image/png</span>
+            </div>
+            <div class="border-r border-white/5 pr-4">
+                <span class="text-gray-500 block mb-1">Estimated Size:</span>
+                <span id="meta-b64-size" class="font-bold text-white font-mono">1.2 KB</span>
+            </div>
+            <div>
+                <span class="text-gray-500 block mb-1">Decoded Format:</span>
+                <span id="meta-b64-ext" class="font-bold text-cyberaccent font-mono">PNG</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error/Validation Panel (Hidden unless error occurs) -->
+    <div id="b64-error-panel" class="hidden p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+        <p class="text-xs text-red-400 font-bold mb-1">❌ Decoding Warning:</p>
+        <p id="b64-error-message" class="text-xs text-gray-400 font-mono"></p>
+    </div>
+
+    <!-- Decoded Preview Window (Mainly for images, hidden initially) -->
+    <div id="b64-preview-container" class="hidden p-4 bg-white/5 rounded-xl border border-white/5 flex flex-col items-center justify-center space-y-2">
+        <p class="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mb-2">Decoded Image Preview</p>
+        <div class="max-w-[200px] max-h-[200px] overflow-hidden border border-white/10 rounded">
+            <img id="b64-preview-img" src="" alt="Decoded Base64 Preview" class="max-w-full h-auto" />
+        </div>
+    </div>
+
+    <!-- Actions -->
+    <button id="btn-decode-b64" class="btn-neon w-full py-3.5 rounded-xl text-sm font-semibold text-white tracking-wide uppercase disabled:opacity-50 disabled:pointer-events-none" disabled>
+        Decode and Download File
+    </button>
+</div>

@@ -1,0 +1,78 @@
+<!-- WhatsApp Link Generator Panel -->
+<div class="space-y-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/5 pb-4 mb-6">
+        <div>
+            <h3 class="text-lg font-outfit font-bold text-white">Click-to-Chat Link Builder</h3>
+            <p class="text-xs text-gray-400">Instantly generate shareable WhatsApp API triggers.</p>
+        </div>
+        <div class="mt-2 sm:mt-0 px-3 py-1.5 rounded-lg bg-cyberaccent/10 border border-cyberaccent/20 flex items-center space-x-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyberaccent"></span>
+            <span class="text-[10px] text-cyberaccent font-semibold uppercase tracking-wider" id="wa-badge-country">
+                Loading Country...
+            </span>
+        </div>
+    </div>
+
+    <!-- Inputs -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+            <label for="wa-prefix" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Dial Code</label>
+            <select id="wa-prefix" class="w-full px-4 py-3 rounded-lg glass-input text-sm">
+                <option value="91">+91 (India)</option>
+                <option value="1">+1 (USA / Canada)</option>
+                <option value="44">+44 (UK)</option>
+                <option value="61">+61 (Australia)</option>
+                <option value="49">+49 (Germany)</option>
+                <option value="33">+33 (France)</option>
+                <option value="55">+55 (Brazil)</option>
+                <option value="971">+971 (UAE)</option>
+                <option value="65">+65 (Singapore)</option>
+            </select>
+        </div>
+        <div class="sm:col-span-2">
+            <label for="wa-phone" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">WhatsApp Phone Number <span class="text-red-400">*</span></label>
+            <input type="tel" id="wa-phone" placeholder="e.g. 9876543210" class="w-full px-4 py-3 rounded-lg glass-input text-sm font-mono" required />
+            <p class="text-[10px] text-gray-500 mt-1">Include area code, omit spaces or starting zeros.</p>
+        </div>
+    </div>
+
+    <div>
+        <label for="wa-message" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Pre-filled Custom Message (Optional)</label>
+        <textarea id="wa-message" rows="3" placeholder="Hello! I am interested in your services." class="w-full px-4 py-3 rounded-lg glass-input text-sm"></textarea>
+        <p class="text-[10px] text-gray-500 mt-1">This text will be automatically filled in the sender's input box when they click your link.</p>
+    </div>
+
+    <!-- Output Box -->
+    <div class="pt-6 border-t border-white/5 space-y-4">
+        <div>
+            <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Your Generated WhatsApp Link</label>
+            <div class="flex items-center space-x-2">
+                <input type="text" id="wa-result" class="flex-grow px-4 py-3.5 rounded-lg glass-input text-sm text-cyberaccent font-mono bg-black/40 select-all" readonly placeholder="Enter a phone number to generate link..." />
+                <button id="btn-copy-wa" class="px-5 py-3.5 rounded-lg bg-cyberaccent hover:bg-cyberaccent/85 transition text-white text-sm font-semibold whitespace-nowrap">
+                    Copy Link
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <button id="btn-test-wa" class="btn-neon py-3 rounded-lg text-sm font-semibold text-white tracking-wide uppercase disabled:opacity-50 disabled:pointer-events-none" disabled>
+                Open & Test Chat
+            </button>
+            <button id="btn-qr-wa" class="hidden border border-cyberaccent/30 hover:border-cyberaccent py-3 rounded-lg text-sm font-semibold text-cyberaccent tracking-wide uppercase bg-cyberaccent/5">
+                Generate QR Code
+            </button>
+        </div>
+
+        <!-- Inline QR Container -->
+        <div id="wa-qr-container" class="hidden p-6 bg-black/40 rounded-xl border border-white/5 flex flex-col items-center justify-center space-y-4">
+            <p class="text-xs text-gray-400 font-semibold uppercase tracking-wider">Scan to Open WhatsApp Chat</p>
+            <div class="p-4 bg-white rounded-xl shadow-lg shadow-cyberaccent/10">
+                <img id="wa-qr-image" src="" alt="WhatsApp QR Code" class="w-44 h-44" />
+            </div>
+            <a id="wa-qr-download" href="" target="_blank" download="whatsapp_chat_qr.png" class="text-xs text-cyberaccent hover:underline font-bold tracking-wide uppercase">
+                Download QR Code (PNG)
+            </a>
+        </div>
+
+    </div>
+</div>

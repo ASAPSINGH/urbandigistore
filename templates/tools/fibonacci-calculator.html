@@ -1,0 +1,66 @@
+<!-- Fibonacci Calculator Panel -->
+<div class="space-y-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/5 pb-4 mb-6">
+        <div>
+            <h3 class="text-lg font-outfit font-bold text-white">Fibonacci Retracement Grid</h3>
+            <p class="text-xs text-gray-400">Generate structural support and resistance benchmarks.</p>
+        </div>
+        <div class="mt-2 sm:mt-0 px-3 py-1.5 rounded-lg bg-cyberneon/10 border border-cyberneon/20 flex items-center space-x-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyberneon"></span>
+            <span class="text-[10px] text-cyberneon font-semibold uppercase tracking-wider" id="fib-badge-usecase">
+                Loading Setup...
+            </span>
+        </div>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Input Panel -->
+        <div class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="fib-high" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Swing High Price <span class="text-red-400">*</span></label>
+                    <input type="number" id="fib-high" value="150" step="any" class="w-full px-4 py-3 rounded-lg glass-input text-sm font-mono" required />
+                </div>
+                <div>
+                    <label for="fib-low" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Swing Low Price <span class="text-red-400">*</span></label>
+                    <input type="number" id="fib-low" value="100" step="any" class="w-full px-4 py-3 rounded-lg glass-input text-sm font-mono" required />
+                </div>
+            </div>
+
+            <div>
+                <label for="fib-trend" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Active Swing Trend</label>
+                <select id="fib-trend" class="w-full px-4 py-3 rounded-lg glass-input text-sm">
+                    <option value="up" selected>Uptrend (Bullish Retracement)</option>
+                    <option value="down">Downtrend (Bearish Retracement)</option>
+                </select>
+            </div>
+            
+            <button id="btn-calculate-fib" class="btn-neon w-full py-3.5 rounded-xl text-sm font-semibold text-white tracking-wide uppercase">
+                Generate Grid Levels
+            </button>
+        </div>
+
+        <!-- Levels Output Panel -->
+        <div class="glass-input rounded-xl p-6 bg-black/45 border-white/5">
+            <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">Fibonacci Levels Matrix</h4>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-white/5 text-left text-xs">
+                    <thead>
+                        <tr class="text-gray-400">
+                            <th class="pb-2 font-semibold">Ratio</th>
+                            <th class="pb-2 font-semibold">Level Type</th>
+                            <th class="pb-2 font-semibold text-right">Target Price</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5 text-gray-300 font-mono" id="fib-table-body">
+                        <!-- Filled in via javascript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20 relative z-10">
+    
+    <!-- Breadcrumbs -->
+    <nav class="flex mb-8 text-xs text-gray-400 font-medium" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="/" class="hover:text-cyberneon transition">Home</a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-3 h-3 mx-1 text-gray-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-gray-400 capitalize">{{ tool_key.replace('-', ' ') }}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Header Block (Above the Fold) -->
+    <div class="mb-10 max-w-3xl">
+        <h1 class="text-3xl sm:text-5xl font-outfit font-extrabold tracking-tight text-white mb-4">
+            {{ h1 }}
+        </h1>
+        <p class="text-sm sm:text-base text-gray-400 font-light leading-relaxed">
+            {{ description }}
+        </p>
+    </div>
+
+    <!-- MAIN INTERACTIVE TOOL INTERFACE (Above the fold, no extra scrolling needed) -->
+    <div class="glass-panel rounded-2xl p-6 sm:p-8 mb-12 relative overflow-hidden border border-white/10 shadow-2xl">
+        <!-- Accent Glow Ring inside panel -->
+        <div class="absolute -right-32 -bottom-32 w-64 h-64 bg-cyberneon/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <!-- Inject Tool Component HTML -->
+        {% include 'tools/' ~ tool_key ~ '.html' %}
+    </div>
+
+    <!-- SEO content sections (Below the fold) -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-16 border-t border-white/5 pt-12">
+        
+        <!-- How it works (2 cols) -->
+        <div class="lg:col-span-2 space-y-6">
+            <h2 class="text-2xl font-outfit font-bold text-white mb-6 flex items-center">
+                <span class="w-1.5 h-6 bg-cyberaccent rounded-full mr-3"></span>
+                How to Use the {{ h1 }}
+            </h2>
+            <div class="relative pl-6 border-l border-white/5 space-y-8">
+                {% for step in steps %}
+                <div class="relative">
+                    <!-- Numeric circular marker -->
+                    <div class="absolute -left-[35px] top-0 w-[20px] h-[20px] rounded-full bg-cyberaccent/20 border border-cyberaccent flex items-center justify-center text-[10px] text-cyberaccent font-bold">
+                        {{ loop.index }}
+                    </div>
+                    <p class="text-sm text-gray-300 leading-relaxed font-light">
+                        {{ step }}
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="p-6 bg-white/5 rounded-xl border border-white/5 mt-8">
+                <h3 class="text-sm font-semibold text-white mb-2">⚡ Compliance & Security Guarantee</h3>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    This execution gateway is fully sandboxed and compliant with standard information security guidelines, ensuring total regulatory transmission safety.
+                </p>
+            </div>
+        </div>
+        
+        <!-- FAQs Column (1 col) -->
+        <div class="space-y-6">
+            <h2 class="text-2xl font-outfit font-bold text-white mb-6 flex items-center">
+                <span class="w-1.5 h-6 bg-cyberneon rounded-full mr-3"></span>
+                Frequently Asked Questions
+            </h2>
+            <div class="space-y-4">
+                {% for faq in faqs %}
+                <div class="p-5 rounded-xl bg-white/5 border border-white/5 hover:border-cyberneon/20 transition-all duration-300">
+                    <h3 class="font-outfit font-bold text-sm text-white mb-2">
+                        {{ faq.q }}
+                    </h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        {{ faq.a }}
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- Config tag carrying variables from python to JS context safely -->
+<div id="tool-config" 
+     data-tool-key="{{ tool_key }}"
+     {% for k, v in params.items() %}
+     data-param-{{ k }}="{{ v }}"
+     {% endfor %}
+     class="hidden">
+</div>
+
+<!-- Load tool script -->
+<script src="{{ url_for('static', filename='js/tools/' ~ tool_key ~ '.js') }}"></script>
+{% endblock %}

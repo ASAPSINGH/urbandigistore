@@ -1,0 +1,335 @@
+{
+  "tools": {
+    "image-converter": {
+      "name": "Image Converter",
+      "slug_pattern": "/convert-<input_format>-to-<output_format>",
+      "params": {
+        "input_format": ["png", "jpg", "jpeg", "webp", "gif"],
+        "output_format": ["png", "jpg", "jpeg", "webp"]
+      },
+      "template": {
+        "meta_title": "Convert {input_format_upper} to {output_format_upper} Online - 100% Free & Secure",
+        "meta_description": "Convert {input_format_upper} images to {output_format_upper} format instantly. High-fidelity conversion preserves dimensions and guarantees secure file handling. Fast, safe, and free.",
+        "h1": "Convert {input_format_upper} to {output_format_upper} Online",
+        "h2": "Fast & Secure {input_format_upper} to {output_format_upper} File Conversion",
+        "description": "Our programmatic image converter lets you transform {input_format_upper} files into high-quality {output_format_upper} graphics in real-time. Experience secure, instant encoding with no third-party logs saved.",
+        "steps": [
+          "Select or drag & drop your .{input_format_lower} file into the converter area.",
+          "The tool will instantly load your image into memory and prepare it for conversion.",
+          "Click the 'Convert and Download' button to generate and save your new .{output_format_lower} file instantly."
+        ],
+        "faqs": [
+          {
+            "q": "Are my images uploaded to your servers?",
+            "a": "No. All conversion operations occur instantly in your sandbox environment. Your files are processed securely in memory and are never stored or logged."
+          },
+          {
+            "q": "Is the conversion quality preserved?",
+            "a": "Yes, we use high-fidelity rendering algorithms to ensure that the visual quality of your original file is maintained during conversion to {output_format_upper}."
+          },
+          {
+            "q": "Can I convert large images?",
+            "a": "Yes, but since it runs in your browser, the limit depends on your system's memory. Most images up to 50MB will convert instantly."
+          }
+        ]
+      }
+    },
+    "image-cropper": {
+      "name": "Bulk Image Cropper",
+      "slug_pattern": "/crop-image-for-<platform_size>",
+      "params": {
+        "platform_size": [
+          "instagram-post",
+          "instagram-story",
+          "youtube-thumbnail",
+          "youtube-banner",
+          "facebook-cover",
+          "tiktok-video",
+          "twitter-header"
+        ]
+      },
+      "template": {
+        "meta_title": "Crop Image for {platform_size_title} - Dimension Optimizer",
+        "meta_description": "Perfectly crop and resize your images for {platform_size_title} online. Fits dimensions exactly to prevent stretching or blurring. 100% private.",
+        "h1": "Crop Image for {platform_size_title}",
+        "h2": "Optimize Dimensions for {platform_size_title} Online",
+        "description": "Ensure your image looks perfect on {platform_size_title} by cropping it to the exact recommended layout guidelines. Prevents crucial details from being cut off by social media templates.",
+        "steps": [
+          "Upload your source image to the cropper tool.",
+          "Adjust the selection area configured to match the exact Aspect Ratio for {platform_size_title}.",
+          "Click 'Crop & Download' to save the optimized crop."
+        ],
+        "faqs": [
+          {
+            "q": "What are the exact dimensions used for {platform_size_title}?",
+            "a": "Our tool automatically locks the aspect ratio to match current social media guidelines, ensuring your image formats perfectly without stretching."
+          },
+          {
+            "q": "Is this tool free to use?",
+            "a": "Yes, all tools are 100% free with no account registrations or watermarks required."
+          }
+        ]
+      }
+    },
+    "utm-builder": {
+      "name": "UTM Link Builder",
+      "slug_pattern": "/utm-builder-for-<platform>",
+      "params": {
+        "platform": [
+          "facebook-ads",
+          "google-ads",
+          "linkedin-ads",
+          "twitter-ads",
+          "tiktok-ads",
+          "pinterest-ads"
+        ]
+      },
+      "template": {
+        "meta_title": "UTM Campaign URL Builder for {platform_title} - Easy Tracking",
+        "meta_description": "Generate trackable campaign links with custom UTM parameters optimized for {platform_title}. Track campaign performance in Google Analytics.",
+        "h1": "UTM Link Builder for {platform_title}",
+        "h2": "Create Analytics-Ready Tracking Links for {platform_title}",
+        "description": "Add custom parameters like source, medium, campaign, and content to your destination URLs. Easily measure and attribute traffic generated from {platform_title} ads.",
+        "steps": [
+          "Enter your base destination website URL.",
+          "Our tool will pre-fill the recommended campaign source and medium for {platform_title}.",
+          "Enter your campaign name, term, or content if needed, then copy the generated tracking link."
+        ],
+        "faqs": [
+          {
+            "q": "Why is campaign tracking important?",
+            "a": "Using UTM parameters lets you identify which specific campaign, ad, or keyword drove a visitor to your website, letting you optimize budget allocation."
+          },
+          {
+            "q": "Will this link affect my SEO?",
+            "a": "No, search engines ignore standard UTM queries when indexing canonical pages, ensuring your search rankings are safe."
+          }
+        ]
+      }
+    },
+    "whatsapp-generator": {
+      "name": "WhatsApp Link Generator",
+      "slug_pattern": "/whatsapp-link-generator-for-<country>",
+      "params": {
+        "country": [
+          "india",
+          "usa",
+          "uk",
+          "canada",
+          "australia",
+          "germany",
+          "france",
+          "brazil",
+          "united-arab-emirates",
+          "singapore"
+        ]
+      },
+      "template": {
+        "meta_title": "WhatsApp Link Generator for {country_title} - Click-to-Chat",
+        "meta_description": "Create instant WhatsApp click-to-chat links with custom pre-filled messages. Designed for users and businesses in {country_title}.",
+        "h1": "WhatsApp Link Generator for {country_title}",
+        "h2": "Generate Instant Click-to-Chat WhatsApp URLs",
+        "description": "Generate a short link that allows clients or customers in {country_title} to send you a WhatsApp message with a single click. No need to save your contact details first.",
+        "steps": [
+          "Select the dial code and enter your WhatsApp phone number.",
+          "Add a pre-filled custom message that clients will see in their input box.",
+          "Click 'Generate Link' to copy the short URL or QR code."
+        ],
+        "faqs": [
+          {
+            "q": "Does this work internationally?",
+            "a": "Yes, you can generate links for contacts globally, and the prefix automatically formats with correct country codes."
+          },
+          {
+            "q": "Can I embed this link on my website?",
+            "a": "Absolutely. You can link this to buttons, images, or anchor text on your web pages to make customer support simple."
+          }
+        ]
+      }
+    },
+    "json-formatter": {
+      "name": "JSON Formatter",
+      "slug_pattern": "/format-json-for-<use_case>",
+      "params": {
+        "use_case": ["rest-api", "config", "visualizer", "prettify", "minify"]
+      },
+      "template": {
+        "meta_title": "JSON Formatter & Validator for {use_case_title} - Free Online",
+        "meta_description": "Prettify, minify, validate, and debug JSON objects specifically optimized for {use_case_title}. Instant error syntax highlighting.",
+        "h1": "JSON Formatter for {use_case_title}",
+        "h2": "Validate & Format JSON Structure Online",
+        "description": "Easily clean up messy JSON outputs. Our tool formats your data structures to make them human-readable, checks for compliance issues, and enables instant downloading.",
+        "steps": [
+          "Paste your raw JSON text into the editor window.",
+          "Choose to format (prettify) or collapse (minify) to fit your {use_case_title} setup.",
+          "Verify any syntax errors flagged by the parser, then copy the result."
+        ],
+        "faqs": [
+          {
+            "q": "Is my data sent to the server?",
+            "a": "No. All parsing and formatting occur in your active session memory, keeping all database records and config details completely confidential."
+          },
+          {
+            "q": "What happens if my JSON is invalid?",
+            "a": "The editor highlights the exact line containing syntax errors so you can easily correct formatting issues."
+          }
+        ]
+      }
+    },
+    "position-calculator": {
+      "name": "Position Size Calculator",
+      "slug_pattern": "/position-size-calculator-<asset_class>",
+      "params": {
+        "asset_class": ["forex", "crypto", "stocks"]
+      },
+      "template": {
+        "meta_title": "Position Size Calculator for {asset_class_title} - Risk Manager",
+        "meta_description": "Calculate target trade sizing and leverage based on account balance, risk tolerance, and stop loss rules for {asset_class_title} markets.",
+        "h1": "Position Size Calculator for {asset_class_title}",
+        "h2": "Manage Trade Sizing & Risk Exposure",
+        "description": "A must-use utility for traders looking to control drawdowns. Calculate the exact contract sizes or coin quantities you should purchase based on your active capital.",
+        "steps": [
+          "Input your current account base balance and target risk percentage (e.g. 1% or 2%).",
+          "Enter your stop loss distance in points/pips or percentage.",
+          "Review the calculated position size and total value at risk."
+        ],
+        "faqs": [
+          {
+            "q": "Why is position sizing important?",
+            "a": "It ensures that no single trade losses exceed your predetermined threshold, protecting your overall portfolio from blowing up."
+          },
+          {
+            "q": "Can I calculate leverage sizes?",
+            "a": "Yes, the tool shows total deal value and calculated leverage targets based on your input parameters."
+          }
+        ]
+      }
+    },
+    "fibonacci-calculator": {
+      "name": "Fibonacci Calculator",
+      "slug_pattern": "/fibonacci-retracement-calculator-<use_case>",
+      "params": {
+        "use_case": ["stock-trading", "crypto-trading", "forex-trading"]
+      },
+      "template": {
+        "meta_title": "Fibonacci Retracement Calculator for {use_case_title}",
+        "meta_description": "Calculate key Fibonacci retracement levels (23.6%, 38.2%, 50%, 61.8%, 78.6%) for target entry points in {use_case_title}.",
+        "h1": "Fibonacci Calculator for {use_case_title}",
+        "h2": "Calculate Support & Resistance Levels",
+        "description": "Generate key price points of potential market reversals. Perfect for establishing stop placement and limit orders across {use_case_title} instruments.",
+        "steps": [
+          "Enter the extreme swing high and swing low values for the current trend.",
+          "Specify the direction of the market movement (Uptrend or Downtrend).",
+          "View the calculated retracement and extension grid levels."
+        ],
+        "faqs": [
+          {
+            "q": "What are the most watched Fibonacci levels?",
+            "a": "The 38.2%, 50%, and 61.8% levels are universally watched by analysts as critical areas for potential pullbacks."
+          },
+          {
+            "q": "Does this tool execute automated trades?",
+            "a": "No, it is an analysis helper that provides mathematical reference levels for your chart overlays."
+          }
+        ]
+      }
+    },
+    "character-counter": {
+      "name": "Character Counter",
+      "slug_pattern": "/character-counter-for-<platform>",
+      "params": {
+        "platform": ["twitter-post", "linkedin-post", "instagram-bio", "google-title", "google-description"]
+      },
+      "template": {
+        "meta_title": "Character Counter for {platform_title} - Word Limit Tool",
+        "meta_description": "Validate your text length against character limits for {platform_title}. Realtime character, word, and sentence counts with visual safety thresholds.",
+        "h1": "Character Counter for {platform_title}",
+        "h2": "Verify Text Character Counts for {platform_title}",
+        "description": "Ensure your content fits within the target limits for {platform_title}. Our counter helps you avoid truncated descriptions or posts that exceed publishing bounds.",
+        "steps": [
+          "Paste or type your draft text into the editor input area.",
+          "Check the character and word counts updating instantly.",
+          "Verify that the progress indicator stays below the safety threshold, then copy your formatted copy."
+        ],
+        "faqs": [
+          {
+            "q": "What is the character limit for {platform_title}?",
+            "a": "Our tool automatically configures target character limit rules according to the official publishing guidelines for {platform_title}."
+          },
+          {
+            "q": "Are carriage returns counted as characters?",
+            "a": "Yes, standard platforms count newline characters as part of their character budget, and our counter validates them correctly."
+          }
+        ]
+      }
+    },
+    "cpm-calculator": {
+      "name": "CPM Calculator",
+      "slug_pattern": "/cpm-calculator-for-<channel>",
+      "params": {
+        "channel": ["facebook-ads", "google-ads", "tiktok-ads", "linkedin-ads"]
+      },
+      "template": {
+        "meta_title": "CPM & Ad Campaign Calculator for {channel_title}",
+        "meta_description": "Plan your ad budget with our free {channel_title} CPM calculator. Easily solve for cost, impressions, and cost per mille directly in your browser.",
+        "h1": "CPM Calculator for {channel_title}",
+        "h2": "Calculate Ad Campaign Metrics for {channel_title}",
+        "description": "Calculate Cost Per Mille (CPM), impressions, total budget, or ROAS for your {channel_title} campaigns. Plan campaign sizing and optimize allocations.",
+        "steps": [
+          "Select the parameter you wish to calculate (CPM, Impressions, or Total Cost).",
+          "Enter your known campaign metrics into the input form fields.",
+          "Instantly review the computed ad metrics and click to copy results."
+        ],
+        "faqs": [
+          {
+            "q": "What does CPM stand for?",
+            "a": "CPM stands for Cost Per Mille, which represents the cost of generating 1,000 ad impressions on platforms like {channel_title}."
+          },
+          {
+            "q": "Can I calculate ROAS here?",
+            "a": "Yes, we have added secondary fields to calculate Return on Ad Spend (ROAS) based on revenue and budget inputs."
+          }
+        ]
+      }
+    },
+    "base64-converter": {
+      "name": "Base64 File Converter",
+      "slug_pattern": "/decode-base64-to-<file_type>",
+      "params": {
+        "file_type": ["png", "jpg", "pdf", "svg", "json"]
+      },
+      "template": {
+        "meta_title": "Decode Base64 to {file_type_upper} Online - Secure Decoder Tool",
+        "meta_description": "Safely decode Base64 strings to .{file_type_lower} format. Fully sandboxed execution ensures your database logs and values remain secure.",
+        "h1": "Decode Base64 to {file_type_upper} Online",
+        "h2": "Extract and Reconstruct {file_type_upper} Files from Base64",
+        "description": "Need to convert a raw Base64 data string back into a downloadable .{file_type_lower} asset? Our decoder handles the byte reconstruction entirely inside your browser for total security.",
+        "steps": [
+          "Paste your raw Base64 string into the input editor.",
+          "Our tool will parse the header and validate the syntax format.",
+          "Click 'Convert and Download' to save the reconstructed .{file_type_lower} file."
+        ],
+        "faqs": [
+          {
+            "q": "Is it safe to paste confidential Base64 data here?",
+            "a": "Yes, absolutely. Because decoding is fully sandboxed in your browser session, no data is transmitted to external servers."
+          },
+          {
+            "q": "What happens if my Base64 string is missing a header?",
+            "a": "Our parser automatically detects and appends the necessary MIME header to trigger a successful download."
+          }
+        ]
+      }
+    }
+  },
+  "overrides": {
+    "convert-png-to-webp": {
+      "meta_title": "Convert PNG to WebP Online - Secure conversion",
+      "meta_description": "Need to compress web assets? Convert PNG to WebP format instantly. Save file size without losing alpha channel transparency. WebP converter is 100% secure."
+    },
+    "crop-image-for-instagram-post": {
+      "meta_title": "Crop Image for Instagram Post (1080x1080) - Square Crop Tool",
+      "meta_description": "Crop your images to the exact 1:1 square ratio (1080x1080px) for Instagram feeds. High-fidelity canvas rendering preserves photo quality."
+    }
+  }
+}

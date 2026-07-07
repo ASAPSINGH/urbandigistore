@@ -1,0 +1,62 @@
+<!-- Character Counter Interactive Panel -->
+<div class="space-y-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/5 pb-4 mb-6">
+        <div>
+            <h3 class="text-lg font-outfit font-bold text-white">Visual Content Meter</h3>
+            <p class="text-xs text-gray-400">Validate content sizing against publisher constraints.</p>
+        </div>
+        <div class="mt-2 sm:mt-0 px-3 py-1.5 rounded-lg bg-cyberaccent/10 border border-cyberaccent/20 flex items-center space-x-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyberaccent"></span>
+            <span class="text-[10px] text-cyberaccent font-semibold uppercase tracking-wider" id="cc-badge-platform">
+                Loading Platform...
+            </span>
+        </div>
+    </div>
+
+    <!-- Counters Display Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="glass-input rounded-xl p-4 text-center">
+            <p class="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mb-1">Characters</p>
+            <p id="cnt-chars" class="text-2xl font-bold font-mono text-white">0</p>
+        </div>
+        <div class="glass-input rounded-xl p-4 text-center">
+            <p class="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mb-1">Words</p>
+            <p id="cnt-words" class="text-2xl font-bold font-mono text-white">0</p>
+        </div>
+        <div class="glass-input rounded-xl p-4 text-center">
+            <p class="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mb-1">Sentences</p>
+            <p id="cnt-sentences" class="text-2xl font-bold font-mono text-white">0</p>
+        </div>
+        <div class="glass-input rounded-xl p-4 text-center">
+            <p class="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mb-1">Paragraphs</p>
+            <p id="cnt-paragraphs" class="text-2xl font-bold font-mono text-white">0</p>
+        </div>
+    </div>
+
+    <!-- Progress Meter -->
+    <div id="meter-container" class="space-y-2">
+        <div class="flex justify-between items-center text-xs">
+            <span class="text-gray-400">Platform Threshold Limit</span>
+            <span class="font-mono text-white" id="meter-text">0 / 280 Characters</span>
+        </div>
+        <div class="w-full bg-white/5 rounded-full h-2.5 overflow-hidden border border-white/5">
+            <div id="meter-bar" class="bg-cyberaccent h-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+    </div>
+
+    <!-- Textarea Input -->
+    <div class="space-y-2">
+        <div class="flex justify-between items-center">
+            <label for="cc-input" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Draft Copy Editor</label>
+            <button id="btn-clear-cc" class="text-xs text-gray-500 hover:text-red-400 transition-colors">Clear Text</button>
+        </div>
+        <textarea id="cc-input" rows="8" placeholder="Start typing or paste your content here..." class="w-full px-4 py-3 rounded-lg glass-input text-sm leading-relaxed"></textarea>
+    </div>
+
+    <!-- Actions -->
+    <div class="pt-4 border-t border-white/5 flex justify-end">
+        <button id="btn-copy-cc" class="btn-neon px-6 py-3 rounded-lg text-xs font-semibold text-white tracking-wide uppercase">
+            Copy Checked Copy
+        </button>
+    </div>
+</div>
