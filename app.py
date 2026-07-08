@@ -383,6 +383,10 @@ def blog_post(slug):
         abort(404)
     return render_template('blog/post.html', post=post)
 
+@app.route('/googlenH_m5gZ-2Oi7zqLQ18lLOFedJm-mZUVdS_p8hd7proY.html')
+def google_verification():
+    return "google-site-verification: googlenH_m5gZ-2Oi7zqLQ18lLOFedJm-mZUVdS_p8hd7proY.html"
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404

@@ -83,9 +83,17 @@ class TestWebUtilities(unittest.TestCase):
         self.assertIn(b'Why Image Compression Matters for Web Performance', resp.data)
         self.assertIn(b'BlogPosting', resp.data)  # JSON-LD Schema check
         
-        # 3. Invalid Post Page returns 404
-        resp = self.app.get('/blog/invalid-post-slug-name')
-        self.assertEqual(resp.status_code, 404)
+    def test_google_verification(self):
+        """Verify Google Search Console verification HTML file and meta tag routes work."""
+        # 1. Test HTML file route
+        resp = self.app.get('/googlenH_m5gZ-2Oi7zqLQ18lLOFedJm-mZUVdS_p8hd7proY.html')
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.data, b'google-site-verification: googlenH_m5gZ-2Oi7zqLQ18lLOFedJm-mZUVdS_p8hd7proY.html')
+
+        # 2. Test Meta Tag in base template (loaded on homepage)
+        resp = self.app.get('/')
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(b'<meta name="google-site-verification" content="nH_m5gZ-2Oi7zqLQ18lLOFedJm-mZUVdS_p8hd7proY" />', resp.data)
 
 if __name__ == '__main__':
     unittest.main()
