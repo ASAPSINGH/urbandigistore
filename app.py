@@ -383,9 +383,19 @@ def blog_post(slug):
         abort(404)
     return render_template('blog/post.html', post=post)
 
+@app.route('/robots.txt')
+def robots():
+    base_url = request.url_root.rstrip('/')
+    content = f"User-agent: *\nAllow: /\nSitemap: {base_url}/sitemap.xml\n"
+    return Response(content, mimetype='text/plain')
+
 @app.route('/googlenH_m5gZ-2Oi7zqLQ18lLOFedJm-mZUVdS_p8hd7proY.html')
 def google_verification():
     return "google-site-verification: googlenH_m5gZ-2Oi7zqLQ18lLOFedJm-mZUVdS_p8hd7proY.html"
+
+@app.route('/google419e02c86ce25995.html')
+def google_verification_new():
+    return "google-site-verification: google419e02c86ce25995.html"
 
 @app.errorhandler(404)
 def page_not_found(e):

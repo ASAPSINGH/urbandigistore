@@ -90,10 +90,25 @@ class TestWebUtilities(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.data, b'google-site-verification: googlenH_m5gZ-2Oi7zqLQ18lLOFedJm-mZUVdS_p8hd7proY.html')
 
+        # 1.1 Test New HTML file route
+        resp = self.app.get('/google419e02c86ce25995.html')
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.data, b'google-site-verification: google419e02c86ce25995.html')
+
         # 2. Test Meta Tag in base template (loaded on homepage)
         resp = self.app.get('/')
         self.assertEqual(resp.status_code, 200)
         self.assertIn(b'<meta name="google-site-verification" content="nH_m5gZ-2Oi7zqLQ18lLOFedJm-mZUVdS_p8hd7proY" />', resp.data)
 
+    def test_robots_txt(self):
+        """Verify the robots.txt route returns plain text pointing to the sitemap."""
+        resp = self.app.get('/robots.txt')
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.mimetype, 'text/plain')
+        self.assertIn(b'User-agent: *', resp.data)
+        self.assertIn(b'Sitemap:', resp.data)
+        self.assertIn(b'/sitemap.xml', resp.data)
+
 if __name__ == '__main__':
     unittest.main()
+

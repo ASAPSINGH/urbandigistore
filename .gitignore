@@ -10,3 +10,4 @@ ENV/
 .gemini/
 .DS_Store
 *.log
+service_account.json
