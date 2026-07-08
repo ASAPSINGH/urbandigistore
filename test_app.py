@@ -109,6 +109,50 @@ class TestWebUtilities(unittest.TestCase):
         self.assertIn(b'Sitemap:', resp.data)
         self.assertIn(b'/sitemap.xml', resp.data)
 
+    def test_subscribe(self):
+        """Verify that the newsletter subscription endpoint handles inputs and registers users correctly."""
+        import os
+        sub_file = '/Users/asapsingh/Documents/utility tools webiste/subscribers.csv'
+        sub_backup = '/Users/asapsingh/Documents/utility tools webiste/subscribers_backup_test.csv'
+        
+        # Backup if exists
+        if os.path.exists(sub_file):
+            import shutil
+            shutil.copyfile(sub_file, sub_backup)
+            os.remove(sub_file)
+
+        try:
+            # 1. Test empty email
+            resp = self.app.post('/subscribe', json={})
+            self.assertEqual(resp.status_code, 400)
+            self.assertIn(b'Email is required', resp.data)
+
+            # 2. Test invalid email format
+            resp = self.app.post('/subscribe', json={'email': 'invalid-email-format'})
+            self.assertEqual(resp.status_code, 400)
+            self.assertIn(b'valid email address', resp.data)
+
+            # 3. Test successful subscription
+            resp = self.app.post('/subscribe', json={'email': 'test_user@example.com'})
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn(b'Successfully subscribed', resp.data)
+
+            # 4. Test duplicate subscription prevention
+            resp = self.app.post('/subscribe', json={'email': 'test_user@example.com'})
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn(b'already subscribed', resp.data)
+            
+            # Verify file was written
+            self.assertTrue(os.path.exists(sub_file))
+        finally:
+            # Restore backup
+            if os.path.exists(sub_file):
+                os.remove(sub_file)
+            if os.path.exists(sub_backup):
+                import shutil
+                shutil.copyfile(sub_backup, sub_file)
+                os.remove(sub_backup)
+
 if __name__ == '__main__':
     unittest.main()
 

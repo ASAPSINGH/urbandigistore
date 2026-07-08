@@ -2,7 +2,7 @@ import json
 import os
 import glob
 import markdown
-from flask import Flask, render_template, abort, Response, request
+from flask import Flask, render_template, abort, Response, request, jsonify
 
 app = Flask(__name__)
 
@@ -208,6 +208,7 @@ def get_seo_context(tool_key, **kwargs):
         'aeo_definition': tool_conf.get('aeo_definition', ''),
         'geo_reference': tool_conf.get('geo_reference', ''),
         'technical_comparison': tool_conf.get('technical_comparison', {}),
+        'affiliate_partner': tool_conf.get('affiliate_partner', None),
         'related_links': related_links,
         'sibling_tools': sibling_tools
     }
@@ -396,6 +397,49 @@ def google_verification():
 @app.route('/google419e02c86ce25995.html')
 def google_verification_new():
     return "google-site-verification: google419e02c86ce25995.html"
+
+@app.route('/subscribe', methods=['POST'])
+def subscribe():
+    import csv
+    import re
+    from datetime import datetime
+    
+    data = request.get_json() or {}
+    email = data.get('email', '').strip()
+    
+    if not email:
+        return jsonify({'success': False, 'message': 'Email is required.'}), 400
+        
+    email_regex = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+    if not re.match(email_regex, email):
+        return jsonify({'success': False, 'message': 'Please enter a valid email address.'}), 400
+        
+    subscribers_file = os.path.join(os.path.dirname(__file__), 'subscribers.csv')
+    existing = set()
+    if os.path.exists(subscribers_file):
+        try:
+            with open(subscribers_file, 'r', newline='') as f:
+                reader = csv.reader(f)
+                for row in reader:
+                    if row:
+                        existing.add(row[0].strip().lower())
+        except Exception:
+            pass
+            
+    if email.lower() in existing:
+        return jsonify({'success': False, 'message': 'You are already subscribed!'}), 200
+        
+    try:
+        file_exists = os.path.exists(subscribers_file)
+        with open(subscribers_file, 'a', newline='') as f:
+            writer = csv.writer(f)
+            if not file_exists:
+                writer.writerow(['Email', 'Subscription Date'])
+            writer.writerow([email, datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')])
+    except Exception:
+        return jsonify({'success': False, 'message': 'Server error. Please try again later.'}), 500
+        
+    return jsonify({'success': True, 'message': 'Successfully subscribed! Welcome to the matrix.'}), 200
 
 @app.errorhandler(404)
 def page_not_found(e):
