@@ -1,5 +1,7 @@
 import json
 import os
+import glob
+import markdown
 from flask import Flask, render_template, abort, Response, request
 
 app = Flask(__name__)
@@ -8,6 +10,46 @@ app = Flask(__name__)
 seo_data_path = os.path.join(os.path.dirname(__file__), 'seo_data.json')
 with open(seo_data_path, 'r') as f:
     seo_data = json.load(f)
+
+# Helper function to load and parse blog posts
+def get_blog_posts():
+    blog_dir = os.path.join(os.path.dirname(__file__), 'content', 'blog')
+    posts = []
+    if not os.path.exists(blog_dir):
+        return posts
+        
+    for filepath in glob.glob(os.path.join(blog_dir, '*.md')):
+        slug = os.path.basename(filepath).replace('.md', '')
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+            
+        meta = {}
+        body = content
+        if content.startswith('title:') or '---' in content:
+            parts = content.split('---', 1)
+            header = parts[0]
+            body = parts[1] if len(parts) > 1 else ''
+            for line in header.split('\n'):
+                line = line.strip()
+                if not line or ':' not in line:
+                    continue
+                k, v = line.split(':', 1)
+                meta[k.strip().lower()] = v.strip()
+                
+        html_content = markdown.markdown(body, extensions=['tables'])
+        posts.append({
+            'slug': slug,
+            'title': meta.get('title', slug.replace('-', ' ').title()),
+            'description': meta.get('description', ''),
+            'date': meta.get('date', '2026-07-08'),
+            'category': meta.get('category', 'General'),
+            'author': meta.get('author', 'Admin'),
+            'content': html_content,
+            'excerpt': meta.get('description', '')[:140] + '...' if len(meta.get('description', '')) > 140 else meta.get('description', '')
+        })
+    posts.sort(key=lambda x: x['date'], reverse=True)
+    return posts
+
 
 # Helper function to generate SEO metadata
 def get_seo_context(tool_key, **kwargs):
@@ -47,6 +89,112 @@ def get_seo_context(tool_key, **kwargs):
         if 'meta_description' in override:
             meta_description = override['meta_description']
             
+    # Generate related links dynamically (Variation-to-Variation Spoke Linking)
+    related_links = []
+    category = tool_conf.get('category', '')
+    
+    if tool_key == 'image-converter':
+        current_in = kwargs.get('input_format', '')
+        current_out = kwargs.get('output_format', '')
+        for out_fmt in tool_conf['params']['output_format']:
+            if out_fmt != current_out and out_fmt != current_in:
+                related_links.append({
+                    'title': f"{current_in.upper()} to {out_fmt.upper()}",
+                    'url': f"/convert-{current_in}-to-{out_fmt}"
+                })
+        for in_fmt in tool_conf['params']['input_format']:
+            if in_fmt != current_in and in_fmt != current_out:
+                related_links.append({
+                    'title': f"{in_fmt.upper()} to {current_out.upper()}",
+                    'url': f"/convert-{in_fmt}-to-{current_out}"
+                })
+    elif tool_key == 'image-cropper':
+        current_ps = kwargs.get('platform_size', '')
+        for ps in tool_conf['params']['platform_size']:
+            if ps != current_ps:
+                related_links.append({
+                    'title': f"Crop for {ps.replace('-', ' ').title()}",
+                    'url': f"/crop-image-for-{ps}"
+                })
+    elif tool_key == 'utm-builder':
+        current_p = kwargs.get('platform', '')
+        for p in tool_conf['params']['platform']:
+            if p != current_p:
+                related_links.append({
+                    'title': f"UTM for {p.replace('-ads', '').replace('-', ' ').title()}",
+                    'url': f"/utm-builder-for-{p}"
+                })
+    elif tool_key == 'whatsapp-generator':
+        current_c = kwargs.get('country', '')
+        for c in tool_conf['params']['country']:
+            if c != current_c:
+                related_links.append({
+                    'title': f"Link for {c.replace('-', ' ').title()}",
+                    'url': f"/whatsapp-link-generator-for-{c}"
+                })
+    elif tool_key == 'json-formatter':
+        current_uc = kwargs.get('use_case', '')
+        for uc in tool_conf['params']['use_case']:
+            if uc != current_uc:
+                related_links.append({
+                    'title': f"Format for {uc.replace('-', ' ').title()}",
+                    'url': f"/format-json-for-{uc}"
+                })
+    elif tool_key == 'position-calculator':
+        current_ac = kwargs.get('asset_class', '')
+        for ac in tool_conf['params']['asset_class']:
+            if ac != current_ac:
+                related_links.append({
+                    'title': f"Sizing for {ac.replace('-', ' ').title()}",
+                    'url': f"/position-size-calculator-{ac}"
+                })
+    elif tool_key == 'fibonacci-calculator':
+        current_uc = kwargs.get('use_case', '')
+        for uc in tool_conf['params']['use_case']:
+            if uc != current_uc:
+                related_links.append({
+                    'title': f"Fibonacci: {uc.replace('-', ' ').title()}",
+                    'url': f"/fibonacci-retracement-calculator-{uc}"
+                })
+    elif tool_key == 'character-counter':
+        current_p = kwargs.get('platform', '')
+        for p in tool_conf['params']['platform']:
+            if p != current_p:
+                related_links.append({
+                    'title': f"Counter for {p.replace('-', ' ').title()}",
+                    'url': f"/character-counter-for-{p}"
+                })
+    elif tool_key == 'cpm-calculator':
+        current_ch = kwargs.get('channel', '')
+        for ch in tool_conf['params']['channel']:
+            if ch != current_ch:
+                related_links.append({
+                    'title': f"CPM for {ch.replace('-ads', '').replace('-', ' ').title()}",
+                    'url': f"/cpm-calculator-for-{ch}"
+                })
+    elif tool_key == 'base64-converter':
+        current_ft = kwargs.get('file_type', '')
+        for ft in tool_conf['params']['file_type']:
+            if ft != current_ft:
+                related_links.append({
+                    'title': f"Decode to {ft.upper()}",
+                    'url': f"/decode-base64-to-{ft}"
+                })
+
+    related_links = related_links[:6]
+
+    # Generate category sibling links dynamically
+    sibling_tools = []
+    for k, v in seo_data['tools'].items():
+        if k != tool_key and v.get('category') == category:
+            first_param_key = list(v['params'].keys())[0]
+            first_param_val = v['params'][first_param_key][0]
+            sibling_slug = v['slug_pattern'].replace(f"<{first_param_key}>", first_param_val)
+            sibling_tools.append({
+                'name': v['name'],
+                'url': sibling_slug
+            })
+            
     return {
         'tool_key': tool_key,
         'meta_title': meta_title,
@@ -56,7 +204,12 @@ def get_seo_context(tool_key, **kwargs):
         'description': description,
         'steps': steps,
         'faqs': faqs,
-        'params': kwargs
+        'params': kwargs,
+        'aeo_definition': tool_conf.get('aeo_definition', ''),
+        'geo_reference': tool_conf.get('geo_reference', ''),
+        'technical_comparison': tool_conf.get('technical_comparison', {}),
+        'related_links': related_links,
+        'sibling_tools': sibling_tools
     }
 
 @app.route('/')
@@ -203,6 +356,11 @@ def sitemap():
     for ft in b64['params']['file_type']:
         urls.append(f"{base_url}/decode-base64-to-{ft}")
         
+    # 12. Blog Pages
+    urls.append(f"{base_url}/blog")
+    for post in get_blog_posts():
+        urls.append(f"{base_url}/blog/{post['slug']}")
+        
     # Render XML Structure
     xml_content = '<?xml version="1.0" encoding="UTF-8"?>\n'
     xml_content += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
@@ -211,6 +369,19 @@ def sitemap():
     xml_content += '</urlset>'
     
     return Response(xml_content, mimetype='application/xml')
+
+@app.route('/blog')
+def blog_index():
+    posts = get_blog_posts()
+    return render_template('blog/index.html', posts=posts)
+
+@app.route('/blog/<slug>')
+def blog_post(slug):
+    posts = get_blog_posts()
+    post = next((p for p in posts if p['slug'] == slug), None)
+    if not post:
+        abort(404)
+    return render_template('blog/post.html', post=post)
 
 @app.errorhandler(404)
 def page_not_found(e):

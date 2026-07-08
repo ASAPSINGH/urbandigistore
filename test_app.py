@@ -67,6 +67,25 @@ class TestWebUtilities(unittest.TestCase):
         urls = [child[0].text for child in root if len(child) > 0]
         self.assertTrue(len(urls) > 10, "Sitemap contains too few URLs.")
         self.assertTrue(any('/convert-png-to-webp' in url for url in urls), "Sitemap missing image converter URLs.")
+        self.assertTrue(any('/blog/importance-of-image-compression' in url for url in urls), "Sitemap missing blog post URLs.")
+        
+    def test_blog_routes(self):
+        """Verify that the blog index and posts render successfully."""
+        # 1. Blog Index
+        resp = self.app.get('/blog')
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(b'Knowledge Base Matrix', resp.data)
+        self.assertIn(b'Why Image Compression Matters', resp.data)
+        
+        # 2. Blog Post Page
+        resp = self.app.get('/blog/importance-of-image-compression')
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(b'Why Image Compression Matters for Web Performance', resp.data)
+        self.assertIn(b'BlogPosting', resp.data)  # JSON-LD Schema check
+        
+        # 3. Invalid Post Page returns 404
+        resp = self.app.get('/blog/invalid-post-slug-name')
+        self.assertEqual(resp.status_code, 404)
 
 if __name__ == '__main__':
     unittest.main()

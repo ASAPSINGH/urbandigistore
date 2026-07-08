@@ -19,7 +19,7 @@
     </nav>
 
     <!-- Header Block (Above the Fold) -->
-    <div class="mb-10 max-w-3xl">
+    <div class="mb-6 max-w-3xl">
         <h1 class="text-3xl sm:text-5xl font-outfit font-extrabold tracking-tight text-white mb-4">
             {{ h1 }}
         </h1>
@@ -27,6 +27,24 @@
             {{ description }}
         </p>
     </div>
+
+    <!-- Snippet-Friendly Direct Definition (AEO Support) -->
+    {% if aeo_definition %}
+    <div class="p-4 rounded-xl bg-cyberneon/5 border border-cyberneon/20 mb-10 max-w-3xl glass-panel relative overflow-hidden">
+        <div class="absolute -right-16 -top-16 w-32 h-32 bg-cyberneon/5 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="flex items-start space-x-3">
+            <div class="p-1 rounded bg-cyberneon/10 text-cyberneon mt-0.5">
+                <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <div>
+                <h3 class="text-[10px] font-bold text-cyberneon tracking-wider uppercase mb-1">Direct Answer / Definition</h3>
+                <p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-light">{{ aeo_definition }}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 
     <!-- MAIN INTERACTIVE TOOL INTERFACE (Above the fold, no extra scrolling needed) -->
     <div class="glass-panel rounded-2xl p-6 sm:p-8 mb-12 relative overflow-hidden border border-white/10 shadow-2xl">
@@ -36,6 +54,48 @@
         <!-- Inject Tool Component HTML -->
         {% include 'tools/' ~ tool_key ~ '.html' %}
     </div>
+
+    <!-- Technical Specs & Standards Table (GEO Support) -->
+    {% if technical_comparison and technical_comparison.headers %}
+    <div class="mt-16 border-t border-white/5 pt-12">
+        <h2 class="text-2xl font-outfit font-bold text-white mb-6 flex items-center">
+            <span class="w-1.5 h-6 bg-cyberneon rounded-full mr-3"></span>
+            {{ technical_comparison.title }}
+        </h2>
+        <div class="glass-panel rounded-xl overflow-hidden border border-white/10 shadow-xl mb-4">
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-white/5 text-left text-xs sm:text-sm">
+                    <thead class="bg-white/5">
+                        <tr>
+                            {% for header in technical_comparison.headers %}
+                            <th scope="col" class="px-6 py-3.5 font-semibold text-gray-300 tracking-wider">
+                                {{ header }}
+                            </th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5">
+                        {% for row in technical_comparison.rows %}
+                        <tr class="hover:bg-white/5 transition-colors">
+                            {% for cell in row %}
+                            <td class="px-6 py-4 font-light text-gray-400">
+                                {{ cell }}
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% if geo_reference %}
+        <p class="text-xs text-gray-500 italic flex items-center pl-2 border-l-2 border-cyberaccent/40">
+            <svg class="w-4 h-4 mr-2 text-cyberaccent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            Reference Specification: {{ geo_reference }}
+        </p>
+        {% endif %}
+    </div>
+    {% endif %}
 
     <!-- SEO content sections (Below the fold) -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-16 border-t border-white/5 pt-12">
@@ -90,6 +150,45 @@
 
     </div>
 
+    <!-- Cluster Internal Linking Section (SEO Spoke to Spoke clustering) -->
+    {% if related_links or sibling_tools %}
+    <div class="mt-16 border-t border-white/5 pt-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {% if related_links %}
+            <div>
+                <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase mb-4 flex items-center">
+                    <svg class="w-4.5 h-4.5 mr-2 text-cyberneon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    Related Tool Variations
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                    {% for link in related_links %}
+                    <a href="{{ link.url }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/60 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition duration-200">
+                        {{ link.title }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if sibling_tools %}
+            <div>
+                <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase mb-4 flex items-center">
+                    <svg class="w-4.5 h-4.5 mr-2 text-cyberaccent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    Similar Category Utilities
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                    {% for sibling in sibling_tools %}
+                    <a href="{{ sibling.url }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/60 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition duration-200">
+                        {{ sibling.name }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
 </div>
 {% endblock %}
 
@@ -105,4 +204,63 @@
 
 <!-- Load tool script -->
 <script src="{{ url_for('static', filename='js/tools/' ~ tool_key ~ '.js') }}"></script>
+
+<!-- Structured JSON-LD schemas (SEO/GEO/AEO @graph schema markup) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ request.url_root.rstrip('/') }}/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ tool_key.replace('-', ' ').title() }}",
+          "item": "{{ request.url }}"
+        }
+      ]
+    }
+    {% if steps %},
+    {
+      "@type": "HowTo",
+      "name": "{{ h1|replace('"', '\\"') }}",
+      "description": "{{ description|replace('"', '\\"') }}",
+      "step": [
+        {% for step in steps %}
+        {
+          "@type": "HowToStep",
+          "position": {{ loop.index }},
+          "text": "{{ step|replace('"', '\\"') }}"
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+    {% endif %}
+    {% if faqs %},
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {% for faq in faqs %}
+        {
+          "@type": "Question",
+          "name": "{{ faq.q|replace('"', '\\"') }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ faq.a|replace('"', '\\"') }}"
+          }
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+    {% endif %}
+  ]
+}
+</script>
 {% endblock %}

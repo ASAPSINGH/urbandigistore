@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 relative z-10">
+    
+    <!-- Hero / Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16 relative z-10">
+        <div class="inline-flex items-center space-x-2 bg-cyberaccent/10 border border-cyberaccent/30 rounded-full px-4 py-1.5 mb-6">
+            <span class="w-2 h-2 rounded-full bg-cyberaccent animate-pulse"></span>
+            <span class="text-xs font-semibold tracking-wider text-cyberaccent uppercase">Resource Hub & Insights</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-outfit font-extrabold tracking-tight text-white mb-6 leading-tight">
+            Knowledge Base Matrix
+        </h1>
+        <p class="text-base sm:text-lg text-gray-400 font-light max-w-2xl mx-auto">
+            Deep-dive technical articles, operational guidelines, and industry best practices for search optimization, design conversion, and traffic engineering.
+        </p>
+    </div>
+
+    <!-- Blog Posts Grid -->
+    {% if posts %}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {% for post in posts %}
+        <article class="glass-panel rounded-2xl p-6 hover:border-cyberneon/30 transition-all duration-300 flex flex-col justify-between group">
+            <div>
+                <!-- Metadata header -->
+                <div class="flex items-center justify-between text-xs text-gray-500 mb-4">
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/5 text-cyberneon font-medium">
+                        {{ post.category }}
+                    </span>
+                    <span>{{ post.date }}</span>
+                </div>
+                
+                <!-- Title -->
+                <h2 class="text-xl font-outfit font-bold text-white mb-3 group-hover:text-cyberneon transition-colors duration-200">
+                    <a href="/blog/{{ post.slug }}">{{ post.title }}</a>
+                </h2>
+                
+                <!-- Excerpt -->
+                <p class="text-sm text-gray-400 font-light leading-relaxed mb-6">
+                    {{ post.excerpt }}
+                </p>
+            </div>
+            
+            <!-- Footer Link -->
+            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                <span class="text-xs text-gray-500">By {{ post.author }}</span>
+                <a href="/blog/{{ post.slug }}" class="text-xs font-semibold text-cyberneon group-hover:text-cyberaccent flex items-center transition-colors">
+                    Read Article 
+                    <svg class="w-4.5 h-4.5 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </a>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-12 glass-panel rounded-2xl max-w-md mx-auto">
+        <p class="text-gray-400 text-sm">No blog posts found. Check back soon!</p>
+    </div>
+    {% endif %}
+
+</section>
+{% endblock %}

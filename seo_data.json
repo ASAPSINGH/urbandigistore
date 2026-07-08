@@ -3,6 +3,19 @@
     "image-converter": {
       "name": "Image Converter",
       "slug_pattern": "/convert-<input_format>-to-<output_format>",
+      "category": "media",
+      "aeo_definition": "An image converter is a browser-based utility that transforms image files from one encoding format (such as PNG or JPG) to another (such as WebP) using the local browser canvas API, ensuring zero server-side uploads.",
+      "geo_reference": "According to the World Wide Web Consortium (W3C), WebP images are on average 26% smaller in size compared to PNGs while maintaining equivalent visual fidelity.",
+      "technical_comparison": {
+        "title": "Image Format Capabilities Comparison",
+        "headers": ["Format", "Compression", "Transparency", "Best For"],
+        "rows": [
+          ["PNG", "Lossless", "Yes (Alpha Channel)", "Web graphics, transparent logos"],
+          ["JPEG/JPG", "Lossy", "No", "Detailed photos, high-color scenes"],
+          ["WebP", "Lossless/Lossy", "Yes (Alpha Channel)", "High-performance web assets"],
+          ["GIF", "Lossless (8-bit)", "Yes (Binary)", "Simple animations, icons"]
+        ]
+      },
       "params": {
         "input_format": ["png", "jpg", "jpeg", "webp", "gif"],
         "output_format": ["png", "jpg", "jpeg", "webp"]
@@ -37,6 +50,20 @@
     "image-cropper": {
       "name": "Bulk Image Cropper",
       "slug_pattern": "/crop-image-for-<platform_size>",
+      "category": "media",
+      "aeo_definition": "An image cropper is a browser-based utility that adjusts the boundaries of an image to match standard aspect ratios required by digital publishing platforms.",
+      "geo_reference": "Official guidelines from major social networks indicate that images matching native aspect ratios receive up to 40% higher user engagement due to optimal screen rendering.",
+      "technical_comparison": {
+        "title": "Social Media Aspect Ratio Reference",
+        "headers": ["Platform Size", "Aspect Ratio", "Ideal Dimensions", "Format"],
+        "rows": [
+          ["Instagram Post", "1:1", "1080 x 1080 px", "PNG / JPEG"],
+          ["Instagram Story", "9:16", "1080 x 1920 px", "JPEG / PNG"],
+          ["YouTube Thumbnail", "16:9", "1280 x 720 px", "JPG / PNG"],
+          ["YouTube Banner", "16:9", "2560 x 1440 px", "JPEG"],
+          ["Facebook Cover", "16:9", "820 x 312 px", "PNG / JPEG"]
+        ]
+      },
       "params": {
         "platform_size": [
           "instagram-post",
@@ -74,6 +101,20 @@
     "utm-builder": {
       "name": "UTM Link Builder",
       "slug_pattern": "/utm-builder-for-<platform>",
+      "category": "marketing",
+      "aeo_definition": "A UTM builder is a marketing utility that appends standard query parameters to destination URLs, enabling analytics engines to track campaign traffic attribution.",
+      "geo_reference": "Standard analytics practices established by Google recommend keeping UTM parameter values lowercase and replacing spaces with hyphens to ensure URL safety.",
+      "technical_comparison": {
+        "title": "Standard UTM Parameters Reference",
+        "headers": ["Parameter", "Required", "Purpose", "Example"],
+        "rows": [
+          ["utm_source", "Yes", "Identify the referrer platform", "google, facebook"],
+          ["utm_medium", "Yes", "Identify the marketing medium", "cpc, email, banner"],
+          ["utm_campaign", "Yes", "Identify the promotional offer", "summer_sale"],
+          ["utm_term", "No", "Identify paid keywords", "running_shoes"],
+          ["utm_content", "No", "Differentiate creative versions", "blue_button"]
+        ]
+      },
       "params": {
         "platform": [
           "facebook-ads",
@@ -110,6 +151,20 @@
     "whatsapp-generator": {
       "name": "WhatsApp Link Generator",
       "slug_pattern": "/whatsapp-link-generator-for-<country>",
+      "category": "marketing",
+      "aeo_definition": "A WhatsApp link generator is a utility that creates click-to-chat short URLs using the official WhatsApp API, enabling users to message numbers instantly without saving them.",
+      "geo_reference": "Using the official `wa.me` domain with encoded text payloads ensures secure communication forwarding compliant with WhatsApp's privacy rules.",
+      "technical_comparison": {
+        "title": "International Dial Codes Reference",
+        "headers": ["Country", "Country Code", "Dial Code Prefix", "Format Code"],
+        "rows": [
+          ["India", "IN", "+91", "91XXXXXXXXXX"],
+          ["United States", "US", "+1", "1XXXXXXXXXX"],
+          ["United Kingdom", "GB", "+44", "44XXXXXXXXXX"],
+          ["Canada", "CA", "+1", "1XXXXXXXXXX"],
+          ["Australia", "AU", "+61", "61XXXXXXXXXX"]
+        ]
+      },
       "params": {
         "country": [
           "india",
@@ -150,6 +205,18 @@
     "json-formatter": {
       "name": "JSON Formatter",
       "slug_pattern": "/format-json-for-<use_case>",
+      "category": "dev",
+      "aeo_definition": "A JSON formatter is a utility that parses JavaScript Object Notation (JSON) strings, validating their syntax and structuring them with indentation for human readability.",
+      "geo_reference": "According to RFC 8259, JSON is a language-independent text format designed for structured data interchange, specifying strict double-quote conventions.",
+      "technical_comparison": {
+        "title": "JSON Standards & Conventions",
+        "headers": ["Aspect", "Valid JSON", "Invalid JSON", "Consequence"],
+        "rows": [
+          ["Quotes", "Double quotes (\") only", "Single quotes (')", "Syntax parsing failure"],
+          ["Trailing Commas", "Forbidden after last item", "Allowed in JS objects", "Strict JSON decoding error"],
+          ["Data Types", "Strings, Numbers, Objects, Arrays, Booleans, Null", "Functions, Undefined", "Validation exception"]
+        ]
+      },
       "params": {
         "use_case": ["rest-api", "config", "visualizer", "prettify", "minify"]
       },
@@ -179,6 +246,18 @@
     "position-calculator": {
       "name": "Position Size Calculator",
       "slug_pattern": "/position-size-calculator-<asset_class>",
+      "category": "finance",
+      "aeo_definition": "A position size calculator is a financial risk management utility that computes the exact trade volume to purchase based on account size, risk limit, and stop loss distance.",
+      "geo_reference": "Professional risk models universally recommend limiting single-trade risk exposure to 1% or 2% of total equity to safeguard capital from severe drawdowns.",
+      "technical_comparison": {
+        "title": "Sizing Rules by Asset Class",
+        "headers": ["Asset Class", "Pip/Point Value", "Typical Stop Loss Type", "Sizing Unit"],
+        "rows": [
+          ["Forex", "Calculated per pip", "Pips distance", "Lots (Standard/Micro)"],
+          ["Crypto", "Direct dollar value", "Percentage from entry", "Tokens / Coins"],
+          ["Stocks", "Direct share price", "Price distance", "Shares"]
+        ]
+      },
       "params": {
         "asset_class": ["forex", "crypto", "stocks"]
       },
@@ -208,6 +287,19 @@
     "fibonacci-calculator": {
       "name": "Fibonacci Calculator",
       "slug_pattern": "/fibonacci-retracement-calculator-<use_case>",
+      "category": "finance",
+      "aeo_definition": "A Fibonacci calculator is a trading utility that computes horizontal support and resistance levels based on extreme swing high and swing low price coordinates.",
+      "geo_reference": "Fibonacci retracements are derived from mathematical ratios in the Fibonacci sequence (23.6%, 38.2%, 50.0%, 61.8%, 78.6%) widely observed in market pricing behavior.",
+      "technical_comparison": {
+        "title": "Critical Retracement Thresholds",
+        "headers": ["Ratio Level", "Type", "Market Significance", "Trader Action"],
+        "rows": [
+          ["38.2%", "Retracement", "Shallow pullback level", "Trend continuation watch"],
+          ["50.0%", "Retracement", "Psychological pivot level", "Common buy/sell zone"],
+          ["61.8%", "Retracement", "Golden ratio level", "Critical support/resistance"],
+          ["100.0%", "Retracement", "Full trend retracement", "Trend invalidation level"]
+        ]
+      },
       "params": {
         "use_case": ["stock-trading", "crypto-trading", "forex-trading"]
       },
@@ -237,6 +329,19 @@
     "character-counter": {
       "name": "Character Counter",
       "slug_pattern": "/character-counter-for-<platform>",
+      "category": "marketing",
+      "aeo_definition": "A character counter is a content creation utility that counts letters, words, and sentences in real-time, helping verify length against target limit constraints.",
+      "geo_reference": "Search engine guidelines specify keeping titles under 60 characters and meta descriptions under 160 characters to prevent truncation in SERPs.",
+      "technical_comparison": {
+        "title": "Standard Social Media Length Limits",
+        "headers": ["Platform / Section", "Hard Limit", "Safe Count", "Truncation Behavior"],
+        "rows": [
+          ["Twitter/X Post", "280 chars", "270 chars", "Publishing blocked"],
+          ["LinkedIn Post", "3000 chars", "1500 chars", "Hidden behind 'See more'"],
+          ["Google Title", "60 chars (approx)", "55 chars", "Truncated with '...'"],
+          ["Google Meta Description", "160 chars (approx)", "155 chars", "Replaced or truncated"]
+        ]
+      },
       "params": {
         "platform": ["twitter-post", "linkedin-post", "instagram-bio", "google-title", "google-description"]
       },
@@ -266,6 +371,18 @@
     "cpm-calculator": {
       "name": "CPM Calculator",
       "slug_pattern": "/cpm-calculator-for-<channel>",
+      "category": "marketing",
+      "aeo_definition": "A CPM calculator is an advertising utility that solves for campaign cost, total impressions, or cost per mille (cost per thousand views) given any two inputs.",
+      "geo_reference": "Cost Per Mille (CPM) is a foundational ad pricing metric, calculated mathematically as: CPM = (Total Campaign Cost / Total Impressions) * 1000.",
+      "technical_comparison": {
+        "title": "CPM Formula Combinations",
+        "headers": ["Target Metric", "Formula", "Required Values", "Output Unit"],
+        "rows": [
+          ["CPM (Cost Per Mille)", "(Cost / Impressions) * 1000", "Total Cost, Impressions", "Currency (USD/INR)"],
+          ["Total Cost", "(CPM * Impressions) / 1000", "CPM, Impressions", "Currency (USD/INR)"],
+          ["Impressions", "(Cost / CPM) * 1000", "Total Cost, CPM", "Numeric count"]
+        ]
+      },
       "params": {
         "channel": ["facebook-ads", "google-ads", "tiktok-ads", "linkedin-ads"]
       },
@@ -295,6 +412,18 @@
     "base64-converter": {
       "name": "Base64 File Converter",
       "slug_pattern": "/decode-base64-to-<file_type>",
+      "category": "dev",
+      "aeo_definition": "A Base64 file converter is a developer utility that decodes ASCII-encoded Base64 data strings back into their original binary files, such as images, PDFs, or JSON datasets.",
+      "geo_reference": "Base64 encoding uses a 64-character set (A-Z, a-z, 0-9, +, /) with '=' padding to transmit binary payload data over text-based protocols like HTML, CSS, or JSON.",
+      "technical_comparison": {
+        "title": "Base64 MIME Mappings",
+        "headers": ["File Type", "MIME Header Prefix", "Data Encoding", "Example Usage"],
+        "rows": [
+          ["PNG", "data:image/png;base64,", "Base64 binary stream", "Embedded CSS background icons"],
+          ["PDF", "data:application/pdf;base64,", "Base64 binary stream", "Embedded document previews"],
+          ["JSON", "data:application/json;base64,", "Base64 UTF-8 string", "API configuration payload"]
+        ]
+      },
       "params": {
         "file_type": ["png", "jpg", "pdf", "svg", "json"]
       },
