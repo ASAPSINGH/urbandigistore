@@ -57,11 +57,11 @@
         ]
       },
       "template": {
-        "meta_title": "Convert {input_format_upper} to {output_format_upper} Online - 100% Free & Secure",
+        "meta_title": "Free {input_format_upper} to {output_format_upper} Converter - Fast & Secure",
         "meta_description": "Convert {input_format_upper} images to {output_format_upper} format instantly. High-fidelity conversion preserves dimensions and guarantees secure file handling. Fast, safe, and free.",
-        "h1": "Convert {input_format_upper} to {output_format_upper} Online",
+        "h1": "{input_format_upper} to {output_format_upper} Converter - Free Online Tool",
         "h2": "Fast & Secure {input_format_upper} to {output_format_upper} File Conversion",
-        "description": "Our programmatic image converter lets you transform {input_format_upper} files into high-quality {output_format_upper} graphics in real-time. Experience secure, instant encoding with no third-party logs saved.",
+        "description": "Our free online image converter lets you transform {input_format_upper} files into high-quality {output_format_upper} graphics in real-time. Experience secure, instant encoding with no third-party logs saved.",
         "steps": [
           "Select or drag & drop your .{input_format_lower} file into the converter area.",
           "The tool will instantly load your image into memory and prepare it for conversion.",
@@ -238,11 +238,11 @@
         ]
       },
       "template": {
-        "meta_title": "UTM Campaign URL Builder for {platform_title} - Easy Tracking",
+        "meta_title": "UTM Parameter Builder for {platform_title} - Free Campaign URL Tool",
         "meta_description": "Generate trackable campaign links with custom UTM parameters optimized for {platform_title}. Track campaign performance in Google Analytics.",
-        "h1": "UTM Link Builder for {platform_title}",
+        "h1": "UTM Parameter Builder for {platform_title}",
         "h2": "Create Analytics-Ready Tracking Links for {platform_title}",
-        "description": "Add custom parameters like source, medium, campaign, and content to your destination URLs. Easily measure and attribute traffic generated from {platform_title} ads.",
+        "description": "Our free online UTM parameter builder lets you add custom parameters like source, medium, campaign, and content to your destination URLs for {platform_title}.",
         "steps": [
           "Enter your base destination website URL.",
           "Our tool will pre-fill the recommended campaign source and medium for {platform_title}.",
@@ -557,11 +557,11 @@
         ]
       },
       "template": {
-        "meta_title": "Fibonacci Retracement Calculator for {use_case_title}",
+        "meta_title": "Fibonacci Retracement Tool for {use_case_title} - Free Calculator",
         "meta_description": "Calculate key Fibonacci retracement levels (23.6%, 38.2%, 50%, 61.8%, 78.6%) for target entry points in {use_case_title}.",
-        "h1": "Fibonacci Calculator for {use_case_title}",
+        "h1": "Fibonacci Retracement Tool for {use_case_title}",
         "h2": "Calculate Support & Resistance Levels",
-        "description": "Generate key price points of potential market reversals. Perfect for establishing stop placement and limit orders across {use_case_title} instruments.",
+        "description": "Generate key price points of potential market reversals using our free Fibonacci retracement tool. Perfect for establishing stop placement and limit orders across {use_case_title} instruments.",
         "steps": [
           "Enter the extreme swing high and swing low values for the current trend.",
           "Specify the direction of the market movement (Uptrend or Downtrend).",
@@ -638,11 +638,11 @@
         ]
       },
       "template": {
-        "meta_title": "Character Counter for {platform_title} - Word Limit Tool",
+        "meta_title": "Character Counter Tool for {platform_title} - Free Word Count",
         "meta_description": "Validate your text length against character limits for {platform_title}. Realtime character, word, and sentence counts with visual safety thresholds.",
-        "h1": "Character Counter for {platform_title}",
+        "h1": "Character Counter Tool for {platform_title}",
         "h2": "Verify Text Character Counts for {platform_title}",
-        "description": "Ensure your content fits within the target limits for {platform_title}. Our counter helps you avoid truncated descriptions or posts that exceed publishing bounds.",
+        "description": "Ensure your content fits within target limits with our free character counter tool for {platform_title}. Avoid truncated descriptions or posts that exceed publishing bounds.",
         "steps": [
           "Paste or type your draft text into the editor input area.",
           "Check the character and word counts updating instantly.",

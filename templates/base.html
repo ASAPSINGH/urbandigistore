@@ -138,6 +138,29 @@
     </script>
     {% endif %}
     
+    <!-- Global JSON-LD Schema (Organization & WebSite) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "WebUtilities",
+          "url": "{{ request.url_root.rstrip('/') }}/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "{{ request.url_root.rstrip('/') }}/static/images/logo.png"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "name": "WebUtilities Platform",
+          "url": "{{ request.url_root.rstrip('/') }}/"
+        }
+      ]
+    }
+    </script>
+    
     {% if ga_measurement_id %}
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga_measurement_id }}"></script>
