@@ -213,6 +213,12 @@ def get_seo_context(tool_key, **kwargs):
         'sibling_tools': sibling_tools
     }
 
+@app.context_processor
+def inject_ga_id():
+    return {
+        'ga_measurement_id': os.environ.get('GA_MEASUREMENT_ID')
+    }
+
 @app.route('/')
 def home():
     # Pass tools dictionary to render categories and direct links to programmatic pages
@@ -362,6 +368,9 @@ def sitemap():
     for post in get_blog_posts():
         urls.append(f"{base_url}/blog/{post['slug']}")
         
+    # 13. Static Pages
+    urls.append(f"{base_url}/about")
+        
     # Render XML Structure
     xml_content = '<?xml version="1.0" encoding="UTF-8"?>\n'
     xml_content += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
@@ -440,6 +449,10 @@ def subscribe():
         return jsonify({'success': False, 'message': 'Server error. Please try again later.'}), 500
         
     return jsonify({'success': True, 'message': 'Successfully subscribed! Welcome to the matrix.'}), 200
+
+@app.route('/about')
+def about():
+    return render_template('about.html', meta_title="About Us - WebUtilities Platform", meta_description="Learn more about WebUtilities, a privacy-first, 100% free browser-based digital operations utility suite built for developers, marketers, and traders.")
 
 @app.errorhandler(404)
 def page_not_found(e):

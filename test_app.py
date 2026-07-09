@@ -153,6 +153,30 @@ class TestWebUtilities(unittest.TestCase):
                 shutil.copyfile(sub_backup, sub_file)
                 os.remove(sub_backup)
 
+    def test_google_analytics_rendering(self):
+        """Verify Google Analytics scripts render conditionally based on configuration."""
+        import os
+        from unittest import mock
+
+        # 1. When GA_MEASUREMENT_ID is NOT set, tag should not render
+        with mock.patch.dict(os.environ, {}, clear=True):
+            resp = self.app.get('/')
+            self.assertEqual(resp.status_code, 200)
+            self.assertNotIn(b'www.googletagmanager.com/gtag/js', resp.data)
+
+        # 2. When GA_MEASUREMENT_ID is set, tag should render
+        with mock.patch.dict(os.environ, {'GA_MEASUREMENT_ID': 'G-TEST123456'}):
+            resp = self.app.get('/')
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn(b'www.googletagmanager.com/gtag/js?id=G-TEST123456', resp.data)
+            self.assertIn(b"gtag('config', 'G-TEST123456')", resp.data)
+
+    def test_about_page_rendering(self):
+        """Verify the About page loads and renders key brand content correctly."""
+        resp = self.app.get('/about')
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(b'Privacy-First', resp.data)
+        self.assertIn(b'Our Mission', resp.data)
+
 if __name__ == '__main__':
     unittest.main()
-

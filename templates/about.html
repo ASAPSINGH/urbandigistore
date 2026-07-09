@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 relative z-10">
+    
+    <!-- Hero Header -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+        <div class="inline-flex items-center space-x-2 bg-cyberneon/10 border border-cyberneon/30 rounded-full px-4 py-1.5 mb-6">
+            <span class="w-2 h-2 rounded-full bg-cyberneon"></span>
+            <span class="text-xs font-semibold tracking-wider text-cyberneon uppercase">Our Mission</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-outfit font-extrabold tracking-tight text-white mb-6 leading-tight">
+            Privacy-First <br/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyberaccent to-cyberneon">Digital Workflows</span>
+        </h1>
+        <p class="text-sm sm:text-base text-gray-400 font-light leading-relaxed">
+            WebUtilities is built to provide high-performance, developer-grade digital tools without the clutter, advertisements, or privacy compromises of traditional tool aggregators.
+        </p>
+    </div>
+
+    <!-- Core Philosophy Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div class="glass-panel rounded-2xl p-6 border border-white/10 hover:border-cyberneon/30 transition-all duration-300">
+            <div class="flex items-center space-x-3 mb-4">
+                <span class="text-2xl">🔒</span>
+                <h3 class="text-base font-outfit font-bold text-white">100% Browser-Based Security</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-gray-400 font-light leading-relaxed">
+                Most web conversion tools require uploading your files to third-party servers. WebUtilities runs entirely in your local browser sandbox utilizing modern WebAssembly and Canvas APIs. Your files are processed in memory and never touch a server database.
+            </p>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-6 border border-white/10 hover:border-cyberaccent/30 transition-all duration-300">
+            <div class="flex items-center space-x-3 mb-4">
+                <span class="text-2xl">⚡</span>
+                <h3 class="text-base font-outfit font-bold text-white">No Signup, No Friction</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-gray-400 font-light leading-relaxed">
+                We believe utility tools should be instant. You don't need to create an account, verify an email, or pull out a credit card. Choose your utility, execute your workflow, and download the output immediately.
+            </p>
+        </div>
+    </div>
+
+    <!-- The Team & Contact -->
+    <div class="glass-panel rounded-2xl p-8 border border-white/10 relative overflow-hidden bg-gradient-to-br from-white/[0.02] to-transparent shadow-xl">
+        <div class="absolute -right-32 -bottom-32 w-64 h-64 bg-cyberneon/5 rounded-full blur-3xl pointer-events-none"></div>
+        <h2 class="text-2xl font-outfit font-bold text-white mb-4">Who Built WebUtilities?</h2>
+        <p class="text-xs sm:text-sm text-gray-400 font-light leading-relaxed mb-6">
+            We are a group of independent developers, digital marketers, and algorithmic traders who got tired of using bloated, ad-ridden web utilities for our daily routines. We built this platform to serve as a fast, clean, and highly secure digital operations dashboard for creators and professionals globally.
+        </p>
+        <div class="border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <p class="text-xs text-gray-500">Need support or want to suggest a new tool variation?</p>
+            <a href="mailto:support@urbandigistore.com" class="px-5 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-cyberneon to-cyberaccent hover:brightness-110 active:scale-[0.98] transition-all shadow-lg shadow-cyberneon/15">
+                Contact Support
+            </a>
+        </div>
+    </div>
+
+</section>
+{% endblock %}
