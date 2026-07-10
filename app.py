@@ -452,7 +452,7 @@ def subscribe():
 
 @app.route('/about')
 def about():
-    return render_template('about.html', meta_title="About Us - WebUtilities Platform", meta_description="Learn more about WebUtilities, a privacy-first, 100% free browser-based digital operations utility suite built for developers, marketers, and traders.")
+    return render_template('about.html', meta_title="About Us - Urbandigistore Platform", meta_description="Learn more about Urbandigistore, a privacy-first, 100% free browser-based digital operations utility suite built for developers, marketers, and traders.")
 
 @app.errorhandler(404)
 def page_not_found(e):

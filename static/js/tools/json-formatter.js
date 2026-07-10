@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         'config': {
-            app: { name: "WebUtilities", version: "1.4.0", debug: false },
+            app: { name: "Urbandigistore", version: "1.4.0", debug: false },
             database: { driver: "postgres", port: 5432, pool: { min: 2, max: 10 } }
         },
         'visualizer': {

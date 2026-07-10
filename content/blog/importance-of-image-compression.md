@@ -2,7 +2,7 @@ title: Why Image Compression Matters for Web Performance and SEO
 description: Discover why optimizing web images is critical for fast page load speed, lower bounce rates, and high SEO rankings. Learn why WebP outperforms PNG and JPEG.
 date: 2026-07-08
 category: Media
-author: WebUtilities Engineering
+author: Urbandigistore Engineering
 ---
 
 # Why Image Compression Matters for Web Performance and SEO

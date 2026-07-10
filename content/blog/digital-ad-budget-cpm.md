@@ -2,7 +2,7 @@ title: How to Plan and Optimize Your Digital Ad Budget Using CPM
 description: Learn what Cost Per Mille (CPM) is, how to calculate it, how to structure visual ad copy within character limits, and how to optimize campaign budgets.
 date: 2026-07-09
 category: Marketing
-author: WebUtilities Growth Team
+author: Urbandigistore Growth Team
 ---
 
 # How to Plan and Optimize Your Digital Ad Budget Using CPM

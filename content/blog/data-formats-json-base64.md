@@ -2,7 +2,7 @@ title: Demystifying JSON and Base64: A Developer's Guide to Data Formats
 description: Understand what JSON and Base64 are, when to use them for API exchanges and file transfers, and how to debug and decode them securely.
 date: 2026-07-09
 category: Developer
-author: WebUtilities Engineering
+author: Urbandigistore Engineering
 ---
 
 # Demystifying JSON and Base64: A Developer's Guide to Data Formats

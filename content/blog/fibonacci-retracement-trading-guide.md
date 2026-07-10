@@ -2,7 +2,7 @@ title: How to Use Fibonacci Retracement to Identify Key Market Levels
 description: Learn how the Fibonacci sequence operates in financial charts, how to draw retracement levels, and how to identify support and resistance zones.
 date: 2026-07-09
 category: Trading
-author: WebUtilities Trading Desk
+author: Urbandigistore Trading Desk
 ---
 
 # How to Use Fibonacci Retracement to Identify Key Market Levels

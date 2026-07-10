@@ -2,7 +2,7 @@ title: The Guide to UTM Parameter Naming Conventions for Clean GA4 Data
 description: Learn how to establish a consistent, lowercase UTM naming convention to prevent fragmented, duplicate campaign channel data in GA4.
 date: 2026-07-10
 category: Marketing
-author: WebUtilities Growth Team
+author: Urbandigistore Growth Team
 ---
 
 # The Guide to UTM Parameter Naming Conventions for Clean GA4 Data

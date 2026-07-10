@@ -2,7 +2,7 @@ title: WhatsApp Link Marketing: Grow Your Business with Click-to-Chat Links
 description: Discover how to utilize WhatsApp click-to-chat links, set up pre-filled message templates, run WhatsApp ads, and optimize customer conversions.
 date: 2026-07-09
 category: Marketing
-author: WebUtilities Growth Team
+author: Urbandigistore Growth Team
 ---
 
 # WhatsApp Link Marketing: Grow Your Business with Click-to-Chat Links

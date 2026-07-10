@@ -2,7 +2,7 @@ title: The Complete Guide to Position Sizing and Risk Management in Trading
 description: Learn how to calculate position size, manage account risk using the 1% rule, place stop losses, and use Fibonacci levels to optimize your trading portfolio.
 date: 2026-07-09
 category: Trading
-author: WebUtilities Trading Desk
+author: Urbandigistore Trading Desk
 ---
 
 # The Complete Guide to Position Sizing and Risk Management in Trading

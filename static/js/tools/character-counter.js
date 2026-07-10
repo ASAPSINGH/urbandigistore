@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Pre-fill demo copy
     const demoTexts = {
-        'twitter-post': "Building a high-performance programmatic SEO platform today! 🚀 Client-side execution makes it extremely fast and cost-effective. Check it out at WebUtilities.",
+        'twitter-post': "Building a high-performance programmatic SEO platform today! 🚀 Client-side execution makes it extremely fast and cost-effective. Check it out at Urbandigistore.",
         'google-title': "Free Web Utilities & pSEO Online Tools Matrix",
         'google-description': "Convert images instantly, format JSON objects, build campaign tracking UTM parameters, and manage trade sizes directly in your browser. 100% private."
     };

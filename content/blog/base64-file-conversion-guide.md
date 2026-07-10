@@ -2,7 +2,7 @@ title: How to Programmatically Convert Base64 Strings Back to Files
 description: Understand the base64 encoding schema, how to decode base64 strings back to images or PDF documents in Python and JavaScript, and browser-side file parsing.
 date: 2026-07-10
 category: Developer
-author: WebUtilities Developer Core
+author: Urbandigistore Developer Core
 ---
 
 # How to Programmatically Convert Base64 Strings Back to Files
