@@ -2,7 +2,8 @@ import json
 import os
 import glob
 import markdown
-from flask import Flask, render_template, abort, Response, request, jsonify
+import uuid
+from flask import Flask, render_template, abort, Response, request, jsonify, redirect, url_for
 
 app = Flask(__name__)
 
@@ -51,8 +52,22 @@ def get_blog_posts():
     return posts
 
 
+# Consolidated URL Paths Mapping
+CONSOLIDATED_PATHS = {
+    'image-converter': '/image-converter',
+    'image-cropper': '/image-cropper',
+    'utm-builder': '/utm-builder',
+    'whatsapp-generator': '/whatsapp-link-generator',
+    'json-formatter': '/json-formatter',
+    'position-calculator': '/position-size-calculator',
+    'fibonacci-calculator': '/fibonacci-calculator',
+    'character-counter': '/character-counter',
+    'cpm-calculator': '/cpm-calculator',
+    'base64-converter': '/base64-file-converter'
+}
+
 # Helper function to generate SEO metadata
-def get_seo_context(tool_key, **kwargs):
+def get_seo_context(tool_key, slug=None, **kwargs):
     tool_conf = seo_data['tools'][tool_key]
     template = tool_conf['template']
     
@@ -81,7 +96,8 @@ def get_seo_context(tool_key, **kwargs):
         })
         
     # Check if there is an explicit override for this URL slug
-    slug = request.path.lstrip('/')
+    if slug is None:
+        slug = request.path.lstrip('/')
     if slug in seo_data.get('overrides', {}):
         override = seo_data['overrides'][slug]
         if 'meta_title' in override:
@@ -100,13 +116,13 @@ def get_seo_context(tool_key, **kwargs):
             if out_fmt != current_out and out_fmt != current_in:
                 related_links.append({
                     'title': f"{current_in.upper()} to {out_fmt.upper()}",
-                    'url': f"/convert-{current_in}-to-{out_fmt}"
+                    'url': f"/image-converter?input_format={current_in}&output_format={out_fmt}"
                 })
         for in_fmt in tool_conf['params']['input_format']:
             if in_fmt != current_in and in_fmt != current_out:
                 related_links.append({
                     'title': f"{in_fmt.upper()} to {current_out.upper()}",
-                    'url': f"/convert-{in_fmt}-to-{current_out}"
+                    'url': f"/image-converter?input_format={in_fmt}&output_format={current_out}"
                 })
     elif tool_key == 'image-cropper':
         current_ps = kwargs.get('platform_size', '')
@@ -114,7 +130,7 @@ def get_seo_context(tool_key, **kwargs):
             if ps != current_ps:
                 related_links.append({
                     'title': f"Crop for {ps.replace('-', ' ').title()}",
-                    'url': f"/crop-image-for-{ps}"
+                    'url': f"/image-cropper?platform_size={ps}"
                 })
     elif tool_key == 'utm-builder':
         current_p = kwargs.get('platform', '')
@@ -122,7 +138,7 @@ def get_seo_context(tool_key, **kwargs):
             if p != current_p:
                 related_links.append({
                     'title': f"UTM for {p.replace('-ads', '').replace('-', ' ').title()}",
-                    'url': f"/utm-builder-for-{p}"
+                    'url': f"/utm-builder?platform={p}"
                 })
     elif tool_key == 'whatsapp-generator':
         current_c = kwargs.get('country', '')
@@ -130,7 +146,7 @@ def get_seo_context(tool_key, **kwargs):
             if c != current_c:
                 related_links.append({
                     'title': f"Link for {c.replace('-', ' ').title()}",
-                    'url': f"/whatsapp-link-generator-for-{c}"
+                    'url': f"/whatsapp-link-generator?country={c}"
                 })
     elif tool_key == 'json-formatter':
         current_uc = kwargs.get('use_case', '')
@@ -138,7 +154,7 @@ def get_seo_context(tool_key, **kwargs):
             if uc != current_uc:
                 related_links.append({
                     'title': f"Format for {uc.replace('-', ' ').title()}",
-                    'url': f"/format-json-for-{uc}"
+                    'url': f"/json-formatter?use_case={uc}"
                 })
     elif tool_key == 'position-calculator':
         current_ac = kwargs.get('asset_class', '')
@@ -146,7 +162,7 @@ def get_seo_context(tool_key, **kwargs):
             if ac != current_ac:
                 related_links.append({
                     'title': f"Sizing for {ac.replace('-', ' ').title()}",
-                    'url': f"/position-size-calculator-{ac}"
+                    'url': f"/position-size-calculator?asset_class={ac}"
                 })
     elif tool_key == 'fibonacci-calculator':
         current_uc = kwargs.get('use_case', '')
@@ -154,7 +170,7 @@ def get_seo_context(tool_key, **kwargs):
             if uc != current_uc:
                 related_links.append({
                     'title': f"Fibonacci: {uc.replace('-', ' ').title()}",
-                    'url': f"/fibonacci-retracement-calculator-{uc}"
+                    'url': f"/fibonacci-calculator?use_case={uc}"
                 })
     elif tool_key == 'character-counter':
         current_p = kwargs.get('platform', '')
@@ -162,7 +178,7 @@ def get_seo_context(tool_key, **kwargs):
             if p != current_p:
                 related_links.append({
                     'title': f"Counter for {p.replace('-', ' ').title()}",
-                    'url': f"/character-counter-for-{p}"
+                    'url': f"/character-counter?platform={p}"
                 })
     elif tool_key == 'cpm-calculator':
         current_ch = kwargs.get('channel', '')
@@ -170,7 +186,7 @@ def get_seo_context(tool_key, **kwargs):
             if ch != current_ch:
                 related_links.append({
                     'title': f"CPM for {ch.replace('-ads', '').replace('-', ' ').title()}",
-                    'url': f"/cpm-calculator-for-{ch}"
+                    'url': f"/cpm-calculator?channel={ch}"
                 })
     elif tool_key == 'base64-converter':
         current_ft = kwargs.get('file_type', '')
@@ -178,7 +194,7 @@ def get_seo_context(tool_key, **kwargs):
             if ft != current_ft:
                 related_links.append({
                     'title': f"Decode to {ft.upper()}",
-                    'url': f"/decode-base64-to-{ft}"
+                    'url': f"/base64-file-converter?file_type={ft}"
                 })
 
     related_links = related_links[:6]
@@ -187,12 +203,9 @@ def get_seo_context(tool_key, **kwargs):
     sibling_tools = []
     for k, v in seo_data['tools'].items():
         if k != tool_key and v.get('category') == category:
-            first_param_key = list(v['params'].keys())[0]
-            first_param_val = v['params'][first_param_key][0]
-            sibling_slug = v['slug_pattern'].replace(f"<{first_param_key}>", first_param_val)
             sibling_tools.append({
                 'name': v['name'],
-                'url': sibling_slug
+                'url': CONSOLIDATED_PATHS.get(k, '#')
             })
             
     return {
@@ -224,85 +237,188 @@ def home():
     # Pass tools dictionary to render categories and direct links to programmatic pages
     return render_template('home.html', tools=seo_data['tools'])
 
+# --- Consolidated Routes & Redirects ---
+
+@app.route('/image-converter')
+def consolidated_image_converter():
+    input_format = request.args.get('input_format', 'png')
+    output_format = request.args.get('output_format', 'webp')
+    tool = seo_data['tools']['image-converter']
+    if input_format not in tool['params']['input_format'] or output_format not in tool['params']['output_format']:
+        input_format = 'png'
+        output_format = 'webp'
+    slug = f"convert-{input_format}-to-{output_format}"
+    ctx = get_seo_context('image-converter', slug=slug, input_format=input_format, output_format=output_format)
+    return render_template('tool_template.html', **ctx)
+
 @app.route('/convert-<input_format>-to-<output_format>')
-def image_converter(input_format, output_format):
+def image_converter_redirect(input_format, output_format):
     tool = seo_data['tools']['image-converter']
     if input_format not in tool['params']['input_format'] or output_format not in tool['params']['output_format']:
         abort(404)
-    ctx = get_seo_context('image-converter', input_format=input_format, output_format=output_format)
+    return redirect(url_for('consolidated_image_converter', input_format=input_format, output_format=output_format), code=301)
+
+
+@app.route('/image-cropper')
+def consolidated_image_cropper():
+    platform_size = request.args.get('platform_size', 'instagram-post')
+    tool = seo_data['tools']['image-cropper']
+    if platform_size not in tool['params']['platform_size']:
+        platform_size = 'instagram-post'
+    slug = f"crop-image-for-{platform_size}"
+    ctx = get_seo_context('image-cropper', slug=slug, platform_size=platform_size)
     return render_template('tool_template.html', **ctx)
 
 @app.route('/crop-image-for-<platform_size>')
-def image_cropper(platform_size):
+def image_cropper_redirect(platform_size):
     tool = seo_data['tools']['image-cropper']
     if platform_size not in tool['params']['platform_size']:
         abort(404)
-    ctx = get_seo_context('image-cropper', platform_size=platform_size)
+    return redirect(url_for('consolidated_image_cropper', platform_size=platform_size), code=301)
+
+
+@app.route('/utm-builder')
+def consolidated_utm_builder():
+    platform = request.args.get('platform', 'facebook-ads')
+    tool = seo_data['tools']['utm-builder']
+    if platform not in tool['params']['platform']:
+        platform = 'facebook-ads'
+    slug = f"utm-builder-for-{platform}"
+    ctx = get_seo_context('utm-builder', slug=slug, platform=platform)
     return render_template('tool_template.html', **ctx)
 
 @app.route('/utm-builder-for-<platform>')
-def utm_builder(platform):
+def utm_builder_redirect(platform):
     tool = seo_data['tools']['utm-builder']
     if platform not in tool['params']['platform']:
         abort(404)
-    ctx = get_seo_context('utm-builder', platform=platform)
+    return redirect(url_for('consolidated_utm_builder', platform=platform), code=301)
+
+
+@app.route('/whatsapp-link-generator')
+def consolidated_whatsapp_generator():
+    country = request.args.get('country', 'united-states')
+    tool = seo_data['tools']['whatsapp-generator']
+    if country not in tool['params']['country']:
+        country = 'united-states'
+    slug = f"whatsapp-link-generator-for-{country}"
+    ctx = get_seo_context('whatsapp-generator', slug=slug, country=country)
     return render_template('tool_template.html', **ctx)
 
 @app.route('/whatsapp-link-generator-for-<country>')
-def whatsapp_generator(country):
+def whatsapp_generator_redirect(country):
     tool = seo_data['tools']['whatsapp-generator']
     if country not in tool['params']['country']:
         abort(404)
-    ctx = get_seo_context('whatsapp-generator', country=country)
+    return redirect(url_for('consolidated_whatsapp_generator', country=country), code=301)
+
+
+@app.route('/json-formatter')
+def consolidated_json_formatter():
+    use_case = request.args.get('use_case', 'rest-api')
+    tool = seo_data['tools']['json-formatter']
+    if use_case not in tool['params']['use_case']:
+        use_case = 'rest-api'
+    slug = f"format-json-for-{use_case}"
+    ctx = get_seo_context('json-formatter', slug=slug, use_case=use_case)
     return render_template('tool_template.html', **ctx)
 
 @app.route('/format-json-for-<use_case>')
-def json_formatter(use_case):
+def json_formatter_redirect(use_case):
     tool = seo_data['tools']['json-formatter']
     if use_case not in tool['params']['use_case']:
         abort(404)
-    ctx = get_seo_context('json-formatter', use_case=use_case)
+    return redirect(url_for('consolidated_json_formatter', use_case=use_case), code=301)
+
+
+@app.route('/position-size-calculator')
+def consolidated_position_calculator():
+    asset_class = request.args.get('asset_class', 'forex-trading')
+    tool = seo_data['tools']['position-calculator']
+    if asset_class not in tool['params']['asset_class']:
+        asset_class = 'forex-trading'
+    slug = f"position-size-calculator-{asset_class}"
+    ctx = get_seo_context('position-calculator', slug=slug, asset_class=asset_class)
     return render_template('tool_template.html', **ctx)
 
 @app.route('/position-size-calculator-<asset_class>')
-def position_calculator(asset_class):
+def position_calculator_redirect(asset_class):
     tool = seo_data['tools']['position-calculator']
     if asset_class not in tool['params']['asset_class']:
         abort(404)
-    ctx = get_seo_context('position-calculator', asset_class=asset_class)
+    return redirect(url_for('consolidated_position_calculator', asset_class=asset_class), code=301)
+
+
+@app.route('/fibonacci-calculator')
+def consolidated_fibonacci_calculator():
+    use_case = request.args.get('use_case', 'stock-trends')
+    tool = seo_data['tools']['fibonacci-calculator']
+    if use_case not in tool['params']['use_case']:
+        use_case = 'stock-trends'
+    slug = f"fibonacci-retracement-calculator-{use_case}"
+    ctx = get_seo_context('fibonacci-calculator', slug=slug, use_case=use_case)
     return render_template('tool_template.html', **ctx)
 
 @app.route('/fibonacci-retracement-calculator-<use_case>')
-def fibonacci_calculator(use_case):
+def fibonacci_calculator_redirect(use_case):
     tool = seo_data['tools']['fibonacci-calculator']
     if use_case not in tool['params']['use_case']:
         abort(404)
-    ctx = get_seo_context('fibonacci-calculator', use_case=use_case)
+    return redirect(url_for('consolidated_fibonacci_calculator', use_case=use_case), code=301)
+
+
+@app.route('/character-counter')
+def consolidated_character_counter():
+    platform = request.args.get('platform', 'twitter-post')
+    tool = seo_data['tools']['character-counter']
+    if platform not in tool['params']['platform']:
+        platform = 'twitter-post'
+    slug = f"character-counter-for-{platform}"
+    ctx = get_seo_context('character-counter', slug=slug, platform=platform)
     return render_template('tool_template.html', **ctx)
 
 @app.route('/character-counter-for-<platform>')
-def character_counter(platform):
+def character_counter_redirect(platform):
     tool = seo_data['tools']['character-counter']
     if platform not in tool['params']['platform']:
         abort(404)
-    ctx = get_seo_context('character-counter', platform=platform)
+    return redirect(url_for('consolidated_character_counter', platform=platform), code=301)
+
+
+@app.route('/cpm-calculator')
+def consolidated_cpm_calculator():
+    channel = request.args.get('channel', 'facebook-ads')
+    tool = seo_data['tools']['cpm-calculator']
+    if channel not in tool['params']['channel']:
+        channel = 'facebook-ads'
+    slug = f"cpm-calculator-for-{channel}"
+    ctx = get_seo_context('cpm-calculator', slug=slug, channel=channel)
     return render_template('tool_template.html', **ctx)
 
 @app.route('/cpm-calculator-for-<channel>')
-def cpm_calculator(channel):
+def cpm_calculator_redirect(channel):
     tool = seo_data['tools']['cpm-calculator']
     if channel not in tool['params']['channel']:
         abort(404)
-    ctx = get_seo_context('cpm-calculator', channel=channel)
+    return redirect(url_for('consolidated_cpm_calculator', channel=channel), code=301)
+
+
+@app.route('/base64-file-converter')
+def consolidated_base64_converter():
+    file_type = request.args.get('file_type', 'pdf-document')
+    tool = seo_data['tools']['base64-converter']
+    if file_type not in tool['params']['file_type']:
+        file_type = 'pdf-document'
+    slug = f"decode-base64-to-{file_type}"
+    ctx = get_seo_context('base64-converter', slug=slug, file_type=file_type)
     return render_template('tool_template.html', **ctx)
 
 @app.route('/decode-base64-to-<file_type>')
-def base64_converter(file_type):
+def base64_converter_redirect(file_type):
     tool = seo_data['tools']['base64-converter']
     if file_type not in tool['params']['file_type']:
         abort(404)
-    ctx = get_seo_context('base64-converter', file_type=file_type)
-    return render_template('tool_template.html', **ctx)
+    return redirect(url_for('consolidated_base64_converter', file_type=file_type), code=301)
 
 @app.route('/sitemap.xml')
 def sitemap():
@@ -312,63 +428,16 @@ def sitemap():
     # 1. Home
     urls.append(f"{base_url}/")
     
-    # 2. Image Converter
-    ic = seo_data['tools']['image-converter']
-    for inf in ic['params']['input_format']:
-        for outf in ic['params']['output_format']:
-            urls.append(f"{base_url}/convert-{inf}-to-{outf}")
-            
-    # 3. Image Cropper
-    icr = seo_data['tools']['image-cropper']
-    for ps in icr['params']['platform_size']:
-        urls.append(f"{base_url}/crop-image-for-{ps}")
+    # 2. Main Tool Hubs
+    for pth in CONSOLIDATED_PATHS.values():
+        urls.append(f"{base_url}{pth}")
         
-    # 4. UTM Builder
-    utm = seo_data['tools']['utm-builder']
-    for p in utm['params']['platform']:
-        urls.append(f"{base_url}/utm-builder-for-{p}")
-        
-    # 5. WhatsApp Generator
-    wa = seo_data['tools']['whatsapp-generator']
-    for c in wa['params']['country']:
-        urls.append(f"{base_url}/whatsapp-link-generator-for-{c}")
-        
-    # 6. JSON Formatter
-    jf = seo_data['tools']['json-formatter']
-    for uc in jf['params']['use_case']:
-        urls.append(f"{base_url}/format-json-for-{uc}")
-        
-    # 7. Position Size Calculator
-    pc = seo_data['tools']['position-calculator']
-    for ac in pc['params']['asset_class']:
-        urls.append(f"{base_url}/position-size-calculator-{ac}")
-        
-    # 8. Fibonacci Calculator
-    fc = seo_data['tools']['fibonacci-calculator']
-    for uc in fc['params']['use_case']:
-        urls.append(f"{base_url}/fibonacci-retracement-calculator-{uc}")
-
-    # 9. Character Counter
-    cc = seo_data['tools']['character-counter']
-    for p in cc['params']['platform']:
-        urls.append(f"{base_url}/character-counter-for-{p}")
-
-    # 10. CPM Calculator
-    cpm = seo_data['tools']['cpm-calculator']
-    for ch in cpm['params']['channel']:
-        urls.append(f"{base_url}/cpm-calculator-for-{ch}")
-
-    # 11. Base64 File Converter
-    b64 = seo_data['tools']['base64-converter']
-    for ft in b64['params']['file_type']:
-        urls.append(f"{base_url}/decode-base64-to-{ft}")
-        
-    # 12. Blog Pages
+    # 3. Blog Pages
     urls.append(f"{base_url}/blog")
     for post in get_blog_posts():
         urls.append(f"{base_url}/blog/{post['slug']}")
         
-    # 13. Static Pages
+    # 4. Static Pages
     urls.append(f"{base_url}/about")
         
     # Render XML Structure
@@ -453,6 +522,49 @@ def subscribe():
 @app.route('/about')
 def about():
     return render_template('about.html', meta_title="About Us - Urbandigistore Platform", meta_description="Learn more about Urbandigistore, a privacy-first, 100% free browser-based digital operations utility suite built for developers, marketers, and traders.")
+
+@app.route('/api/mock', methods=['POST'])
+def api_mock():
+    data = request.get_json()
+    if data is None:
+        return jsonify({'success': False, 'message': 'Invalid or missing JSON payload.'}), 400
+    
+    # Generate unique ID
+    mock_id = uuid.uuid4().hex[:8]
+    
+    # Ensure mocks directory exists
+    mocks_dir = os.path.join(os.path.dirname(__file__), 'mocks')
+    if not os.path.exists(mocks_dir):
+        try:
+            os.makedirs(mocks_dir)
+        except Exception:
+            pass
+        
+    # Save payload to file
+    mock_file = os.path.join(mocks_dir, f"{mock_id}.json")
+    try:
+        with open(mock_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f)
+    except Exception as e:
+        return jsonify({'success': False, 'message': f'Failed to store mock: {e}'}), 500
+        
+    mock_url = f"{request.url_root.rstrip('/')}/mock-api/{mock_id}"
+    return jsonify({'success': True, 'mock_url': mock_url, 'mock_id': mock_id})
+
+@app.route('/mock-api/<mock_id>')
+def serve_mock_api(mock_id):
+    mocks_dir = os.path.join(os.path.dirname(__file__), 'mocks')
+    mock_file = os.path.join(mocks_dir, f"{mock_id}.json")
+    if not os.path.exists(mock_file):
+        abort(404)
+        
+    try:
+        with open(mock_file, 'r', encoding='utf-8') as f:
+            mock_data = json.load(f)
+    except Exception:
+        abort(500)
+        
+    return jsonify(mock_data)
 
 @app.errorhandler(404)
 def page_not_found(e):

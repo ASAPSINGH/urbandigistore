@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Get configuration details
     const configEl = document.getElementById('tool-config');
-    const platform = configEl.getAttribute('data-param-platform');
+    const selectEl = document.getElementById('utm-platform-select');
     
     // Default mappings for digital platforms
     const platformPresets = {
@@ -9,14 +9,24 @@ document.addEventListener('DOMContentLoaded', () => {
         'google-ads': { source: 'google', medium: 'cpc', name: 'Google Ads' },
         'linkedin-ads': { source: 'linkedin', medium: 'sponsored-post', name: 'LinkedIn Ads' },
         'twitter-ads': { source: 'twitter', medium: 'cpc', name: 'Twitter Ads' },
-        'tiktok-ads': { source: 'tiktok', medium: 'cpc', name: 'TikTok Ads' },
-        'pinterest-ads': { source: 'pinterest', medium: 'cpc', name: 'Pinterest Ads' }
+        'newsletter-email': { source: 'newsletter', medium: 'email', name: 'Newsletter Email' }
     };
     
-    const activePreset = platformPresets[platform] || { source: 'social', medium: 'social-ads', name: 'Paid Ads' };
+    // Initial parameter resolution
+    const urlParams = new URLSearchParams(window.location.search);
+    let platform = urlParams.get('platform') || configEl.getAttribute('data-param-platform') || 'facebook-ads';
+    if (!platformPresets[platform]) {
+        platform = 'facebook-ads';
+    }
+    
+    // Initialize select element value
+    if (selectEl) {
+        selectEl.value = platform;
+    }
+    
+    let activePreset = platformPresets[platform];
     
     // UI Elements
-    const badgePlatform = document.getElementById('utm-badge-platform');
     const inputUrl = document.getElementById('utm-url');
     const inputSource = document.getElementById('utm-source');
     const inputMedium = document.getElementById('utm-medium');
@@ -27,15 +37,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnCopy = document.getElementById('btn-copy-utm');
     
     // Initialize defaults based on current platform
-    badgePlatform.textContent = activePreset.name;
     inputSource.value = activePreset.source;
     inputMedium.value = activePreset.medium;
+    inputName.value = 'summer_sale_2026';
+    inputUrl.value = 'https://example.com';
     
     // Add real-time event listeners
     const inputs = [inputUrl, inputSource, inputMedium, inputName, inputTerm, inputContent];
     inputs.forEach(element => {
         element.addEventListener('input', generateUrl);
     });
+    
+    if (selectEl) {
+        selectEl.addEventListener('change', (e) => {
+            const newPlatform = e.target.value;
+            if (platformPresets[newPlatform]) {
+                activePreset = platformPresets[newPlatform];
+                
+                // Update inputs
+                inputSource.value = activePreset.source;
+                inputMedium.value = activePreset.medium;
+                
+                // Update URL parameters dynamically
+                const url = new URL(window.location.href);
+                url.searchParams.set('platform', newPlatform);
+                window.history.replaceState(null, '', url.toString());
+                
+                generateUrl();
+            }
+        });
+    }
     
     function generateUrl() {
         const rawUrl = inputUrl.value.trim();
@@ -90,16 +121,13 @@ document.addEventListener('DOMContentLoaded', () => {
         navigator.clipboard.writeText(targetText).then(() => {
             const originalText = btnCopy.textContent;
             btnCopy.textContent = 'Copied!';
-            btnCopy.classList.remove('bg-cyberaccent');
-            btnCopy.classList.add('bg-green-600');
             
             setTimeout(() => {
                 btnCopy.textContent = originalText;
-                btnCopy.classList.add('bg-cyberaccent');
-                btnCopy.classList.remove('bg-green-600');
             }, 2000);
-        }).catch(err => {
-            console.error('Copy failed: ', err);
         });
     });
+    
+    // Initial run
+    generateUrl();
 });

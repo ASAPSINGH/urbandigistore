@@ -5,11 +5,14 @@
             <h3 class="text-lg font-outfit font-bold text-white">Base64 File Decoder Gateway</h3>
             <p class="text-xs text-gray-400">Securely decode and extract raw binary files.</p>
         </div>
-        <div class="mt-2 sm:mt-0 px-3 py-1.5 rounded-lg bg-cyberaccent/10 border border-cyberaccent/20 flex items-center space-x-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyberaccent"></span>
-            <span class="text-[10px] text-cyberaccent font-semibold uppercase tracking-wider" id="b64-badge-type">
-                Loading Type...
-            </span>
+        <div class="mt-2 sm:mt-0 flex items-center space-x-2">
+            <label for="b64-type-select" class="text-xs text-gray-400">Decode To:</label>
+            <select id="b64-type-select" class="glass-input text-xs px-3 py-1.5 rounded-lg text-white border border-white/10 bg-darkbg focus:outline-none focus:border-cyberneon">
+                <option value="pdf-document">PDF Document (.pdf)</option>
+                <option value="png-image">PNG Image (.png)</option>
+                <option value="jpeg-image">JPEG Image (.jpg)</option>
+                <option value="plain-text">Plain Text (.txt)</option>
+            </select>
         </div>
     </div>
 

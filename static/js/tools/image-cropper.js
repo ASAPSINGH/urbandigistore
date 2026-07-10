@@ -1,24 +1,54 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Get configuration details
     const configEl = document.getElementById('tool-config');
-    const platformSize = configEl.getAttribute('data-param-platform_size');
+    const selectEl = document.getElementById('cropper-platform-select');
     
     // Preset configurations
     const presets = {
         'instagram-post': { width: 1080, height: 1080, ratio: 1, name: 'Instagram Feed Post' },
         'instagram-story': { width: 1080, height: 1920, ratio: 9/16, name: 'Instagram Story' },
-        'youtube-thumbnail': { width: 1280, height: 720, ratio: 16/9, name: 'YouTube Thumbnail' },
         'youtube-banner': { width: 2560, height: 1440, ratio: 16/9, name: 'YouTube Banner' },
-        'facebook-cover': { width: 820, height: 312, ratio: 820/312, name: 'Facebook Cover' },
-        'tiktok-video': { width: 1080, height: 1920, ratio: 9/16, name: 'TikTok Video' },
-        'twitter-header': { width: 1500, height: 500, ratio: 3/1, name: 'Twitter Header' }
+        'twitter-header': { width: 1500, height: 500, ratio: 3/1, name: 'Twitter Header' },
+        'linkedin-cover': { width: 1584, height: 396, ratio: 4/1, name: 'LinkedIn Cover' }
     };
     
-    const activePreset = presets[platformSize] || presets['instagram-post'];
+    // Initial parameter resolution
+    const urlParams = new URLSearchParams(window.location.search);
+    let platformSize = urlParams.get('platform_size') || configEl.getAttribute('data-param-platform_size') || 'instagram-post';
+    // Mapping legacy presets if they exist
+    if (platformSize === 'youtube-thumbnail') platformSize = 'youtube-banner';
+    if (platformSize === 'facebook-cover') platformSize = 'linkedin-cover';
+    if (platformSize === 'tiktok-video') platformSize = 'instagram-story';
     
-    // Update badge text
-    const badgeSize = document.getElementById('cropper-badge-size');
-    badgeSize.textContent = `${activePreset.name} (${activePreset.width}x${activePreset.height})`;
+    if (!presets[platformSize]) {
+        platformSize = 'instagram-post';
+    }
+    
+    if (selectEl) {
+        selectEl.value = platformSize;
+    }
+    
+    let activePreset = presets[platformSize];
+    
+    if (selectEl) {
+        selectEl.addEventListener('change', (e) => {
+            const newPlatformSize = e.target.value;
+            if (presets[newPlatformSize]) {
+                platformSize = newPlatformSize;
+                activePreset = presets[platformSize];
+                
+                // Update URL parameters dynamically
+                const url = new URL(window.location.href);
+                url.searchParams.set('platform_size', platformSize);
+                window.history.replaceState(null, '', url.toString());
+                
+                // Redraw if image is loaded
+                if (sourceImage) {
+                    drawPreview();
+                }
+            }
+        });
+    }
     
     // UI Elements
     const dropZone = document.getElementById('drop-zone');

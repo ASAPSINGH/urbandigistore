@@ -1,27 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Get configuration details
     const configEl = document.getElementById('tool-config');
-    const country = configEl.getAttribute('data-param-country');
+    const countrySelect = document.getElementById('wa-country-select');
+    const selectPrefix = document.getElementById('wa-prefix');
     
     // Country to dial prefix mappings
     const countryPrefixes = {
         'india': { code: '91', name: 'India' },
-        'usa': { code: '1', name: 'United States' },
-        'uk': { code: '44', name: 'United Kingdom' },
-        'canada': { code: '1', name: 'Canada' },
+        'united-states': { code: '1', name: 'United States' },
+        'united-kingdom': { code: '44', name: 'United Kingdom' },
         'australia': { code: '61', name: 'Australia' },
-        'germany': { code: '49', name: 'Germany' },
-        'france': { code: '33', name: 'France' },
-        'brazil': { code: '55', name: 'Brazil' },
-        'united-arab-emirates': { code: '971', name: 'UAE' },
-        'singapore': { code: '65', name: 'Singapore' }
+        'germany': { code: '49', name: 'Germany' }
     };
     
-    const activeCountry = countryPrefixes[country] || { code: '1', name: 'International' };
+    // Initial parameter resolution
+    const urlParams = new URLSearchParams(window.location.search);
+    let country = urlParams.get('country') || configEl.getAttribute('data-param-country') || 'united-states';
+    // Legacy maps
+    if (country === 'usa') country = 'united-states';
+    if (country === 'uk') country = 'united-kingdom';
+    
+    if (!countryPrefixes[country]) {
+        country = 'united-states';
+    }
+    
+    // Initialize presets
+    if (countrySelect) countrySelect.value = country;
+    selectPrefix.value = countryPrefixes[country].code;
     
     // UI Elements
-    const badgeCountry = document.getElementById('wa-badge-country');
-    const selectPrefix = document.getElementById('wa-prefix');
     const inputPhone = document.getElementById('wa-phone');
     const txtMessage = document.getElementById('wa-message');
     const inputResult = document.getElementById('wa-result');
@@ -34,9 +41,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const qrImage = document.getElementById('wa-qr-image');
     const qrDownload = document.getElementById('wa-qr-download');
     
-    // Initialize Defaults
-    badgeCountry.textContent = activeCountry.name;
-    selectPrefix.value = activeCountry.code;
+    // Listeners
+    if (countrySelect) {
+        countrySelect.addEventListener('change', (e) => {
+            const newCountry = e.target.value;
+            if (countryPrefixes[newCountry]) {
+                country = newCountry;
+                selectPrefix.value = countryPrefixes[country].code;
+                
+                // Update URL parameter dynamically
+                const url = new URL(window.location.href);
+                url.searchParams.set('country', country);
+                window.history.replaceState(null, '', url.toString());
+                
+                generateWALink();
+            }
+        });
+    }
+    
+    // If the prefix changes manually, match the country select if possible
+    selectPrefix.addEventListener('change', () => {
+        const currentCode = selectPrefix.value;
+        const matched = Object.keys(countryPrefixes).find(k => countryPrefixes[k].code === currentCode);
+        if (matched && countrySelect) {
+            countrySelect.value = matched;
+            country = matched;
+            
+            // Update URL
+            const url = new URL(window.location.href);
+            url.searchParams.set('country', country);
+            window.history.replaceState(null, '', url.toString());
+        }
+    });
     
     // Listeners
     [selectPrefix, inputPhone, txtMessage].forEach(el => {

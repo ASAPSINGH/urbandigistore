@@ -5,11 +5,18 @@
             <h3 class="text-lg font-outfit font-bold text-white">Media Converter Gateway</h3>
             <p class="text-xs text-gray-400">Perform secure and high-fidelity file conversions.</p>
         </div>
-        <div class="mt-2 sm:mt-0 px-3 py-1.5 rounded-lg bg-cyberneon/10 border border-cyberneon/20 flex items-center space-x-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyberneon animate-ping"></span>
-            <span class="text-[10px] text-cyberneon font-semibold uppercase tracking-wider">
-                <span id="cfg-input-fmt">PNG</span> to <span id="cfg-output-fmt">WEBP</span>
-            </span>
+        <div class="mt-2 sm:mt-0 flex items-center space-x-2">
+            <select id="ic-input-select" class="glass-input text-xs px-2.5 py-1.5 rounded-lg text-white border border-white/10 bg-darkbg focus:outline-none focus:border-cyberneon font-bold">
+                <option value="png">PNG</option>
+                <option value="jpg">JPG</option>
+                <option value="webp">WEBP</option>
+            </select>
+            <span class="text-xs text-gray-500">to</span>
+            <select id="ic-output-select" class="glass-input text-xs px-2.5 py-1.5 rounded-lg text-white border border-white/10 bg-darkbg focus:outline-none focus:border-cyberneon font-bold">
+                <option value="webp">WEBP</option>
+                <option value="png">PNG</option>
+                <option value="jpg">JPG</option>
+            </select>
         </div>
     </div>
 

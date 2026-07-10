@@ -5,11 +5,15 @@
             <h3 class="text-lg font-outfit font-bold text-white">Precision Image Cropping</h3>
             <p class="text-xs text-gray-400">Lock ratios and download optimized images.</p>
         </div>
-        <div class="mt-2 sm:mt-0 px-3 py-1.5 rounded-lg bg-cyberneon/10 border border-cyberneon/20 flex items-center space-x-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyberneon"></span>
-            <span class="text-[10px] text-cyberneon font-semibold uppercase tracking-wider" id="cropper-badge-size">
-                Loading Preset...
-            </span>
+        <div class="mt-2 sm:mt-0 flex items-center space-x-2">
+            <label for="cropper-platform-select" class="text-xs text-gray-400">Target Layout:</label>
+            <select id="cropper-platform-select" class="glass-input text-xs px-3 py-1.5 rounded-lg text-white border border-white/10 bg-darkbg focus:outline-none focus:border-cyberneon">
+                <option value="instagram-post">Instagram Post (1:1)</option>
+                <option value="instagram-story">Instagram Story (9:16)</option>
+                <option value="youtube-banner">YouTube Banner (16:9)</option>
+                <option value="twitter-header">Twitter / X Header (3:1)</option>
+                <option value="linkedin-cover">LinkedIn Cover (4:1)</option>
+            </select>
         </div>
     </div>
 

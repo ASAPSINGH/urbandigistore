@@ -1,10 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Get configuration details
     const configEl = document.getElementById('tool-config');
-    const fileType = configEl.getAttribute('data-param-file_type');
+    const selectEl = document.getElementById('b64-type-select');
     
     // UI Elements
-    const badgeType = document.getElementById('b64-badge-type');
     const txtInput = document.getElementById('b64-input');
     const btnClear = document.getElementById('btn-clear-b64');
     const btnDecode = document.getElementById('btn-decode-b64');
@@ -20,18 +19,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const previewContainer = document.getElementById('b64-preview-container');
     const previewImg = document.getElementById('b64-preview-img');
     
-    // Configure default badge
-    badgeType.textContent = fileType.toUpperCase();
-    
-    // Demo base64 presets matching the target formats
-    const demoStrings = {
-        'png': 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
-        'svg': 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCI+PGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMzUiIGZpbGw9IiMwNmI2ZDQiLz48L3N2Zz4=',
-        'json': 'data:application/json;base64,ewogICAgInN0YXR1cyI6ICJkZWNvZGVkIiwKICAgICJzYWZlIjogdHJ1ZSwKICAgICJsb2NhbCI6IHRydWUKfQ=='
+    // Default demo strings
+    const defaultDemos = {
+        'pdf-document': 'data:application/pdf;base64,JVBERi0xLjQKMSAwIG9iago8PAovVHlwZSAvQ2F0YWxvZwovUGFnZXMgMiAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL1R5cGUgL1BhZ2VzCi9LaWRzIFszIDAgUl0KL0NvdW50IDEKPj4KZW5kb2JqCjMgMCBvYmoKPDwKL1R5cGUgL1BhZ2UKL1BhcmVudCAyIDAgUgovTWVkaWFCb3ggWzAgMCA1OTUgODQyXQovQ29udGVudHMgNCAwIFIKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0xlbmd0aCA2Ngo+PgpzdHJlYW0KQlQKL0YxIDEyIFRmCjcyIDcyMCBUZApzZXFlbnRpYWwtYmFzZTY0LWRlY29kZWQtcG9ydGFibGUtZG9jdW1lbnQtZm9ybWF0LVQ1IFRmCihIZWxsbyBmcm9tIFVyYmFuZGlnaXN0b3JlISkgVGoKRVQKZW5kc3RyZWFtCmVuZG9iagp4cmVmCjAgNQowMDAwMDAwMDAwIDY1NTM1IGYKMDAwMDAwMDAxNyAwMDAwMCBuCjAwMDAwMDAwNzAgMDAwMDAgbgowMDAwMDAwMTIwIDAwMDAwIG4KMDAwMDAwMDIxMiAwMDAwMCBuCnRyYWlsZXIKPDwKL1NpemUgNQovUm9vdCAxIDAgUgo+PgpzdGFydHhyZWYKMzI5CiUlRU9G',
+        'png-image': 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
+        'jpeg-image': 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=',
+        'plain-text': 'data:text/plain;base64,V2VsY29tZSB0byBvdXIgc2VjdXJlIGxvY2FsIGRlY29kZXIu'
     };
     
+    // Initial parameter resolution
+    const urlParams = new URLSearchParams(window.location.search);
+    let fileType = urlParams.get('file_type') || configEl.getAttribute('data-param-file_type') || 'pdf-document';
+    if (!defaultDemos[fileType]) {
+        fileType = 'pdf-document';
+    }
+    
+    if (selectEl) {
+        selectEl.value = fileType;
+    }
+    
     // Prefill demo strings or simple fallback
-    txtInput.value = demoStrings[fileType] || 'data:text/plain;base64,V2VsY29tZSB0byBvdXIgc2VjdXJlIGxvY2FsIGRlY29kZXIu';
+    txtInput.value = defaultDemos[fileType];
+    
+    if (selectEl) {
+        selectEl.addEventListener('change', (e) => {
+            const newFileType = e.target.value;
+            if (defaultDemos[newFileType]) {
+                fileType = newFileType;
+                
+                // Update URL parameters dynamically
+                const url = new URL(window.location.href);
+                url.searchParams.set('file_type', fileType);
+                window.history.replaceState(null, '', url.toString());
+                
+                // Set demo string
+                const currentText = txtInput.value.trim();
+                const isPreviousDemo = Object.values(defaultDemos).some(d => d === currentText) || currentText === "" || currentText.startsWith("data:");
+                
+                if (isPreviousDemo) {
+                    txtInput.value = defaultDemos[fileType];
+                }
+                
+                analyzeBase64();
+            }
+        });
+    }
     
     // Listeners
     txtInput.addEventListener('input', analyzeBase64);

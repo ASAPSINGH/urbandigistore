@@ -5,11 +5,15 @@
             <h3 class="text-lg font-outfit font-bold text-white">Visual Content Meter</h3>
             <p class="text-xs text-gray-400">Validate content sizing against publisher constraints.</p>
         </div>
-        <div class="mt-2 sm:mt-0 px-3 py-1.5 rounded-lg bg-cyberaccent/10 border border-cyberaccent/20 flex items-center space-x-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyberaccent"></span>
-            <span class="text-[10px] text-cyberaccent font-semibold uppercase tracking-wider" id="cc-badge-platform">
-                Loading Platform...
-            </span>
+        <div class="mt-2 sm:mt-0 flex items-center space-x-2">
+            <label for="cc-platform-select" class="text-xs text-gray-400">Target Profile:</label>
+            <select id="cc-platform-select" class="glass-input text-xs px-3 py-1.5 rounded-lg text-white border border-white/10 bg-darkbg focus:outline-none focus:border-cyberneon">
+                <option value="twitter-post">Twitter / X Post (280)</option>
+                <option value="linkedin-post">LinkedIn Post (3000)</option>
+                <option value="instagram-bio">Instagram Bio (150)</option>
+                <option value="google-title">Google Meta Title (60)</option>
+                <option value="google-description">Google Meta Description (160)</option>
+            </select>
         </div>
     </div>
 

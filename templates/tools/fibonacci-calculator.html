@@ -5,11 +5,13 @@
             <h3 class="text-lg font-outfit font-bold text-white">Fibonacci Retracement Grid</h3>
             <p class="text-xs text-gray-400">Generate structural support and resistance benchmarks.</p>
         </div>
-        <div class="mt-2 sm:mt-0 px-3 py-1.5 rounded-lg bg-cyberneon/10 border border-cyberneon/20 flex items-center space-x-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyberneon"></span>
-            <span class="text-[10px] text-cyberneon font-semibold uppercase tracking-wider" id="fib-badge-usecase">
-                Loading Setup...
-            </span>
+        <div class="mt-2 sm:mt-0 flex items-center space-x-2">
+            <label for="fibo-use-case-select" class="text-xs text-gray-400">Trading Setup:</label>
+            <select id="fibo-use-case-select" class="glass-input text-xs px-3 py-1.5 rounded-lg text-white border border-white/10 bg-darkbg focus:outline-none focus:border-cyberneon">
+                <option value="stock-trends">Stock Market Trends</option>
+                <option value="crypto-waves">Crypto Volatility Waves</option>
+                <option value="forex-swings">Forex Currency Swings</option>
+            </select>
         </div>
     </div>
 
@@ -62,5 +64,48 @@
             </div>
         </div>
 
+    </div>
+
+    <!-- Information Gain Section: Fibonacci Retracement Trading Guide -->
+    <div class="mt-12 pt-8 border-t border-white/5 space-y-6">
+        <div>
+            <h4 class="text-base font-outfit font-bold text-white mb-2 flex items-center">
+                <span class="w-1.5 h-5 bg-cyberneon rounded-full mr-2"></span>
+                How to Trade Fibonacci Retracements: Rules & Stop-Loss Placement
+            </h4>
+            <p class="text-xs text-gray-400">Fibonacci retracement is not just a collection of numbers; it's a map of market participant psychology and limit order blocks.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-gray-400 leading-relaxed">
+            <div class="glass-input p-5 rounded-xl border border-white/5 space-y-2">
+                <h5 class="font-outfit font-bold text-white">📏 Rule 1: Find the Swing Anchors</h5>
+                <p>
+                    To draw Fibonacci retracement levels in a bullish uptrend, anchor your Swing Low at the absolute lowest wick of the previous major trend impulse, and draw up to the absolute Swing High wick where the price began consolidating. In bearish downtrends, anchor from the absolute Swing High down to the Swing Low.
+                </p>
+            </div>
+            <div class="glass-input p-5 rounded-xl border border-white/5 space-y-2">
+                <h5 class="font-outfit font-bold text-white">💰 Rule 2: Trade the "Golden Pocket"</h5>
+                <p>
+                    The zone between the **0.618** and **0.65** Fibonacci ratios is known as the "Golden Pocket." Volume-weighted market maker blocks commonly fill buy orders in this zone during healthy pullbacks. Avoid chasing breakouts; wait for a retracement to test the Golden Pocket and confirm volume buying.
+                </p>
+            </div>
+            <div class="glass-input p-5 rounded-xl border border-white/5 space-y-2">
+                <h5 class="font-outfit font-bold text-white">🛡️ Rule 3: Place Invalidations</h5>
+                <p>
+                    Place your stop-loss order slightly below the **0.786** Fibonacci level. The 0.786 ratio represents the final threshold of support. If the price breaks below this level, it signals a complete market structure shift (break of structure) rather than a simple trend pullback.
+                </p>
+            </div>
+        </div>
+
+        <div class="glass-input p-5 rounded-xl border border-white/5 space-y-3">
+            <h5 class="text-xs font-semibold text-white uppercase tracking-wider">Example Execution Plan (Uptrend Re-entry)</h5>
+            <ol class="list-decimal list-inside text-xs text-gray-400 space-y-2">
+                <li>Identify a stock that has rallied from <strong class="text-white">$100 (Swing Low)</strong> to <strong class="text-white">$150 (Swing High)</strong>.</li>
+                <li>Wait for the price to drop back to the <strong class="text-cyberneon font-semibold">0.618 level ($119.10)</strong>.</li>
+                <li>Look for a confirmation candlestick pattern, such as a bullish pinbar or engulfing candle, on the 1-hour chart.</li>
+                <li>Enter a long trade, with a take-profit target at the <strong class="text-white">0% extension ($150)</strong> and a stop-loss set just below the <strong class="text-white">0.786 level ($110.70)</strong>.</li>
+                <li>This trade plan secures a healthy Risk-to-Reward ratio of over **3.5:1**.</li>
+            </ol>
+        </div>
     </div>
 </div>

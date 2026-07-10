@@ -5,11 +5,15 @@
             <h3 class="text-lg font-outfit font-bold text-white">Campaign Link Configurator</h3>
             <p class="text-xs text-gray-400">Generate tags to track traffic origin.</p>
         </div>
-        <div class="mt-2 sm:mt-0 px-3 py-1.5 rounded-lg bg-cyberaccent/10 border border-cyberaccent/20 flex items-center space-x-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyberaccent"></span>
-            <span class="text-[10px] text-cyberaccent font-semibold uppercase tracking-wider" id="utm-badge-platform">
-                Loading Platform...
-            </span>
+        <div class="mt-2 sm:mt-0 flex items-center space-x-2">
+            <label for="utm-platform-select" class="text-xs text-gray-400">Target Ads System:</label>
+            <select id="utm-platform-select" class="glass-input text-xs px-3 py-1.5 rounded-lg text-white border border-white/10 bg-darkbg focus:outline-none focus:border-cyberneon">
+                <option value="facebook-ads">Meta / Facebook Ads</option>
+                <option value="google-ads">Google Search Campaign</option>
+                <option value="linkedin-ads">LinkedIn Sponsored Ads</option>
+                <option value="twitter-ads">Twitter / X Campaigns</option>
+                <option value="newsletter-email">Newsletter Email List</option>
+            </select>
         </div>
     </div>
 

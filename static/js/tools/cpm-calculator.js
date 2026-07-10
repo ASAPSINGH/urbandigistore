@@ -1,10 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Get configuration details
     const configEl = document.getElementById('tool-config');
-    const channel = configEl.getAttribute('data-param-channel');
+    const selectEl = document.getElementById('cpm-channel-select');
     
     // UI Elements
-    const badgeChannel = document.getElementById('cpm-badge-channel');
     const tabCpm = document.getElementById('tab-cpm');
     const tabCost = document.getElementById('tab-cost');
     const tabImpressions = document.getElementById('tab-impressions');
@@ -27,32 +26,55 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let activeMode = 'cpm'; // can be 'cpm', 'cost', 'impressions'
     
-    // Mappings for channel text
-    const channelNames = {
-        'facebook-ads': 'Facebook Ads',
-        'google-ads': 'Google Ads',
-        'tiktok-ads': 'TikTok Ads',
-        'linkedin-ads': 'LinkedIn Ads'
-    };
-    badgeChannel.textContent = channelNames[channel] || 'Paid Ads Channel';
-    
     // Channel-specific default CPM values
     const channelDefaults = {
         'facebook-ads': 12.00,
-        'google-ads': 15.00,
+        'google-display': 3.50,
         'tiktok-ads': 8.50,
-        'linkedin-ads': 35.00
+        'linkedin-campaigns': 48.00,
+        'youtube-ads': 14.00
     };
-    if (channelDefaults[channel]) {
-        inputCpm.value = channelDefaults[channel];
-        // recalculate default starting cost
-        inputCost.value = (parseFloat(inputImpressions.value) / 1000) * channelDefaults[channel];
+    
+    // Initial parameter resolution
+    const urlParams = new URLSearchParams(window.location.search);
+    let channel = urlParams.get('channel') || configEl.getAttribute('data-param-channel') || 'facebook-ads';
+    if (!channelDefaults[channel]) {
+        channel = 'facebook-ads';
     }
+    
+    // Initialize select element value
+    if (selectEl) {
+        selectEl.value = channel;
+    }
+    
+    // Apply initial defaults
+    inputCpm.value = channelDefaults[channel];
+    inputCost.value = (parseFloat(inputImpressions.value) / 1000) * channelDefaults[channel];
     
     // Tab click handlers
     tabCpm.addEventListener('click', () => setMode('cpm'));
     tabCost.addEventListener('click', () => setMode('cost'));
     tabImpressions.addEventListener('click', () => setMode('impressions'));
+    
+    if (selectEl) {
+        selectEl.addEventListener('change', (e) => {
+            const newChannel = e.target.value;
+            if (channelDefaults[newChannel]) {
+                channel = newChannel;
+                
+                // Update default values
+                inputCpm.value = channelDefaults[channel];
+                inputCost.value = ((parseFloat(inputImpressions.value) || 100000) / 1000) * channelDefaults[channel];
+                
+                // Update URL parameters dynamically
+                const url = new URL(window.location.href);
+                url.searchParams.set('channel', channel);
+                window.history.replaceState(null, '', url.toString());
+                
+                runCalculate();
+            }
+        });
+    }
     
     function setMode(mode) {
         activeMode = mode;

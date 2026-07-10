@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Get configuration details
     const configEl = document.getElementById('tool-config');
-    const inputFormat = configEl.getAttribute('data-param-input_format');
-    const outputFormat = configEl.getAttribute('data-param-output_format');
+    const inputSelect = document.getElementById('ic-input-select');
+    const outputSelect = document.getElementById('ic-output-select');
     
     // Type mapping helpers
     const mimeTypes = {
@@ -13,12 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
         'gif': 'image/gif'
     };
     
-    const inputMime = mimeTypes[inputFormat] || 'image/*';
-    const outputMime = mimeTypes[outputFormat] || 'image/png';
+    // Initial parameter resolution
+    const urlParams = new URLSearchParams(window.location.search);
+    let inputFormat = urlParams.get('input_format') || configEl.getAttribute('data-param-input_format') || 'png';
+    let outputFormat = urlParams.get('output_format') || configEl.getAttribute('data-param-output_format') || 'webp';
+    
+    // Set drop-downs
+    if (inputSelect) inputSelect.value = inputFormat;
+    if (outputSelect) outputSelect.value = outputFormat;
+    
+    let inputMime = mimeTypes[inputFormat] || 'image/*';
+    let outputMime = mimeTypes[outputFormat] || 'image/png';
     
     // UI Elements
-    const cfgInputFmt = document.getElementById('cfg-input-fmt');
-    const cfgOutputFmt = document.getElementById('cfg-output-fmt');
     const labelInputFmt = document.getElementById('label-input-fmt');
     const dropZone = document.getElementById('drop-zone');
     const fileInput = document.getElementById('image-input');
@@ -30,12 +37,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const alertSuccess = document.getElementById('alert-success');
     
     // Set text labels based on parameters
-    cfgInputFmt.textContent = inputFormat.toUpperCase();
-    cfgOutputFmt.textContent = outputFormat.toUpperCase();
-    labelInputFmt.textContent = `.${inputFormat.toLowerCase()}`;
+    if (labelInputFmt) labelInputFmt.textContent = `.${inputFormat.toLowerCase()}`;
     fileInput.setAttribute('accept', inputMime);
     
     let activeFile = null;
+    
+    // Change handlers
+    const updateFormats = () => {
+        inputFormat = inputSelect.value;
+        outputFormat = outputSelect.value;
+        inputMime = mimeTypes[inputFormat] || 'image/*';
+        outputMime = mimeTypes[outputFormat] || 'image/png';
+        
+        if (labelInputFmt) labelInputFmt.textContent = `.${inputFormat.toLowerCase()}`;
+        fileInput.setAttribute('accept', inputMime);
+        
+        // Update URL
+        const url = new URL(window.location.href);
+        url.searchParams.set('input_format', inputFormat);
+        url.searchParams.set('output_format', outputFormat);
+        window.history.replaceState(null, '', url.toString());
+        
+        // Remove current files if type changes
+        activeFile = null;
+        fileInfo.classList.add('hidden');
+        dropZone.classList.remove('hidden');
+        alertSuccess.classList.add('hidden');
+    };
+    
+    if (inputSelect) inputSelect.addEventListener('change', updateFormats);
+    if (outputSelect) outputSelect.addEventListener('change', updateFormats);
     
     // Drag & Drop event listeners
     ['dragenter', 'dragover'].forEach(eventName => {

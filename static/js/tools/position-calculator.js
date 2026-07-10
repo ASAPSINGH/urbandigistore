@@ -1,10 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Get configuration details
     const configEl = document.getElementById('tool-config');
-    const assetClass = configEl.getAttribute('data-param-asset_class');
+    const selectEl = document.getElementById('pos-asset-select');
     
     // UI Elements
-    const badgeAsset = document.getElementById('calc-badge-asset');
     const labelSL = document.getElementById('label-sl-unit');
     const inputBalance = document.getElementById('calc-balance');
     const inputRisk = document.getElementById('calc-risk');
@@ -25,35 +24,60 @@ document.addEventListener('DOMContentLoaded', () => {
     const outRowLotsMicro = document.getElementById('out-row-lots-micro');
     const outLotsMicro = document.getElementById('out-lots-micro');
     
-    // Initialize labels & defaults based on asset class
-    if (assetClass === 'forex') {
-        badgeAsset.textContent = 'Forex FX Pairs';
-        labelSL.textContent = 'Stop Loss (Pips)';
-        inputSL.value = '20';
-        inputEntry.value = '1.1200';
-        inputStopPrice.value = '1.1180';
-        
-        outSizeLabel1.textContent = 'Standard Lot Sizing:';
-        outRowLotsMini.classList.remove('hidden');
-        outRowLotsMicro.classList.remove('hidden');
-    } else {
-        // Crypto or Stocks
-        badgeAsset.textContent = assetClass.charAt(0).toUpperCase() + assetClass.slice(1);
-        labelSL.textContent = 'Stop Loss (%)';
-        inputSL.value = '5';
-        inputEntry.value = '100';
-        inputStopPrice.value = '95';
-        
-        outSizeLabel1.textContent = assetClass === 'stocks' ? 'Shares to Purchase:' : 'Coins to Allocate:';
-        outRowLotsMini.classList.add('hidden');
-        outRowLotsMicro.classList.add('hidden');
+    // Initial parameter resolution
+    const urlParams = new URLSearchParams(window.location.search);
+    let assetClass = urlParams.get('asset_class') || configEl.getAttribute('data-param-asset_class') || 'forex-trading';
+    
+    // Legacy maps if they exist
+    if (assetClass === 'forex') assetClass = 'forex-trading';
+    if (assetClass === 'crypto') assetClass = 'crypto-trading';
+    if (assetClass === 'stocks') assetClass = 'stock-investing';
+    
+    if (selectEl) {
+        selectEl.value = assetClass;
     }
+    
+    // Config function
+    const applyAssetConfig = (type) => {
+        if (type === 'forex-trading') {
+            labelSL.textContent = 'Stop Loss (Pips)';
+            inputSL.value = '20';
+            inputEntry.value = '1.1200';
+            inputStopPrice.value = '1.1180';
+            
+            outSizeLabel1.textContent = 'Standard Lot Sizing:';
+            outRowLotsMini.classList.remove('hidden');
+            const miniLabel = outRowLotsMini.querySelector('span:first-child');
+            if (miniLabel) miniLabel.textContent = 'Mini Lots Sizing:';
+            outRowLotsMicro.classList.remove('hidden');
+        } else {
+            // Crypto or Stocks
+            labelSL.textContent = 'Stop Loss (%)';
+            inputSL.value = '5';
+            
+            if (type === 'crypto-trading') {
+                inputEntry.value = '60000';
+                inputStopPrice.value = '57000';
+                outSizeLabel1.textContent = 'Coins to Allocate:';
+            } else {
+                inputEntry.value = '150';
+                inputStopPrice.value = '142.50';
+                outSizeLabel1.textContent = 'Shares to Purchase:';
+            }
+            
+            outRowLotsMini.classList.remove('hidden');
+            const miniLabel = outRowLotsMini.querySelector('span:first-child');
+            if (miniLabel) miniLabel.textContent = 'Total Deal Value:';
+            outRowLotsMicro.classList.add('hidden');
+        }
+    };
+    
+    applyAssetConfig(assetClass);
     
     // Event listeners to sync entry/stop prices with Stop Loss distance
     inputEntry.addEventListener('input', updateSLDistance);
     inputStopPrice.addEventListener('input', updateSLDistance);
     inputSL.addEventListener('input', () => {
-        // Clear entry/stop price fields to avoid conflicts when typing SL directly
         inputEntry.value = '';
         inputStopPrice.value = '';
     });
@@ -64,20 +88,32 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (isNaN(entry) || isNaN(stop) || entry <= 0 || stop <= 0) return;
         
-        if (assetClass === 'forex') {
-            // Standard Pip calculation (4 decimal digits for pairs like EURUSD, 0.0001 = 1 pip)
-            // Use 10,000 multiplier
-            const diff = Math.abs(entry - stop);
-            // Handle JPY pairs differently if entry price is small e.g. < 200 (like USD/JPY ~150)
-            const multiplier = entry < 250 ? 100 : 10000;
-            const pips = (diff * multiplier).toFixed(1);
-            inputSL.value = pips;
+        if (assetClass === 'forex-trading') {
+            // Forex stop distance = |entry - stop| * 10000 (pip scaling)
+            const pips = Math.abs(entry - stop) * 10000;
+            inputSL.value = Math.round(pips);
         } else {
-            // Percentage difference
-            const diff = Math.abs(entry - stop);
-            const pct = ((diff / entry) * 100).toFixed(2);
-            inputSL.value = pct;
+            // Stocks/Crypto stop distance = (|entry - stop| / entry) * 100
+            const pct = (Math.abs(entry - stop) / entry) * 100;
+            inputSL.value = pct.toFixed(2);
         }
+    }
+    
+    if (selectEl) {
+        selectEl.addEventListener('change', (e) => {
+            const newAssetClass = e.target.value;
+            assetClass = newAssetClass;
+            
+            // Update UI elements based on new configuration
+            applyAssetConfig(assetClass);
+            
+            // Update URL parameters dynamically
+            const url = new URL(window.location.href);
+            url.searchParams.set('asset_class', assetClass);
+            window.history.replaceState(null, '', url.toString());
+            
+            calculatePosition();
+        });
     }
     
     // Trigger Calculation
@@ -98,10 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
         outRiskCash.textContent = `$${riskCash.toFixed(2)}`;
         
         // 2. Sizing calculation
-        if (assetClass === 'forex') {
-            // Standard EUR/USD pip value is $10 for a standard lot (100,000 units)
-            // Sizing Formula: Lots = RiskCash / (StopLossPips * PipValue)
-            const pipValue = 10; // Default approximation for USD-account trading USD-crosses
+        if (assetClass === 'forex-trading') {
+            const pipValue = 10; // Default approximation for USD accounts
             const standardLots = riskCash / (slDist * pipValue);
             
             outLotsStandard.textContent = `${standardLots.toFixed(2)} Lots`;
@@ -109,19 +143,12 @@ document.addEventListener('DOMContentLoaded', () => {
             outLotsMicro.textContent = `${(standardLots * 100).toFixed(2)} Lots`;
         } else {
             // Crypto or Stocks (percentage risk sizing)
-            // Standard Position Size = RiskCash / StopLossPercent
-            // (e.g. Risk $100 with 5% stop = $2000 total size, buy $2000 worth of shares)
             const totalPositionValue = riskCash / (slDist / 100);
             const entryPrice = parseFloat(inputEntry.value) || 1.0;
             const sharesCount = totalPositionValue / entryPrice;
             
             // Format output size
             outLotsStandard.textContent = `${sharesCount.toFixed(4)} units`;
-            
-            // Re-purpose mini row to show total purchase value
-            outRowLotsMini.classList.remove('hidden');
-            const miniLabel = outRowLotsMini.querySelector('span:first-child');
-            miniLabel.textContent = 'Total Deal Value:';
             outLotsMini.textContent = `$${totalPositionValue.toFixed(2)}`;
         }
     }

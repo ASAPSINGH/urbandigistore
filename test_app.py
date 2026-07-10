@@ -16,23 +16,42 @@ class TestWebUtilities(unittest.TestCase):
         self.assertIn(b'Digital Operations Matrix', response.data)
         
     def test_valid_programmatic_routes(self):
-        """Verify that valid programmatic SEO parameters resolve successfully."""
+        """Verify that legacy programmatic SEO parameters return 301 redirects."""
         routes = [
-            '/convert-png-to-webp',
-            '/crop-image-for-instagram-post',
-            '/utm-builder-for-facebook-ads',
-            '/whatsapp-link-generator-for-india',
-            '/format-json-for-config',
-            '/position-size-calculator-forex',
-            '/fibonacci-retracement-calculator-crypto-trading',
-            '/character-counter-for-twitter-post',
-            '/cpm-calculator-for-facebook-ads',
-            '/decode-base64-to-png'
+            ('/convert-png-to-webp', '/image-converter?input_format=png&output_format=webp'),
+            ('/crop-image-for-instagram-post', '/image-cropper?platform_size=instagram-post'),
+            ('/utm-builder-for-facebook-ads', '/utm-builder?platform=facebook-ads'),
+            ('/whatsapp-link-generator-for-india', '/whatsapp-link-generator?country=india'),
+            ('/format-json-for-config', '/json-formatter?use_case=config'),
+            ('/position-size-calculator-forex', '/position-size-calculator?asset_class=forex'),
+            ('/fibonacci-retracement-calculator-crypto-trading', '/fibonacci-calculator?use_case=crypto-trading'),
+            ('/character-counter-for-twitter-post', '/character-counter?platform=twitter-post'),
+            ('/cpm-calculator-for-facebook-ads', '/cpm-calculator?channel=facebook-ads'),
+            ('/decode-base64-to-png', '/base64-file-converter?file_type=png')
+        ]
+        for route, expected_redirect in routes:
+            response = self.app.get(route)
+            self.assertEqual(response.status_code, 301, f"Route {route} did not return 301.")
+            self.assertTrue(response.location.endswith(expected_redirect), f"Route {route} redirected to {response.location} instead of {expected_redirect}.")
+            
+    def test_consolidated_routes(self):
+        """Verify the consolidated main route hubs load successfully."""
+        routes = [
+            '/image-converter',
+            '/image-cropper',
+            '/utm-builder',
+            '/whatsapp-link-generator',
+            '/json-formatter',
+            '/position-size-calculator',
+            '/fibonacci-calculator',
+            '/character-counter',
+            '/cpm-calculator',
+            '/base64-file-converter'
         ]
         for route in routes:
             response = self.app.get(route)
-            self.assertEqual(response.status_code, 200, f"Route {route} failed to load.")
-            self.assertIn(b'How to Use', response.data, f"Route {route} does not render layout.")
+            self.assertEqual(response.status_code, 200, f"Consolidated hub {route} failed to load.")
+            self.assertIn(b'How to Use', response.data, f"Consolidated hub {route} missing instructions.")
             
     def test_invalid_parameters_404(self):
         """Verify that invalid parameters return 404 to avoid duplicate/spam indexes."""
@@ -60,42 +79,36 @@ class TestWebUtilities(unittest.TestCase):
         
         # Parse XML
         root = ET.fromstring(response.data)
-        # Check namespaces
         self.assertIn('urlset', root.tag)
         
         # Extract URLs
         urls = [child[0].text for child in root if len(child) > 0]
-        self.assertTrue(len(urls) > 10, "Sitemap contains too few URLs.")
-        self.assertTrue(any('/convert-png-to-webp' in url for url in urls), "Sitemap missing image converter URLs.")
-        self.assertTrue(any('/blog/importance-of-image-compression' in url for url in urls), "Sitemap missing blog post URLs.")
+        self.assertTrue(len(urls) > 5, "Sitemap contains too few URLs.")
+        self.assertTrue(any('/image-converter' in url for url in urls), "Sitemap missing image converter URLs.")
+        self.assertTrue(any('/blog/free-online-image-converters' in url for url in urls), "Sitemap missing blog post URLs.")
         
     def test_blog_routes(self):
         """Verify that the blog index and posts render successfully."""
-        # 1. Blog Index
         resp = self.app.get('/blog')
         self.assertEqual(resp.status_code, 200)
         self.assertIn(b'Knowledge Base Matrix', resp.data)
-        self.assertIn(b'Why Image Compression Matters', resp.data)
+        self.assertIn(b'Free Online Image Converters', resp.data)
         
-        # 2. Blog Post Page
-        resp = self.app.get('/blog/importance-of-image-compression')
+        resp = self.app.get('/blog/free-online-image-converters')
         self.assertEqual(resp.status_code, 200)
-        self.assertIn(b'Why Image Compression Matters for Web Performance', resp.data)
+        self.assertIn(b'The Guide to Free Online Image Converters', resp.data)
         self.assertIn(b'BlogPosting', resp.data)  # JSON-LD Schema check
         
     def test_google_verification(self):
         """Verify Google Search Console verification HTML file and meta tag routes work."""
-        # 1. Test HTML file route
         resp = self.app.get('/googlenH_m5gZ-2Oi7zqLQ18lLOFedJm-mZUVdS_p8hd7proY.html')
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.data, b'google-site-verification: googlenH_m5gZ-2Oi7zqLQ18lLOFedJm-mZUVdS_p8hd7proY.html')
 
-        # 1.1 Test New HTML file route
         resp = self.app.get('/google419e02c86ce25995.html')
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.data, b'google-site-verification: google419e02c86ce25995.html')
 
-        # 2. Test Meta Tag in base template (loaded on homepage)
         resp = self.app.get('/')
         self.assertEqual(resp.status_code, 200)
         self.assertIn(b'<meta name="google-site-verification" content="nH_m5gZ-2Oi7zqLQ18lLOFedJm-mZUVdS_p8hd7proY" />', resp.data)
@@ -177,6 +190,26 @@ class TestWebUtilities(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertIn(b'Privacy-First', resp.data)
         self.assertIn(b'Our Mission', resp.data)
+        
+    def test_mock_api(self):
+        """Verify that Mock API creation and retrieval work as expected."""
+        mock_payload = {"status": "ok", "items": [1, 2, 3]}
+        response = self.app.post('/api/mock', json=mock_payload)
+        self.assertEqual(response.status_code, 200)
+        
+        data = json.loads(response.data.decode('utf-8'))
+        self.assertTrue(data['success'])
+        self.assertIn('mock_url', data)
+        self.assertIn('mock_id', data)
+        
+        # Test retrieval of the mocked payload
+        mock_id = data['mock_id']
+        get_response = self.app.get(f'/mock-api/{mock_id}')
+        self.assertEqual(get_response.status_code, 200)
+        self.assertEqual(get_response.mimetype, 'application/json')
+        
+        get_data = json.loads(get_response.data.decode('utf-8'))
+        self.assertEqual(get_data, mock_payload)
 
 if __name__ == '__main__':
     unittest.main()

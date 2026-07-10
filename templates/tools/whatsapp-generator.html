@@ -5,11 +5,15 @@
             <h3 class="text-lg font-outfit font-bold text-white">Click-to-Chat Link Builder</h3>
             <p class="text-xs text-gray-400">Instantly generate shareable WhatsApp API triggers.</p>
         </div>
-        <div class="mt-2 sm:mt-0 px-3 py-1.5 rounded-lg bg-cyberaccent/10 border border-cyberaccent/20 flex items-center space-x-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyberaccent"></span>
-            <span class="text-[10px] text-cyberaccent font-semibold uppercase tracking-wider" id="wa-badge-country">
-                Loading Country...
-            </span>
+        <div class="mt-2 sm:mt-0 flex items-center space-x-2">
+            <label for="wa-country-select" class="text-xs text-gray-400">Target Region:</label>
+            <select id="wa-country-select" class="glass-input text-xs px-3 py-1.5 rounded-lg text-white border border-white/10 bg-darkbg focus:outline-none focus:border-cyberneon">
+                <option value="united-states">United States (+1)</option>
+                <option value="united-kingdom">United Kingdom (+44)</option>
+                <option value="india">India (+91)</option>
+                <option value="australia">Australia (+61)</option>
+                <option value="germany">Germany (+49)</option>
+            </select>
         </div>
     </div>
 

@@ -5,11 +5,13 @@
             <h3 class="text-lg font-outfit font-bold text-white">Risk Exposure Calculator</h3>
             <p class="text-xs text-gray-400">Calculate perfect trade allocations based on drawdowns.</p>
         </div>
-        <div class="mt-2 sm:mt-0 px-3 py-1.5 rounded-lg bg-cyberneon/10 border border-cyberneon/20 flex items-center space-x-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyberneon"></span>
-            <span class="text-[10px] text-cyberneon font-semibold uppercase tracking-wider" id="calc-badge-asset">
-                Loading Asset...
-            </span>
+        <div class="mt-2 sm:mt-0 flex items-center space-x-2">
+            <label for="pos-asset-select" class="text-xs text-gray-400">Asset Class:</label>
+            <select id="pos-asset-select" class="glass-input text-xs px-3 py-1.5 rounded-lg text-white border border-white/10 bg-darkbg focus:outline-none focus:border-cyberneon">
+                <option value="forex-trading">Forex Currency Pairs</option>
+                <option value="crypto-trading">Crypto Spot & Futures</option>
+                <option value="stock-investing">Stock Equities Market</option>
+            </select>
         </div>
     </div>
 

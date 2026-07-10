@@ -5,11 +5,15 @@
             <h3 class="text-lg font-outfit font-bold text-white">Ad Campaign Metric Solver</h3>
             <p class="text-xs text-gray-400">Resolve budgets, impressions, CPM, and ROAS parameters.</p>
         </div>
-        <div class="mt-2 sm:mt-0 px-3 py-1.5 rounded-lg bg-cyberneon/10 border border-cyberneon/20 flex items-center space-x-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyberneon"></span>
-            <span class="text-[10px] text-cyberneon font-semibold uppercase tracking-wider" id="cpm-badge-channel">
-                Loading Channel...
-            </span>
+        <div class="mt-2 sm:mt-0 flex items-center space-x-2">
+            <label for="cpm-channel-select" class="text-xs text-gray-400">Ad Platform:</label>
+            <select id="cpm-channel-select" class="glass-input text-xs px-3 py-1.5 rounded-lg text-white border border-white/10 bg-darkbg focus:outline-none focus:border-cyberneon">
+                <option value="facebook-ads">Meta / Facebook Ads</option>
+                <option value="google-display">Google Display Network</option>
+                <option value="tiktok-ads">TikTok Ads Campaign</option>
+                <option value="linkedin-campaigns">LinkedIn Sponsored Content</option>
+                <option value="youtube-ads">YouTube Video Campaigns</option>
+            </select>
         </div>
     </div>
 
@@ -98,6 +102,77 @@
                         <p id="out-cpm-roas" class="py-2 text-xs font-bold text-green-400 font-mono">3.00x</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Information Gain Section: 2026 Industry CPM Benchmarks & Tactics -->
+    <div class="mt-12 pt-8 border-t border-white/5 space-y-6">
+        <div>
+            <h4 class="text-base font-outfit font-bold text-white mb-2 flex items-center">
+                <span class="w-1.5 h-5 bg-cyberneon rounded-full mr-2"></span>
+                2026 Industry CPM Benchmarks & Campaign Optimization
+            </h4>
+            <p class="text-xs text-gray-400">Ground your budgets in real-world impression costs to project campaign return on spend accurately.</p>
+        </div>
+
+        <div class="overflow-x-auto rounded-xl border border-white/10">
+            <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                    <tr class="bg-white/[0.03] border-b border-white/10 text-gray-300 font-semibold">
+                        <th class="p-3">Platform</th>
+                        <th class="p-3">Avg. CPM (USD)</th>
+                        <th class="p-3">Primary Audience</th>
+                        <th class="p-3">Best Optimization Target</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-white/5 text-gray-400">
+                    <tr class="hover:bg-white/[0.01]">
+                        <td class="p-3 font-semibold text-white">Meta / Facebook Ads</td>
+                        <td class="p-3 font-mono">$8.50 - $14.50</td>
+                        <td class="p-3">B2C Retail, Interests-based</td>
+                        <td class="p-3">Broad targeting, dynamic video ads</td>
+                    </tr>
+                    <tr class="hover:bg-white/[0.01]">
+                        <td class="p-3 font-semibold text-white">Google Display Network</td>
+                        <td class="p-3 font-mono">$2.10 - $4.80</td>
+                        <td class="p-3">Contextual web visitors, remarketing</td>
+                        <td class="p-3">Custom intent segments, strict exclusions</td>
+                    </tr>
+                    <tr class="hover:bg-white/[0.01]">
+                        <td class="p-3 font-semibold text-white">TikTok Campaigns</td>
+                        <td class="p-3 font-mono">$6.00 - $9.80</td>
+                        <td class="p-3">Gen Z & Millennials, creators</td>
+                        <td class="p-3">Creative refresh cycles, spark ads</td>
+                    </tr>
+                    <tr class="hover:bg-white/[0.01]">
+                        <td class="p-3 font-semibold text-white">LinkedIn Sponsored Content</td>
+                        <td class="p-3 font-mono">$32.00 - $65.00</td>
+                        <td class="p-3">B2B, Decision-makers, Job roles</td>
+                        <td class="p-3">Detailed member profile exclusions, long-form PDF downloads</td>
+                    </tr>
+                    <tr class="hover:bg-white/[0.01]">
+                        <td class="p-3 font-semibold text-white">YouTube In-Stream Video</td>
+                        <td class="p-3 font-mono">$9.50 - $18.00</td>
+                        <td class="p-3">High-intent searches, tutorials</td>
+                        <td class="p-3">Skip exclusions, custom affinity topics</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-gray-400 leading-relaxed">
+            <div class="glass-input p-5 rounded-xl border border-white/5 space-y-2">
+                <h5 class="font-outfit font-bold text-white">📉 Strategy 1: Defeat High CPM via Frequency Capping</h5>
+                <p>
+                    When ad frequencies climb above 3.5 views per user, click-through rates (CTR) collapse and CPM costs swell. Restructure your ad set rules to cap frequency at 3 impressions per 7-day period. This rotation spreads your budget to net-new prospects, keeping impression costs low and ad relevance high.
+                </p>
+            </div>
+            <div class="glass-input p-5 rounded-xl border border-white/5 space-y-2">
+                <h5 class="font-outfit font-bold text-white">🎯 Strategy 2: Focus on Hook Rates (3-Second Views)</h5>
+                <p>
+                    Paid social algorithms reward high-engagement ads with lower bid CPMs. Improve your "Hook Rate" (ratio of 3-second views to impressions) by testing high-contrast dynamic text overlays in the first 2 seconds of video creatives. Lowering bounce rates signals quality, which reduces platform ad auction penalty fees.
+                </p>
             </div>
         </div>
     </div>

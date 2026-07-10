@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Get configuration details
+    // Get configuration details from config tag or query params
     const configEl = document.getElementById('tool-config');
-    const platform = configEl.getAttribute('data-param-platform');
+    const selectEl = document.getElementById('cc-platform-select');
     
     // Platform configurations
     const platformLimits = {
@@ -12,10 +12,21 @@ document.addEventListener('DOMContentLoaded', () => {
         'google-description': { limit: 160, name: 'Google Meta Description' }
     };
     
-    const activePlatform = platformLimits[platform] || { limit: 500, name: 'Custom Platform' };
+    // Initial parameter resolution
+    const urlParams = new URLSearchParams(window.location.search);
+    let platform = urlParams.get('platform') || configEl.getAttribute('data-param-platform') || 'twitter-post';
+    if (!platformLimits[platform]) {
+        platform = 'twitter-post';
+    }
+    
+    // Initialize select element value
+    if (selectEl) {
+        selectEl.value = platform;
+    }
+    
+    let activePlatform = platformLimits[platform];
     
     // UI Elements
-    const badgePlatform = document.getElementById('cc-badge-platform');
     const cntChars = document.getElementById('cnt-chars');
     const cntWords = document.getElementById('cnt-words');
     const cntSentences = document.getElementById('cnt-sentences');
@@ -28,13 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnClear = document.getElementById('btn-clear-cc');
     const btnCopy = document.getElementById('btn-copy-cc');
     
-    // Init display
-    badgePlatform.textContent = activePlatform.name;
-    
     // Pre-fill demo copy
     const demoTexts = {
         'twitter-post': "Building a high-performance programmatic SEO platform today! 🚀 Client-side execution makes it extremely fast and cost-effective. Check it out at Urbandigistore.",
-        'google-title': "Free Web Utilities & pSEO Online Tools Matrix",
+        'linkedin-post': "We are pivoting our programmatic SEO model today. The 2026 Google Spam Update targets thin, low-information pages. By consolidating parameters into dynamic hubs and providing deep industry context, we ensure long-term indexing growth.",
+        'instagram-bio': "Modern web utilities built for developers, marketers, and active traders. 100% secure in-browser sandboxed processing. 🌐💻📉",
+        'google-title': "Free Web Utilities & pSEO Online Tools Dashboard",
         'google-description': "Convert images instantly, format JSON objects, build campaign tracking UTM parameters, and manage trade sizes directly in your browser. 100% private."
     };
     
@@ -47,6 +57,30 @@ document.addEventListener('DOMContentLoaded', () => {
         runAnalysis();
     });
     
+    if (selectEl) {
+        selectEl.addEventListener('change', (e) => {
+            const newPlatform = e.target.value;
+            if (platformLimits[newPlatform]) {
+                activePlatform = platformLimits[newPlatform];
+                
+                // Update URL parameters dynamically
+                const url = new URL(window.location.href);
+                url.searchParams.set('platform', newPlatform);
+                window.history.replaceState(null, '', url.toString());
+                
+                // Pre-fill new demo text if textarea is empty or holds another demo text
+                const currentText = txtInput.value.strip ? txtInput.value.trim() : txtInput.value;
+                const isPreviousDemo = Object.values(demoTexts).some(d => d === currentText) || currentText === "" || currentText.startsWith("Type or paste your content");
+                
+                if (isPreviousDemo) {
+                    txtInput.value = demoTexts[newPlatform];
+                }
+                
+                runAnalysis();
+            }
+        });
+    }
+    
     btnCopy.addEventListener('click', () => {
         const text = txtInput.value;
         if (!text) return;
@@ -54,13 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
         navigator.clipboard.writeText(text).then(() => {
             const originalText = btnCopy.textContent;
             btnCopy.textContent = 'Copied!';
-            btnCopy.classList.remove('bg-cyberaccent');
-            btnCopy.classList.add('bg-green-600');
             
             setTimeout(() => {
                 btnCopy.textContent = originalText;
-                btnCopy.classList.add('bg-cyberaccent');
-                btnCopy.classList.remove('bg-green-600');
             }, 2000);
         });
     });
