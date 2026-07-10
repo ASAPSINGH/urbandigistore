@@ -37,7 +37,7 @@ To prevent this, use a **browser-based image converter** that utilizes client-si
 
 ## 📊 Image Format Comparison Cheat Sheet
 
-| Feature | PNG | JPEG / JPG | WebP |
+| Format | PNG | JPEG / JPG | WebP |
 | :--- | :--- | :--- | :--- |
 | **Compression Type** | Lossless | Lossy | Lossless & Lossy |
 | **Supports Transparency** | Yes | No | Yes |
