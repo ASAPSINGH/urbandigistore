@@ -6,8 +6,8 @@ from app import app
 class TestWebUtilities(unittest.TestCase):
     
     def setUp(self):
+        app.testing = True
         self.app = app.test_client()
-        self.app.testing = True
         
     def test_home_route(self):
         """Verify the homepage loads and returns the categories section."""

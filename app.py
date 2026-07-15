@@ -228,8 +228,11 @@ def get_seo_context(tool_key, slug=None, **kwargs):
 
 @app.context_processor
 def inject_ga_id():
+    ga_id = os.environ.get('GA_MEASUREMENT_ID')
+    if not ga_id and not app.testing:
+        ga_id = 'G-7F1SCZWSCX'
     return {
-        'ga_measurement_id': os.environ.get('GA_MEASUREMENT_ID')
+        'ga_measurement_id': ga_id
     }
 
 @app.route('/')
