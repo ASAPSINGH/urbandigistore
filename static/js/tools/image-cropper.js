@@ -105,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Show workspace
                 dropZone.classList.add('hidden');
                 cropWorkspace.classList.remove('hidden');
+                cropCanvas.style.cursor = 'grab';
                 
                 // Initialize canvas sizing
                 drawPreview();
@@ -232,4 +233,109 @@ document.addEventListener('DOMContentLoaded', () => {
             btnDownload.textContent = 'Crop & Download Optimized Image';
         }, 'image/png');
     });
+
+    // --- Direct Drag-to-Move Canvas Controls ---
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+    
+    cropCanvas.addEventListener('mousedown', (e) => {
+        if (!sourceImage) return;
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        cropCanvas.style.cursor = 'grabbing';
+    });
+    
+    window.addEventListener('mousemove', (e) => {
+        if (!isDragging || !sourceImage) return;
+        
+        const deltaX = e.clientX - startX;
+        const deltaY = e.clientY - startY;
+        
+        if (deltaX !== 0 || deltaY !== 0) {
+            handleDrag(deltaX, deltaY);
+            startX = e.clientX;
+            startY = e.clientY;
+        }
+    });
+    
+    window.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            cropCanvas.style.cursor = 'grab';
+        }
+    });
+
+    cropCanvas.addEventListener('touchstart', (e) => {
+        if (!sourceImage || e.touches.length === 0) return;
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+    }, { passive: true });
+
+    cropCanvas.addEventListener('touchmove', (e) => {
+        if (!isDragging || !sourceImage || e.touches.length === 0) return;
+        
+        const deltaX = e.touches[0].clientX - startX;
+        const deltaY = e.touches[0].clientY - startY;
+        
+        if (deltaX !== 0 || deltaY !== 0) {
+            handleDrag(deltaX, deltaY);
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        }
+    });
+
+    cropCanvas.addEventListener('touchend', () => {
+        isDragging = false;
+    });
+
+    function handleDrag(deltaX, deltaY) {
+        const targetRatio = activePreset.ratio;
+        const zoom = sliderZoom.value / 100;
+        
+        let cropW, cropH;
+        if (sourceImage.width / sourceImage.height > targetRatio) {
+            cropH = sourceImage.height / zoom;
+            cropW = cropH * targetRatio;
+        } else {
+            cropW = sourceImage.width / zoom;
+            cropH = cropW / targetRatio;
+        }
+        
+        const scaleX = cropW / cropCanvas.width;
+        const scaleY = cropH / cropCanvas.height;
+        
+        const imageDeltaX = -deltaX * scaleX;
+        const imageDeltaY = -deltaY * scaleY;
+        
+        const maxOffsetX = sourceImage.width - cropW;
+        const maxOffsetY = sourceImage.height - cropH;
+        
+        if (maxOffsetX <= 0 && maxOffsetY <= 0) return;
+        
+        let sx = maxOffsetX * (parseFloat(sliderX.value) / 100);
+        let sy = maxOffsetY * (parseFloat(sliderY.value) / 100);
+        
+        sx = Math.max(0, Math.min(maxOffsetX, sx + imageDeltaX));
+        sy = Math.max(0, Math.min(maxOffsetY, sy + imageDeltaY));
+        
+        if (maxOffsetX > 0) {
+            sliderX.value = (sx / maxOffsetX) * 100;
+        }
+        if (maxOffsetY > 0) {
+            sliderY.value = (sy / maxOffsetY) * 100;
+        }
+        
+        drawPreview();
+    }
+
+    // Zoom value display updater
+    const zoomValueText = document.getElementById('zoom-value');
+    if (zoomValueText) {
+        sliderZoom.addEventListener('input', () => {
+            zoomValueText.textContent = `${sliderZoom.value}%`;
+        });
+    }
 });

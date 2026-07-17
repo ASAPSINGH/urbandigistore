@@ -68,8 +68,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // Prepend protocol on blur
+    inputUrl.addEventListener('blur', () => {
+        let rawUrl = inputUrl.value.trim();
+        if (rawUrl && !/^https?:\/\//i.test(rawUrl)) {
+            inputUrl.value = 'https://' + rawUrl;
+            generateUrl();
+        }
+    });
+
     function generateUrl() {
-        const rawUrl = inputUrl.value.trim();
+        let rawUrl = inputUrl.value.trim();
         const source = inputSource.value.trim();
         const medium = inputMedium.value.trim();
         const name = inputName.value.trim();
@@ -80,6 +89,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!rawUrl || !source || !medium || !name) {
             inputResult.value = '';
             return;
+        }
+        
+        // Prepend https:// if protocol is missing
+        if (!/^https?:\/\//i.test(rawUrl)) {
+            rawUrl = 'https://' + rawUrl;
         }
         
         try {

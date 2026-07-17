@@ -86,6 +86,8 @@ class TestWebUtilities(unittest.TestCase):
         self.assertTrue(len(urls) > 5, "Sitemap contains too few URLs.")
         self.assertTrue(any('/image-converter' in url for url in urls), "Sitemap missing image converter URLs.")
         self.assertTrue(any('/blog/free-online-image-converters' in url for url in urls), "Sitemap missing blog post URLs.")
+        self.assertTrue(any('/privacy' in url for url in urls), "Sitemap missing privacy page URL.")
+        self.assertTrue(any('/terms' in url for url in urls), "Sitemap missing terms page URL.")
         
     def test_blog_routes(self):
         """Verify that the blog index and posts render successfully."""
@@ -190,6 +192,20 @@ class TestWebUtilities(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertIn(b'Privacy-First', resp.data)
         self.assertIn(b'Our Mission', resp.data)
+        
+    def test_privacy_page_rendering(self):
+        """Verify the Privacy Policy page loads correctly."""
+        resp = self.app.get('/privacy')
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(b'Privacy Policy', resp.data)
+        self.assertIn(b'Zero Server Logs', resp.data)
+
+    def test_terms_page_rendering(self):
+        """Verify the Terms of Service page loads correctly."""
+        resp = self.app.get('/terms')
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(b'Terms of Service', resp.data)
+        self.assertIn(b'Limitation of Liability', resp.data)
         
     def test_mock_api(self):
         """Verify that Mock API creation and retrieval work as expected."""

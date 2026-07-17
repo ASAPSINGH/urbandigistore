@@ -73,11 +73,16 @@
             <button id="btn-mock-json" class="px-6 py-2.5 rounded-lg text-xs font-semibold text-white bg-gradient-to-r from-cyberneon to-cyberaccent hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
                 <span>⚡ Generate Secure Mock Endpoint</span>
             </button>
-            <div id="mock-output-container" class="hidden flex-1 flex items-center gap-2">
+            <div id="mock-output-container" class="hidden flex-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                 <input type="text" id="mock-url-output" readonly class="flex-1 px-3 py-2 rounded-lg glass-input text-xs font-mono text-gray-300" />
-                <button id="btn-copy-mock-url" class="px-4 py-2 rounded-lg text-xs font-semibold text-cyberaccent hover:text-white border border-cyberaccent/30 hover:bg-cyberaccent/10 transition-all">
-                    Copy Link
-                </button>
+                <div class="flex gap-2">
+                    <button id="btn-copy-mock-url" class="px-4 py-2 rounded-lg text-xs font-semibold text-cyberaccent hover:text-white border border-cyberaccent/30 hover:bg-cyberaccent/10 transition-all">
+                        Copy
+                    </button>
+                    <button id="btn-test-mock-url" class="px-4 py-2 rounded-lg text-xs font-semibold text-cyberneon hover:text-white border border-cyberneon/30 hover:bg-cyberneon/10 transition-all">
+                        Test Link
+                    </button>
+                </div>
             </div>
         </div>
         <p id="mock-status-message" class="text-[10px] font-semibold text-green-400 hidden"></p>

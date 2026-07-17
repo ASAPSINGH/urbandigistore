@@ -41,6 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event Trigger
     btnCalculate.addEventListener('click', calculateFibonacci);
     
+    // Auto-calculate on input changes
+    [inputHigh, inputLow, selectTrend].forEach(el => {
+        el.addEventListener('input', calculateFibonacci);
+        el.addEventListener('change', calculateFibonacci);
+    });
+    
     if (selectEl) {
         selectEl.addEventListener('change', (e) => {
             const newUseCase = e.target.value;
@@ -61,13 +67,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    function calculateFibonacci() {
+    function calculateFibonacci(e) {
         const high = parseFloat(inputHigh.value);
         const low = parseFloat(inputLow.value);
         const trend = selectTrend.value;
         
+        const isExplicitClick = e && e.type === 'click';
+        
         if (isNaN(high) || isNaN(low) || high <= 0 || low <= 0 || high <= low) {
-            alert('Please check price values. Swing High must be greater than Swing Low.');
+            if (isExplicitClick) alert('Please check price values. Swing High must be greater than Swing Low.');
             return;
         }
         

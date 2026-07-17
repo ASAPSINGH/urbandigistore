@@ -119,13 +119,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Trigger Calculation
     btnCalculate.addEventListener('click', calculatePosition);
     
-    function calculatePosition() {
+    // Auto-calculate on input changes
+    [inputBalance, inputRisk, inputSL, inputEntry, inputStopPrice].forEach(el => {
+        el.addEventListener('input', calculatePosition);
+    });
+    
+    function calculatePosition(e) {
         const balance = parseFloat(inputBalance.value);
         const riskPct = parseFloat(inputRisk.value);
         const slDist = parseFloat(inputSL.value);
         
+        const isExplicitClick = e && e.type === 'click';
+        
         if (isNaN(balance) || isNaN(riskPct) || isNaN(slDist) || balance <= 0 || riskPct <= 0 || slDist <= 0) {
-            alert('Please enter valid numeric parameters.');
+            if (isExplicitClick) alert('Please enter valid numeric parameters.');
             return;
         }
         

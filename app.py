@@ -442,6 +442,8 @@ def sitemap():
         
     # 4. Static Pages
     urls.append(f"{base_url}/about")
+    urls.append(f"{base_url}/privacy")
+    urls.append(f"{base_url}/terms")
         
     # Render XML Structure
     xml_content = '<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -525,6 +527,14 @@ def subscribe():
 @app.route('/about')
 def about():
     return render_template('about.html', meta_title="About Us - Urbandigistore Platform", meta_description="Learn more about Urbandigistore, a privacy-first, 100% free browser-based digital operations utility suite built for developers, marketers, and traders.")
+
+@app.route('/privacy')
+def privacy():
+    return render_template('privacy.html', meta_title="Privacy Policy - Urbandigistore Platform", meta_description="Read the privacy policy of Urbandigistore to understand how we secure your data locally in your browser memory.")
+
+@app.route('/terms')
+def terms():
+    return render_template('terms.html', meta_title="Terms of Service - Urbandigistore Platform", meta_description="Read the terms of service of Urbandigistore governing browser-based utility tools.")
 
 @app.route('/api/mock', methods=['POST'])
 def api_mock():

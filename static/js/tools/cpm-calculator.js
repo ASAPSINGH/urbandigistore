@@ -108,28 +108,35 @@ document.addEventListener('DOMContentLoaded', () => {
     btnCalculate.addEventListener('click', runCalculate);
     inputRevenue.addEventListener('input', calculateRoasOnly);
     
-    function runCalculate() {
+    // Auto-calculate on input changes
+    [inputCost, inputImpressions, inputCpm].forEach(el => {
+        el.addEventListener('input', runCalculate);
+    });
+    
+    function runCalculate(e) {
         let cost = parseFloat(inputCost.value);
         let impressions = parseFloat(inputImpressions.value);
         let cpm = parseFloat(inputCpm.value);
         
+        const isExplicitClick = e && e.type === 'click';
+        
         if (activeMode === 'cpm') {
             if (isNaN(cost) || isNaN(impressions) || cost <= 0 || impressions <= 0) {
-                alert('Please enter valid Cost and Impressions.');
+                if (isExplicitClick) alert('Please enter valid Cost and Impressions.');
                 return;
             }
             cpm = (cost / impressions) * 1000;
             inputCpm.value = cpm.toFixed(2);
         } else if (activeMode === 'cost') {
             if (isNaN(impressions) || isNaN(cpm) || impressions <= 0 || cpm <= 0) {
-                alert('Please enter valid Impressions and CPM.');
+                if (isExplicitClick) alert('Please enter valid Impressions and CPM.');
                 return;
             }
             cost = (impressions / 1000) * cpm;
             inputCost.value = cost.toFixed(2);
         } else if (activeMode === 'impressions') {
             if (isNaN(cost) || isNaN(cpm) || cost <= 0 || cpm <= 0) {
-                alert('Please enter valid Cost and CPM.');
+                if (isExplicitClick) alert('Please enter valid Cost and CPM.');
                 return;
             }
             impressions = (cost / cpm) * 1000;

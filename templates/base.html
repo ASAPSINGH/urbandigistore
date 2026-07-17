@@ -1,8 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // Inline script to prevent theme flash
+        (function() {
+            const theme = localStorage.getItem('theme') || 'dark'; // Default to dark mode for premium look
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+            } else {
+                document.documentElement.classList.add('light');
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
     <meta name="google-site-verification" content="nH_m5gZ-2Oi7zqLQ18lLOFedJm-mZUVdS_p8hd7proY" />
     
     <!-- Dynamic SEO Meta Tags -->
@@ -24,8 +37,8 @@
             theme: {
                 extend: {
                     colors: {
-                        darkbg: '#f8fafc',
-                        panelbg: 'rgba(255, 255, 255, 0.8)',
+                        darkbg: 'var(--bg-well)',
+                        panelbg: 'var(--bg-panel)',
                         cyberneon: '#4f46e5', /* Indigo 600 */
                         cyberaccent: '#0ea5e9', /* Sky 500 */
                     },
@@ -45,43 +58,82 @@
     
     <!-- Custom Style Enhancements -->
     <style>
+        /* Theme Variables */
+        :root {
+            --bg-body: #f8fafc;
+            --text-body: #334155;
+            --text-title: #0f172a;
+            --text-muted: #64748b;
+            
+            --bg-panel: rgba(255, 255, 255, 0.85);
+            --border-panel: rgba(15, 23, 42, 0.08);
+            --shadow-panel: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
+            
+            --bg-input: #ffffff;
+            --border-input: #cbd5e1;
+            --text-input: #0f172a;
+            
+            --bg-well: #f1f5f9;
+            --border-well: #e2e8f0;
+        }
+
+        html.dark {
+            --bg-body: #090d16;
+            --text-body: #cbd5e1;
+            --text-title: #ffffff;
+            --text-muted: #94a3b8;
+            
+            --bg-panel: rgba(15, 23, 42, 0.65);
+            --border-panel: rgba(255, 255, 255, 0.08);
+            --shadow-panel: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            
+            --bg-input: #0f172a;
+            --border-input: #334155;
+            --text-input: #f8fafc;
+            
+            --bg-well: rgba(0, 0, 0, 0.25);
+            --border-well: rgba(255, 255, 255, 0.05);
+        }
+
         body {
-            background-color: #f8fafc;
-            color: #1e293b;
+            background-color: var(--bg-body);
+            color: var(--text-body);
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
         /* Grid Background Pattern */
         .cyber-grid {
             background-image: 
-                linear-gradient(rgba(79, 70, 229, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(79, 70, 229, 0.03) 1px, transparent 1px);
+                linear-gradient(var(--border-well) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-well) 1px, transparent 1px);
             background-size: 40px 40px;
             background-position: center;
         }
 
         /* Glowing Radial Backgrounds */
         .neon-glow-1 {
-            background: radial-gradient(circle, rgba(79, 70, 229, 0.05) 0%, transparent 60%);
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.06) 0%, transparent 60%);
         }
         
         .neon-glow-2 {
-            background: radial-gradient(circle, rgba(14, 165, 233, 0.05) 0%, transparent 60%);
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.06) 0%, transparent 60%);
         }
 
         /* Glassmorphism Classes */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
+            background: var(--bg-panel);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(15, 23, 42, 0.08);
-            box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
+            border: 1px solid var(--border-panel);
+            box-shadow: var(--shadow-panel);
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
         
         .glass-input {
-            background: #ffffff;
-            border: 1px solid #cbd5e1;
-            color: #0f172a;
+            background: var(--bg-input);
+            border: 1px solid var(--border-input);
+            color: var(--text-input);
             transition: all 0.3s ease;
         }
         
@@ -107,61 +159,72 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f5f9;
+            background: var(--bg-well);
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(15, 23, 42, 0.1);
+            background: var(--border-panel);
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
             background: rgba(79, 70, 229, 0.3);
         }
 
-        /* Light Theme Overrides for sub-components */
-        .glass-panel .text-white, 
-        .glass-panel h1.text-white, 
-        .glass-panel h2.text-white, 
-        .glass-panel h3.text-white,
-        .glass-panel h4.text-white {
-            color: #0f172a !important; /* slate-900 */
+        /* Theme Overrides to make all page content readable */
+        html.light .text-white,
+        html.light h1.text-white,
+        html.light h2.text-white,
+        html.light h3.text-white,
+        html.light h4.text-white,
+        html.light span.text-white,
+        html.light code.text-white {
+            color: var(--text-title) !important;
         }
-        .glass-panel .text-gray-200 {
-            color: #1e293b !important; /* slate-800 */
+        html.light .text-gray-200 {
+            color: var(--text-title) !important;
         }
-        .glass-panel .text-gray-300 {
-            color: #334155 !important; /* slate-700 */
+        html.light .text-gray-300 {
+            color: var(--text-body) !important;
         }
-        .glass-panel .text-gray-400 {
-            color: #475569 !important; /* slate-600 */
+        html.light .text-gray-400 {
+            color: var(--text-muted) !important;
         }
-        .glass-panel .text-gray-500 {
-            color: #64748b !important; /* slate-500 */
+        html.light .text-gray-500 {
+            color: var(--text-muted) !important;
         }
-        .glass-panel .bg-white\/5 {
-            background-color: #f1f5f9 !important; /* slate-100 */
+        html.light .bg-white\/5 {
+            background-color: var(--bg-well) !important;
         }
-        .glass-panel .bg-white\/10 {
-            background-color: #e2e8f0 !important; /* slate-200 */
+        html.light .bg-white\/10 {
+            background-color: var(--bg-well) !important;
         }
-        .glass-panel .bg-black\/25 {
-            background-color: #f8fafc !important; /* slate-50 */
+        html.light .bg-black\/25 {
+            background-color: var(--bg-well) !important;
         }
-        .glass-panel .border-white\/5, 
-        .glass-panel .border-white\/10 {
-            border-color: #e2e8f0 !important; /* slate-200 */
+        html.light .bg-black\/40 {
+            background-color: var(--bg-well) !important;
         }
-        /* Buttons inside panels should retain white text */
-        .glass-panel button.text-white, 
-        .glass-panel .btn-neon,
-        .glass-panel a.btn-neon,
-        .glass-panel button#btn-convert {
+        html.light .bg-black\/45 {
+            background-color: var(--bg-well) !important;
+        }
+        html.light .border-white\/5, 
+        html.light .border-white\/10 {
+            border-color: var(--border-well) !important;
+        }
+        
+        /* Ensure elements that MUST stay white/light in both themes remain unaffected */
+        .btn-neon, 
+        .btn-neon *, 
+        button.btn-neon, 
+        a.btn-neon, 
+        #btn-convert {
             color: #ffffff !important;
         }
+        
         /* Success alert in light theme */
-        .glass-panel .text-green-400 {
+        html.light .text-green-400 {
             color: #15803d !important; /* green-700 */
         }
-        .glass-panel .bg-green-500\/10 {
+        html.light .bg-green-500\/10 {
             background-color: #f0fdf4 !important; /* green-50 */
             border-color: #bbf7d0 !important; /* green-200 */
         }
@@ -231,30 +294,60 @@
     <div class="absolute bottom-[-100px] left-[20%] w-[500px] h-[500px] neon-glow-1 pointer-events-none z-0"></div>
 
     <!-- Navigation Header -->
-    <header class="glass-panel sticky top-0 z-50 border-b border-slate-200/50 transition-all">
+    <header class="glass-panel sticky top-0 z-50 border-b border-slate-200/50 dark:border-slate-800/50 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <a href="/" class="flex items-center space-x-3 group">
                 <!-- Urbandigistore Logo Image -->
                 <img src="/static/images/logo.png" alt="Urbandigistore Logo" class="w-9 h-9 rounded-lg object-cover shadow-md shadow-indigo-500/10 group-hover:scale-105 transition-transform duration-300">
-                <span class="font-outfit font-extrabold text-xl tracking-wide text-slate-900 group-hover:text-cyberneon transition-colors">
+                <span class="font-outfit font-extrabold text-xl tracking-wide text-slate-900 dark:text-white group-hover:text-cyberneon transition-colors">
                     urban<span class="text-cyberneon font-medium">digistore</span>
                 </span>
             </a>
             
             <nav class="hidden md:flex space-x-8">
-                <a href="/#media" class="text-slate-600 hover:text-cyberneon transition font-semibold text-sm">Media</a>
-                <a href="/#marketing" class="text-slate-600 hover:text-cyberneon transition font-semibold text-sm">Marketing</a>
-                <a href="/#dev" class="text-slate-600 hover:text-cyberneon transition font-semibold text-sm">Developer</a>
-                <a href="/#finance" class="text-slate-600 hover:text-cyberneon transition font-semibold text-sm">Finance</a>
-                <a href="/blog" class="text-slate-600 hover:text-cyberneon transition font-semibold text-sm">Blog</a>
-                <a href="/about" class="text-slate-600 hover:text-cyberneon transition font-semibold text-sm">About</a>
+                <a href="/#media" class="text-slate-600 dark:text-gray-300 hover:text-cyberneon dark:hover:text-cyberaccent transition font-semibold text-sm">Media</a>
+                <a href="/#marketing" class="text-slate-600 dark:text-gray-300 hover:text-cyberneon dark:hover:text-cyberaccent transition font-semibold text-sm">Marketing</a>
+                <a href="/#dev" class="text-slate-600 dark:text-gray-300 hover:text-cyberneon dark:hover:text-cyberaccent transition font-semibold text-sm">Developer</a>
+                <a href="/#finance" class="text-slate-600 dark:text-gray-300 hover:text-cyberneon dark:hover:text-cyberaccent transition font-semibold text-sm">Finance</a>
+                <a href="/blog" class="text-slate-600 dark:text-gray-300 hover:text-cyberneon dark:hover:text-cyberaccent transition font-semibold text-sm">Blog</a>
+                <a href="/about" class="text-slate-600 dark:text-gray-300 hover:text-cyberneon dark:hover:text-cyberaccent transition font-semibold text-sm">About</a>
             </nav>
             
-            <div>
-                <a href="/sitemap.xml" target="_blank" class="text-xs border border-cyberneon/30 hover:border-cyberneon/100 px-3 py-1.5 rounded text-cyberneon transition-all bg-cyberneon/5">
+            <div class="flex items-center space-x-4">
+                <!-- Theme Switcher Button -->
+                <button id="theme-toggle" class="p-2 rounded-lg text-slate-500 hover:text-cyberneon dark:text-gray-400 dark:hover:text-cyberaccent transition-colors duration-200" aria-label="Toggle theme">
+                    <!-- Sun Icon (visible in Dark mode) -->
+                    <svg id="theme-toggle-light-icon" class="hidden w-5.5 h-5.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.46 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                    </svg>
+                    <!-- Moon Icon (visible in Light mode) -->
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5.5 h-5.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+                
+                <a href="/sitemap.xml" target="_blank" class="hidden sm:inline-block text-xs border border-cyberneon/30 hover:border-cyberneon/100 px-3 py-1.5 rounded text-cyberneon transition-all bg-cyberneon/5">
                     Sitemap Index
                 </a>
+
+                <!-- Mobile Menu Hamburger Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-500 hover:text-cyberneon dark:text-gray-400 dark:hover:text-cyberaccent focus:outline-none transition-colors" aria-label="Toggle mobile menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200/50 dark:border-slate-800/50 bg-slate-50/95 dark:bg-slate-950/95 backdrop-blur-lg px-4 pt-3 pb-4 space-y-2 transition-all duration-300">
+            <a href="/#media" class="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 dark:text-slate-300 hover:text-cyberneon dark:hover:text-cyberaccent hover:bg-slate-100 dark:hover:bg-slate-900 transition">Media</a>
+            <a href="/#marketing" class="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 dark:text-slate-300 hover:text-cyberneon dark:hover:text-cyberaccent hover:bg-slate-100 dark:hover:bg-slate-900 transition">Marketing</a>
+            <a href="/#dev" class="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 dark:text-slate-300 hover:text-cyberneon dark:hover:text-cyberaccent hover:bg-slate-100 dark:hover:bg-slate-900 transition">Developer</a>
+            <a href="/#finance" class="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 dark:text-slate-300 hover:text-cyberneon dark:hover:text-cyberaccent hover:bg-slate-100 dark:hover:bg-slate-900 transition">Finance</a>
+            <a href="/blog" class="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 dark:text-slate-300 hover:text-cyberneon dark:hover:text-cyberaccent hover:bg-slate-100 dark:hover:bg-slate-900 transition">Blog</a>
+            <a href="/about" class="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 dark:text-slate-300 hover:text-cyberneon dark:hover:text-cyberaccent hover:bg-slate-100 dark:hover:bg-slate-900 transition">About</a>
         </div>
     </header>
 
@@ -307,5 +400,73 @@
     </footer>
     
     {% block scripts %}{% endblock %}
+
+    <!-- Theme & Mobile Navigation Controls -->
+    <script>
+        // 1. Mobile Menu Controls
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    hamburgerIcon.classList.add('hidden');
+                    closeIcon.classList.remove('hidden');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    hamburgerIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                }
+            });
+
+            // Close mobile menu on clicking any links
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    hamburgerIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                });
+            });
+        }
+
+        // 2. Theme Toggle Controls
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+
+        // Set initial icon visibility based on current theme state
+        function updateThemeIcons() {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+                themeToggleLightIcon.classList.remove('hidden');
+                themeToggleDarkIcon.classList.add('hidden');
+            } else {
+                themeToggleLightIcon.classList.add('hidden');
+                themeToggleDarkIcon.classList.remove('hidden');
+            }
+        }
+
+        updateThemeIcons();
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                const isDark = document.documentElement.classList.contains('dark');
+                if (isDark) {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.classList.add('light');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.remove('light');
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+                updateThemeIcons();
+            });
+        }
+    </script>
 </body>
 </html>

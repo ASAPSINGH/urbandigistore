@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mockOutputContainer = document.getElementById('mock-output-container');
     const mockUrlOutput = document.getElementById('mock-url-output');
     const btnCopyMockUrl = document.getElementById('btn-copy-mock-url');
+    const btnTestMockUrl = document.getElementById('btn-test-mock-url');
     const mockStatusMessage = document.getElementById('mock-status-message');
     
     // Config presets
@@ -179,7 +180,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    function processJSON(mode) {
+    if (btnTestMockUrl) {
+        btnTestMockUrl.addEventListener('click', () => {
+            const url = mockUrlOutput.value;
+            if (url) {
+                window.open(url, '_blank');
+            }
+        });
+    }
+
+    // Auto-run trigger on keyup/change (silent processing)
+    txtInput.addEventListener('input', () => processJSON('format', true));
+    selIndent.addEventListener('change', () => processJSON('format', true));
+    
+    function processJSON(mode, silent = false) {
         const inputStr = txtInput.value.trim();
         if (!inputStr) {
             txtOutput.value = '';
@@ -200,9 +214,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 txtOutput.value = JSON.stringify(parsed);
             }
         } catch (err) {
-            txtOutput.value = '';
-            errorMessage.textContent = err.message;
-            errorPanel.classList.remove('hidden');
+            if (!silent) {
+                txtOutput.value = '';
+                errorMessage.textContent = err.message;
+                errorPanel.classList.remove('hidden');
+            }
         }
     }
 });
