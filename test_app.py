@@ -27,7 +27,12 @@ class TestWebUtilities(unittest.TestCase):
             ('/fibonacci-retracement-calculator-crypto-trading', '/fibonacci-calculator?use_case=crypto-trading'),
             ('/character-counter-for-twitter-post', '/character-counter?platform=twitter-post'),
             ('/cpm-calculator-for-facebook-ads', '/cpm-calculator?channel=facebook-ads'),
-            ('/decode-base64-to-png', '/base64-file-converter?file_type=png')
+            ('/decode-base64-to-png', '/base64-file-converter?file_type=png'),
+            ('/merge-pdf-for-documents', '/merge-pdf?use_case=documents'),
+            ('/split-pdf-by-pages', '/split-pdf?use_case=pages'),
+            ('/unmerge-pdf', '/split-pdf?use_case=pages'),
+            ('/generate-qr-code-for-url', '/qr-code-generator?type=url'),
+            ('/generate-strong-password', '/password-generator?security_level=strong')
         ]
         for route, expected_redirect in routes:
             response = self.app.get(route)
@@ -46,7 +51,11 @@ class TestWebUtilities(unittest.TestCase):
             '/fibonacci-calculator',
             '/character-counter',
             '/cpm-calculator',
-            '/base64-file-converter'
+            '/base64-file-converter',
+            '/merge-pdf',
+            '/split-pdf',
+            '/qr-code-generator',
+            '/password-generator'
         ]
         for route in routes:
             response = self.app.get(route)
@@ -65,7 +74,11 @@ class TestWebUtilities(unittest.TestCase):
             '/fibonacci-retracement-calculator-invalid-case',
             '/character-counter-for-invalid-platform',
             '/cpm-calculator-for-invalid-channel',
-            '/decode-base64-to-invalid-filetype'
+            '/decode-base64-to-invalid-filetype',
+            '/merge-pdf-for-invalidcase',
+            '/split-pdf-by-invalidcase',
+            '/generate-qr-code-for-invalidtype',
+            '/generate-invalidlevel-password'
         ]
         for route in invalid_routes:
             response = self.app.get(route)

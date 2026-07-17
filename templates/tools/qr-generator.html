@@ -1,0 +1,146 @@
+<!-- QR Code Generator Panel -->
+<div class="space-y-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/5 pb-4 mb-6">
+        <div>
+            <h3 class="text-lg font-outfit font-bold text-white">QR Code Matrix Builder</h3>
+            <p class="text-xs text-gray-400">Generate, style, and export static QR code graphics locally.</p>
+        </div>
+        <div class="mt-2 sm:mt-0 flex items-center space-x-2">
+            <span class="text-xs text-gray-400">Mode:</span>
+            <span class="text-xs text-cyberaccent font-semibold uppercase" id="qr-mode-label">URL</span>
+        </div>
+    </div>
+
+    <!-- Main Content Split (Settings on Left, Preview on Right) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Inputs and styling controls -->
+        <div class="space-y-6">
+            <!-- Tabs for inputs -->
+            <div class="flex border-b border-white/5 pb-1 gap-2 overflow-x-auto">
+                <button type="button" data-qr-type="url" class="qr-tab-btn active px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-cyberaccent/10 border border-cyberaccent/20 transition-all">URL</button>
+                <button type="button" data-qr-type="text" class="qr-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-400 border border-white/5 hover:text-white transition-all">Text</button>
+                <button type="button" data-qr-type="wifi" class="qr-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-400 border border-white/5 hover:text-white transition-all">WiFi</button>
+                <button type="button" data-qr-type="email" class="qr-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-400 border border-white/5 hover:text-white transition-all">Email</button>
+            </div>
+
+            <!-- Input Fields Container -->
+            <div class="space-y-4 bg-black/10 p-4 rounded-xl border border-white/5">
+                <!-- URL Input -->
+                <div id="qr-input-url-panel" class="qr-input-panel space-y-1.5">
+                    <label for="qr-input-url" class="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Target Website URL</label>
+                    <input type="url" id="qr-input-url" placeholder="https://example.com" value="https://urbandigistore.com" class="w-full px-3 py-2 rounded-lg glass-input text-xs font-mono" />
+                </div>
+
+                <!-- Text Input -->
+                <div id="qr-input-text-panel" class="qr-input-panel hidden space-y-1.5">
+                    <label for="qr-input-text" class="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Raw Text Content</label>
+                    <textarea id="qr-input-text" placeholder="Type text here..." rows="3" class="w-full px-3 py-2 rounded-lg glass-input text-xs"></textarea>
+                </div>
+
+                <!-- WiFi Input -->
+                <div id="qr-input-wifi-panel" class="qr-input-panel hidden space-y-3">
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="space-y-1">
+                            <label for="qr-wifi-ssid" class="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider">SSID (Network Name)</label>
+                            <input type="text" id="qr-wifi-ssid" placeholder="MyWiFiNetwork" class="w-full px-3 py-2 rounded-lg glass-input text-xs font-mono" />
+                        </div>
+                        <div class="space-y-1">
+                            <label for="qr-wifi-sec" class="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Security Type</label>
+                            <select id="qr-wifi-sec" class="w-full px-3 py-2 rounded-lg glass-input text-xs bg-darkbg">
+                                <option value="WPA">WPA/WPA2</option>
+                                <option value="WEP">WEP</option>
+                                <option value="nopass">Unsecured</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="space-y-1" id="qr-wifi-pass-container">
+                        <label for="qr-wifi-pass" class="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Password</label>
+                        <input type="password" id="qr-wifi-pass" placeholder="NetworkPassword" class="w-full px-3 py-2 rounded-lg glass-input text-xs font-mono" />
+                    </div>
+                </div>
+
+                <!-- Email Input -->
+                <div id="qr-input-email-panel" class="qr-input-panel hidden space-y-3">
+                    <div class="space-y-1">
+                        <label for="qr-email-to" class="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Recipient Email</label>
+                        <input type="email" id="qr-email-to" placeholder="hello@site.com" class="w-full px-3 py-2 rounded-lg glass-input text-xs font-mono" />
+                    </div>
+                    <div class="space-y-1">
+                        <label for="qr-email-sub" class="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Subject</label>
+                        <input type="text" id="qr-email-sub" placeholder="Inquiry" class="w-full px-3 py-2 rounded-lg glass-input text-xs" />
+                    </div>
+                    <div class="space-y-1">
+                        <label for="qr-email-body" class="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Message Body</label>
+                        <textarea id="qr-email-body" placeholder="Email message details..." rows="2" class="w-full px-3 py-2 rounded-lg glass-input text-xs"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stylization Customizer -->
+            <div class="space-y-4 bg-black/15 p-4 rounded-xl border border-white/5">
+                <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Color & Size Layout</h4>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-1">
+                        <label for="qr-color-fg" class="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Foreground Color</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="color" id="qr-color-fg" value="#000000" class="w-8 h-8 rounded border border-white/10 bg-transparent cursor-pointer" />
+                            <input type="text" id="qr-color-fg-hex" value="#000000" class="w-20 px-2 py-1 glass-input text-[11px] font-mono text-center rounded" />
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <label for="qr-color-bg" class="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Background Color</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="color" id="qr-color-bg" value="#ffffff" class="w-8 h-8 rounded border border-white/10 bg-transparent cursor-pointer" />
+                            <input type="text" id="qr-color-bg-hex" value="#ffffff" class="w-20 px-2 py-1 glass-input text-[11px] font-mono text-center rounded" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-1">
+                        <label for="qr-error-level" class="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Error Correction</label>
+                        <select id="qr-error-level" class="w-full px-3 py-2 rounded-lg glass-input text-xs bg-darkbg">
+                            <option value="L">Low (~7% recovery)</option>
+                            <option value="M" selected>Medium (~15% recovery)</option>
+                            <option value="Q">Quartile (~25% recovery)</option>
+                            <option value="H">High (~30% recovery)</option>
+                        </select>
+                    </div>
+                    <div class="space-y-1">
+                        <label for="qr-pixel-size" class="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Output Dimensions</label>
+                        <select id="qr-pixel-size" class="w-full px-3 py-2 rounded-lg glass-input text-xs bg-darkbg">
+                            <option value="256">256 x 256 px</option>
+                            <option value="512" selected>512 x 512 px</option>
+                            <option value="1024">1024 x 1024 px</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QR Output Area -->
+        <div class="flex flex-col items-center justify-center bg-black/10 rounded-2xl border border-white/5 p-6 space-y-6 relative overflow-hidden min-h-[300px]">
+            <!-- Subtle glow background -->
+            <div class="absolute -right-32 -top-32 w-64 h-64 bg-cyberaccent/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="bg-white p-4 rounded-xl shadow-xl transition-transform duration-300 hover:scale-[1.02] border border-slate-200">
+                <div id="qrcode-container" class="w-[180px] h-[180px] flex items-center justify-center overflow-hidden">
+                    <!-- Target for qrcode.js -->
+                </div>
+            </div>
+
+            <!-- Export Actions -->
+            <div class="w-full flex gap-3">
+                <button id="btn-download-qr-png" class="flex-1 btn-neon py-2.5 rounded-xl text-xs font-semibold text-white tracking-wide uppercase">
+                    Save as PNG
+                </button>
+                <button id="btn-download-qr-svg" class="flex-1 border border-cyberaccent/30 hover:border-cyberaccent py-2.5 rounded-xl text-xs font-semibold text-cyberaccent tracking-wide uppercase bg-cyberaccent/5">
+                    Save as SVG
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include external libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" defer></script>
+</div>

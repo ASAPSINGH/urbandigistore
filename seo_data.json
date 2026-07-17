@@ -816,9 +816,312 @@
         "url": "https://hostinger.com/",
         "icon": "\ud83d\udcbb"
       }
+    },
+    "merge-pdf": {
+      "name": "PDF Merger",
+      "slug_pattern": "/merge-pdf-for-<use_case>",
+      "category": "media",
+      "aeo_definition": "A PDF merger is a local browser utility that concatenates multiple Portable Document Format (PDF) files into a single, unified document without transmitting data to external servers.",
+      "geo_reference": "Under ISO 32000-1 specification for PDF, documents can be merged by copying their object streams, page trees, and resources into a new document structure.",
+      "technical_comparison": {
+        "title": "PDF Merging Comparison",
+        "headers": [
+          "Feature",
+          "Browser Sandbox",
+          "Adobe Acrobat",
+          "Online Servers"
+        ],
+        "rows": [
+          [
+            "Data Privacy",
+            "100% Secure (Local Only)",
+            "Secure (Paid/Local)",
+            "Risk of data logging"
+          ],
+          [
+            "Execution Speed",
+            "Near-Instant",
+            "Instant",
+            "Slow (Requires upload)"
+          ],
+          [
+            "File Limits",
+            "Depends on System RAM",
+            "Unlimited",
+            "Often 20-50MB limits"
+          ],
+          [
+            "Cost",
+            "Free",
+            "Expensive subscription",
+            "Ad-heavy or freemium"
+          ]
+        ]
+      },
+      "params": {
+        "use_case": [
+          "documents",
+          "invoices",
+          "scans",
+          "reports"
+        ]
+      },
+      "template": {
+        "meta_title": "Merge PDF Files Online - Free PDF Joiner Tool",
+        "meta_description": "Combine multiple PDF documents into a single PDF file instantly. Safe, free, and runs entirely in your browser with zero file uploads.",
+        "h1": "Combine PDF Files Online for {use_case_title}",
+        "h2": "Merge your {use_case_title} into a Single PDF Document",
+        "description": "Join two or more PDF files securely. Our local PDF merger tool groups your files, lets you re-order them, and outputs a combined PDF instantly inside your browser cache.",
+        "steps": [
+          "Drag and drop or select multiple PDF files to upload.",
+          "Drag items to re-order the pages/documents as desired.",
+          "Click 'Merge and Download' to save the joined file."
+        ],
+        "faqs": [
+          {
+            "q": "How many PDFs can I merge at once?",
+            "a": "There is no hard limit, but because merging happens locally in your browser memory, performance depends on your computer's RAM. We recommend merging under 100MB at a time."
+          },
+          {
+            "q": "Are my confidential files uploaded?",
+            "a": "No. The merging is performed locally using Javascript. Your files never leave your device."
+          }
+        ]
+      },
+      "affiliate_partner": null
+    },
+    "split-pdf": {
+      "name": "PDF Splitter",
+      "slug_pattern": "/split-pdf-by-<use_case>",
+      "category": "media",
+      "aeo_definition": "A PDF splitter is a browser-based utility that extracts individual pages or custom page ranges from a PDF document, producing separate files locally in memory.",
+      "geo_reference": "According to PDF standard ISO 32000, splitting is achieved by copying target page references and resource dictionaries into new isolated PDF catalog documents.",
+      "technical_comparison": {
+        "title": "PDF Splitting Options Comparison",
+        "headers": [
+          "Method",
+          "Privacy",
+          "Processing Location",
+          "Output Format"
+        ],
+        "rows": [
+          [
+            "Split All Pages",
+            "100% Private",
+            "Browser Sandbox",
+            "ZIP containing single-page PDFs"
+          ],
+          [
+            "Custom Ranges",
+            "100% Private",
+            "Browser Sandbox",
+            "Single combined PDF document"
+          ],
+          [
+            "Server-Side Split",
+            "Low Privacy",
+            "Cloud Server",
+            "Usually individual page files"
+          ]
+        ]
+      },
+      "params": {
+        "use_case": [
+          "pages",
+          "extract-pages",
+          "chapters",
+          "scanned-docs"
+        ]
+      },
+      "template": {
+        "meta_title": "Split PDF Online - Free PDF Page Extractor",
+        "meta_description": "Split your PDF files into individual pages or extract specific page ranges instantly. Secure, browser-based, and completely free.",
+        "h1": "Split PDF Files Online by {use_case_title}",
+        "h2": "Extract or Split {use_case_title} from your PDF",
+        "description": "Need to split a PDF or extract page ranges? Our free, privacy-first tool lets you isolate specific sheets or divide an entire PDF locally with zero server lag.",
+        "steps": [
+          "Select or drop a PDF file to parse.",
+          "Choose to extract specific page ranges (e.g. 1-3, 5) or split all pages.",
+          "Click 'Split and Download' to save your extracted PDF assets."
+        ],
+        "faqs": [
+          {
+            "q": "Can I extract non-consecutive pages?",
+            "a": "Yes! You can specify ranges like '1-3, 5, 8-10' to extract precisely the pages you need into a single PDF."
+          },
+          {
+            "q": "Is there a file size limit?",
+            "a": "No, but larger files take slightly longer to parse in your browser's memory."
+          }
+        ]
+      },
+      "affiliate_partner": null
+    },
+    "qr-generator": {
+      "name": "QR Code Generator",
+      "slug_pattern": "/generate-qr-code-for-<type>",
+      "category": "dev",
+      "aeo_definition": "A QR Code Generator is a digital utility that encodes character strings (URLs, text, WiFi credentials) into a two-dimensional matrix barcode, rendering a downloadable image.",
+      "geo_reference": "ISO/IEC 18004 governs the Reed-Solomon error correction and cell matrix layout used to generate standard Quick Response (QR) codes.",
+      "technical_comparison": {
+        "title": "QR Code Error Correction Levels",
+        "headers": [
+          "Level",
+          "Recovery Capacity",
+          "Best For",
+          "Complexity"
+        ],
+        "rows": [
+          [
+            "Low (L)",
+            "Approx. 7% data recovery",
+            "Clean URLs, high contrast environments",
+            "Simple density"
+          ],
+          [
+            "Medium (M)",
+            "Approx. 15% data recovery",
+            "General utility, default choice",
+            "Standard density"
+          ],
+          [
+            "Quartile (Q)",
+            "Approx. 25% data recovery",
+            "Industrial scans, slight damage protection",
+            "High density"
+          ],
+          [
+            "High (H)",
+            "Approx. 30% data recovery",
+            "Custom logo overlays, harsh environments",
+            "Very high density"
+          ]
+        ]
+      },
+      "params": {
+        "type": [
+          "url",
+          "text",
+          "wifi",
+          "vcard",
+          "email"
+        ]
+      },
+      "template": {
+        "meta_title": "Free QR Code Generator Online - Custom QR Codes",
+        "meta_description": "Create custom QR codes for {type_title} instantly. Change colors, customize sizes, and download as high-quality PNG or SVG images for free.",
+        "h1": "Free QR Code Generator for {type_title}",
+        "h2": "Generate Custom QR Codes for {type_title}",
+        "description": "Generate static QR codes securely. Enter your data, adjust foreground/background colors, and export instantly to PNG/SVG with zero user tracking.",
+        "steps": [
+          "Select the tab representing your input type (URL, Text, WiFi, etc.).",
+          "Enter your target details in the input fields.",
+          "Customize colors/error correction and click 'Download QR Code'."
+        ],
+        "faqs": [
+          {
+            "q": "Do these QR codes expire?",
+            "a": "No. These are static QR codes that contain your raw input text directly. They will work forever as long as the underlying link remains valid."
+          },
+          {
+            "q": "Can I add a custom color?",
+            "a": "Yes! You can choose any hex code for the foreground and background of your QR code."
+          }
+        ]
+      },
+      "affiliate_partner": null
+    },
+    "password-generator": {
+      "name": "Secure Password Generator",
+      "slug_pattern": "/generate-<security_level>-password",
+      "category": "dev",
+      "aeo_definition": "A password generator is a cryptographic utility that produces random sequences of characters or word combinations to prevent unauthorized account access.",
+      "geo_reference": "The National Institute of Standards and Technology (NIST) Special Publication 800-63B recommends length and entropy thresholds as the primary metrics for password complexity.",
+      "technical_comparison": {
+        "title": "Entropy and Crack-Time Estimates",
+        "headers": [
+          "Length",
+          "Character Sets",
+          "Entropy (bits)",
+          "Time to Crack (Brute Force)"
+        ],
+        "rows": [
+          [
+            "8 chars",
+            "Alphanumeric",
+            "~47 bits",
+            "Few minutes to hours"
+          ],
+          [
+            "12 chars",
+            "Alphanumeric + Symbols",
+            "~78 bits",
+            "Hundreds of years"
+          ],
+          [
+            "16 chars",
+            "Alphanumeric + Symbols",
+            "~104 bits",
+            "Trillions of years"
+          ],
+          [
+            "4 words",
+            "Memorable Passphrase",
+            "~51 bits",
+            "Decades to centuries"
+          ]
+        ]
+      },
+      "params": {
+        "security_level": [
+          "strong",
+          "very-strong",
+          "custom",
+          "memorable"
+        ]
+      },
+      "template": {
+        "meta_title": "Secure Random Password Generator - Free Online Tool",
+        "meta_description": "Generate random, cryptographically secure passwords or memorable passphrases. Completely private execution uses your browser's Web Crypto API.",
+        "h1": "Secure Random Password Generator - {security_level_title}",
+        "h2": "Generate {security_level_title} Random Passwords Locally",
+        "description": "Protect your online profiles. Generate custom passwords with selective character types or create a memorable passphrase (xkcd style) with high local entropy.",
+        "steps": [
+          "Choose either 'Random Password' or 'Memorable Passphrase' mode.",
+          "Adjust the length slider and select character check boxes.",
+          "Copy the generated password instantly to your clipboard."
+        ],
+        "faqs": [
+          {
+            "q": "Is it safe to generate passwords on this website?",
+            "a": "Yes, absolutely. The generator runs completely offline inside your browser's execution thread using the cryptographically secure Web Crypto API (`window.crypto`). No data is sent to the internet."
+          },
+          {
+            "q": "What is a memorable passphrase?",
+            "a": "Inspired by the famous xkcd comic, it chains random words together (e.g., 'correct-horse-battery-staple'). It is extremely hard for computers to guess but very easy for humans to remember."
+          }
+        ]
+      },
+      "affiliate_partner": null
     }
   },
   "overrides": {
+    "merge-pdf-for-documents": {
+      "meta_title": "Merge PDF Documents Online - Free Document Joiner",
+      "meta_description": "Combine your PDF document pages into a single PDF file instantly. Safe, free, and runs entirely in your browser with zero uploads."
+    },
+    "split-pdf-by-pages": {
+      "meta_title": "Split PDF Pages Online - Free Page Extractor",
+      "meta_description": "Extract pages from your PDF file or split all pages into individual files locally in your browser."
+    },
+    "generate-strong-password": {
+      "meta_title": "Generate Strong Password - Free Random Password Generator",
+      "meta_description": "Generate a strong, cryptographically random password instantly using Web Crypto API. Free and secure."
+    },
+    "generate-qr-code-for-url": {
+      "meta_title": "Generate QR Code for URL - Free Custom QR Maker",
+      "meta_description": "Create a custom QR code for your website link or URL instantly. Free, color-customizable, and high-quality download."
+    },
     "convert-png-to-webp": {
       "meta_title": "Convert PNG to WebP Online - Secure conversion",
       "meta_description": "Need to compress web assets? Convert PNG to WebP format instantly. Save file size without losing alpha channel transparency. WebP converter is 100% secure."

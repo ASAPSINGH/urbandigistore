@@ -63,7 +63,11 @@ CONSOLIDATED_PATHS = {
     'fibonacci-calculator': '/fibonacci-calculator',
     'character-counter': '/character-counter',
     'cpm-calculator': '/cpm-calculator',
-    'base64-converter': '/base64-file-converter'
+    'base64-converter': '/base64-file-converter',
+    'merge-pdf': '/merge-pdf',
+    'split-pdf': '/split-pdf',
+    'qr-generator': '/qr-code-generator',
+    'password-generator': '/password-generator'
 }
 
 # Helper function to generate SEO metadata
@@ -195,6 +199,38 @@ def get_seo_context(tool_key, slug=None, **kwargs):
                 related_links.append({
                     'title': f"Decode to {ft.upper()}",
                     'url': f"/base64-file-converter?file_type={ft}"
+                })
+    elif tool_key == 'merge-pdf':
+        current_uc = kwargs.get('use_case', '')
+        for uc in tool_conf['params']['use_case']:
+            if uc != current_uc:
+                related_links.append({
+                    'title': f"Merge for {uc.replace('-', ' ').title()}",
+                    'url': f"/merge-pdf?use_case={uc}"
+                })
+    elif tool_key == 'split-pdf':
+        current_uc = kwargs.get('use_case', '')
+        for uc in tool_conf['params']['use_case']:
+            if uc != current_uc:
+                related_links.append({
+                    'title': f"Split for {uc.replace('-', ' ').title()}",
+                    'url': f"/split-pdf?use_case={uc}"
+                })
+    elif tool_key == 'qr-generator':
+        current_t = kwargs.get('type', '')
+        for t in tool_conf['params']['type']:
+            if t != current_t:
+                related_links.append({
+                    'title': f"QR for {t.upper()}",
+                    'url': f"/qr-code-generator?type={t}"
+                })
+    elif tool_key == 'password-generator':
+        current_sl = kwargs.get('security_level', '')
+        for sl in tool_conf['params']['security_level']:
+            if sl != current_sl:
+                related_links.append({
+                    'title': f"{sl.replace('-', ' ').title()} Passwords",
+                    'url': f"/password-generator?security_level={sl}"
                 })
 
     related_links = related_links[:6]
@@ -422,6 +458,82 @@ def base64_converter_redirect(file_type):
     if file_type not in tool['params']['file_type']:
         abort(404)
     return redirect(url_for('consolidated_base64_converter', file_type=file_type), code=301)
+
+
+@app.route('/merge-pdf')
+def consolidated_merge_pdf():
+    use_case = request.args.get('use_case', 'documents')
+    tool = seo_data['tools']['merge-pdf']
+    if use_case not in tool['params']['use_case']:
+        use_case = 'documents'
+    slug = f"merge-pdf-for-{use_case}"
+    ctx = get_seo_context('merge-pdf', slug=slug, use_case=use_case)
+    return render_template('tool_template.html', **ctx)
+
+@app.route('/merge-pdf-for-<use_case>')
+def merge_pdf_redirect(use_case):
+    tool = seo_data['tools']['merge-pdf']
+    if use_case not in tool['params']['use_case']:
+        abort(404)
+    return redirect(url_for('consolidated_merge_pdf', use_case=use_case), code=301)
+
+
+@app.route('/split-pdf')
+def consolidated_split_pdf():
+    use_case = request.args.get('use_case', 'pages')
+    tool = seo_data['tools']['split-pdf']
+    if use_case not in tool['params']['use_case']:
+        use_case = 'pages'
+    slug = f"split-pdf-by-{use_case}"
+    ctx = get_seo_context('split-pdf', slug=slug, use_case=use_case)
+    return render_template('tool_template.html', **ctx)
+
+@app.route('/split-pdf-by-<use_case>')
+def split_pdf_redirect(use_case):
+    tool = seo_data['tools']['split-pdf']
+    if use_case not in tool['params']['use_case']:
+        abort(404)
+    return redirect(url_for('consolidated_split_pdf', use_case=use_case), code=301)
+
+@app.route('/unmerge-pdf')
+def unmerge_pdf_alias():
+    return redirect(url_for('consolidated_split_pdf', use_case='pages'), code=301)
+
+
+@app.route('/qr-code-generator')
+def consolidated_qr_generator():
+    type_param = request.args.get('type', 'url')
+    tool = seo_data['tools']['qr-generator']
+    if type_param not in tool['params']['type']:
+        type_param = 'url'
+    slug = f"generate-qr-code-for-{type_param}"
+    ctx = get_seo_context('qr-generator', slug=slug, type=type_param)
+    return render_template('tool_template.html', **ctx)
+
+@app.route('/generate-qr-code-for-<type>')
+def qr_generator_redirect(type):
+    tool = seo_data['tools']['qr-generator']
+    if type not in tool['params']['type']:
+        abort(404)
+    return redirect(url_for('consolidated_qr_generator', type=type), code=301)
+
+
+@app.route('/password-generator')
+def consolidated_password_generator():
+    security_level = request.args.get('security_level', 'strong')
+    tool = seo_data['tools']['password-generator']
+    if security_level not in tool['params']['security_level']:
+        security_level = 'strong'
+    slug = f"generate-{security_level}-password"
+    ctx = get_seo_context('password-generator', slug=slug, security_level=security_level)
+    return render_template('tool_template.html', **ctx)
+
+@app.route('/generate-<security_level>-password')
+def password_generator_redirect(security_level):
+    tool = seo_data['tools']['password-generator']
+    if security_level not in tool['params']['security_level']:
+        abort(404)
+    return redirect(url_for('consolidated_password_generator', security_level=security_level), code=301)
 
 @app.route('/sitemap.xml')
 def sitemap():
