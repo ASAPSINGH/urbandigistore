@@ -238,9 +238,9 @@
         ]
       },
       "template": {
-        "meta_title": "UTM Parameter Builder for {platform_title} - Free Campaign URL Tool",
+        "meta_title": "{platform_title} UTM Builder | Campaign Link Generator - Urbandigistore",
         "meta_description": "Generate trackable campaign links with custom UTM parameters optimized for {platform_title}. Track campaign performance in Google Analytics.",
-        "h1": "UTM Parameter Builder for {platform_title}",
+        "h1": "{platform_title} UTM Builder & Campaign Link Generator",
         "h2": "Create Analytics-Ready Tracking Links for {platform_title}",
         "description": "Our free online UTM parameter builder lets you add custom parameters like source, medium, campaign, and content to your destination URLs for {platform_title}.",
         "steps": [
@@ -252,6 +252,10 @@
           {
             "q": "Why is campaign tracking important?",
             "a": "Using UTM parameters lets you identify which specific campaign, ad, or keyword drove a visitor to your website, letting you optimize budget allocation."
+          },
+          {
+            "q": "What is the difference between utm_source and utm_medium?",
+            "a": "The campaign source (utm_source) identifies the referrer platform (e.g. google, facebook, newsletter), while the campaign medium (utm_medium) identifies the marketing medium type (e.g. cpc, banner, email)."
           },
           {
             "q": "Will this link affect my SEO?",
@@ -638,9 +642,9 @@
         ]
       },
       "template": {
-        "meta_title": "Character Counter Tool for {platform_title} - Free Word Count",
+        "meta_title": "{platform_title} Character Counter & Word Count - Urbandigistore",
         "meta_description": "Validate your text length against character limits for {platform_title}. Realtime character, word, and sentence counts with visual safety thresholds.",
-        "h1": "Character Counter Tool for {platform_title}",
+        "h1": "{platform_title} Character Counter & Word Count Tool",
         "h2": "Verify Text Character Counts for {platform_title}",
         "description": "Ensure your content fits within target limits with our free character counter tool for {platform_title}. Avoid truncated descriptions or posts that exceed publishing bounds.",
         "steps": [
@@ -652,6 +656,10 @@
           {
             "q": "What is the character limit for {platform_title}?",
             "a": "Our tool automatically configures target character limit rules according to the official publishing guidelines for {platform_title}."
+          },
+          {
+            "q": "Why is keeping track of character count important?",
+            "a": "Most social media platforms (like Instagram, Twitter, and LinkedIn) and search engines (like Google) truncate or block posts that exceed their specific character limits. Checking your length ensures your message displays fully."
           },
           {
             "q": "Are carriage returns counted as characters?",
@@ -712,9 +720,9 @@
         ]
       },
       "template": {
-        "meta_title": "CPM & Ad Campaign Calculator for {channel_title}",
+        "meta_title": "{channel_title} CPM Calculator & Ad Cost Tool - Urbandigistore",
         "meta_description": "Plan your ad budget with our free {channel_title} CPM calculator. Easily solve for cost, impressions, and cost per mille directly in your browser.",
-        "h1": "CPM Calculator for {channel_title}",
+        "h1": "{channel_title} CPM Calculator & Ad Campaign Tool",
         "h2": "Calculate Ad Campaign Metrics for {channel_title}",
         "description": "Calculate Cost Per Mille (CPM), impressions, total budget, or ROAS for your {channel_title} campaigns. Plan campaign sizing and optimize allocations.",
         "steps": [
@@ -726,6 +734,10 @@
           {
             "q": "What does CPM stand for?",
             "a": "CPM stands for Cost Per Mille, which represents the cost of generating 1,000 ad impressions on platforms like {channel_title}."
+          },
+          {
+            "q": "How do you calculate CPM for {channel_title} ads?",
+            "a": "To calculate CPM, divide the total campaign budget by the total number of impressions, and then multiply by 1,000. Formula: CPM = (Total Cost / Total Impressions) * 1000."
           },
           {
             "q": "Can I calculate ROAS here?",
