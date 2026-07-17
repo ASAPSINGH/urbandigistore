@@ -39,8 +39,8 @@
                     colors: {
                         darkbg: 'var(--bg-well)',
                         panelbg: 'var(--bg-panel)',
-                        cyberneon: '#4f46e5', /* Indigo 600 */
-                        cyberaccent: '#0ea5e9', /* Sky 500 */
+                        cyberneon: '#4f46e5', /* Indigo 600 default */
+                        cyberaccent: '#0ea5e9', /* Sky 500 default */
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -75,6 +75,9 @@
             
             --bg-well: #f1f5f9;
             --border-well: #e2e8f0;
+            
+            --color-cyberneon: 79, 70, 229;     /* Indigo 600 (#4f46e5) */
+            --color-cyberaccent: 2, 132, 199;    /* Sky 600 (#0284c7) */
         }
 
         html.dark {
@@ -93,6 +96,9 @@
             
             --bg-well: rgba(0, 0, 0, 0.25);
             --border-well: rgba(255, 255, 255, 0.05);
+            
+            --color-cyberneon: 129, 140, 248;   /* Indigo 400 (#818cf8) */
+            --color-cyberaccent: 56, 189, 248;   /* Sky 400 (#38bdf8) */
         }
 
         body {
@@ -191,24 +197,99 @@
         html.light .text-gray-500 {
             color: var(--text-muted) !important;
         }
-        html.light .bg-white\/5 {
+        
+        /* Transparent backgrounds and borders overrides (Backslash-free attribute selectors) */
+        html.light [class*="bg-white/5"] {
             background-color: var(--bg-well) !important;
         }
-        html.light .bg-white\/10 {
+        html.light [class*="bg-white/10"] {
             background-color: var(--bg-well) !important;
         }
-        html.light .bg-black\/25 {
+        html.light [class*="bg-black/25"] {
             background-color: var(--bg-well) !important;
         }
-        html.light .bg-black\/40 {
+        html.light [class*="bg-black/40"] {
             background-color: var(--bg-well) !important;
         }
-        html.light .bg-black\/45 {
+        html.light [class*="bg-black/45"] {
             background-color: var(--bg-well) !important;
         }
-        html.light .border-white\/5, 
-        html.light .border-white\/10 {
+        html.light [class*="border-white/5"], 
+        html.light [class*="border-white/10"] {
             border-color: var(--border-well) !important;
+        }
+        
+        /* Dark Theme overrides for explicit light-theme elements */
+        html.dark .text-slate-900,
+        html.dark h1.text-slate-900,
+        html.dark h2.text-slate-900,
+        html.dark h3.text-slate-900,
+        html.dark h4.text-slate-900,
+        html.dark span.text-slate-900 {
+            color: var(--text-title) !important;
+        }
+        html.dark .text-slate-800 {
+            color: var(--text-title) !important;
+        }
+        html.dark .text-slate-700 {
+            color: var(--text-body) !important;
+        }
+        html.dark .text-slate-600 {
+            color: var(--text-body) !important;
+        }
+        html.dark .text-slate-500 {
+            color: var(--text-muted) !important;
+        }
+        html.dark [class*="bg-slate-100/80"] {
+            background-color: var(--bg-well) !important;
+        }
+        html.dark [class*="border-slate-200/60"] {
+            border-color: var(--border-well) !important;
+        }
+
+        /* Brand Neon & Accent dynamic colors overrides (Legacy comma-based RGB) */
+        .text-cyberneon,
+        html.dark .text-cyberneon,
+        html.light .text-cyberneon {
+            color: rgb(var(--color-cyberneon)) !important;
+        }
+        .text-cyberaccent,
+        html.dark .text-cyberaccent,
+        html.light .text-cyberaccent {
+            color: rgb(var(--color-cyberaccent)) !important;
+        }
+        [class*="bg-cyberneon/10"] {
+            background-color: rgba(var(--color-cyberneon), 0.1) !important;
+        }
+        [class*="border-cyberneon/20"] {
+            border-color: rgba(var(--color-cyberneon), 0.2) !important;
+        }
+        [class*="border-cyberneon/30"] {
+            border-color: rgba(var(--color-cyberneon), 0.3) !important;
+        }
+        [class*="bg-cyberaccent/10"] {
+            background-color: rgba(var(--color-cyberaccent), 0.1) !important;
+        }
+        [class*="border-cyberaccent/20"] {
+            border-color: rgba(var(--color-cyberaccent), 0.2) !important;
+        }
+        [class*="border-cyberaccent/30"] {
+            border-color: rgba(var(--color-cyberaccent), 0.3) !important;
+        }
+        
+        /* Force form controls and select elements to honor theme variables */
+        input.glass-input,
+        textarea.glass-input,
+        select.glass-input {
+            background-color: var(--bg-input) !important;
+            color: var(--text-input) !important;
+            border-color: var(--border-input) !important;
+        }
+        
+        input.glass-input[readonly],
+        textarea.glass-input[readonly] {
+            background-color: var(--bg-well) !important;
+            color: var(--text-body) !important;
         }
         
         /* Ensure elements that MUST stay white/light in both themes remain unaffected */
@@ -317,11 +398,11 @@
                 <!-- Theme Switcher Button -->
                 <button id="theme-toggle" class="p-2 rounded-lg text-slate-500 hover:text-cyberneon dark:text-gray-400 dark:hover:text-cyberaccent transition-colors duration-200" aria-label="Toggle theme">
                     <!-- Sun Icon (visible in Dark mode) -->
-                    <svg id="theme-toggle-light-icon" class="hidden w-5.5 h-5.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.46 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
                     </svg>
                     <!-- Moon Icon (visible in Light mode) -->
-                    <svg id="theme-toggle-dark-icon" class="hidden w-5.5 h-5.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
                     </svg>
                 </button>
@@ -341,7 +422,7 @@
         </div>
 
         <!-- Mobile Dropdown Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200/50 dark:border-slate-800/50 bg-slate-50/95 dark:bg-slate-950/95 backdrop-blur-lg px-4 pt-3 pb-4 space-y-2 transition-all duration-300">
+        <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 right-0 border-b border-slate-200/50 dark:border-slate-800/50 bg-slate-50/95 dark:bg-slate-950/95 backdrop-blur-lg px-4 pt-3 pb-4 space-y-2 shadow-2xl transition-all duration-300">
             <a href="/#media" class="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 dark:text-slate-300 hover:text-cyberneon dark:hover:text-cyberaccent hover:bg-slate-100 dark:hover:bg-slate-900 transition">Media</a>
             <a href="/#marketing" class="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 dark:text-slate-300 hover:text-cyberneon dark:hover:text-cyberaccent hover:bg-slate-100 dark:hover:bg-slate-900 transition">Marketing</a>
             <a href="/#dev" class="block px-3 py-2 rounded-md text-base font-semibold text-slate-700 dark:text-slate-300 hover:text-cyberneon dark:hover:text-cyberaccent hover:bg-slate-100 dark:hover:bg-slate-900 transition">Developer</a>
