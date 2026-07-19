@@ -67,7 +67,11 @@ CONSOLIDATED_PATHS = {
     'merge-pdf': '/merge-pdf',
     'split-pdf': '/split-pdf',
     'qr-generator': '/qr-code-generator',
-    'password-generator': '/password-generator'
+    'password-generator': '/password-generator',
+    'heic-converter': '/heic-to-jpg',
+    'image-compressor': '/image-compressor',
+    'diff-checker': '/diff-checker',
+    'timestamp-converter': '/epoch-converter'
 }
 
 # Helper function to generate SEO metadata
@@ -232,6 +236,38 @@ def get_seo_context(tool_key, slug=None, **kwargs):
                     'title': f"{sl.replace('-', ' ').title()} Passwords",
                     'url': f"/password-generator?security_level={sl}"
                 })
+    elif tool_key == 'heic-converter':
+        current_of = kwargs.get('output_format', '')
+        for of in tool_conf['params']['output_format']:
+            if of != current_of:
+                related_links.append({
+                    'title': f"Convert to {of.upper()}",
+                    'url': f"/heic-to-jpg?output_format={of}"
+                })
+    elif tool_key == 'image-compressor':
+        current_uc = kwargs.get('use_case', '')
+        for uc in tool_conf['params']['use_case']:
+            if uc != current_uc:
+                related_links.append({
+                    'title': f"Compress {uc.upper()}",
+                    'url': f"/image-compressor?use_case={uc}"
+                })
+    elif tool_key == 'diff-checker':
+        current_uc = kwargs.get('use_case', '')
+        for uc in tool_conf['params']['use_case']:
+            if uc != current_uc:
+                related_links.append({
+                    'title': f"Compare {uc.replace('-', ' ').title()}",
+                    'url': f"/diff-checker?use_case={uc}"
+                })
+    elif tool_key == 'timestamp-converter':
+        current_uc = kwargs.get('use_case', '')
+        for uc in tool_conf['params']['use_case']:
+            if uc != current_uc:
+                related_links.append({
+                    'title': f"Convert {uc.replace('-', ' ').title()}",
+                    'url': f"/epoch-converter?use_case={uc}"
+                })
 
     related_links = related_links[:6]
 
@@ -292,6 +328,12 @@ def consolidated_image_converter():
 
 @app.route('/convert-<input_format>-to-<output_format>')
 def image_converter_redirect(input_format, output_format):
+    if input_format == 'heic':
+        heic_tool = seo_data['tools']['heic-converter']
+        if output_format not in heic_tool['params']['output_format']:
+            abort(404)
+        return redirect(url_for('consolidated_heic_converter', output_format=output_format), code=301)
+
     tool = seo_data['tools']['image-converter']
     if input_format not in tool['params']['input_format'] or output_format not in tool['params']['output_format']:
         abort(404)
@@ -534,6 +576,79 @@ def password_generator_redirect(security_level):
     if security_level not in tool['params']['security_level']:
         abort(404)
     return redirect(url_for('consolidated_password_generator', security_level=security_level), code=301)
+
+
+@app.route('/heic-to-jpg')
+def consolidated_heic_converter():
+    output_format = request.args.get('output_format', 'jpg')
+    tool = seo_data['tools']['heic-converter']
+    if output_format not in tool['params']['output_format']:
+        output_format = 'jpg'
+    slug = f"convert-heic-to-{output_format}"
+    ctx = get_seo_context('heic-converter', slug=slug, output_format=output_format)
+    return render_template('tool_template.html', **ctx)
+
+@app.route('/convert-heic-to-<output_format>')
+def heic_converter_redirect(output_format):
+    tool = seo_data['tools']['heic-converter']
+    if output_format not in tool['params']['output_format']:
+        abort(404)
+    return redirect(url_for('consolidated_heic_converter', output_format=output_format), code=301)
+
+
+@app.route('/image-compressor')
+def consolidated_image_compressor():
+    use_case = request.args.get('use_case', 'jpeg')
+    tool = seo_data['tools']['image-compressor']
+    if use_case not in tool['params']['use_case']:
+        use_case = 'jpeg'
+    slug = f"compress-image-for-{use_case}"
+    ctx = get_seo_context('image-compressor', slug=slug, use_case=use_case)
+    return render_template('tool_template.html', **ctx)
+
+@app.route('/compress-image-for-<use_case>')
+def image_compressor_redirect(use_case):
+    tool = seo_data['tools']['image-compressor']
+    if use_case not in tool['params']['use_case']:
+        abort(404)
+    return redirect(url_for('consolidated_image_compressor', use_case=use_case), code=301)
+
+
+@app.route('/diff-checker')
+def consolidated_diff_checker():
+    use_case = request.args.get('use_case', 'text')
+    tool = seo_data['tools']['diff-checker']
+    if use_case not in tool['params']['use_case']:
+        use_case = 'text'
+    slug = f"compare-{use_case}-online"
+    ctx = get_seo_context('diff-checker', slug=slug, use_case=use_case)
+    return render_template('tool_template.html', **ctx)
+
+@app.route('/compare-<use_case>-online')
+def diff_checker_redirect(use_case):
+    tool = seo_data['tools']['diff-checker']
+    if use_case not in tool['params']['use_case']:
+        abort(404)
+    return redirect(url_for('consolidated_diff_checker', use_case=use_case), code=301)
+
+
+@app.route('/epoch-converter')
+def consolidated_timestamp_converter():
+    use_case = request.args.get('use_case', 'unix')
+    tool = seo_data['tools']['timestamp-converter']
+    if use_case not in tool['params']['use_case']:
+        use_case = 'unix'
+    slug = f"convert-{use_case}-timestamp"
+    ctx = get_seo_context('timestamp-converter', slug=slug, use_case=use_case)
+    return render_template('tool_template.html', **ctx)
+
+@app.route('/convert-<use_case>-timestamp')
+def timestamp_converter_redirect(use_case):
+    tool = seo_data['tools']['timestamp-converter']
+    if use_case not in tool['params']['use_case']:
+        abort(404)
+    return redirect(url_for('consolidated_timestamp_converter', use_case=use_case), code=301)
+
 
 @app.route('/sitemap.xml')
 def sitemap():

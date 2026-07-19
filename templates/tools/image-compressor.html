@@ -1,0 +1,101 @@
+<!-- Image Compressor Interactive Panel -->
+<div class="space-y-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/5 pb-4 mb-6">
+        <div>
+            <h3 class="text-lg font-outfit font-bold text-white">Image Size Optimizer</h3>
+            <p class="text-xs text-gray-400">Reduce image bytes in real-time using local canvas encoding.</p>
+        </div>
+        <div class="mt-2 sm:mt-0 flex items-center space-x-2">
+            <span class="text-xs text-gray-400">Target Type:</span>
+            <span class="text-xs text-cyberneon font-semibold uppercase" id="ic-use-case-label">JPEG</span>
+        </div>
+    </div>
+
+    <!-- Drag & Drop Zone -->
+    <div id="comp-drop-zone" class="border-2 border-dashed border-white/10 hover:border-cyberneon/40 rounded-xl p-8 text-center transition-all bg-black/25 cursor-pointer relative group">
+        <input type="file" id="comp-input" class="hidden" accept="image/jpeg,image/png,image/webp" />
+        <div class="space-y-4">
+            <div class="w-12 h-12 mx-auto bg-white/5 rounded-full flex items-center justify-center text-gray-400 group-hover:text-cyberneon group-hover:bg-cyberneon/10 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            </div>
+            <div>
+                <p class="text-sm text-gray-200 font-medium">Select or drag & drop PNG, JPEG, or WebP image</p>
+                <p class="text-xs text-gray-400 mt-1">Processed securely in-browser (zero server uploads)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Compression Workbench (Hidden initially) -->
+    <div id="comp-workbench" class="hidden grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Settings column (1 col) -->
+        <div class="md:col-span-1 space-y-4 bg-black/15 p-4 rounded-xl border border-white/5 h-fit">
+            <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Settings</h4>
+            
+            <!-- Quality slider -->
+            <div class="space-y-2" id="comp-quality-container">
+                <div class="flex justify-between text-xs font-semibold">
+                    <label for="comp-quality" class="text-gray-400">Quality</label>
+                    <span class="text-cyberneon font-mono" id="comp-quality-val">80%</span>
+                </div>
+                <input type="range" id="comp-quality" min="5" max="100" value="80" class="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-cyberneon" />
+            </div>
+
+            <!-- Resize dimensions -->
+            <div class="space-y-3 pt-2 border-t border-white/5">
+                <label class="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Constraint Size (Optional)</label>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="space-y-1">
+                        <label for="comp-width" class="text-[9px] text-gray-500">Max Width (px)</label>
+                        <input type="number" id="comp-width" placeholder="e.g. 1920" class="w-full px-2 py-1.5 rounded-lg glass-input text-xs" />
+                    </div>
+                    <div class="space-y-1">
+                        <label for="comp-height" class="text-[9px] text-gray-500">Max Height (px)</label>
+                        <input type="number" id="comp-height" placeholder="e.g. 1080" class="w-full px-2 py-1.5 rounded-lg glass-input text-xs" />
+                    </div>
+                </div>
+                <label class="flex items-center space-x-2 cursor-pointer text-[10px] text-gray-400">
+                    <input type="checkbox" id="comp-aspect" checked class="rounded border-white/10 bg-transparent text-cyberneon w-3.5 h-3.5 accent-cyberneon" />
+                    <span>Lock Aspect Ratio</span>
+                </label>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="pt-4 border-t border-white/5">
+                <button id="btn-remove-comp" class="w-full border border-white/10 hover:bg-red-500/10 hover:border-red-500/20 py-2 rounded-lg text-xs font-semibold text-gray-400 hover:text-red-400 transition-all">
+                    Remove Image
+                </button>
+            </div>
+        </div>
+
+        <!-- Preview and stats column (2 cols) -->
+        <div class="md:col-span-2 space-y-4">
+            <!-- Stats Board -->
+            <div class="grid grid-cols-3 gap-4 bg-black/30 p-4 rounded-xl border border-white/5 text-center">
+                <div>
+                    <span class="block text-[9px] font-semibold text-gray-500 uppercase tracking-wider">Original</span>
+                    <span id="comp-stat-orig" class="block text-sm font-bold text-white mt-1 font-mono">0 KB</span>
+                </div>
+                <div>
+                    <span class="block text-[9px] font-semibold text-gray-500 uppercase tracking-wider">Optimized</span>
+                    <span id="comp-stat-opt" class="block text-sm font-bold text-cyberaccent mt-1 font-mono">Calculating...</span>
+                </div>
+                <div>
+                    <span class="block text-[9px] font-semibold text-gray-500 uppercase tracking-wider">Reduction</span>
+                    <span id="comp-stat-savings" class="block text-sm font-bold text-green-400 mt-1 font-mono">0%</span>
+                </div>
+            </div>
+
+            <!-- Canvas Preview Container -->
+            <div class="bg-black/20 rounded-xl border border-white/5 p-4 flex items-center justify-center min-h-[220px] max-h-[300px] overflow-hidden relative">
+                <div class="absolute inset-2 flex items-center justify-center">
+                    <img id="comp-preview-img" class="max-w-full max-h-full object-contain rounded shadow" alt="Compressed Preview" />
+                </div>
+            </div>
+
+            <!-- Download Button -->
+            <button id="btn-download-comp" class="btn-neon w-full py-3 rounded-xl text-xs font-semibold text-white tracking-wide uppercase">
+                Download Optimized Image
+            </button>
+        </div>
+    </div>
+</div>

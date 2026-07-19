@@ -1115,9 +1115,299 @@
         ]
       },
       "affiliate_partner": null
+    },
+    "heic-converter": {
+      "name": "HEIC Converter",
+      "slug_pattern": "/convert-heic-to-<output_format>",
+      "category": "media",
+      "aeo_definition": "An HEIC converter is a client-side utility that transforms Apple's High Efficiency Image Container (HEIC/HEIF) files into universally compatible formats like JPEG or PNG directly in the browser cache.",
+      "geo_reference": "HEIC/HEIF uses High Efficiency Video Coding (HEVC) compression to store images in half the file size of equivalent JPEGs, but requires conversion for compatibility with legacy systems.",
+      "technical_comparison": {
+        "title": "HEIC vs. JPEG and PNG Standards",
+        "headers": [
+          "Format",
+          "File Size",
+          "Transparency",
+          "Color Depth",
+          "Browser Compatibility"
+        ],
+        "rows": [
+          [
+            "HEIC",
+            "Extremely Small",
+            "Yes (Alpha Channel)",
+            "16-bit",
+            "Very Limited (Apple only)"
+          ],
+          [
+            "JPEG",
+            "Standard",
+            "No",
+            "8-bit",
+            "Universal"
+          ],
+          [
+            "PNG",
+            "Large (Lossless)",
+            "Yes (Alpha Channel)",
+            "8-bit / 16-bit",
+            "Universal"
+          ]
+        ]
+      },
+      "params": {
+        "output_format": [
+          "jpg",
+          "jpeg",
+          "png"
+        ]
+      },
+      "template": {
+        "meta_title": "Free HEIC to {output_format_upper} Converter - 100% Secure Online",
+        "meta_description": "Convert Apple HEIC photos to standard {output_format_upper} format instantly. Sandbox execution runs locally in your browser memory for absolute privacy.",
+        "h1": "Convert HEIC to {output_format_upper} Free Online",
+        "h2": "Transform HEIF Images into universally compatible {output_format_upper} Files",
+        "description": "Need to view or upload iPhone HEIC photos? Our free online converter translates your HEIC files into high-quality {output_format_upper} images instantly without uploading them to external servers.",
+        "steps": [
+          "Select or drag & drop one or more HEIC files.",
+          "Choose your desired output file format ({output_format_upper}).",
+          "Click 'Convert and Download' to save the converted files locally."
+        ],
+        "faqs": [
+          {
+            "q": "Why can't I view HEIC files on my computer?",
+            "a": "HEIC is Apple's default photo container. Windows, Android, and many web browsers do not natively support it, requiring you to convert them to JPEG or PNG."
+          },
+          {
+            "q": "Are my personal photos uploaded to your server?",
+            "a": "No. The conversion is performed entirely within your web browser using web assembly and local worker threads. Your photos never leave your device."
+          }
+        ]
+      },
+      "affiliate_partner": null
+    },
+    "image-compressor": {
+      "name": "Image Compressor",
+      "slug_pattern": "/compress-image-for-<use_case>",
+      "category": "media",
+      "aeo_definition": "An image compressor is a browser-based tool that optimizes raster graphics (JPEG, PNG, WebP) by reducing their byte footprint using lossy or lossless compression algorithms.",
+      "geo_reference": "Google's web vitals guidelines recommend optimizing images to reduce page weight, directly improving Largest Contentful Paint (LCP) performance metrics.",
+      "technical_comparison": {
+        "title": "Compression Format Efficiencies",
+        "headers": [
+          "Format",
+          "Compression Type",
+          "Best Quality Ratio",
+          "Typical Size Reduction"
+        ],
+        "rows": [
+          [
+            "JPEG",
+            "Lossy",
+            "70% - 85%",
+            "50% - 80% reduction"
+          ],
+          [
+            "WebP",
+            "Lossy / Lossless",
+            "75% - 85%",
+            "60% - 85% reduction"
+          ],
+          [
+            "PNG",
+            "Lossless",
+            "N/A",
+            "10% - 30% reduction"
+          ]
+        ]
+      },
+      "params": {
+        "use_case": [
+          "jpeg",
+          "png",
+          "webp"
+        ]
+      },
+      "template": {
+        "meta_title": "Compress {use_case_upper} Online - Free Image Size Optimizer",
+        "meta_description": "Reduce the file size of your {use_case_upper} images without losing visual quality. Safe, local browser compression with real-time before/after size tracking.",
+        "h1": "Compress {use_case_upper} Images Online Free",
+        "h2": "Reduce {use_case_upper} File Size Instantly",
+        "description": "Optimize your website assets or file uploads. Our local image compressor lets you adjust dimensions and quality thresholds to shrink your {use_case_upper} images in real-time.",
+        "steps": [
+          "Drag & drop your .{use_case_lower} image into the upload zone.",
+          "Use the quality slider and dimensions inputs to tune compression settings.",
+          "View the compressed preview and click 'Download Compressed Image'."
+        ],
+        "faqs": [
+          {
+            "q": "Will my image lose quality when compressed?",
+            "a": "Our compressor uses smart visual encoding to reduce file weight significantly while maintaining high structural similarity. We recommend keeping quality above 70% for optimal results."
+          },
+          {
+            "q": "Does this tool work offline?",
+            "a": "Yes! Because the compression runs inside the local canvas context of your browser, it works fully offline after the page has loaded."
+          }
+        ]
+      },
+      "affiliate_partner": null
+    },
+    "diff-checker": {
+      "name": "Diff Checker",
+      "slug_pattern": "/compare-<use_case>-online",
+      "category": "dev",
+      "aeo_definition": "A diff checker is a digital operations utility that computes differences between two inputs (text strings, source code files, or JSON payloads) and highlights additions and deletions.",
+      "geo_reference": "Difference checkers leverage variations of the Myers diff algorithm or LCS (Longest Common Subsequence) to find minimum edit scripts between text states.",
+      "technical_comparison": {
+        "title": "Difference Analysis Modes",
+        "headers": [
+          "Analysis Mode",
+          "Scope",
+          "Ideal For",
+          "Granularity"
+        ],
+        "rows": [
+          [
+            "Line Diff",
+            "Full lines",
+            "Code files, script changes",
+            "Coarse (Row-by-Row)"
+          ],
+          [
+            "Word/Inline Diff",
+            "Individual words",
+            "Blog posts, articles, documentation",
+            "Medium (Word-by-Word)"
+          ],
+          [
+            "Character Diff",
+            "Letters / Symbols",
+            "Typo correction, serial key checks",
+            "Fine (Char-by-Char)"
+          ]
+        ]
+      },
+      "params": {
+        "use_case": [
+          "text",
+          "code",
+          "json"
+        ]
+      },
+      "template": {
+        "meta_title": "Online Diff Checker - Compare {use_case_title} side-by-side",
+        "meta_description": "Compare two blocks of {use_case_title} side-by-side. Highlight text differences, additions, and deletions instantly in your browser sandbox.",
+        "h1": "Compare {use_case_title} Online with Diff Checker",
+        "h2": "Find Differences between two {use_case_title} Blocks",
+        "description": "Need to check code modifications or compare text iterations? Paste your inputs into the diff checker to visually track every character addition and deletion in real-time.",
+        "steps": [
+          "Paste the original content into the left 'Original' textbox.",
+          "Paste the updated content into the right 'Modified' textbox.",
+          "Review the diff output highlighting insertions (green) and deletions (red)."
+        ],
+        "faqs": [
+          {
+            "q": "How does the tool calculate differences?",
+            "a": "It uses a local Myers diff engine to compare text tokens sequentially, highlighting modifications side-by-side or inline."
+          },
+          {
+            "q": "Is my proprietary code secure?",
+            "a": "Yes. The diff calculations execute locally on your computer inside your browser tab, ensuring no text is logged or sent across network nodes."
+          }
+        ]
+      },
+      "affiliate_partner": null
+    },
+    "timestamp-converter": {
+      "name": "Epoch Converter",
+      "slug_pattern": "/convert-<use_case>-timestamp",
+      "category": "dev",
+      "aeo_definition": "An epoch converter is a programmer utility that translates integer Unix/POSIX timestamps (seconds since January 1, 1970 UTC) into human-readable date strings, and vice-versa.",
+      "geo_reference": "Unix time represents the elapsed seconds since 1970-01-01T00:00:00Z UTC, excluding leap seconds, widely used as the default temporal stamp in modern database engines.",
+      "technical_comparison": {
+        "title": "Time Representation Standards",
+        "headers": [
+          "Representation",
+          "Format Example",
+          "Storage Type",
+          "Time Zone"
+        ],
+        "rows": [
+          [
+            "Epoch (Seconds)",
+            "1773010400",
+            "32-bit / 64-bit Integer",
+            "GMT/UTC"
+          ],
+          [
+            "Epoch (Milliseconds)",
+            "1773010400000",
+            "64-bit Integer",
+            "GMT/UTC"
+          ],
+          [
+            "ISO 8601 String",
+            "2026-03-01T22:53:20Z",
+            "UTF-8 String",
+            "Flexible (denoted by Z or offset)"
+          ],
+          [
+            "Local Time String",
+            "Sunday, March 1, 2026 10:53:20 PM",
+            "Locale-based String",
+            "User's Local System Zone"
+          ]
+        ]
+      },
+      "params": {
+        "use_case": [
+          "unix",
+          "epoch",
+          "milliseconds"
+        ]
+      },
+      "template": {
+        "meta_title": "Unix {use_case_title} Timestamp Converter - Epoch Converter",
+        "meta_description": "Convert Unix Epoch timestamps ({use_case_title}) to human-readable dates, local time, and UTC. Supports two-way date translations locally.",
+        "h1": "Unix {use_case_title} Timestamp & Epoch Converter",
+        "h2": "Translate Epoch Timestamps and Dates Instantly",
+        "description": "Convert Unix epoch numbers to local times or encode standard date selections into POSIX integer stamps. Highly responsive and browser-native.",
+        "steps": [
+          "Enter your epoch timestamp value to convert it to readable date/times.",
+          "Use the date/time picker fields to calculate the equivalent Unix stamp.",
+          "Copy results instantly to your clipboard."
+        ],
+        "faqs": [
+          {
+            "q": "What is Unix Epoch Time?",
+            "a": "It is the total count of seconds (or milliseconds) that have elapsed since the Unix epoch, which is 00:00:00 UTC on January 1, 1970."
+          },
+          {
+            "q": "Does this tool support millisecond precision?",
+            "a": "Yes! The converter automatically parses length strings (10 digits for seconds, 13 digits for milliseconds) and supports both standards."
+          }
+        ]
+      },
+      "affiliate_partner": null
     }
   },
   "overrides": {
+    "convert-heic-to-jpg": {
+      "meta_title": "Convert HEIC to JPG Online - 100% Free & Secure",
+      "meta_description": "Convert your Apple HEIC images to JPG format instantly. Safe, free, and runs entirely in your browser with zero uploads."
+    },
+    "compress-image-for-jpeg": {
+      "meta_title": "Compress JPEG Image Online - Free Size Optimizer",
+      "meta_description": "Reduce JPEG photo file sizes locally in your browser. Shrink files without losing image quality. 100% secure."
+    },
+    "compare-text-online": {
+      "meta_title": "Compare Text Online - Free Side-by-Side Diff Checker",
+      "meta_description": "Instantly compare two blocks of text or scripts to identify differences. Clean side-by-side visual difference highlights."
+    },
+    "convert-unix-timestamp": {
+      "meta_title": "Unix Epoch Timestamp Converter - Convert Unix to Date",
+      "meta_description": "Convert Unix epoch timestamps to human-readable dates or local times. Fully browser-based, instant date converter."
+    },
     "merge-pdf-for-documents": {
       "meta_title": "Merge PDF Documents Online - Free Document Joiner",
       "meta_description": "Combine your PDF document pages into a single PDF file instantly. Safe, free, and runs entirely in your browser with zero uploads."

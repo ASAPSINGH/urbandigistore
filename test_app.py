@@ -32,7 +32,11 @@ class TestWebUtilities(unittest.TestCase):
             ('/split-pdf-by-pages', '/split-pdf?use_case=pages'),
             ('/unmerge-pdf', '/split-pdf?use_case=pages'),
             ('/generate-qr-code-for-url', '/qr-code-generator?type=url'),
-            ('/generate-strong-password', '/password-generator?security_level=strong')
+            ('/generate-strong-password', '/password-generator?security_level=strong'),
+            ('/convert-heic-to-jpg', '/heic-to-jpg?output_format=jpg'),
+            ('/compress-image-for-jpeg', '/image-compressor?use_case=jpeg'),
+            ('/compare-text-online', '/diff-checker?use_case=text'),
+            ('/convert-unix-timestamp', '/epoch-converter?use_case=unix')
         ]
         for route, expected_redirect in routes:
             response = self.app.get(route)
@@ -55,7 +59,11 @@ class TestWebUtilities(unittest.TestCase):
             '/merge-pdf',
             '/split-pdf',
             '/qr-code-generator',
-            '/password-generator'
+            '/password-generator',
+            '/heic-to-jpg',
+            '/image-compressor',
+            '/diff-checker',
+            '/epoch-converter'
         ]
         for route in routes:
             response = self.app.get(route)
@@ -78,7 +86,11 @@ class TestWebUtilities(unittest.TestCase):
             '/merge-pdf-for-invalidcase',
             '/split-pdf-by-invalidcase',
             '/generate-qr-code-for-invalidtype',
-            '/generate-invalidlevel-password'
+            '/generate-invalidlevel-password',
+            '/convert-heic-to-invalid',
+            '/compress-image-for-invalid',
+            '/compare-invalid-online',
+            '/convert-invalid-timestamp'
         ]
         for route in invalid_routes:
             response = self.app.get(route)
