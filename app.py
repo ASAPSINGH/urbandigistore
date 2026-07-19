@@ -74,6 +74,28 @@ CONSOLIDATED_PATHS = {
     'timestamp-converter': '/epoch-converter'
 }
 
+# Hub-to-Spoke clusters mapping for organic internal linking authority
+TOOL_BLOG_MAPPING = {
+    'image-converter': ['free-online-image-converters', 'understanding-heic-image-compression-compatibility', 'why-image-compression-matters-lossy-lossless'],
+    'image-cropper': ['social-media-image-sizes', 'why-image-compression-matters-lossy-lossless'],
+    'heic-converter': ['understanding-heic-image-compression-compatibility', 'free-online-image-converters'],
+    'image-compressor': ['why-image-compression-matters-lossy-lossless', 'understanding-heic-image-compression-compatibility'],
+    'utm-builder': ['utm-parameter-naming-conventions', 'facebook-ads-utm-tracking-self-referral', 'demystifying-utm-parameters-traffic-tracking', 'how-to-generate-custom-qr-codes'],
+    'whatsapp-generator': ['utm-parameter-naming-conventions'],
+    'qr-generator': ['how-to-generate-custom-qr-codes', 'demystifying-qr-code-masking-scanning-speed', 'demystifying-qr-code-versions-grid-dimensions', 'demystifying-qr-code-color-contrast-scannability', 'demystifying-qr-code-quiet-zones-scan-reliability', 'demystifying-qr-code-error-correction-levels', 'demystifying-qr-code-mask-penalty-calculation', 'demystifying-qr-code-version-scaling-grid-dimensions'],
+    'password-generator': ['cryptographically-secure-passwords-entropy-math', 'password-length-entropy-exponent-comparison', 'why-password-managers-are-critical-security', 'why-password-hashing-requires-salt-rainbow-tables', 'why-master-password-kdf-iterations-matter', 'why-browser-passwords-are-vulnerable-standalone-vaults', 'why-password-salts-must-be-cryptographically-random', 'why-password-hashing-requires-salt-dict-attacks'],
+    'merge-pdf': ['how-to-merge-pdf-documents-locally', 'understanding-pdf-document-margins', 'understanding-pdf-font-embedding-subsetting', 'understanding-pdf-metadata-xmp-catalog', 'understanding-pdf-linearization-fast-web-view', 'understanding-pdf-structural-security-passwords'],
+    'split-pdf': ['how-to-split-pdf-pages-locally', 'pdf-page-splitting-range-syntax-extraction', 'understanding-pdf-document-margins', 'understanding-pdf-font-embedding-subsetting', 'understanding-pdf-metadata-xmp-catalog', 'understanding-pdf-linearization-fast-web-view', 'understanding-pdf-structural-security-passwords'],
+    'position-calculator': ['stop-loss-sizing-portfolio-risk-two-percent', 'stop-loss-sizing-average-true-range-atr', 'stop-loss-options-premium-volatility', 'stop-loss-position-sizing-atr-multipliers', 'stop-loss-sizing-volatility-adjusted-atr', 'stop-loss-position-sizing-maximum-drawdown', 'stop-loss-position-sizing-kelly-criterion', 'stop-loss-position-sizing-vix-volatility', 'stop-loss-position-sizing-sharpe-ratio', 'stop-loss-position-sizing-sharpe-sortino', 'stop-loss-position-sizing-ulcer-index'],
+    'fibonacci-calculator': ['fibonacci-retracement-trading-guide', 'fibonacci-extensions-profit-targets', 'fibonacci-fan-trend-speed', 'fibonacci-arcs-curved-support-zones', 'fibonacci-time-zones-trend-reversal', 'fibonacci-retracement-bear-market', 'fibonacci-spirals-golden-ratio-turn-points', 'how-to-draw-fibonacci-extensions', 'how-to-draw-fibonacci-extensions-downtrend', 'how-to-draw-fibonacci-fans-trend-speed', 'how-to-draw-fibonacci-arcs-curved-support', 'how-to-draw-fibonacci-time-zones', 'how-to-draw-fibonacci-retracements-bear-market', 'how-to-draw-fibonacci-fans-downtrend'],
+    'character-counter': ['seo-character-counter-guide', 'social-media-character-limits-truncation'],
+    'cpm-calculator': ['digital-ad-budget-cpm', 'how-to-calculate-cpm-ad-costs'],
+    'base64-converter': ['data-formats-json-base64', 'base64-file-conversion-guide', 'client-side-base64-image-decoding', 'developer-guide-cors-cross-origin', 'understanding-jwt-structure-claims', 'web-cryptography-api-secure-hashes', 'web-workers-heavy-computations', 'understanding-csp-content-security-policy', 'indexeddb-api-large-datasets-browser', 'understanding-websockets-real-time-communication', 'localstorage-sessionstorage-cookies-comparison', 'web-storage-vs-indexeddb', 'how-to-compare-text-online-diff-algorithms', 'demystifying-unix-epoch-time-32bit-overflow'],
+    'json-formatter': ['data-formats-json-base64', 'base64-file-conversion-guide', 'developer-guide-cors-cross-origin', 'understanding-jwt-structure-claims', 'web-cryptography-api-secure-hashes', 'web-workers-heavy-computations', 'understanding-csp-content-security-policy', 'indexeddb-api-large-datasets-browser', 'understanding-websockets-real-time-communication', 'localstorage-sessionstorage-cookies-comparison', 'web-storage-vs-indexeddb', 'how-to-compare-text-online-diff-algorithms', 'demystifying-unix-epoch-time-32bit-overflow'],
+    'diff-checker': ['how-to-compare-text-online-diff-algorithms', 'data-formats-json-base64'],
+    'timestamp-converter': ['demystifying-unix-epoch-time-32bit-overflow', 'data-formats-json-base64']
+}
+
 # Helper function to generate SEO metadata
 def get_seo_context(tool_key, slug=None, **kwargs):
     tool_conf = seo_data['tools'][tool_key]
@@ -280,6 +302,19 @@ def get_seo_context(tool_key, slug=None, **kwargs):
                 'url': CONSOLIDATED_PATHS.get(k, '#')
             })
             
+    # Fetch related blog posts for this tool to establish hub-to-spoke authority
+    related_blog_posts = []
+    all_posts = get_blog_posts()
+    for post_slug in TOOL_BLOG_MAPPING.get(tool_key, []):
+        post = next((p for p in all_posts if p['slug'] == post_slug), None)
+        if post:
+            related_blog_posts.append({
+                'title': post['title'],
+                'slug': post['slug'],
+                'description': post['description'],
+                'category': post['category']
+            })
+            
     return {
         'tool_key': tool_key,
         'meta_title': meta_title,
@@ -295,7 +330,8 @@ def get_seo_context(tool_key, slug=None, **kwargs):
         'technical_comparison': tool_conf.get('technical_comparison', {}),
         'affiliate_partner': tool_conf.get('affiliate_partner', None),
         'related_links': related_links,
-        'sibling_tools': sibling_tools
+        'sibling_tools': sibling_tools,
+        'related_blog_posts': related_blog_posts
     }
 
 @app.context_processor
@@ -701,7 +737,18 @@ def blog_post(slug):
     post = next((p for p in posts if p['slug'] == slug), None)
     if not post:
         abort(404)
-    return render_template('blog/post.html', post=post)
+        
+    # Map back from spoke to parent hubs to pass link authority to tools
+    related_tools = []
+    for tool_key, slugs in TOOL_BLOG_MAPPING.items():
+        if slug in slugs:
+            tool_conf = seo_data['tools'][tool_key]
+            related_tools.append({
+                'name': tool_conf['name'],
+                'url': CONSOLIDATED_PATHS.get(tool_key, '#')
+            })
+            
+    return render_template('blog/post.html', post=post, related_tools=related_tools)
 
 @app.route('/robots.txt')
 def robots():
