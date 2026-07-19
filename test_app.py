@@ -211,6 +211,42 @@ class TestWebUtilities(unittest.TestCase):
             self.assertIn(b'www.googletagmanager.com/gtag/js?id=G-TEST123456', resp.data)
             self.assertIn(b"gtag('config', 'G-TEST123456')", resp.data)
 
+    def test_adsense_rendering(self):
+        """Verify AdSense scripts render conditionally based on configuration."""
+        import os
+        from unittest import mock
+
+        # 1. When ADSENSE_CLIENT_ID is NOT set, tag should not render in tests
+        with mock.patch.dict(os.environ, {}, clear=True):
+            resp = self.app.get('/')
+            self.assertEqual(resp.status_code, 200)
+            self.assertNotIn(b'pagead2.googlesyndication.com/pagead/js/adsbygoogle', resp.data)
+
+        # 2. When ADSENSE_CLIENT_ID is set, tag should render
+        with mock.patch.dict(os.environ, {'ADSENSE_CLIENT_ID': 'ca-pub-9999999999999999'}):
+            resp = self.app.get('/')
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn(b'pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9999999999999999', resp.data)
+
+    def test_ads_txt(self):
+        """Verify ads.txt route serves correct content and environment overrides."""
+        import os
+        from unittest import mock
+
+        # 1. Test default publisher ID
+        with mock.patch.dict(os.environ, {}, clear=True):
+            resp = self.app.get('/ads.txt')
+            self.assertEqual(resp.status_code, 200)
+            self.assertEqual(resp.mimetype, 'text/plain')
+            self.assertIn(b'google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0', resp.data)
+
+        # 2. Test custom publisher ID
+        with mock.patch.dict(os.environ, {'ADSENSE_PUBLISHER_ID': 'pub-9999999999999999'}):
+            resp = self.app.get('/ads.txt')
+            self.assertEqual(resp.status_code, 200)
+            self.assertEqual(resp.mimetype, 'text/plain')
+            self.assertIn(b'google.com, pub-9999999999999999, DIRECT, f08c47fec0942fa0', resp.data)
+
     def test_about_page_rendering(self):
         """Verify the About page loads and renders key brand content correctly."""
         resp = self.app.get('/about')

@@ -370,6 +370,12 @@
       gtag('config', '{{ ga_measurement_id }}');
     </script>
     {% endif %}
+    
+    {% if adsense_client_id %}
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ adsense_client_id }}"
+      crossorigin="anonymous"></script>
+    {% endif %}
 </head>
 <body class="cyber-grid min-h-screen flex flex-col relative">
 

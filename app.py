@@ -307,6 +307,15 @@ def inject_ga_id():
         'ga_measurement_id': ga_id
     }
 
+@app.context_processor
+def inject_adsense_id():
+    adsense_id = os.environ.get('ADSENSE_CLIENT_ID')
+    if not adsense_id and not app.testing:
+        adsense_id = 'ca-pub-1234567890123456'
+    return {
+        'adsense_client_id': adsense_id
+    }
+
 @app.route('/')
 def home():
     # Pass tools dictionary to render categories and direct links to programmatic pages
@@ -698,6 +707,12 @@ def blog_post(slug):
 def robots():
     base_url = request.url_root.rstrip('/')
     content = f"User-agent: *\nAllow: /\nSitemap: {base_url}/sitemap.xml\n"
+    return Response(content, mimetype='text/plain')
+
+@app.route('/ads.txt')
+def ads_txt():
+    pub_id = os.environ.get('ADSENSE_PUBLISHER_ID', 'pub-1234567890123456')
+    content = f"google.com, {pub_id}, DIRECT, f08c47fec0942fa0\n"
     return Response(content, mimetype='text/plain')
 
 @app.route('/googlenH_m5gZ-2Oi7zqLQ18lLOFedJm-mZUVdS_p8hd7proY.html')

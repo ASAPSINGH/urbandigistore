@@ -56,7 +56,7 @@
             {% include 'tools/' ~ tool_key ~ '.html' %}
         </div>
         
-        <div class="lg:col-span-1">
+        <div class="lg:col-span-1 space-y-6">
             {% if affiliate_partner %}
             <div class="glass-panel rounded-2xl p-6 border border-white/10 relative overflow-hidden flex flex-col justify-between hover:border-cyberneon/30 transition-all duration-300 shadow-xl group">
                 <!-- Glow accent -->
@@ -88,8 +88,44 @@
                 </a>
             </div>
             {% endif %}
+            
+            {% if adsense_client_id %}
+            <!-- Sidebar Ad Unit (Smart Placement: Doesn't block tool workspace) -->
+            <div class="glass-panel rounded-2xl p-4 border border-white/10 relative overflow-hidden flex flex-col items-center justify-center text-center shadow-lg">
+                <span class="text-[9px] font-semibold text-gray-500 uppercase tracking-widest mb-2 block">Sponsored Link</span>
+                <div class="w-full min-h-[250px] flex items-center justify-center bg-white/5 rounded-xl border border-dashed border-white/10 p-2">
+                    <ins class="adsbygoogle"
+                         style="display:block;width:100%;height:100%;min-height:250px;"
+                         data-ad-client="{{ adsense_client_id }}"
+                         data-ad-slot="sidebar-tool-ad"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
+
+    {% if adsense_client_id %}
+    <!-- Mid-Page Horizontal Ad Banner (Engagement Zone: Below Tool workspace, above FAQs) -->
+    <div class="w-full glass-panel rounded-2xl p-4 border border-white/10 relative overflow-hidden flex flex-col items-center justify-center my-10 shadow-lg">
+        <span class="text-[9px] font-semibold text-gray-500 uppercase tracking-widest mb-2 block">Sponsored Content</span>
+        <div class="w-full min-h-[90px] flex items-center justify-center bg-white/5 rounded-xl border border-dashed border-white/10 p-2">
+            <ins class="adsbygoogle"
+                 style="display:block;width:100%;"
+                 data-ad-client="{{ adsense_client_id }}"
+                 data-ad-slot="mid-page-tool-ad"
+                 data-ad-format="horizontal"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+    {% endif %}
 
     <!-- Technical Specs & Standards Table (GEO Support) -->
     {% if technical_comparison and technical_comparison.headers %}
