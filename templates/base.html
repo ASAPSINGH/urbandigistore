@@ -395,23 +395,65 @@
     }
     </script>
     
-    {% if ga_measurement_id %}
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga_measurement_id }}"></script>
+    <!-- Lazy Loading of Third-Party Analytics and Ads (Improves FCP, LCP & reduces unused JS) -->
     <script>
+      // 1. Queue initialization for Google Tag Manager
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      window.gtag = function() { dataLayer.push(arguments); };
       gtag('js', new Date());
-
+      {% if ga_measurement_id %}
       gtag('config', '{{ ga_measurement_id }}');
+      {% endif %}
+
+      (function() {
+          let scriptsLoaded = false;
+          
+          function loadThirdPartyScripts() {
+              if (scriptsLoaded) return;
+              scriptsLoaded = true;
+              
+              // Load Google Tag Manager
+              {% if ga_measurement_id %}
+              const gtmScript = document.createElement('script');
+              gtmScript.src = 'https://www.googletagmanager.com/gtag/js?id={{ ga_measurement_id }}';
+              gtmScript.async = true;
+              document.head.appendChild(gtmScript);
+              {% endif %}
+              
+              // Load Google AdSense
+              {% if adsense_client_id %}
+              const adsenseScript = document.createElement('script');
+              adsenseScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ adsense_client_id }}';
+              adsenseScript.async = true;
+              adsenseScript.crossOrigin = 'anonymous';
+              document.head.appendChild(adsenseScript);
+              {% endif %}
+              
+              removeListeners();
+          }
+          
+          // User interaction events to trigger loading
+          const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
+          
+          function addListeners() {
+              events.forEach(function(e) {
+                  window.addEventListener(e, loadThirdPartyScripts, { passive: true });
+              });
+          }
+          
+          function removeListeners() {
+              events.forEach(function(e) {
+                  window.removeEventListener(e, loadThirdPartyScripts);
+              });
+          }
+          
+          // Add event listeners for instant interaction response
+          addListeners();
+          
+          // Safety fallback: load scripts after 3.5 seconds if no user interaction occurs
+          setTimeout(loadThirdPartyScripts, 3500);
+      })();
     </script>
-    {% endif %}
-    
-    {% if adsense_client_id %}
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ adsense_client_id }}"
-      crossorigin="anonymous"></script>
-    {% endif %}
 </head>
 <body class="cyber-grid min-h-screen flex flex-col relative">
 
