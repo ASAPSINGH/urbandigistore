@@ -252,7 +252,7 @@
 
     <!-- Cluster Internal Linking Section (SEO Spoke to Spoke clustering) -->
     {% if related_links or sibling_tools %}
-    <div class="mt-16 border-t border-white/5 pt-12">
+    <div class="{% if related_blog_posts %}mt-8{% else %}mt-16 border-t border-white/5 pt-12{% endif %}">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             {% if related_links %}
             <div>
