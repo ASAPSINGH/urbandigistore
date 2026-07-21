@@ -67,9 +67,9 @@
         };
     </script>
     <style>
-        /* Prevent Flash of Unstyled Content (FOUC) when Tailwind JIT is deferred */
-        html { visibility: hidden; }
-        html.tailwind-ready { visibility: visible; }
+        /* Prevent Flash of Unstyled Content (FOUC) and Layout Shifts (CLS) when Tailwind JIT is deferred */
+        body { display: none !important; }
+        .tailwind-ready body { display: flex !important; }
     </style>
     <script>
         (function() {
