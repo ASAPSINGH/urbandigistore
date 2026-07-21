@@ -43,58 +43,32 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request.url }}">
     
-    <!-- Tailwind CSS CDN (Deferred to prevent render-blocking) -->
-    <script src="https://cdn.tailwindcss.com" defer></script>
+    <!-- Tailwind CSS CDN (Loaded synchronously to prevent FOUC and Layout Shifts) -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        window.tailwind = {
-            config: {
-                darkMode: 'class',
-                theme: {
-                    extend: {
-                        colors: {
-                            darkbg: 'var(--bg-well)',
-                            panelbg: 'var(--bg-panel)',
-                            cyberneon: '#4f46e5', /* Indigo 600 default */
-                            cyberaccent: '#0ea5e9', /* Sky 500 default */
-                        },
-                        fontFamily: {
-                            sans: ['Inter', 'sans-serif'],
-                            outfit: ['Outfit', 'sans-serif'],
-                        }
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: 'var(--bg-well)',
+                        panelbg: 'var(--bg-panel)',
+                        cyberneon: '#4f46e5', /* Indigo 600 default */
+                        cyberaccent: '#0ea5e9', /* Sky 500 default */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
                     }
                 }
             }
         };
     </script>
-    <style>
-        /* Prevent Flash of Unstyled Content (FOUC) and Layout Shifts (CLS) when Tailwind JIT is deferred */
-        body { display: none !important; }
-        .tailwind-ready body { display: flex !important; }
-    </style>
-    <script>
-        (function() {
-            // Check if Tailwind is loaded and compiled
-            const checkTailwind = setInterval(function() {
-                if (window.tailwind && window.tailwind.config) {
-                    document.documentElement.classList.add('tailwind-ready');
-                    clearInterval(checkTailwind);
-                }
-            }, 20);
-            // Safety fallback to show content in case CDN fails
-            window.addEventListener('load', function() {
-                document.documentElement.classList.add('tailwind-ready');
-            });
-        })();
-    </script>
     
-    <!-- Google Fonts (Non-render blocking asynchronous loading) -->
+    <!-- Google Fonts (Loaded synchronously to prevent Font Layout Shifts) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    </noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Custom Style Enhancements -->
     <style>
