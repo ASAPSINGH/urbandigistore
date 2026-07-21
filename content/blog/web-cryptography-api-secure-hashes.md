@@ -1,17 +1,25 @@
+---
 title: Web Cryptography API: Generating Secure Hash Digests in the Browser
 description: Discover how to generate SHA-256 and SHA-512 hash digests natively inside the browser using JavaScript's Web Cryptography API.
 date: 2026-07-16
 category: Developer
 author: Urbandigistore Security
+
 ---
 
 # Web Cryptography API: Generating Secure Hash Digests in the Browser
+
+Looking for a secure way to analyze and optimize your workflows? Here is a quick reference guide on the subject.
+
+A **cryptographic password** is a secure key verified using hashing algorithms (like bcrypt) and unique random salt values. Checking password complexity entropy ensures the credentials resist modern high-speed brute-force attacks.
 
 For years, web developers relying on cryptographic hashing (like generating SHA-256 digests for passwords, integrity verification, or signature matching) had to download external libraries like CryptoJS or bcryptjs.
 
 With the introduction of the **Web Cryptography API** (`window.crypto`), modern browsers now support native, secure, and fast cryptographic primitives. In this developer guide, we'll write a clean implementation of local client-side hashing using SubtleCrypto.
 
 ---
+
+> **Product-Led CTA**: Never reuse passwords or store them in unsafe web browsers. Generate high-entropy, cryptographically secure keys instantly using our secure, client-side [Secure Password Generator](/password-generator).
 
 ## 🔒 What is the Web Cryptography API?
 

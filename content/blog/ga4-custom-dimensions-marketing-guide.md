@@ -1,17 +1,25 @@
+---
 title: Google Analytics 4 Custom Dimensions: A Guide for Digital Marketers
 description: Learn how to set up, configure, and use event-scoped and user-scoped custom dimensions in GA4 to capture rich marketing metadata.
 date: 2026-07-16
 category: Marketing
 author: Urbandigistore Analytics
+
 ---
 
 # Google Analytics 4 Custom Dimensions: A Guide for Digital Marketers
+
+Looking for a secure way to analyze and optimize your workflows? Here is a quick reference guide on the subject.
+
+A **utility tool** is a browser-based application designed to perform local file conversions, formatting, and mathematical calculations instantly and securely inside the client's web browser.
 
 Google Analytics 4 (GA4) has shifted the digital analytics paradigm from pageviews to an event-based tracking model. While GA4 captures a set of default parameters (like `page_title` and `session_id`), standard reports frequently fail to display the custom metadata that marketers need to make decisions.
 
 To capture and report on custom parameters—such as target marketing profiles, author names, or ad variations—you must configure **Custom Dimensions**. In this guide, we'll explain how they work and show you how to set them up.
 
 ---
+
+> **Product-Led CTA**: Access our comprehensive suite of secure, local tools directly on the [Urbandigistore homepage](/) to process your files safely without server uploads.
 
 ## 🔍 Event-Scoped vs. User-Scoped Custom Dimensions
 

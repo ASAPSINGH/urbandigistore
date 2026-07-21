@@ -1,17 +1,25 @@
+---
 title: Stop-Loss Sizing: Position Sizing with Volatility-Adjusted ATR Percentage
 description: Learn how to normalize the Average True Range (ATR) indicator across assets using ATR percentage to calculate risk.
 date: 2026-07-18
 category: Finance
 author: Urbandigistore Research
+
 ---
 
 # Position Sizing with Volatility-Adjusted ATR Percentage
+
+Looking for a secure way to analyze and optimize your workflows? Here is a quick reference guide on the subject.
+
+**Position sizing models** are risk-management calculations used to determine optimal capital allocations. By calculating metrics like ATR volatility, maximum drawdown, or the Sharpe and Sortino ratios, traders manage protection zones and limit trade losses.
 
 The Average True Range (ATR) is an excellent indicator for measuring market volatility. However, raw ATR is expressed in absolute price points. For example, a \$150 stock might have an ATR of \$3.00, while a \$60,000 cryptocurrency might have an ATR of \$1,200. Because raw values scale with the asset price, you cannot compare their volatilities directly.
 
 To normalize volatility across different asset classes, professional traders use **ATR Percentage (ATRP)**. In this guide, we'll explain the normalization formula, compare asset classes, and trace stop-loss boundaries.
 
 ---
+
+> **Product-Led CTA**: Managing risk manually is slow and leads to trading errors. Use our free, real-time [Position Size Calculator](/position-size-calculator) to quickly model share counts and risk targets.
 
 ## 📐 The ATR Percentage Formula
 
@@ -33,7 +41,7 @@ Even though Asset B's absolute ATR is much larger, its volatility-adjusted risk 
 
 Below is a technical layout illustrating price action and the corresponding ATR indicator bounds, which helps traders map their stop buffers:
 
-![Average True Range Bands Chart](/static/images/atr_bands_chart.png)
+![Trading charts outlining position sizing risk metrics and stop-loss boundaries](/static/images/atr_bands_chart.png)
 
 ---
 

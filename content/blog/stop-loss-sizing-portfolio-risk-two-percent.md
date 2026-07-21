@@ -1,17 +1,25 @@
+---
 title: Stop-Loss Sizing: Portfolio Risk Rules and the 2% Account Exposure Maximum
-description: Learn how the mathematical power of compounding drawdowns dictates the 2% portfolio risk rule, and discover how to calculate position sizes to protect your trading account.
+description: Learn how the mathematical power of compounding drawdowns dictates the 2% portfolio risk rule, and discover how to calculate position sizes to protec...
 date: 2026-07-18
 category: Finance
 author: Urbandigistore Research
+
 ---
 
 # Stop-Loss Sizing: The 2% Portfolio Risk Rule
+
+Looking for a secure way to analyze and optimize your workflows? Here is a quick reference guide on the subject.
+
+**Position sizing models** are risk-management calculations used to determine optimal capital allocations. By calculating metrics like ATR volatility, maximum drawdown, or the Sharpe and Sortino ratios, traders manage protection zones and limit trade losses.
 
 Many amateur traders believe that risk management simply means placing a stop-loss order somewhere below their entry price. In reality, a stop-loss is useless if you don't calculate your **position size** first. If you buy too many shares, a small price drop can still wipe out a significant portion of your capital.
 
 In this guide, we'll explore the mathematics of account drawdowns, explain the **2% risk rule**, and show you how to apply it to protect your portfolio.
 
 ---
+
+> **Product-Led CTA**: Managing risk manually is slow and leads to trading errors. Use our free, real-time [Position Size Calculator](/position-size-calculator) to quickly model share counts and risk targets.
 
 ## 📉 The Math of Compounding Drawdowns
 

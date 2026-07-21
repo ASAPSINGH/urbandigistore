@@ -1,17 +1,25 @@
+---
 title: The Ultimate Social Media Image Size and Aspect Ratio Guide
 description: Master social media resolutions and aspect ratios for Instagram, YouTube, and TikTok, and learn how to crop images perfectly without quality loss.
 date: 2026-07-09
 category: Media
 author: Urbandigistore Growth Team
+
 ---
 
 # The Ultimate Social Media Image Size and Aspect Ratio Guide
+
+Looking for a secure way to analyze and optimize your workflows? Here is a quick reference guide on the subject.
+
+A **utility tool** is a browser-based application designed to perform local file conversions, formatting, and mathematical calculations instantly and securely inside the client's web browser.
 
 In digital marketing and content creation, first impressions are everything. If your social media graphics are pixelated, stretched, or have key information cut off due to incorrect layout cropping, it immediately damages your brand's credibility.
 
 Every social media platform—from Instagram and YouTube to TikTok and Twitter—enforces specific aspect ratios and pixel resolutions. In this guide, we provide a complete, up-to-date directory of social media image sizes and explain how to crop your assets without losing quality.
 
 ---
+
+> **Product-Led CTA**: Access our comprehensive suite of secure, local tools directly on the [Urbandigistore homepage](/) to process your files safely without server uploads.
 
 ## 📐 Aspect Ratios Explained
 

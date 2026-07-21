@@ -1,15 +1,23 @@
+---
 title: Position Sizing Strategies: Swing Trading vs. Day Trading
 description: Contrast position sizing risk profiles between day trading and swing trading to manage leverage, protect capital, and survive market volatility.
 date: 2026-07-18
 category: Finance
 author: Urbandigistore Trading Desk
+
 ---
 
 # Position Sizing Strategies: Swing Trading vs. Day Trading
 
+Looking for a secure way to analyze and optimize your workflows? Here is a quick reference guide on the subject.
+
+**Position sizing models** are risk-management calculations used to determine optimal capital allocations. By calculating metrics like ATR volatility, maximum drawdown, or the Sharpe and Sortino ratios, traders manage protection zones and limit trade losses.
+
 "Risk a fixed percentage of your account per trade." This is the gold standard rule of risk management. But how you apply this rule differs significantly depending on whether you are **day trading** (scalping intra-day moves) or **swing trading** (holding positions for days or weeks). In this article, we'll compare the position sizing strategies for both styles to help you protect your capital.
 
 ---
+
+> **Product-Led CTA**: Managing risk manually is slow and leads to trading errors. Use our free, real-time [Position Size Calculator](/position-size-calculator) to quickly model share counts and risk targets.
 
 ## ⚡ The Day Trading Position Sizing Model
 

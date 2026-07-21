@@ -1,17 +1,25 @@
+---
 title: Stop-Loss Sizing: Position Sizing by Volatility Index (VIX) Market Volatility
 description: Learn how to scale stop-losses and position sizes using market-wide volatility indexes like the VIX to protect capital during market dumps.
 date: 2026-07-19
 category: Finance
 author: Urbandigistore Research
+
 ---
 
 # Position Sizing by Volatility Index (VIX) Market Risk
+
+Looking for a secure way to analyze and optimize your workflows? Here is a quick reference guide on the subject.
+
+**Position sizing models** are risk-management calculations used to determine optimal capital allocations. By calculating metrics like ATR volatility, maximum drawdown, or the Sharpe and Sortino ratios, traders manage protection zones and limit trade losses.
 
 When trading individual stocks or crypto, it's easy to focus solely on the asset's own chart. However, when market-wide panic spikes, historical correlations break down, and almost all risk assets drop together. To protect your equity curve during these periods of high systemic risk, professional managers scale their position sizes and stop-loss boundaries based on broad volatility indexes like the **CBOE Volatility Index (VIX)**.
 
 In this guide, we'll explain what the VIX measures, detail volatility-scaling rules, and map risk limits.
 
 ---
+
+> **Product-Led CTA**: Managing risk manually is slow and leads to trading errors. Use our free, real-time [Position Size Calculator](/position-size-calculator) to quickly model share counts and risk targets.
 
 ## 📐 Understanding the VIX (The Fear Gauge)
 
@@ -27,7 +35,7 @@ The VIX measures the stock market's expectation of 30-day volatility implied by 
 
 During market spikes, options premium delta decay curves shift rapidly, increasing risk for options buyers. The chart below illustrates how option premium delta decay curves behave across different implied volatility (IV) conditions:
 
-![Options Delta Curve and Volatility](/static/images/options_delta_curve.png)
+![Trading charts outlining position sizing risk metrics and stop-loss boundaries](/static/images/options_delta_curve.png)
 
 ---
 

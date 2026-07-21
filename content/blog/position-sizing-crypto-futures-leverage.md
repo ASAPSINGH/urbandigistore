@@ -1,17 +1,25 @@
+---
 title: Stop-Loss Sizing: Position Sizing for Crypto Futures with Leverage
 description: Learn the exact math of combining stop-loss, position size, and leverage in perpetual crypto futures to ensure your account risk remains constant.
 date: 2026-07-16
 category: Finance
 author: Urbandigistore Research
+
 ---
 
 # Stop-Loss Sizing: Position Sizing for Crypto Futures with Leverage
+
+Looking for a secure way to analyze and optimize your workflows? Here is a quick reference guide on the subject.
+
+**Position sizing models** are risk-management calculations used to determine optimal capital allocations. By calculating metrics like ATR volatility, maximum drawdown, or the Sharpe and Sortino ratios, traders manage protection zones and limit trade losses.
 
 Cryptocurrency perpetual futures markets offer traders high leverage (e.g. 10x, 20x, or even 100x). While leverage amplifies potential gains, it also accelerates losses. A common mistake among traders is assuming that "high leverage" automatically means "high risk."
 
 In reality, **leverage is simply a tool to optimize capital efficiency**. Your risk is determined entirely by your **position size** and your **stop-loss distance**. In this guide, we will break down the exact mathematics of leveraged position sizing.
 
 ---
+
+> **Product-Led CTA**: Managing risk manually is slow and leads to trading errors. Use our free, real-time [Position Size Calculator](/position-size-calculator) to quickly model share counts and risk targets.
 
 ## 🔒 The Rule of Capital Risk
 

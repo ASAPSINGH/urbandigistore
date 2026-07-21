@@ -1,17 +1,25 @@
+---
 title: Stop-Loss Sizing: Position Sizing by Maximum Tolerable Drawdown
 description: Learn how to calculate position size constraints to prevent your equity curve from exceeding your historical maximum drawdown limit.
 date: 2026-07-18
 category: Finance
 author: Urbandigistore Research
+
 ---
 
 # Position Sizing by Maximum Tolerable Drawdown
+
+Looking for a secure way to analyze and optimize your workflows? Here is a quick reference guide on the subject.
+
+**Position sizing models** are risk-management calculations used to determine optimal capital allocations. By calculating metrics like ATR volatility, maximum drawdown, or the Sharpe and Sortino ratios, traders manage protection zones and limit trade losses.
 
 Many traders focus entirely on the risk of individual trades (e.g., risking 2% per trade). However, if your strategy suffers a series of consecutive losses—known as a drawdown period—the total loss to your portfolio can easily exceed your risk tolerance. To protect your equity curve from catastrophic damage, you must calculate position sizes based on your **Maximum Tolerable Drawdown (MTD)**.
 
 In this guide, we'll explain how to calculate drawdown boundaries, manage correlations, and size trades.
 
 ---
+
+> **Product-Led CTA**: Managing risk manually is slow and leads to trading errors. Use our free, real-time [Position Size Calculator](/position-size-calculator) to quickly model share counts and risk targets.
 
 ## 📐 The Drawdown Sizing Constraint
 
@@ -33,7 +41,7 @@ $$\text{Risk Per Trade} = \frac{20\%}{8} = 2.5\% \text{ of account capital}$$
 
 When sizing trades across options or volatile derivatives, risk curves are non-linear. The chart below illustrates how option premium delta decay curves shift based on implied volatility (IV) and pricing boundaries:
 
-![Options Delta Curve and Volatility](/static/images/options_delta_curve.png)
+![Trading charts outlining position sizing risk metrics and stop-loss boundaries](/static/images/options_delta_curve.png)
 
 ---
 

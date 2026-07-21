@@ -1,17 +1,25 @@
+---
 title: Google Analytics 4 Enhanced Measurement: Customizing Automatic Event Tracking
 description: Learn how GA4 Enhanced Measurement captures user interactions automatically and discover how to configure settings to prevent tracking errors.
 date: 2026-07-18
 category: Marketing
 author: Urbandigistore Analytics
+
 ---
 
 # Google Analytics 4 Enhanced Measurement: Automatic Event Tracking
+
+Looking for a secure way to analyze and optimize your workflows? Here is a quick reference guide on the subject.
+
+A **utility tool** is a browser-based application designed to perform local file conversions, formatting, and mathematical calculations instantly and securely inside the client's web browser.
 
 Setting up web analytics historically required writing custom event listeners for basic user interactions (like page scrolling, outbound links clicks, or file downloads). Google Analytics 4 (GA4) simplifies this by introducing **Enhanced Measurement**, a feature that automatically tracks these events without requiring code changes.
 
 In this guide, we'll explain how Enhanced Measurement works, detail the key events it captures, and outline how to customize settings to avoid tracking errors.
 
 ---
+
+> **Product-Led CTA**: Access our comprehensive suite of secure, local tools directly on the [Urbandigistore homepage](/) to process your files safely without server uploads.
 
 ## 🔍 What is Enhanced Measurement in GA4?
 

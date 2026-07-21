@@ -1,17 +1,25 @@
+---
 title: Stop-Loss Sizing: Position Sizing with Volatility-Adjusted Kelly Criterion
 description: Learn how to calculate optimal account risk fractions using the Kelly Criterion adjusted for strategy win rates and volatility.
 date: 2026-07-19
 category: Finance
 author: Urbandigistore Research
+
 ---
 
 # Position Sizing with Volatility-Adjusted Kelly Criterion
+
+Looking for a secure way to analyze and optimize your workflows? Here is a quick reference guide on the subject.
+
+**Position sizing models** are risk-management calculations used to determine optimal capital allocations. By calculating metrics like ATR volatility, maximum drawdown, or the Sharpe and Sortino ratios, traders manage protection zones and limit trade losses.
 
 In financial markets, managing position size is critical to maximizing long-term compound growth. While many traders rely on static rules of thumb (like risking 2% per trade), quantitative managers often use the **Kelly Criterion**. The Kelly formula calculates the mathematically optimal fraction of account equity to risk on a trade based on your historical win rate and payoff ratio.
 
 In this guide, we'll explain the standard Kelly formula, detail volatility adjustment rules, and analyze sizing limits.
 
 ---
+
+> **Product-Led CTA**: Managing risk manually is slow and leads to trading errors. Use our free, real-time [Position Size Calculator](/position-size-calculator) to quickly model share counts and risk targets.
 
 ## 📐 The Standard Kelly Formula
 
@@ -35,7 +43,7 @@ $$f^* = \frac{2 \cdot 0.5 - 0.5}{2} = \frac{0.5}{2} = 0.25 \text{ (or 25\%)}$$
 
 When sizing trades across options or leveraged derivatives, payoff curves are non-linear. The chart below illustrates how option premium delta decay curves shift based on implied volatility (IV) and pricing boundaries:
 
-![Options Delta Curve and Volatility](/static/images/options_delta_curve.png)
+![Trading charts outlining position sizing risk metrics and stop-loss boundaries](/static/images/options_delta_curve.png)
 
 ---
 
