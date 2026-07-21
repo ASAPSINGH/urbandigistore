@@ -13,8 +13,6 @@
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
     
     <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
     <script>
         // Inline script to prevent theme flash
         (function() {
@@ -45,26 +43,48 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request.url }}">
     
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS CDN (Deferred to prevent render-blocking) -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        darkbg: 'var(--bg-well)',
-                        panelbg: 'var(--bg-panel)',
-                        cyberneon: '#4f46e5', /* Indigo 600 default */
-                        cyberaccent: '#0ea5e9', /* Sky 500 default */
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        outfit: ['Outfit', 'sans-serif'],
+        window.tailwind = {
+            config: {
+                darkMode: 'class',
+                theme: {
+                    extend: {
+                        colors: {
+                            darkbg: 'var(--bg-well)',
+                            panelbg: 'var(--bg-panel)',
+                            cyberneon: '#4f46e5', /* Indigo 600 default */
+                            cyberaccent: '#0ea5e9', /* Sky 500 default */
+                        },
+                        fontFamily: {
+                            sans: ['Inter', 'sans-serif'],
+                            outfit: ['Outfit', 'sans-serif'],
+                        }
                     }
                 }
             }
-        }
+        };
+    </script>
+    <style>
+        /* Prevent Flash of Unstyled Content (FOUC) when Tailwind JIT is deferred */
+        html { visibility: hidden; }
+        html.tailwind-ready { visibility: visible; }
+    </style>
+    <script>
+        (function() {
+            // Check if Tailwind is loaded and compiled
+            const checkTailwind = setInterval(function() {
+                if (window.tailwind && window.tailwind.config) {
+                    document.documentElement.classList.add('tailwind-ready');
+                    clearInterval(checkTailwind);
+                }
+            }, 20);
+            // Safety fallback to show content in case CDN fails
+            window.addEventListener('load', function() {
+                document.documentElement.classList.add('tailwind-ready');
+            });
+        })();
     </script>
     
     <!-- Google Fonts (Non-render blocking asynchronous loading) -->
