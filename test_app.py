@@ -301,5 +301,41 @@ class TestWebUtilities(unittest.TestCase):
         get_data = json.loads(get_response.data.decode('utf-8'))
         self.assertEqual(get_data, mock_payload)
 
+    def test_whatsapp_country_overrides(self):
+        """Verify that WhatsApp link generator country overrides are loaded correctly."""
+        # India override
+        resp = self.app.get('/whatsapp-link-generator?country=india')
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(b'WhatsApp Link Generator India - Create FREE Wa.me Chat Links', resp.data)
+        self.assertIn(b'WhatsApp Link Generator for India', resp.data)
+        self.assertIn(b'Need a quick way for Indian customers to reach your business on WhatsApp?', resp.data)
+        self.assertIn(b'Select the India +91 prefix and enter your 10-digit mobile number.', resp.data)
+        
+        # USA override
+        resp = self.app.get('/whatsapp-link-generator?country=usa')
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(b'WhatsApp Link Generator USA - Create Free Click-to-Chat Links', resp.data)
+        
+        # UK override
+        resp = self.app.get('/whatsapp-link-generator?country=uk')
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(b'WhatsApp Link Generator UK - Free Click-to-Chat Link Builder', resp.data)
+
+    def test_dynamic_structured_schemas_and_in_text_cta(self):
+        """Verify dynamic schemas and automated in-text blog CTAs."""
+        # Check dev category tool -> DeveloperApplication
+        resp = self.app.get('/json-formatter')
+        self.assertIn(b'"applicationCategory": "DeveloperApplication"', resp.data)
+        
+        # Check media category tool -> MultimediaApplication
+        resp = self.app.get('/image-converter')
+        self.assertIn(b'"applicationCategory": "MultimediaApplication"', resp.data)
+        
+        # Check in-text CTA injection in a blog post
+        resp = self.app.get('/blog/demystifying-utm-parameters-traffic-tracking')
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(b'Quick Action: Use the Online Tool', resp.data)
+        self.assertIn(b'Open UTM Link Builder', resp.data)
+
 if __name__ == '__main__':
     unittest.main()

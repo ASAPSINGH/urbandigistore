@@ -50,11 +50,28 @@ document.addEventListener('DOMContentLoaded', () => {
     
     txtInput.value = demoTexts[platform] || "Type or paste your content here to begin analyzing character thresholds.";
     
-    // Event listeners
-    txtInput.addEventListener('input', runAnalysis);
+    // Event listeners and debouncing
+    let analysisTimeout;
+    let hasTrackedInput = false;
+    
+    txtInput.addEventListener('input', () => {
+        clearTimeout(analysisTimeout);
+        analysisTimeout = setTimeout(runAnalysis, 50);
+        
+        if (!hasTrackedInput && txtInput.value.trim().length > 0) {
+            hasTrackedInput = true;
+            if (typeof gtag === 'function') {
+                gtag('event', 'use_tool', { 'tool_name': 'character-counter', 'action': 'input_text' });
+            }
+        }
+    });
+    
     btnClear.addEventListener('click', () => {
         txtInput.value = '';
         runAnalysis();
+        if (typeof gtag === 'function') {
+            gtag('event', 'use_tool', { 'tool_name': 'character-counter', 'action': 'clear_text' });
+        }
     });
     
     if (selectEl) {
@@ -77,6 +94,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 
                 runAnalysis();
+                
+                if (typeof gtag === 'function') {
+                    gtag('event', 'use_tool', { 'tool_name': 'character-counter', 'action': 'select_platform', 'platform': newPlatform });
+                }
             }
         });
     }
@@ -92,6 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 btnCopy.textContent = originalText;
             }, 2000);
+            
+            if (typeof gtag === 'function') {
+                gtag('event', 'use_tool', { 'tool_name': 'character-counter', 'action': 'copy_text', 'char_count': text.length });
+            }
         });
     });
     

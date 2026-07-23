@@ -57,7 +57,7 @@
         ]
       },
       "template": {
-        "meta_title": "Free {input_format_upper} to {output_format_upper} Converter - Fast & Secure",
+        "meta_title": "Free {input_format_upper} to {output_format_upper} Converter | Online, Client-Side & Instant",
         "meta_description": "Convert {input_format_upper} images to {output_format_upper} format instantly. High-fidelity conversion preserves dimensions and guarantees secure file handling. Fast, safe, and free.",
         "h1": "{input_format_upper} to {output_format_upper} Converter - Free Online Tool",
         "h2": "Fast & Secure {input_format_upper} to {output_format_upper} File Conversion",
@@ -150,7 +150,7 @@
         ]
       },
       "template": {
-        "meta_title": "Crop Image for {platform_size_title} - Dimension Optimizer",
+        "meta_title": "Crop Image for {platform_size_title} | Free, Online & Instant",
         "meta_description": "Perfectly crop and resize your images for {platform_size_title} online. Fits dimensions exactly to prevent stretching or blurring. 100% private.",
         "h1": "Crop Image for {platform_size_title}",
         "h2": "Optimize Dimensions for {platform_size_title} Online",
@@ -239,7 +239,7 @@
         ]
       },
       "template": {
-        "meta_title": "{platform_title} UTM Builder | Campaign Link Generator - Urbandigistore",
+        "meta_title": "Free {platform_title} UTM Builder | Client-Side Campaign Link Generator",
         "meta_description": "Generate trackable campaign links with custom UTM parameters optimized for {platform_title}. Track campaign performance in Google Analytics.",
         "h1": "{platform_title} UTM Builder & Campaign Link Generator",
         "h2": "Create Analytics-Ready Tracking Links for {platform_title}",
@@ -335,7 +335,7 @@
         ]
       },
       "template": {
-        "meta_title": "WhatsApp Link Generator for {country_title} - Click-to-Chat",
+        "meta_title": "Free WhatsApp Link Generator for {country_title} | No Sign-Up",
         "meta_description": "Create instant WhatsApp click-to-chat links with custom pre-filled messages. Designed for users and businesses in {country_title}.",
         "h1": "WhatsApp Link Generator for {country_title}",
         "h2": "Generate Instant Click-to-Chat WhatsApp URLs",
@@ -410,7 +410,7 @@
         ]
       },
       "template": {
-        "meta_title": "JSON Formatter & Validator for {use_case_title} - Free Online",
+        "meta_title": "Free JSON Formatter & Validator for {use_case_title} | Client-Side & Secure",
         "meta_description": "Prettify, minify, validate, and debug JSON objects specifically optimized for {use_case_title}. Instant error syntax highlighting.",
         "h1": "JSON Formatter for {use_case_title}",
         "h2": "Validate & Format JSON Structure Online",
@@ -643,7 +643,7 @@
         ]
       },
       "template": {
-        "meta_title": "{platform_title} Character Counter & Word Count - Urbandigistore",
+        "meta_title": "Free {platform_title} Character Counter & Word Count | Client-Side & Instant",
         "meta_description": "Validate your text length against character limits for {platform_title}. Realtime character, word, and sentence counts with visual safety thresholds.",
         "h1": "{platform_title} Character Counter & Word Count Tool",
         "h2": "Verify Text Character Counts for {platform_title}",
@@ -721,7 +721,7 @@
         ]
       },
       "template": {
-        "meta_title": "{channel_title} CPM Calculator & Ad Cost Tool - Urbandigistore",
+        "meta_title": "Free {channel_title} CPM Calculator | Online Ad Cost Tool",
         "meta_description": "Plan your ad budget with our free {channel_title} CPM calculator. Easily solve for cost, impressions, and cost per mille directly in your browser.",
         "h1": "{channel_title} CPM Calculator & Ad Campaign Tool",
         "h2": "Calculate Ad Campaign Metrics for {channel_title}",
@@ -880,7 +880,7 @@
         ]
       },
       "template": {
-        "meta_title": "Merge PDF Files Online - Free PDF Joiner Tool",
+        "meta_title": "Free PDF Merger Online | Client-Side, No Sign-Up & Secure",
         "meta_description": "Combine multiple PDF documents into a single PDF file instantly. Safe, free, and runs entirely in your browser with zero file uploads.",
         "h1": "Combine PDF Files Online for {use_case_title}",
         "h2": "Merge your {use_case_title} into a Single PDF Document",
@@ -947,7 +947,7 @@
         ]
       },
       "template": {
-        "meta_title": "Split PDF Online - Free PDF Page Extractor",
+        "meta_title": "Free PDF Splitter Online | Client-Side, No Sign-Up & Secure",
         "meta_description": "Split your PDF files into individual pages or extract specific page ranges instantly. Secure, browser-based, and completely free.",
         "h1": "Split PDF Files Online by {use_case_title}",
         "h2": "Extract or Split {use_case_title} from your PDF",
@@ -1021,7 +1021,7 @@
         ]
       },
       "template": {
-        "meta_title": "Free QR Code Generator Online - Custom QR Codes",
+        "meta_title": "Free QR Code Generator Online | Custom, Instant & Client-Side",
         "meta_description": "Create custom QR codes for {type_title} instantly. Change colors, customize sizes, and download as high-quality PNG or SVG images for free.",
         "h1": "Free QR Code Generator for {type_title}",
         "h2": "Generate Custom QR Codes for {type_title}",
@@ -1094,7 +1094,7 @@
         ]
       },
       "template": {
-        "meta_title": "Secure Random Password Generator - Free Online Tool",
+        "meta_title": "Free Random Password Generator | Secure, Local & Client-Side",
         "meta_description": "Generate random, cryptographically secure passwords or memorable passphrases. Completely private execution uses your browser's Web Crypto API.",
         "h1": "Secure Random Password Generator - {security_level_title}",
         "h2": "Generate {security_level_title} Random Passwords Locally",
@@ -1230,7 +1230,7 @@
         ]
       },
       "template": {
-        "meta_title": "Compress {use_case_upper} Online - Free Image Size Optimizer",
+        "meta_title": "Free {use_case_upper} Image Compressor | Online, Local & Instant",
         "meta_description": "Reduce the file size of your {use_case_upper} images without losing visual quality. Safe, local browser compression with real-time before/after size tracking.",
         "h1": "Compress {use_case_upper} Images Online Free",
         "h2": "Reduce {use_case_upper} File Size Instantly",
@@ -1296,7 +1296,7 @@
         ]
       },
       "template": {
-        "meta_title": "Online Diff Checker - Compare {use_case_title} side-by-side",
+        "meta_title": "Free Online Diff Checker | Compare {use_case_title} Side-by-Side",
         "meta_description": "Compare two blocks of {use_case_title} side-by-side. Highlight text differences, additions, and deletions instantly in your browser sandbox.",
         "h1": "Compare {use_case_title} Online with Diff Checker",
         "h2": "Find Differences between two {use_case_title} Blocks",
@@ -1704,6 +1704,80 @@
     "crop-image-for-instagram-post": {
       "meta_title": "Crop Image for Instagram Post (1080x1080) - Square Crop Tool",
       "meta_description": "Crop your images to the exact 1:1 square ratio (1080x1080px) for Instagram feeds. High-fidelity canvas rendering preserves photo quality."
+    },
+    "whatsapp-link-generator-for-india": {
+      "meta_title": "WhatsApp Link Generator India - Create FREE Wa.me Chat Links",
+      "meta_description": "Generate custom WhatsApp click-to-chat links with the +91 country prefix for Indian businesses. Create QR codes and pre-filled messages instantly with no signup.",
+      "h1": "WhatsApp Link Generator for India",
+      "h2": "Create Direct WhatsApp Chat Links for Indian Phone Numbers (+91)",
+      "description": "Need a quick way for Indian customers to reach your business on WhatsApp? Our free tool formats your 10-digit mobile number with the +91 country code, letting anyone start a chat without saving your contact. Perfect for local storefronts, e-commerce, and support.",
+      "steps": [
+        "Select the India +91 prefix and enter your 10-digit mobile number.",
+        "Write a localized custom message (e.g., 'Hi, I want to inquire about your product/service').",
+        "Click 'Generate Link' to instantly copy your custom wa.me URL or create a high-quality QR code."
+      ],
+      "faqs": [
+        {
+          "q": "Does the link support +91 numbers with leading zeros?",
+          "a": "No. When entering your Indian phone number, make sure to omit any leading '0' or '+91' in the input box. Simply enter the 10-digit number (e.g. 9876543210) and select the +91 dial code."
+        },
+        {
+          "q": "Can I use this for WhatsApp Business accounts in India?",
+          "a": "Yes. This tool works flawlessly for both personal WhatsApp numbers and official WhatsApp Business accounts registered under Indian telecommunications networks."
+        },
+        {
+          "q": "How can I share this generated link with my Indian clients?",
+          "a": "You can paste the generated wa.me link directly into your Instagram Bio, Facebook page, email signature, or link it to a button on your website."
+        }
+      ]
+    },
+    "whatsapp-link-generator-for-usa": {
+      "meta_title": "WhatsApp Link Generator USA - Create Free Click-to-Chat Links",
+      "meta_description": "Generate custom WhatsApp wa.me links with the +1 country prefix for USA businesses. Generate free QR codes and pre-filled messages. Safe & client-side.",
+      "h1": "WhatsApp Link Generator for the USA",
+      "h2": "Create WhatsApp Click-to-Chat Links for US Numbers (+1)",
+      "description": "Easily generate short wa.me chat links for your US-based clients and customers. Automatically prefixes your 10-digit area-code number with the +1 country code, enabling instant messaging from websites, emails, or social media pages.",
+      "steps": [
+        "Set the prefix to USA/Canada (+1) and type in your 10-digit phone number.",
+        "Optionally add a custom text message for your clients (e.g., 'Hello, please send me more details').",
+        "Generate your direct link and copy the link or generate a downloadable QR code."
+      ],
+      "faqs": [
+        {
+          "q": "Does this support US landline numbers?",
+          "a": "It only works if the landline number has been registered and activated on the WhatsApp or WhatsApp Business application."
+        },
+        {
+          "q": "Is this WhatsApp generator free for commercial use in the US?",
+          "a": "Yes. It runs entirely client-side in your browser, meaning it is 100% free, private, and secure for freelancers and businesses alike."
+        },
+        {
+          "q": "Can I use this for toll-free US numbers?",
+          "a": "Yes, as long as the toll-free number (+1 800, 888, etc.) is registered with WhatsApp Business."
+        }
+      ]
+    },
+    "whatsapp-link-generator-for-uk": {
+      "meta_title": "WhatsApp Link Generator UK - Free Click-to-Chat Link Builder",
+      "meta_description": "Generate free WhatsApp wa.me chat links with the +44 UK dial code. Add pre-filled messages and custom QR codes for your UK business. No registration.",
+      "h1": "WhatsApp Link Generator for the United Kingdom",
+      "h2": "Generate WhatsApp wa.me Chat Links for UK Numbers (+44)",
+      "description": "Quickly create direct click-to-chat links for UK mobile numbers (+44). Omit leading zeros automatically and format links that open directly in WhatsApp on mobile or desktop, bypassing contact-saving.",
+      "steps": [
+        "Select the UK +44 dial code and input your UK mobile number (excluding the leading 0).",
+        "Compose a pre-filled message tailored for your UK audience or clients.",
+        "Click the generate button to copy your link or render a custom QR code for print or web."
+      ],
+      "faqs": [
+        {
+          "q": "Should I include the leading zero of my UK number?",
+          "a": "No. UK mobile numbers usually start with 07, but for WhatsApp links, the leading zero must be removed. Our tool automatically cleans the input, formatting it as 447XXXXXXXXX."
+        },
+        {
+          "q": "Will this link work for UK users on WhatsApp Web?",
+          "a": "Yes. The generated wa.me links automatically redirect to WhatsApp Web on desktops or the native WhatsApp app on iOS and Android devices."
+        }
+      ]
     }
   }
 }

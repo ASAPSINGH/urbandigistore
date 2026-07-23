@@ -71,8 +71,18 @@ document.addEventListener('DOMContentLoaded', () => {
     processJSON('format');
     
     // Event Listeners
-    btnFormat.addEventListener('click', () => processJSON('format'));
-    btnMinify.addEventListener('click', () => processJSON('minify'));
+    btnFormat.addEventListener('click', () => {
+        processJSON('format');
+        if (typeof gtag === 'function') {
+            gtag('event', 'use_tool', { 'tool_name': 'json-formatter', 'action': 'click_format' });
+        }
+    });
+    btnMinify.addEventListener('click', () => {
+        processJSON('minify');
+        if (typeof gtag === 'function') {
+            gtag('event', 'use_tool', { 'tool_name': 'json-formatter', 'action': 'click_minify' });
+        }
+    });
     
     if (selectEl) {
         selectEl.addEventListener('change', (e) => {
@@ -98,6 +108,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (mockStatusMessage) mockStatusMessage.classList.add('hidden');
                 
                 processJSON('format');
+                
+                if (typeof gtag === 'function') {
+                    gtag('event', 'use_tool', { 'tool_name': 'json-formatter', 'action': 'select_use_case', 'use_case': newUseCase });
+                }
             }
         });
     }
@@ -108,6 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
         errorPanel.classList.add('hidden');
         if (mockOutputContainer) mockOutputContainer.classList.add('hidden');
         if (mockStatusMessage) mockStatusMessage.classList.add('hidden');
+        if (typeof gtag === 'function') {
+            gtag('event', 'use_tool', { 'tool_name': 'json-formatter', 'action': 'clear_text' });
+        }
     });
     
     btnCopy.addEventListener('click', () => {
@@ -120,6 +137,10 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 btnCopy.textContent = orig;
             }, 2000);
+            
+            if (typeof gtag === 'function') {
+                gtag('event', 'use_tool', { 'tool_name': 'json-formatter', 'action': 'copy_formatted', 'char_count': out.length });
+            }
         });
     });
     
@@ -127,6 +148,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnMock) {
         btnMock.addEventListener('click', () => {
             const rawInput = txtInput.value.trim();
+            if (typeof gtag === 'function') {
+                gtag('event', 'use_tool', { 'tool_name': 'json-formatter', 'action': 'click_generate_mock' });
+            }
             if (!rawInput) {
                 alert('Please enter a valid JSON payload first.');
                 return;
@@ -155,6 +179,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     mockUrlOutput.value = data.mock_url;
                     mockStatusMessage.textContent = "🟢 Mock API Endpoint successfully generated! It is now live.";
                     mockStatusMessage.classList.remove('hidden');
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'use_tool', { 'tool_name': 'json-formatter', 'action': 'generate_mock_success' });
+                    }
                 } else {
                     alert('Error creating Mock: ' + data.message);
                 }
@@ -176,6 +203,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     btnCopyMockUrl.textContent = orig;
                 }, 2000);
+                if (typeof gtag === 'function') {
+                    gtag('event', 'use_tool', { 'tool_name': 'json-formatter', 'action': 'copy_mock_url' });
+                }
             });
         });
     }
@@ -185,13 +215,35 @@ document.addEventListener('DOMContentLoaded', () => {
             const url = mockUrlOutput.value;
             if (url) {
                 window.open(url, '_blank');
+                if (typeof gtag === 'function') {
+                    gtag('event', 'use_tool', { 'tool_name': 'json-formatter', 'action': 'test_mock_url' });
+                }
             }
         });
     }
 
-    // Auto-run trigger on keyup/change (silent processing)
-    txtInput.addEventListener('input', () => processJSON('format', true));
-    selIndent.addEventListener('change', () => processJSON('format', true));
+    // Auto-run trigger on keyup/change (silent processing with 150ms debounce)
+    let formatTimeout;
+    let hasTrackedInput = false;
+
+    txtInput.addEventListener('input', () => {
+        clearTimeout(formatTimeout);
+        formatTimeout = setTimeout(() => processJSON('format', true), 150);
+
+        if (!hasTrackedInput && txtInput.value.trim().length > 0) {
+            hasTrackedInput = true;
+            if (typeof gtag === 'function') {
+                gtag('event', 'use_tool', { 'tool_name': 'json-formatter', 'action': 'input_text' });
+            }
+        }
+    });
+
+    selIndent.addEventListener('change', () => {
+        processJSON('format', true);
+        if (typeof gtag === 'function') {
+            gtag('event', 'use_tool', { 'tool_name': 'json-formatter', 'action': 'select_indent', 'indent': selIndent.value });
+        }
+    });
     
     function processJSON(mode, silent = false) {
         const inputStr = txtInput.value.trim();

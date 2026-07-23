@@ -334,12 +334,12 @@
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "{{ h1 }}",
+      "name": "{{ h1|replace('"', '\\"') }}",
       "url": "{{ request.url }}",
-      "applicationCategory": "BusinessApplication",
+      "applicationCategory": "{% if category == 'media' %}MultimediaApplication{% elif category == 'marketing' %}BusinessApplication{% elif category == 'dev' %}DeveloperApplication{% else %}UtilityApplication{% endif %}",
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript. HTML5 Canvas.",
-      "description": "{{ meta_description }}",
+      "description": "{{ meta_description|replace('"', '\\"') }}",
       "offers": {
         "@type": "Offer",
         "price": "0.00",

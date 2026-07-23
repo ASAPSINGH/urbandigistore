@@ -78,6 +78,16 @@ document.addEventListener('DOMContentLoaded', () => {
     [selectPrefix, inputPhone, txtMessage].forEach(el => {
         el.addEventListener('input', generateWALink);
     });
+
+    let hasTrackedInput = false;
+    inputPhone.addEventListener('input', () => {
+        if (!hasTrackedInput && inputPhone.value.trim().length > 0) {
+            hasTrackedInput = true;
+            if (typeof gtag === 'function') {
+                gtag('event', 'use_tool', { 'tool_name': 'whatsapp-generator', 'action': 'input_phone' });
+            }
+        }
+    });
     
     function generateWALink() {
         const prefix = selectPrefix.value;
@@ -123,6 +133,10 @@ document.addEventListener('DOMContentLoaded', () => {
         qrImage.src = qrApi;
         qrDownload.href = qrApi;
         qrContainer.classList.remove('hidden');
+        
+        if (typeof gtag === 'function') {
+            gtag('event', 'use_tool', { 'tool_name': 'whatsapp-generator', 'action': 'generate_qr' });
+        }
     });
     
     // Copy Action
@@ -141,6 +155,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 btnCopy.classList.add('bg-cyberaccent');
                 btnCopy.classList.remove('bg-green-600');
             }, 2000);
+            
+            if (typeof gtag === 'function') {
+                gtag('event', 'use_tool', { 'tool_name': 'whatsapp-generator', 'action': 'copy_link' });
+            }
         });
     });
     
@@ -149,6 +167,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = inputResult.value;
         if (target) {
             window.open(target, '_blank');
+            if (typeof gtag === 'function') {
+                gtag('event', 'use_tool', { 'tool_name': 'whatsapp-generator', 'action': 'test_chat' });
+            }
         }
     });
 });

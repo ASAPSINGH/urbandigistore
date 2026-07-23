@@ -84,8 +84,8 @@ TOOL_BLOG_MAPPING = {
     'image-cropper': ['social-media-image-sizes', 'why-image-compression-matters-lossy-lossless'],
     'heic-converter': ['understanding-heic-image-compression-compatibility', 'free-online-image-converters'],
     'image-compressor': ['why-image-compression-matters-lossy-lossless', 'understanding-heic-image-compression-compatibility'],
-    'utm-builder': ['utm-parameter-naming-conventions', 'facebook-ads-utm-tracking-self-referral', 'demystifying-utm-parameters-traffic-tracking', 'how-to-generate-custom-qr-codes', 'utm-builder-for-reddit-ads-traffic-attribution', 'bulk-utm-generator-multiple-campaign-links'],
-    'whatsapp-generator': ['utm-parameter-naming-conventions'],
+    'utm-builder': ['utm-parameter-naming-conventions', 'facebook-ads-utm-tracking-self-referral', 'demystifying-utm-parameters-traffic-tracking', 'how-to-generate-custom-qr-codes', 'utm-builder-for-reddit-ads-traffic-attribution', 'bulk-utm-generator-multiple-campaign-links', 'in-content-cta-injection-internal-linking-conversions'],
+    'whatsapp-generator': ['utm-parameter-naming-conventions', 'whatsapp-link-generator-india-direct-chat-links', 'whatsapp-link-generator-usa-click-to-chat-links', 'whatsapp-link-generator-uk-wame-chat-links'],
     'qr-generator': ['how-to-generate-custom-qr-codes', 'demystifying-qr-code-masking-scanning-speed', 'demystifying-qr-code-versions-grid-dimensions', 'demystifying-qr-code-color-contrast-scannability', 'demystifying-qr-code-quiet-zones-scan-reliability', 'demystifying-qr-code-error-correction-levels', 'demystifying-qr-code-mask-penalty-calculation', 'demystifying-qr-code-version-scaling-grid-dimensions', 'demystifying-qr-code-color-contrast-scannability-rules', 'demystifying-qr-code-quiet-zones-scan-boundaries', 'demystifying-qr-code-quiet-zones-scanning-speed', 'demystifying-qr-code-quiet-zones-contrast-scanning', 'why-is-my-qr-code-blurry-resolution-fixes', 'why-is-my-qr-code-not-working-scan-failures'],
     'password-generator': ['cryptographically-secure-passwords-entropy-math', 'password-length-entropy-exponent-comparison', 'why-password-managers-are-critical-security', 'why-password-hashing-requires-salt-rainbow-tables', 'why-master-password-kdf-iterations-matter', 'why-browser-passwords-are-vulnerable-standalone-vaults', 'why-password-salts-must-be-cryptographically-random', 'why-password-hashing-requires-salt-dict-attacks', 'why-password-hashing-requires-salt-rainbow-lookups', 'why-browser-passwords-are-vulnerable-security-vaults', 'why-password-managers-are-critical-zero-knowledge', 'why-password-hashing-requires-salt-dictionary-defenses'],
     'merge-pdf': ['how-to-merge-pdf-documents-locally', 'understanding-pdf-document-margins', 'understanding-pdf-font-embedding-subsetting', 'understanding-pdf-metadata-xmp-catalog', 'understanding-pdf-linearization-fast-web-view', 'understanding-pdf-structural-security-passwords', 'understanding-pdf-font-embedding-subsetting-standards', 'understanding-pdf-structural-security-passwords-access', 'understanding-pdf-document-margins-layout-guidelines', 'understanding-pdf-metadata-xmp-catalog-standards'],
@@ -95,7 +95,7 @@ TOOL_BLOG_MAPPING = {
     'character-counter': ['seo-character-counter-guide', 'social-media-character-limits-truncation'],
     'cpm-calculator': ['digital-ad-budget-cpm', 'how-to-calculate-cpm-ad-costs'],
     'base64-converter': ['data-formats-json-base64', 'base64-file-conversion-guide', 'client-side-base64-image-decoding', 'developer-guide-cors-cross-origin', 'understanding-jwt-structure-claims', 'web-cryptography-api-secure-hashes', 'web-workers-heavy-computations', 'understanding-csp-content-security-policy', 'indexeddb-api-large-datasets-browser', 'understanding-websockets-real-time-communication', 'localstorage-sessionstorage-cookies-comparison', 'web-storage-vs-indexeddb', 'how-to-compare-text-online-diff-algorithms', 'demystifying-unix-epoch-time-32bit-overflow'],
-    'json-formatter': ['data-formats-json-base64', 'base64-file-conversion-guide', 'developer-guide-cors-cross-origin', 'understanding-jwt-structure-claims', 'web-cryptography-api-secure-hashes', 'web-workers-heavy-computations', 'understanding-csp-content-security-policy', 'indexeddb-api-large-datasets-browser', 'understanding-websockets-real-time-communication', 'localstorage-sessionstorage-cookies-comparison', 'web-storage-vs-indexeddb', 'how-to-compare-text-online-diff-algorithms', 'demystifying-unix-epoch-time-32bit-overflow'],
+    'json-formatter': ['data-formats-json-base64', 'base64-file-conversion-guide', 'developer-guide-cors-cross-origin', 'understanding-jwt-structure-claims', 'web-cryptography-api-secure-hashes', 'web-workers-heavy-computations', 'understanding-csp-content-security-policy', 'indexeddb-api-large-datasets-browser', 'understanding-websockets-real-time-communication', 'localstorage-sessionstorage-cookies-comparison', 'web-storage-vs-indexeddb', 'how-to-compare-text-online-diff-algorithms', 'demystifying-unix-epoch-time-32bit-overflow', 'structured-data-web-apps-json-ld-schemas'],
     'diff-checker': ['how-to-compare-text-online-diff-algorithms', 'data-formats-json-base64'],
     'timestamp-converter': ['demystifying-unix-epoch-time-32bit-overflow', 'data-formats-json-base64'],
     'mp4-to-mp3': ['free-online-image-converters', 'mp4-to-mp3-audio-extraction-demuxing-bitrates'],
@@ -142,6 +142,16 @@ def get_seo_context(tool_key, slug=None, **kwargs):
             meta_title = override['meta_title']
         if 'meta_description' in override:
             meta_description = override['meta_description']
+        if 'h1' in override:
+            h1 = override['h1']
+        if 'h2' in override:
+            h2 = override['h2']
+        if 'description' in override:
+            description = override['description']
+        if 'steps' in override:
+            steps = override['steps']
+        if 'faqs' in override:
+            faqs = override['faqs']
             
     # Generate related links dynamically (Variation-to-Variation Spoke Linking)
     related_links = []
@@ -365,6 +375,7 @@ def get_seo_context(tool_key, slug=None, **kwargs):
         'steps': steps,
         'faqs': faqs,
         'params': kwargs,
+        'category': category,
         'aeo_definition': tool_conf.get('aeo_definition', ''),
         'geo_reference': tool_conf.get('geo_reference', ''),
         'technical_comparison': tool_conf.get('technical_comparison', {}),
@@ -868,6 +879,39 @@ def blog_index():
     posts = get_blog_posts()
     return render_template('blog/index.html', posts=posts)
 
+def inject_cta_into_html(html_content, related_tools):
+    if not related_tools:
+        return html_content
+    
+    # Render premium styled CTA box (Tailwind classes matching site dark/light aesthetics)
+    cta_html = (
+        '<div class="my-8 p-6 rounded-2xl bg-gradient-to-br from-cyberneon/10 to-cyberaccent/5 '
+        'border border-cyberneon/20 shadow-lg relative overflow-hidden not-prose">'
+        '<div class="absolute -right-16 -top-16 w-32 h-32 bg-cyberneon/10 rounded-full blur-2xl pointer-events-none"></div>'
+        '<div class="flex flex-col md:flex-row items-center justify-between gap-4 relative z-10">'
+        '<div class="text-left">'
+        '<h4 class="text-sm font-bold text-white mb-1">⚡ Quick Action: Use the Online Tool</h4>'
+        '<p class="text-xs text-gray-300 font-light leading-relaxed">This guide pairs with our free, 100% secure client-side utility tool. Process your files or text instantly in-browser.</p>'
+        '</div>'
+        '<div class="flex flex-wrap gap-2 shrink-0">'
+    )
+    for tool in related_tools:
+        cta_html += (
+            f'<a href="{tool["url"]}" class="px-4 py-2.5 rounded-xl text-xs font-semibold text-white '
+            f'bg-gradient-to-r from-cyberneon to-cyberaccent hover:brightness-110 active:scale-[0.98] transition-all shadow-md">'
+            f'Open {tool["name"]}</a>'
+        )
+    cta_html += '</div></div></div>'
+    
+    # Split paragraphs by closing tag and insert CTA in the middle
+    paragraphs = html_content.split('</p>')
+    if len(paragraphs) > 4:
+        midpoint = len(paragraphs) // 2
+        paragraphs.insert(midpoint, cta_html)
+        return '</p>'.join(paragraphs)
+    else:
+        return html_content + cta_html
+
 @app.route('/blog/<slug>')
 def blog_post(slug):
     posts = get_blog_posts()
@@ -885,7 +929,11 @@ def blog_post(slug):
                 'url': CONSOLIDATED_PATHS.get(tool_key, '#')
             })
             
-    return render_template('blog/post.html', post=post, related_tools=related_tools)
+    # Copy post to avoid mutating cache and inject in-text CTA
+    post_copy = dict(post)
+    post_copy['content'] = inject_cta_into_html(post['content'], related_tools)
+            
+    return render_template('blog/post.html', post=post_copy, related_tools=related_tools)
 
 @app.route('/robots.txt')
 def robots():
