@@ -36,7 +36,11 @@ class TestWebUtilities(unittest.TestCase):
             ('/convert-heic-to-jpg', '/heic-to-jpg?output_format=jpg'),
             ('/compress-image-for-jpeg', '/image-compressor?use_case=jpeg'),
             ('/compare-text-online', '/diff-checker?use_case=text'),
-            ('/convert-unix-timestamp', '/epoch-converter?use_case=unix')
+            ('/convert-unix-timestamp', '/epoch-converter?use_case=unix'),
+            ('/convert-mp4-to-mp3', '/mp4-to-mp3?output_format=mp3'),
+            ('/convert-wav-to-mp3', '/audio-converter?input_format=wav'),
+            ('/convert-pdf-to-jpg', '/pdf-to-image?output_format=jpg'),
+            ('/convert-jpg-to-pdf', '/image-to-pdf?input_format=jpg')
         ]
         for route, expected_redirect in routes:
             response = self.app.get(route)
@@ -63,7 +67,11 @@ class TestWebUtilities(unittest.TestCase):
             '/heic-to-jpg',
             '/image-compressor',
             '/diff-checker',
-            '/epoch-converter'
+            '/epoch-converter',
+            '/mp4-to-mp3',
+            '/audio-converter',
+            '/pdf-to-image',
+            '/image-to-pdf'
         ]
         for route in routes:
             response = self.app.get(route)
@@ -90,7 +98,11 @@ class TestWebUtilities(unittest.TestCase):
             '/convert-heic-to-invalid',
             '/compress-image-for-invalid',
             '/compare-invalid-online',
-            '/convert-invalid-timestamp'
+            '/convert-invalid-timestamp',
+            '/convert-mp4-to-invalid',
+            '/convert-invalid-to-mp3',
+            '/convert-pdf-to-invalid',
+            '/convert-invalid-to-pdf'
         ]
         for route in invalid_routes:
             response = self.app.get(route)

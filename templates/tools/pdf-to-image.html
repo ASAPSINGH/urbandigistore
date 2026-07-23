@@ -1,0 +1,89 @@
+<!-- PDF to Image Renderer Panel -->
+<div class="space-y-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/5 pb-4 mb-6">
+        <div>
+            <h3 class="text-lg font-outfit font-bold text-white">PDF to Image Converter</h3>
+            <p class="text-xs text-gray-400">Convert document pages from a PDF file into separate JPEG or PNG images locally.</p>
+        </div>
+        <div class="mt-2 sm:mt-0 flex items-center space-x-2">
+            <span class="text-xs text-gray-400">Output Format:</span>
+            <span class="text-xs text-cyberneon font-semibold uppercase" id="pdf-to-image-output-label">JPG</span>
+        </div>
+    </div>
+
+    <!-- Drag & Drop Zone -->
+    <div id="p2i-drop-zone" class="border-2 border-dashed border-white/10 hover:border-cyberneon/40 rounded-xl p-8 text-center transition-all bg-black/25 cursor-pointer relative group">
+        <input type="file" id="p2i-file-input" class="hidden" accept="application/pdf" />
+        <div class="space-y-4">
+            <div class="w-12 h-12 mx-auto bg-white/5 rounded-full flex items-center justify-center text-gray-400 group-hover:text-cyberneon group-hover:bg-cyberneon/10 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            </div>
+            <div>
+                <p class="text-sm text-gray-200 font-medium">Select or drag & drop a PDF document</p>
+                <p class="text-xs text-gray-400 mt-1">Processed locally in browser memory (zero server uploads)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Workbench (Hidden initially) -->
+    <div id="p2i-workbench" class="hidden space-y-6">
+        <!-- Settings dashboard -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-black/10 p-4 rounded-xl border border-white/5 items-end">
+            <div>
+                <label for="p2i-format" class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Image Format</label>
+                <select id="p2i-format" class="w-full px-3 py-2 rounded-lg glass-input text-xs bg-darkbg">
+                    <option value="jpg" selected>JPEG (.jpg)</option>
+                    <option value="png">PNG (.png)</option>
+                </select>
+            </div>
+            <div>
+                <label for="p2i-dpi" class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Render Quality</label>
+                <select id="p2i-dpi" class="w-full px-3 py-2 rounded-lg glass-input text-xs bg-darkbg">
+                    <option value="1">1.0x (Standard - Fast)</option>
+                    <option value="1.5">1.5x (Medium)</option>
+                    <option value="2" selected>2.0x (High DPI - Recommended)</option>
+                </select>
+            </div>
+            <div class="flex gap-2">
+                <button id="btn-remove-pdf" class="flex-1 border border-white/10 hover:bg-red-500/10 hover:border-red-500/20 py-2 rounded-lg text-xs font-semibold text-gray-400 hover:text-red-400 transition-all">
+                    Remove PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- Render Queue Progress -->
+        <div id="p2i-progress-block" class="hidden space-y-2">
+            <div class="flex justify-between text-xs font-semibold">
+                <span id="p2i-progress-status" class="text-gray-400 animate-pulse">Rendering document pages...</span>
+                <span id="p2i-progress-val" class="text-cyberneon font-mono">0%</span>
+            </div>
+            <div class="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
+                <div id="p2i-progress-bar" class="bg-cyberneon h-full transition-all duration-150" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Rendering Grid View -->
+        <div class="space-y-3">
+            <div class="flex justify-between items-center">
+                <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Document Pages (<span id="p2i-page-count">0</span> pages)</h4>
+                <div class="flex gap-3 text-[10px]">
+                    <button id="btn-select-all-pages" class="text-gray-400 hover:text-cyberneon transition">Select All</button>
+                    <button id="btn-deselect-all-pages" class="text-gray-400 hover:text-cyberneon transition">Deselect All</button>
+                </div>
+            </div>
+            
+            <div id="p2i-pages-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 bg-black/20 p-4 rounded-xl border border-white/5 max-h-[350px] overflow-y-auto">
+                <!-- Dynamically populated page cards -->
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <button id="btn-download-zip" class="btn-neon w-full py-3.5 rounded-xl text-xs font-semibold text-white tracking-wide uppercase disabled:opacity-50 disabled:pointer-events-none" disabled>
+            Download Selected Pages as ZIP
+        </button>
+    </div>
+
+    <!-- Include pdf.js and JSZip via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+</div>

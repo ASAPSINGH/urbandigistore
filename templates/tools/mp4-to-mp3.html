@@ -1,0 +1,80 @@
+<!-- MP4 to MP3 Audio Extractor Panel -->
+<div class="space-y-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/5 pb-4 mb-6">
+        <div>
+            <h3 class="text-lg font-outfit font-bold text-white">MP4 to MP3 Audio Extractor</h3>
+            <p class="text-xs text-gray-400">Extract audio tracks from video files locally and download as MP3 or WAV.</p>
+        </div>
+        <div class="mt-2 sm:mt-0 flex items-center space-x-2">
+            <span class="text-xs text-gray-400">Target Type:</span>
+            <span class="text-xs text-cyberneon font-semibold uppercase" id="ve-output-label">MP3</span>
+        </div>
+    </div>
+
+    <!-- Drag & Drop Zone -->
+    <div id="ve-drop-zone" class="border-2 border-dashed border-white/10 hover:border-cyberneon/40 rounded-xl p-8 text-center transition-all bg-black/25 cursor-pointer relative group">
+        <input type="file" id="ve-file-input" class="hidden" accept="video/mp4,video/quicktime,video/x-m4v,video/webm" />
+        <div class="space-y-4">
+            <div class="w-12 h-12 mx-auto bg-white/5 rounded-full flex items-center justify-center text-gray-400 group-hover:text-cyberneon group-hover:bg-cyberneon/10 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            </div>
+            <div>
+                <p class="text-sm text-gray-200 font-medium">Select or drag & drop video files here</p>
+                <p class="text-xs text-gray-400 mt-1">Supports MP4, MOV, M4V, and WebM containers (zero server uploads)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Workbench (Hidden initially) -->
+    <div id="ve-workbench" class="hidden space-y-6">
+        <!-- File details card -->
+        <div class="bg-black/20 rounded-xl border border-white/5 p-4 flex items-center justify-between">
+            <div class="overflow-hidden mr-4">
+                <p id="ve-file-name" class="font-medium text-white truncate max-w-[280px] sm:max-w-[450px]">video.mp4</p>
+                <p id="ve-file-size" class="text-[10px] text-gray-500 font-mono mt-0.5">0.0 MB</p>
+            </div>
+            <button id="btn-remove-video" class="p-1.5 rounded bg-white/5 hover:bg-red-500/20 hover:text-red-400 transition" title="Remove">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+            </button>
+        </div>
+
+        <!-- Extraction Settings -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-black/10 p-4 rounded-xl border border-white/5">
+            <div>
+                <label for="ve-format-select" class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Output Format</label>
+                <select id="ve-format-select" class="w-full px-3 py-2 rounded-lg glass-input text-xs bg-darkbg">
+                    <option value="mp3" selected>MP3 (Compressed)</option>
+                    <option value="wav">WAV (Lossless PCM)</option>
+                </select>
+            </div>
+            
+            <div id="ve-bitrate-container">
+                <label for="ve-bitrate-select" class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Target Bitrate</label>
+                <select id="ve-bitrate-select" class="w-full px-3 py-2 rounded-lg glass-input text-xs bg-darkbg">
+                    <option value="128">128 kbps (Standard)</option>
+                    <option value="192" selected>192 kbps (High Quality)</option>
+                    <option value="320">320 kbps (Extreme/Slow)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Progress Indicator -->
+        <div id="ve-progress-block" class="hidden space-y-2">
+            <div class="flex justify-between text-xs font-semibold">
+                <span id="ve-progress-status" class="text-gray-400 animate-pulse">Extracting audio track...</span>
+                <span id="ve-progress-val" class="text-cyberneon font-mono">0%</span>
+            </div>
+            <div class="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
+                <div id="ve-progress-bar" class="bg-cyberneon h-full transition-all duration-150" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Action Extract Button -->
+        <button id="btn-extract-audio" class="btn-neon w-full py-3.5 rounded-xl text-xs font-semibold text-white tracking-wide uppercase">
+            Extract Audio
+        </button>
+    </div>
+
+    <!-- Include LAME MP3 Encoder via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js" defer></script>
+</div>

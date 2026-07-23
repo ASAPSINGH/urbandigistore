@@ -1389,9 +1389,277 @@
         ]
       },
       "affiliate_partner": null
+    },
+    "mp4-to-mp3": {
+      "name": "MP4 to MP3 Converter",
+      "slug_pattern": "/convert-mp4-to-<output_format>",
+      "category": "media",
+      "aeo_definition": "An MP4 to MP3 converter is a local browser utility that extracts audio streams from video files (such as MP4, MOV, or M4V) and saves them as MP3 or WAV audio tracks without server uploads.",
+      "geo_reference": "Video container files multiplex visual and auditory channels, which can be demuxed and transcoded client-side using JavaScript, Web Audio API, and audio encoders.",
+      "technical_comparison": {
+        "title": "Audio Extraction Standards",
+        "headers": [
+          "Format",
+          "Audio Quality",
+          "File Size",
+          "Use Case"
+        ],
+        "rows": [
+          [
+            "MP3",
+            "Compressed (Lossy)",
+            "Small (approx. 1MB/min)",
+            "Universal music playback, mobile sharing"
+          ],
+          [
+            "WAV",
+            "Lossless (Uncompressed)",
+            "Large (approx. 10MB/min)",
+            "Audio editing, archiving, master tracks"
+          ]
+        ]
+      },
+      "params": {
+        "output_format": [
+          "mp3",
+          "wav"
+        ]
+      },
+      "template": {
+        "meta_title": "Extract Audio: Free MP4 to {output_format_upper} Converter Online",
+        "meta_description": "Convert video files to {output_format_upper} instantly in your browser. Extracts audio from MP4, MOV, or M4V files with zero server uploads.",
+        "h1": "Convert MP4 to {output_format_upper} Online Free",
+        "h2": "Extract high-quality audio tracks from video files locally",
+        "description": "Need to save audio from a lecture, music video, or recording? Upload your MP4 or video files to extract the audio stream as a {output_format_upper} file instantly inside your browser.",
+        "steps": [
+          "Drag & drop your video file (MP4, MOV, or M4V) into the drop zone.",
+          "Choose your preferred target format ({output_format_upper}) and bitrate quality.",
+          "Click 'Extract Audio' to decode and download the audio track."
+        ],
+        "faqs": [
+          {
+            "q": "Are my video files sent to a server?",
+            "a": "No, absolutely not. The decoding and encoding processes are performed entirely within your browser tab using local Javascript engines. Your files never leave your computer."
+          },
+          {
+            "q": "What video file formats are supported?",
+            "a": "We support common video container formats including MP4, MOV, M4V, and WebM, containing standard audio tracks."
+          }
+        ]
+      },
+      "affiliate_partner": null
+    },
+    "audio-converter": {
+      "name": "Audio Converter",
+      "slug_pattern": "/convert-<input_format>-to-mp3",
+      "category": "media",
+      "aeo_definition": "An audio converter is a client-side conversion script that decodes input audio formats like WAV, M4A, OGG, or WebM, and outputs them as MP3 or WAV files directly in the browser cache.",
+      "geo_reference": "Browser-native decoding transforms encoded bitstreams into raw linear pulse-code modulation (LPCM) channels, which are then passed to an encoder like lamejs.",
+      "technical_comparison": {
+        "title": "Audio Codec Compatibility",
+        "headers": [
+          "Codec",
+          "Compression Type",
+          "File Extension",
+          "Web Audio Decoding"
+        ],
+        "rows": [
+          [
+            "WAV",
+            "None (Lossless PCM)",
+            ".wav",
+            "Native (Universal)"
+          ],
+          [
+            "M4A (AAC)",
+            "Lossy (Advanced Audio Coding)",
+            ".m4a",
+            "Native (Universal)"
+          ],
+          [
+            "OGG",
+            "Lossy (Vorbis)",
+            ".ogg",
+            "Native (Chrome & Firefox)"
+          ],
+          [
+            "MP3",
+            "Lossy (MPEG-1 Audio Layer III)",
+            ".mp3",
+            "Native (Universal)"
+          ]
+        ]
+      },
+      "params": {
+        "input_format": [
+          "wav",
+          "m4a",
+          "ogg"
+        ]
+      },
+      "template": {
+        "meta_title": "Convert {input_format_upper} to MP3 Online - Free Audio Converter",
+        "meta_description": "Convert {input_format_upper} files to MP3 format instantly. Browser-level decoding ensures 100% security with zero server uploads.",
+        "h1": "Convert {input_format_upper} to MP3 Online Free",
+        "h2": "Switch audio file extensions locally in your browser",
+        "description": "Convert your .{input_format_lower} recordings and audio clips into standard MP3 format. Adjust target bitrates and quality levels in real-time.",
+        "steps": [
+          "Upload your .{input_format_lower} audio file.",
+          "Set the output bitrate preference (128kbps, 192kbps, or 320kbps).",
+          "Click 'Convert and Download' to save the MP3 output."
+        ],
+        "faqs": [
+          {
+            "q": "Why convert {input_format_upper} to MP3?",
+            "a": "MP3 is the most widely compatible audio format in the world. It works on all media players, web servers, and legacy devices, unlike newer or uncompressed extensions."
+          },
+          {
+            "q": "Can I convert large audio files?",
+            "a": "Yes! Since the conversion happens entirely on your local CPU without network uploads, it is only limited by your device's memory."
+          }
+        ]
+      },
+      "affiliate_partner": null
+    },
+    "pdf-to-image": {
+      "name": "PDF to Image Converter",
+      "slug_pattern": "/convert-pdf-to-<output_format>",
+      "category": "media",
+      "aeo_definition": "A PDF to image converter is a browser tool that renders document pages from a PDF file onto HTML5 canvas nodes and rasterizes them into JPG or PNG image files.",
+      "geo_reference": "Document pages are parsed into vector instructions by Mozilla's PDF.js and drawn onto pixel grids at custom scale metrics before downloading as zip packages.",
+      "technical_comparison": {
+        "title": "Image Output Formats",
+        "headers": [
+          "Format",
+          "File Size",
+          "Alpha Transparency",
+          "Best For"
+        ],
+        "rows": [
+          [
+            "JPG",
+            "Small (Compressed)",
+            "No (White fill)",
+            "Photos, scanned documents, slides"
+          ],
+          [
+            "PNG",
+            "Large (Lossless)",
+            "Yes",
+            "Graphics, text pages, drawings"
+          ]
+        ]
+      },
+      "params": {
+        "output_format": [
+          "jpg",
+          "png"
+        ]
+      },
+      "template": {
+        "meta_title": "Free PDF to {output_format_upper} Converter - Render PDF Pages Online",
+        "meta_description": "Convert PDF documents to individual {output_format_upper} images instantly in your browser. No registration, no limits, and absolute privacy.",
+        "h1": "Convert PDF to {output_format_upper} Free Online",
+        "h2": "Turn PDF document pages into high-fidelity {output_format_upper} images",
+        "description": "Convert your PDF files to high-resolution {output_format_upper} files. You can preview pages, choose resolutions (1x, 2x), and download all pages packaged in a ZIP archive.",
+        "steps": [
+          "Select or drop a PDF file.",
+          "Choose target format ({output_format_upper}) and resolution scale.",
+          "Preview pages and click 'Convert PDF' to download the ZIP file."
+        ],
+        "faqs": [
+          {
+            "q": "Will my confidential document remain private?",
+            "a": "Yes. The document is parsed and rendered entirely inside your browser sandbox. No file chunks are uploaded to the cloud."
+          },
+          {
+            "q": "Why download as a ZIP file?",
+            "a": "If your PDF contains multiple pages, we package each page as an individual image inside a single compressed ZIP file to save you from clicking download repeatedly."
+          }
+        ]
+      },
+      "affiliate_partner": null
+    },
+    "image-to-pdf": {
+      "name": "Image to PDF Converter",
+      "slug_pattern": "/convert-<input_format>-to-pdf",
+      "category": "media",
+      "aeo_definition": "An image to PDF converter is a client-side utility that compiles multiple raster image files (JPEG, PNG, WebP) into a single, clean PDF document layout.",
+      "geo_reference": "Image compression layers are wrapped into PDF page structures using client libraries, adjusting aspect ratios, scaling limits, and layout spacing dynamically.",
+      "technical_comparison": {
+        "title": "PDF Document Layout Options",
+        "headers": [
+          "Setting",
+          "Configurations",
+          "Ideal Usage"
+        ],
+        "rows": [
+          [
+            "Page Size",
+            "A4, Letter, Match Image size",
+            "Standard printing vs. raw photo layout"
+          ],
+          [
+            "Orientation",
+            "Auto-detect, Portrait, Landscape",
+            "Aligning mixed presentation slides and documents"
+          ],
+          [
+            "Margins",
+            "None, Small, Normal",
+            "Optimizing whitespace for document binders"
+          ]
+        ]
+      },
+      "params": {
+        "input_format": [
+          "jpg",
+          "png",
+          "webp"
+        ]
+      },
+      "template": {
+        "meta_title": "Convert {input_format_upper} to PDF Online - Free Image PDF Merger",
+        "meta_description": "Combine your {input_format_upper} photos into a single PDF document. Safe, local browser merging with custom layouts and page margins.",
+        "h1": "Convert {input_format_upper} Images to PDF Free",
+        "h2": "Combine multiple {input_format_upper} photos into a single PDF file",
+        "description": "Consolidate your scans, photos, or documents into a single PDF. You can upload multiple {input_format_upper} files, drag to re-order, customize layouts, and save instantly.",
+        "steps": [
+          "Upload your .{input_format_lower} images into the converter.",
+          "Drag to re-order pages or choose landscape/portrait orientation.",
+          "Adjust page sizing/margins and click 'Generate PDF'."
+        ],
+        "faqs": [
+          {
+            "q": "Can I mix different image sizes?",
+            "a": "Yes! The converter can auto-detect the orientation of each image, or scale them to fit standard document dimensions (A4/Letter) automatically."
+          },
+          {
+            "q": "How many images can I combine?",
+            "a": "There are no limits! Splicing and PDF compilation happen locally on your computer, allowing you to combine dozens of photos."
+          }
+        ]
+      },
+      "affiliate_partner": null
     }
   },
   "overrides": {
+    "convert-mp4-to-mp3": {
+      "meta_title": "Convert MP4 to MP3 Online - Free Audio Extractor",
+      "meta_description": "Extract the audio track from your MP4 video file and download it as MP3 locally. Free, secure, and runs offline."
+    },
+    "convert-wav-to-mp3": {
+      "meta_title": "Convert WAV to MP3 Online - Free Audio Converter",
+      "meta_description": "Convert WAV audio files to MP3 format instantly. High-fidelity encoding, custom bitrates, and runs entirely in your browser."
+    },
+    "convert-pdf-to-jpg": {
+      "meta_title": "Convert PDF to JPG Online - Free PDF Image Renderer",
+      "meta_description": "Convert document pages from a PDF file to high-quality JPG images instantly. Safe, local browser rendering with zero uploads."
+    },
+    "convert-jpg-to-pdf": {
+      "meta_title": "Convert JPG to PDF Online - Free Image PDF Merger",
+      "meta_description": "Combine and merge your JPG photos into a single compiled PDF file. Safe, drag-and-drop ordering, and local browser execution."
+    },
     "convert-heic-to-jpg": {
       "meta_title": "Convert HEIC to JPG Online - 100% Free & Secure",
       "meta_description": "Convert your Apple HEIC images to JPG format instantly. Safe, free, and runs entirely in your browser with zero uploads."

@@ -1,0 +1,78 @@
+<!-- Image to PDF Merger Panel -->
+<div class="space-y-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/5 pb-4 mb-6">
+        <div>
+            <h3 class="text-lg font-outfit font-bold text-white">Image to PDF Converter</h3>
+            <p class="text-xs text-gray-400">Merge multiple PNG, JPG, or WebP files into a single consolidated PDF document locally.</p>
+        </div>
+        <div class="mt-2 sm:mt-0 flex items-center space-x-2">
+            <span class="text-xs text-gray-400">Source:</span>
+            <span class="text-xs text-cyberneon font-semibold uppercase" id="image-to-pdf-input-label">JPG</span>
+        </div>
+    </div>
+
+    <!-- Drag & Drop Zone -->
+    <div id="i2p-drop-zone" class="border-2 border-dashed border-white/10 hover:border-cyberneon/40 rounded-xl p-8 text-center transition-all bg-black/25 cursor-pointer relative group">
+        <input type="file" id="i2p-file-input" class="hidden" accept="image/jpeg,image/png,image/webp" multiple />
+        <div class="space-y-4">
+            <div class="w-12 h-12 mx-auto bg-white/5 rounded-full flex items-center justify-center text-gray-400 group-hover:text-cyberneon group-hover:bg-cyberneon/10 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            </div>
+            <div>
+                <p class="text-sm text-gray-200 font-medium">Select or drag & drop images here</p>
+                <p class="text-xs text-gray-400 mt-1">Supports PNG, JPEG, and WebP formats (zero server uploads)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Workbench (Hidden initially) -->
+    <div id="i2p-workbench" class="hidden space-y-6">
+        
+        <!-- Document Configuration Settings -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-black/10 p-4 rounded-xl border border-white/5">
+            <div>
+                <label for="i2p-page-size" class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Page Size</label>
+                <select id="i2p-page-size" class="w-full px-3 py-2 rounded-lg glass-input text-xs bg-darkbg">
+                    <option value="a4" selected>A4 (Standard)</option>
+                    <option value="letter">Letter</option>
+                    <option value="match">Match Image Sizes</option>
+                </select>
+            </div>
+            <div>
+                <label for="i2p-orientation" class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Orientation</label>
+                <select id="i2p-orientation" class="w-full px-3 py-2 rounded-lg glass-input text-xs bg-darkbg">
+                    <option value="auto" selected>Auto-Detect (Aspect Ratio)</option>
+                    <option value="p">Portrait</option>
+                    <option value="l">Landscape</option>
+                </select>
+            </div>
+            <div>
+                <label for="i2p-margins" class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Page Margins</label>
+                <select id="i2p-margins" class="w-full px-3 py-2 rounded-lg glass-input text-xs bg-darkbg">
+                    <option value="none" selected>None (Full Bleed)</option>
+                    <option value="small">Small (10mm)</option>
+                    <option value="normal">Normal (20mm)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Sortable Queue List -->
+        <div class="space-y-3">
+            <div class="flex justify-between items-center">
+                <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Images Queue (<span id="i2p-queue-count">0</span> images)</h4>
+                <button id="btn-clear-i2p" class="text-[10px] text-gray-500 hover:text-red-400 transition-colors">Clear All</button>
+            </div>
+            <ul id="i2p-queue-list" class="divide-y divide-white/5 bg-black/20 rounded-xl border border-white/5 overflow-hidden max-h-[300px] overflow-y-auto">
+                <!-- Dynamically populated list -->
+            </ul>
+        </div>
+
+        <!-- Action Compile Button -->
+        <button id="btn-generate-pdf" class="btn-neon w-full py-3.5 rounded-xl text-xs font-semibold text-white tracking-wide uppercase">
+            Generate and Download PDF
+        </button>
+    </div>
+
+    <!-- Include jsPDF via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</div>

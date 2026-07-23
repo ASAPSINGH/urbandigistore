@@ -71,7 +71,11 @@ CONSOLIDATED_PATHS = {
     'heic-converter': '/heic-to-jpg',
     'image-compressor': '/image-compressor',
     'diff-checker': '/diff-checker',
-    'timestamp-converter': '/epoch-converter'
+    'timestamp-converter': '/epoch-converter',
+    'mp4-to-mp3': '/mp4-to-mp3',
+    'audio-converter': '/audio-converter',
+    'pdf-to-image': '/pdf-to-image',
+    'image-to-pdf': '/image-to-pdf'
 }
 
 # Hub-to-Spoke clusters mapping for organic internal linking authority
@@ -93,7 +97,11 @@ TOOL_BLOG_MAPPING = {
     'base64-converter': ['data-formats-json-base64', 'base64-file-conversion-guide', 'client-side-base64-image-decoding', 'developer-guide-cors-cross-origin', 'understanding-jwt-structure-claims', 'web-cryptography-api-secure-hashes', 'web-workers-heavy-computations', 'understanding-csp-content-security-policy', 'indexeddb-api-large-datasets-browser', 'understanding-websockets-real-time-communication', 'localstorage-sessionstorage-cookies-comparison', 'web-storage-vs-indexeddb', 'how-to-compare-text-online-diff-algorithms', 'demystifying-unix-epoch-time-32bit-overflow'],
     'json-formatter': ['data-formats-json-base64', 'base64-file-conversion-guide', 'developer-guide-cors-cross-origin', 'understanding-jwt-structure-claims', 'web-cryptography-api-secure-hashes', 'web-workers-heavy-computations', 'understanding-csp-content-security-policy', 'indexeddb-api-large-datasets-browser', 'understanding-websockets-real-time-communication', 'localstorage-sessionstorage-cookies-comparison', 'web-storage-vs-indexeddb', 'how-to-compare-text-online-diff-algorithms', 'demystifying-unix-epoch-time-32bit-overflow'],
     'diff-checker': ['how-to-compare-text-online-diff-algorithms', 'data-formats-json-base64'],
-    'timestamp-converter': ['demystifying-unix-epoch-time-32bit-overflow', 'data-formats-json-base64']
+    'timestamp-converter': ['demystifying-unix-epoch-time-32bit-overflow', 'data-formats-json-base64'],
+    'mp4-to-mp3': ['free-online-image-converters'],
+    'audio-converter': ['free-online-image-converters'],
+    'pdf-to-image': ['how-to-merge-pdf-documents-locally', 'how-to-split-pdf-pages-locally'],
+    'image-to-pdf': ['how-to-merge-pdf-documents-locally', 'how-to-split-pdf-pages-locally']
 }
 
 # Helper function to generate SEO metadata
@@ -290,6 +298,38 @@ def get_seo_context(tool_key, slug=None, **kwargs):
                     'title': f"Convert {uc.replace('-', ' ').title()}",
                     'url': f"/epoch-converter?use_case={uc}"
                 })
+    elif tool_key == 'mp4-to-mp3':
+        current_of = kwargs.get('output_format', '')
+        for of in tool_conf['params']['output_format']:
+            if of != current_of:
+                related_links.append({
+                    'title': f"Extract to {of.upper()}",
+                    'url': f"/mp4-to-mp3?output_format={of}"
+                })
+    elif tool_key == 'audio-converter':
+        current_if = kwargs.get('input_format', '')
+        for inf in tool_conf['params']['input_format']:
+            if inf != current_if:
+                related_links.append({
+                    'title': f"Convert {inf.upper()} to MP3",
+                    'url': f"/audio-converter?input_format={inf}"
+                })
+    elif tool_key == 'pdf-to-image':
+        current_of = kwargs.get('output_format', '')
+        for of in tool_conf['params']['output_format']:
+            if of != current_of:
+                related_links.append({
+                    'title': f"Convert PDF to {of.upper()}",
+                    'url': f"/pdf-to-image?output_format={of}"
+                })
+    elif tool_key == 'image-to-pdf':
+        current_if = kwargs.get('input_format', '')
+        for inf in tool_conf['params']['input_format']:
+            if inf != current_if:
+                related_links.append({
+                    'title': f"Convert {inf.upper()} to PDF",
+                    'url': f"/image-to-pdf?input_format={inf}"
+                })
 
     related_links = related_links[:6]
 
@@ -378,6 +418,28 @@ def image_converter_redirect(input_format, output_format):
         if output_format not in heic_tool['params']['output_format']:
             abort(404)
         return redirect(url_for('consolidated_heic_converter', output_format=output_format), code=301)
+
+    if input_format == 'mp4':
+        mp4_tool = seo_data['tools']['mp4-to-mp3']
+        if output_format not in mp4_tool['params']['output_format']:
+            abort(404)
+        return redirect(url_for('consolidated_mp4_to_mp3', output_format=output_format), code=301)
+
+    if input_format == 'pdf':
+        pdf_tool = seo_data['tools']['pdf-to-image']
+        if output_format not in pdf_tool['params']['output_format']:
+            abort(404)
+        return redirect(url_for('consolidated_pdf_to_image', output_format=output_format), code=301)
+
+    if output_format == 'pdf':
+        i2p_tool = seo_data['tools']['image-to-pdf']
+        if input_format not in i2p_tool['params']['input_format']:
+            abort(404)
+        return redirect(url_for('consolidated_image_to_pdf', input_format=input_format), code=301)
+
+    audio_tool = seo_data['tools']['audio-converter']
+    if input_format in audio_tool['params']['input_format'] and output_format == 'mp3':
+        return redirect(url_for('consolidated_audio_converter', input_format=input_format), code=301)
 
     tool = seo_data['tools']['image-converter']
     if input_format not in tool['params']['input_format'] or output_format not in tool['params']['output_format']:
@@ -693,6 +755,81 @@ def timestamp_converter_redirect(use_case):
     if use_case not in tool['params']['use_case']:
         abort(404)
     return redirect(url_for('consolidated_timestamp_converter', use_case=use_case), code=301)
+
+
+@app.route('/mp4-to-mp3')
+def consolidated_mp4_to_mp3():
+    output_format = request.args.get('output_format', 'mp3')
+    tool = seo_data['tools']['mp4-to-mp3']
+    if output_format not in tool['params']['output_format']:
+        output_format = 'mp3'
+    slug = f"convert-mp4-to-{output_format}"
+    ctx = get_seo_context('mp4-to-mp3', slug=slug, output_format=output_format)
+    return render_template('tool_template.html', **ctx)
+
+@app.route('/convert-mp4-to-<output_format>')
+def mp4_to_mp3_redirect(output_format):
+    tool = seo_data['tools']['mp4-to-mp3']
+    if output_format not in tool['params']['output_format']:
+        abort(404)
+    return redirect(url_for('consolidated_mp4_to_mp3', output_format=output_format), code=301)
+
+
+@app.route('/audio-converter')
+def consolidated_audio_converter():
+    input_format = request.args.get('input_format', 'wav')
+    tool = seo_data['tools']['audio-converter']
+    if input_format not in tool['params']['input_format']:
+        input_format = 'wav'
+    slug = f"convert-{input_format}-to-mp3"
+    ctx = get_seo_context('audio-converter', slug=slug, input_format=input_format)
+    return render_template('tool_template.html', **ctx)
+
+@app.route('/convert-<input_format>-to-mp3')
+def audio_converter_redirect(input_format):
+    if input_format == 'mp4':
+        return redirect(url_for('consolidated_mp4_to_mp3', output_format='mp3'), code=301)
+
+    tool = seo_data['tools']['audio-converter']
+    if input_format not in tool['params']['input_format']:
+        abort(404)
+    return redirect(url_for('consolidated_audio_converter', input_format=input_format), code=301)
+
+
+@app.route('/pdf-to-image')
+def consolidated_pdf_to_image():
+    output_format = request.args.get('output_format', 'jpg')
+    tool = seo_data['tools']['pdf-to-image']
+    if output_format not in tool['params']['output_format']:
+        output_format = 'jpg'
+    slug = f"convert-pdf-to-{output_format}"
+    ctx = get_seo_context('pdf-to-image', slug=slug, output_format=output_format)
+    return render_template('tool_template.html', **ctx)
+
+@app.route('/convert-pdf-to-<output_format>')
+def pdf_to_image_redirect(output_format):
+    tool = seo_data['tools']['pdf-to-image']
+    if output_format not in tool['params']['output_format']:
+        abort(404)
+    return redirect(url_for('consolidated_pdf_to_image', output_format=output_format), code=301)
+
+
+@app.route('/image-to-pdf')
+def consolidated_image_to_pdf():
+    input_format = request.args.get('input_format', 'jpg')
+    tool = seo_data['tools']['image-to-pdf']
+    if input_format not in tool['params']['input_format']:
+        input_format = 'jpg'
+    slug = f"convert-{input_format}-to-pdf"
+    ctx = get_seo_context('image-to-pdf', slug=slug, input_format=input_format)
+    return render_template('tool_template.html', **ctx)
+
+@app.route('/convert-<input_format>-to-pdf')
+def image_to_pdf_redirect(input_format):
+    tool = seo_data['tools']['image-to-pdf']
+    if input_format not in tool['params']['input_format']:
+        abort(404)
+    return redirect(url_for('consolidated_image_to_pdf', input_format=input_format), code=301)
 
 
 @app.route('/sitemap.xml')
