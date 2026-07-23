@@ -234,7 +234,8 @@
           "linkedin-ads",
           "twitter-ads",
           "tiktok-ads",
-          "pinterest-ads"
+          "pinterest-ads",
+          "reddit-ads"
         ]
       },
       "template": {
@@ -1644,6 +1645,10 @@
     }
   },
   "overrides": {
+    "utm-builder-for-reddit-ads": {
+      "meta_title": "Reddit Ads UTM Link Builder - Generate Campaign Referral URLs",
+      "meta_description": "Create trackable campaign URLs for Reddit Ads. Pre-filled reddit source/medium values optimize attribution in Google Analytics."
+    },
     "convert-mp4-to-mp3": {
       "meta_title": "Convert MP4 to MP3 Online - Free Audio Extractor",
       "meta_description": "Extract the audio track from your MP4 video file and download it as MP3 locally. Free, secure, and runs offline."

@@ -21,6 +21,7 @@ class TestWebUtilities(unittest.TestCase):
             ('/convert-png-to-webp', '/image-converter?input_format=png&output_format=webp'),
             ('/crop-image-for-instagram-post', '/image-cropper?platform_size=instagram-post'),
             ('/utm-builder-for-facebook-ads', '/utm-builder?platform=facebook-ads'),
+            ('/utm-builder-for-reddit-ads', '/utm-builder?platform=reddit-ads'),
             ('/whatsapp-link-generator-for-india', '/whatsapp-link-generator?country=india'),
             ('/format-json-for-config', '/json-formatter?use_case=config'),
             ('/position-size-calculator-forex', '/position-size-calculator?asset_class=forex'),
