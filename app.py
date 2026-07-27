@@ -424,7 +424,12 @@ def inject_adsense_id():
 @app.route('/')
 def home():
     # Pass tools dictionary to render categories and direct links to programmatic pages
-    return render_template('home.html', tools=seo_data['tools'])
+    return render_template(
+        'home.html', 
+        tools=seo_data['tools'],
+        meta_title="100% Free Online Web Utility Tools & Calculators | Urbandigistore",
+        meta_description="Run secure, client-side calculators, converters, formatting utilities, and PDF editors online. Free, zero-upload local browser sandbox processing."
+    )
 
 # --- Consolidated Routes & Redirects ---
 
@@ -866,8 +871,8 @@ def calculators_index():
     meta = seo_calculators_data.get('mortgage', {})
     return render_template('calculators.html', 
                            meta=meta, 
-                           meta_title=meta.get('title', 'All-in-One Calculators Hub'),
-                           meta_description=meta.get('metaDescription', 'Free, instant web calculators for mortgage payments, auto loans, health metrics, and academic graphing.'))
+                           meta_title="Free Online Calculators | Mortgage, Auto Loan, Health & Math",
+                           meta_description="Access free, instant, and secure browser-based calculators for mortgages, auto loans, BMI, BMR, compound interest, GPA, and time card hours.")
 
 @app.route('/calculators/<tool_id>')
 def calculators_tool(tool_id):

@@ -306,7 +306,7 @@ class TestWebUtilities(unittest.TestCase):
         # India override
         resp = self.app.get('/whatsapp-link-generator?country=india')
         self.assertEqual(resp.status_code, 200)
-        self.assertIn(b'WhatsApp Link Generator India - Create FREE Wa.me Chat Links', resp.data)
+        self.assertIn(b'WhatsApp Link Generator India Free | wa.me Direct Chat Links', resp.data)
         self.assertIn(b'WhatsApp Link Generator for India', resp.data)
         self.assertIn(b'Need a quick way for Indian customers to reach your business on WhatsApp?', resp.data)
         self.assertIn(b'Select the India +91 prefix and enter your 10-digit mobile number.', resp.data)
@@ -314,12 +314,12 @@ class TestWebUtilities(unittest.TestCase):
         # USA override
         resp = self.app.get('/whatsapp-link-generator?country=usa')
         self.assertEqual(resp.status_code, 200)
-        self.assertIn(b'WhatsApp Link Generator USA - Create Free Click-to-Chat Links', resp.data)
+        self.assertIn(b'WhatsApp Link Generator USA Free | wa.me Direct Chat Links', resp.data)
         
         # UK override
         resp = self.app.get('/whatsapp-link-generator?country=uk')
         self.assertEqual(resp.status_code, 200)
-        self.assertIn(b'WhatsApp Link Generator UK - Free Click-to-Chat Link Builder', resp.data)
+        self.assertIn(b'WhatsApp Link Generator UK Free | wa.me Direct Chat Links', resp.data)
 
     def test_dynamic_structured_schemas_and_in_text_cta(self):
         """Verify dynamic schemas and automated in-text blog CTAs."""
