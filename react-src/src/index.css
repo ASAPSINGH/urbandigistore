@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+/* Theme overrides to map Vite React components to Urbandigistore variables */
+
+:root {
+  /* Brand mappings */
+  --color-brand: 79, 70, 229; /* Indigo 600 */
+}
+
+/* Dark mode overrides for background classes */
+html.dark .bg-white {
+  background-color: var(--bg-panel) !important;
+}
+html.dark .bg-slate-50 {
+  background-color: var(--bg-body) !important;
+}
+html.dark .bg-slate-100 {
+  background-color: var(--bg-well) !important;
+}
+html.dark .bg-slate-200 {
+  background-color: var(--border-panel) !important;
+}
+
+/* Border overrides */
+html.dark .border-slate-200,
+html.dark .border-slate-200\/80,
+html.dark .border-slate-100,
+html.dark .border-slate-300 {
+  border-color: var(--border-panel) !important;
+}
+
+/* Text overrides */
+html.dark .text-slate-900,
+html.dark .text-slate-800 {
+  color: var(--text-title) !important;
+}
+html.dark .text-slate-700,
+html.dark .text-slate-600 {
+  color: var(--text-body) !important;
+}
+html.dark .text-slate-500,
+html.dark .text-slate-400 {
+  color: var(--text-muted) !important;
+}
+
+/* Inputs overrides in dark mode */
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: var(--bg-input) !important;
+  color: var(--text-input) !important;
+  border-color: var(--border-input) !important;
+}
+html.dark input:focus,
+html.dark select:focus,
+html.dark textarea:focus {
+  border-color: rgb(var(--color-cyberneon)) !important;
+  box-shadow: 0 0 0 3px rgba(var(--color-cyberneon), 0.15) !important;
+}
+
+/* Form control tags/label highlights */
+html.dark label {
+  color: var(--text-title) !important;
+}
+
+/* Map Emerald colors to brand Indigo/Sky Blue dynamically for correct branding */
+.text-emerald-600,
+.text-emerald-700,
+.text-teal-600,
+.text-teal-700 {
+  color: rgb(var(--color-cyberneon)) !important;
+}
+
+.bg-emerald-600,
+.bg-emerald-700,
+.bg-teal-600,
+.bg-teal-700 {
+  background-color: rgb(var(--color-cyberneon)) !important;
+}
+
+.bg-emerald-500,
+.bg-teal-500 {
+  background-color: rgb(var(--color-cyberaccent)) !important;
+}
+
+.bg-emerald-50,
+.bg-teal-50 {
+  background-color: rgba(var(--color-cyberneon), 0.1) !important;
+}
+
+.border-emerald-200,
+.border-emerald-200\/60,
+.border-emerald-200\/80,
+.border-teal-200\/80 {
+  border-color: rgba(var(--color-cyberneon), 0.2) !important;
+}
+
+.hover\:border-emerald-400:hover,
+.hover\:border-teal-400:hover {
+  border-color: rgba(var(--color-cyberneon), 0.5) !important;
+}
+
+.hover\:bg-emerald-50:hover,
+.hover\:bg-teal-50:hover {
+  background-color: rgba(var(--color-cyberneon), 0.08) !important;
+}
+
+.hover\:shadow-emerald-500\/5:hover {
+  box-shadow: 0 10px 15px -3px rgba(var(--color-cyberneon), 0.1) !important;
+}
+
+/* Recharts styling for dark mode */
+html.dark .recharts-default-tooltip {
+  background-color: var(--bg-panel) !important;
+  border-color: var(--border-panel) !important;
+}
+html.dark .recharts-tooltip-item {
+  color: var(--text-title) !important;
+}
+html.dark .recharts-cartesian-grid-horizontal line,
+html.dark .recharts-cartesian-grid-vertical line {
+  stroke: var(--border-well) !important;
+}
+html.dark .recharts-text {
+  fill: var(--text-muted) !important;
+}

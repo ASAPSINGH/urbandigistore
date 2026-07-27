@@ -1,0 +1,6 @@
+{
+  "name": "UrbanDigiStore",
+  "description": "Comprehensive suite of instant financial, health & fitness, scientific graphing, time tracking, math solver, and unit conversion calculators at urbandigistore.com.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

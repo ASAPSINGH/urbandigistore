@@ -11,3 +11,7 @@ ENV/
 .DS_Store
 *.log
 service_account.json
+all-in-one-calculator-hub*.zip
+scripts/.node_portable/
+.node_portable/
+

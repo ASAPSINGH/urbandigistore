@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20 relative z-10">
+    <!-- React App Root -->
+    <div id="root"></div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<!-- Mount Compiled React Calculator App bundles -->
+<link rel="stylesheet" href="{{ url_for('static', filename='calculators_dist/assets/index.css') }}">
+<script type="module" src="{{ url_for('static', filename='calculators_dist/assets/index.js') }}"></script>
+
+<!-- Server-Side Structured Schema Data (SEO & AI Crawler indexing) -->
+{% if meta %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "{{ meta.h1|replace('"', '\\"') }}",
+      "url": "{{ request.url }}",
+      "applicationCategory": "EducationalApplication, UtilityApplication, BusinessApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "description": "{{ meta.metaDescription|replace('"', '\\"') }}",
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "USD"
+      }
+    }
+    {% if meta.faqs %},
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {% for faq in meta.faqs %}
+        {
+          "@type": "Question",
+          "name": "{{ faq.question|replace('"', '\\"') }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ faq.answer|replace('"', '\\"') }}"
+          }
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+    {% endif %}
+  ]
+}
+</script>
+{% endif %}
+{% endblock %}

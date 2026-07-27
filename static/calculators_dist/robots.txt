@@ -1,0 +1,36 @@
+# Robots.txt for ASAPCalculator
+# Allow all standard search engines and AI / Generative Engine crawlers (AEO / GEO)
+
+User-agent: *
+Allow: /
+Disallow:
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Generative Engine & AI Search Crawlers (AEO / GEO Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+Sitemap: https://asapcalculator.com/sitemap.xml

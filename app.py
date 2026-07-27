@@ -12,6 +12,14 @@ seo_data_path = os.path.join(os.path.dirname(__file__), 'seo_data.json')
 with open(seo_data_path, 'r') as f:
     seo_data = json.load(f)
 
+# Load calculators SEO data
+seo_calc_path = os.path.join(os.path.dirname(__file__), 'seo_calculators_data.json')
+if os.path.exists(seo_calc_path):
+    with open(seo_calc_path, 'r') as f:
+        seo_calculators_data = json.load(f)
+else:
+    seo_calculators_data = {}
+
 # Helper function to load and parse blog posts
 def get_blog_posts():
     blog_dir = os.path.join(os.path.dirname(__file__), 'content', 'blog')
@@ -26,7 +34,11 @@ def get_blog_posts():
             
         meta = {}
         body = content
-        if content.startswith('title:') or '---' in content:
+        if content.startswith('---'):
+            parts = content.split('---', 2)
+            header = parts[1] if len(parts) > 1 else ''
+            body = parts[2] if len(parts) > 2 else ''
+        elif content.startswith('title:') or '---' in content:
             parts = content.split('---', 1)
             header = parts[0]
             body = parts[1] if len(parts) > 1 else ''
@@ -843,6 +855,29 @@ def image_to_pdf_redirect(input_format):
     return redirect(url_for('consolidated_image_to_pdf', input_format=input_format), code=301)
 
 
+@app.route('/calculators')
+def calculators_index():
+    meta = seo_calculators_data.get('mortgage', {})
+    return render_template('calculators.html', 
+                           meta=meta, 
+                           meta_title=meta.get('title', 'All-in-One Calculators Hub'),
+                           meta_description=meta.get('metaDescription', 'Free, instant web calculators for mortgage payments, auto loans, health metrics, and academic graphing.'))
+
+@app.route('/calculators/<tool_id>')
+def calculators_tool(tool_id):
+    tool_id = tool_id.lower()
+    meta = seo_calculators_data.get(tool_id)
+    if not meta:
+        found_key = next((k for k in seo_calculators_data.keys() if k.lower() == tool_id), None)
+        if found_key:
+            return redirect(url_for('calculators_tool', tool_id=found_key), code=301)
+        abort(404)
+    return render_template('calculators.html', 
+                           meta=meta, 
+                           meta_title=meta.get('title'), 
+                           meta_description=meta.get('metaDescription'))
+
+
 @app.route('/sitemap.xml')
 def sitemap():
     base_url = request.url_root.rstrip('/')
@@ -855,7 +890,12 @@ def sitemap():
     for pth in CONSOLIDATED_PATHS.values():
         urls.append(f"{base_url}{pth}")
         
-    # 3. Blog Pages
+    # 3. Calculators Pages
+    urls.append(f"{base_url}/calculators")
+    for calc_key in seo_calculators_data.keys():
+        urls.append(f"{base_url}/calculators/{calc_key}")
+        
+    # 4. Blog Pages
     urls.append(f"{base_url}/blog")
     for post in get_blog_posts():
         urls.append(f"{base_url}/blog/{post['slug']}")
