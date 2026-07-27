@@ -34,6 +34,7 @@ def get_blog_posts():
             
         meta = {}
         body = content
+        header = ''
         if content.startswith('---'):
             parts = content.split('---', 2)
             header = parts[1] if len(parts) > 1 else ''
@@ -42,6 +43,8 @@ def get_blog_posts():
             parts = content.split('---', 1)
             header = parts[0]
             body = parts[1] if len(parts) > 1 else ''
+            
+        if header:
             for line in header.split('\n'):
                 line = line.strip()
                 if not line or ':' not in line:
@@ -97,10 +100,10 @@ TOOL_BLOG_MAPPING = {
     'heic-converter': ['understanding-heic-image-compression-compatibility', 'free-online-image-converters'],
     'image-compressor': ['why-image-compression-matters-lossy-lossless', 'understanding-heic-image-compression-compatibility'],
     'utm-builder': ['utm-parameter-naming-conventions', 'facebook-ads-utm-tracking-self-referral', 'demystifying-utm-parameters-traffic-tracking', 'how-to-generate-custom-qr-codes', 'utm-builder-for-reddit-ads-traffic-attribution', 'bulk-utm-generator-multiple-campaign-links', 'in-content-cta-injection-internal-linking-conversions'],
-    'whatsapp-generator': ['utm-parameter-naming-conventions', 'whatsapp-link-generator-india-direct-chat-links', 'whatsapp-link-generator-usa-click-to-chat-links', 'whatsapp-link-generator-uk-wame-chat-links', 'whatsapp-link-generator-qr-code-print-marketing', 'whatsapp-link-generator-sms-email-fallback-campaigns', 'whatsapp-link-generator-live-chat-support-embeds', 'whatsapp-link-generator-cart-abandonment-recovery', 'whatsapp-link-generator-offline-flyer-marketing', 'whatsapp-link-generator-coupon-campaign-strategies', 'whatsapp-link-generator-restaurant-table-menus', 'whatsapp-link-generator-event-ticket-checkin'],
+    'whatsapp-generator': ['utm-parameter-naming-conventions', 'whatsapp-link-generator-india-direct-chat-links', 'whatsapp-link-generator-usa-click-to-chat-links', 'whatsapp-link-generator-uk-wame-chat-links', 'whatsapp-link-generator-qr-code-print-marketing', 'whatsapp-link-generator-sms-email-fallback-campaigns', 'whatsapp-link-generator-live-chat-support-embeds', 'whatsapp-link-generator-cart-abandonment-recovery', 'whatsapp-link-generator-offline-flyer-marketing', 'whatsapp-link-generator-coupon-campaign-strategies', 'whatsapp-link-generator-restaurant-table-menus', 'whatsapp-link-generator-event-ticket-checkin', 'whatsapp-prefilled-message-link-marketing'],
     'qr-generator': ['how-to-generate-custom-qr-codes', 'demystifying-qr-code-masking-scanning-speed', 'demystifying-qr-code-versions-grid-dimensions', 'demystifying-qr-code-color-contrast-scannability', 'demystifying-qr-code-quiet-zones-scan-reliability', 'demystifying-qr-code-error-correction-levels', 'demystifying-qr-code-mask-penalty-calculation', 'demystifying-qr-code-version-scaling-grid-dimensions', 'demystifying-qr-code-color-contrast-scannability-rules', 'demystifying-qr-code-quiet-zones-scan-boundaries', 'demystifying-qr-code-quiet-zones-scanning-speed', 'demystifying-qr-code-quiet-zones-contrast-scanning', 'why-is-my-qr-code-blurry-resolution-fixes', 'why-is-my-qr-code-not-working-scan-failures'],
     'password-generator': ['cryptographically-secure-passwords-entropy-math', 'password-length-entropy-exponent-comparison', 'why-password-managers-are-critical-security', 'why-password-hashing-requires-salt-rainbow-tables', 'why-master-password-kdf-iterations-matter', 'why-browser-passwords-are-vulnerable-standalone-vaults', 'why-password-salts-must-be-cryptographically-random', 'why-password-hashing-requires-salt-dict-attacks', 'why-password-hashing-requires-salt-rainbow-lookups', 'why-browser-passwords-are-vulnerable-security-vaults', 'why-password-managers-are-critical-zero-knowledge', 'why-password-hashing-requires-salt-dictionary-defenses'],
-    'merge-pdf': ['how-to-merge-pdf-documents-locally', 'understanding-pdf-document-margins', 'understanding-pdf-font-embedding-subsetting', 'understanding-pdf-metadata-xmp-catalog', 'understanding-pdf-linearization-fast-web-view', 'understanding-pdf-structural-security-passwords', 'understanding-pdf-font-embedding-subsetting-standards', 'understanding-pdf-structural-security-passwords-access', 'understanding-pdf-document-margins-layout-guidelines', 'understanding-pdf-metadata-xmp-catalog-standards'],
+    'merge-pdf': ['how-to-merge-pdf-documents-locally', 'understanding-pdf-document-margins', 'understanding-pdf-font-embedding-subsetting', 'understanding-pdf-metadata-xmp-catalog', 'understanding-pdf-linearization-fast-web-view', 'understanding-pdf-structural-security-passwords', 'understanding-pdf-font-embedding-subsetting-standards', 'understanding-pdf-structural-security-passwords-access', 'understanding-pdf-document-margins-layout-guidelines', 'understanding-pdf-metadata-xmp-catalog-standards', 'client-side-pdf-merging-security-advantages'],
     'split-pdf': ['how-to-split-pdf-pages-locally', 'pdf-page-splitting-range-syntax-extraction', 'understanding-pdf-document-margins', 'understanding-pdf-font-embedding-subsetting', 'understanding-pdf-metadata-xmp-catalog', 'understanding-pdf-linearization-fast-web-view', 'understanding-pdf-structural-security-passwords', 'understanding-pdf-font-embedding-subsetting-standards', 'understanding-pdf-structural-security-passwords-access', 'understanding-pdf-document-margins-layout-guidelines', 'understanding-pdf-metadata-xmp-catalog-standards'],
     'position-calculator': ['stop-loss-sizing-portfolio-risk-two-percent', 'stop-loss-sizing-average-true-range-atr', 'stop-loss-options-premium-volatility', 'stop-loss-position-sizing-atr-multipliers', 'stop-loss-sizing-volatility-adjusted-atr', 'stop-loss-position-sizing-maximum-drawdown', 'stop-loss-position-sizing-kelly-criterion', 'stop-loss-position-sizing-vix-volatility', 'stop-loss-position-sizing-sharpe-ratio', 'stop-loss-position-sizing-sharpe-sortino', 'stop-loss-position-sizing-ulcer-index', 'stop-loss-position-sizing-sortino-deviation', 'stop-loss-position-sizing-ulcer-index-drawdown', 'stop-loss-position-sizing-volatility-atr-calculations', 'stop-loss-position-sizing-maximum-drawdown-thresholds', 'stop-loss-position-sizing-sharpe-sortino-allocations', 'stop-loss-position-sizing-leveraged-margin-liquidation', 'stop-loss-position-sizing-donchian-channels-breakouts', 'stop-loss-position-sizing-keltner-channels-volatility', 'stop-loss-position-sizing-bollinger-bands-volatility', 'stop-loss-position-sizing-chandelier-exits-atr', 'stop-loss-position-sizing-parabolic-sar-volatility', 'stop-loss-position-sizing-keltner-vs-bollinger-bands', 'stop-loss-position-sizing-pivot-points-support', 'stop-loss-position-sizing-fibonacci-pivot-points'],
     'fibonacci-calculator': ['fibonacci-retracement-trading-guide', 'fibonacci-extensions-profit-targets', 'fibonacci-fan-trend-speed', 'fibonacci-arcs-curved-support-zones', 'fibonacci-time-zones-trend-reversal', 'fibonacci-retracement-bear-market', 'fibonacci-spirals-golden-ratio-turn-points', 'how-to-draw-fibonacci-extensions', 'how-to-draw-fibonacci-extensions-downtrend', 'how-to-draw-fibonacci-fans-trend-speed', 'how-to-draw-fibonacci-arcs-curved-support', 'how-to-draw-fibonacci-time-zones', 'how-to-draw-fibonacci-retracements-bear-market', 'how-to-draw-fibonacci-fans-downtrend', 'how-to-draw-fibonacci-fans-bull-market', 'how-to-draw-fibonacci-fans-downtrend-resistance', 'how-to-draw-fibonacci-retracements-bear-market-downtrend', 'how-to-draw-fibonacci-retracements-bull-market-uptrend'],
@@ -113,7 +116,10 @@ TOOL_BLOG_MAPPING = {
     'mp4-to-mp3': ['free-online-image-converters', 'mp4-to-mp3-audio-extraction-demuxing-bitrates'],
     'audio-converter': ['free-online-image-converters', 'universal-audio-codec-compatibility-wav-aac-mp3', 'universal-audio-codec-transcoding-flac-to-mp3', 'how-to-convert-wav-to-mp3-audio-compression'],
     'pdf-to-image': ['how-to-merge-pdf-documents-locally', 'how-to-split-pdf-pages-locally', 'pdf-page-rendering-rasterizing-canvas-images', 'how-to-convert-pdf-to-jpg-page-extraction', 'how-to-convert-pdf-to-png-transparent-extraction', 'how-to-convert-pdf-to-webp-web-optimized-extraction', 'how-to-convert-pdf-to-svg-vector-graphics-extraction', 'how-to-convert-pdf-to-bmp-uncompressed-extraction', 'how-to-convert-pdf-to-tiff-multipage-extraction', 'how-to-convert-pdf-to-gif-web-optimized-extraction', 'how-to-convert-pdf-to-ico-favicon-extraction', 'how-to-convert-pdf-to-odd-document-extraction'],
-    'image-to-pdf': ['how-to-merge-pdf-documents-locally', 'how-to-split-pdf-pages-locally', 'image-compilation-to-pdf-aspect-ratios-alignment', 'how-to-convert-jpg-to-pdf-page-compilation', 'how-to-convert-png-to-pdf-document-compilation', 'how-to-convert-webp-to-pdf-document-compilation', 'how-to-convert-svg-to-pdf-vector-compilation', 'how-to-convert-bmp-to-pdf-document-compilation', 'how-to-convert-tiff-to-pdf-document-compilation', 'how-to-convert-gif-to-pdf-document-compilation', 'how-to-convert-ico-to-pdf-catalog-compilation', 'how-to-convert-odd-to-pdf-catalog-compilation']
+    'image-to-pdf': ['how-to-merge-pdf-documents-locally', 'how-to-split-pdf-pages-locally', 'image-compilation-to-pdf-aspect-ratios-alignment', 'how-to-convert-jpg-to-pdf-page-compilation', 'how-to-convert-png-to-pdf-document-compilation', 'how-to-convert-webp-to-pdf-document-compilation', 'how-to-convert-svg-to-pdf-vector-compilation', 'how-to-convert-bmp-to-pdf-document-compilation', 'how-to-convert-tiff-to-pdf-document-compilation', 'how-to-convert-gif-to-pdf-document-compilation', 'how-to-convert-ico-to-pdf-catalog-compilation', 'how-to-convert-odd-to-pdf-catalog-compilation'],
+    'mortgage': ['mortgage-amortization-15-vs-30-year-comparison'],
+    'auto-loan': ['vehicle-sales-tax-savings-trade-in'],
+    'retirement-401k': ['employer-401k-match-compound-interest']
 }
 
 # Helper function to generate SEO metadata
@@ -872,10 +878,25 @@ def calculators_tool(tool_id):
         if found_key:
             return redirect(url_for('calculators_tool', tool_id=found_key), code=301)
         abort(404)
+        
+    # Fetch related blog posts for this calculator to establish hub-to-spoke authority
+    related_blog_posts = []
+    all_posts = get_blog_posts()
+    for post_slug in TOOL_BLOG_MAPPING.get(tool_id, []):
+        post = next((p for p in all_posts if p['slug'] == post_slug), None)
+        if post:
+            related_blog_posts.append({
+                'title': post['title'],
+                'slug': post['slug'],
+                'description': post['description'],
+                'category': post['category']
+            })
+            
     return render_template('calculators.html', 
                            meta=meta, 
                            meta_title=meta.get('title'), 
-                           meta_description=meta.get('metaDescription'))
+                           meta_description=meta.get('metaDescription'),
+                           related_blog_posts=related_blog_posts)
 
 
 @app.route('/sitemap.xml')
@@ -959,21 +980,45 @@ def blog_post(slug):
     if not post:
         abort(404)
         
-    # Map back from spoke to parent hubs to pass link authority to tools
+    # Map back from spoke to parent hubs to pass link authority to tools/calculators
     related_tools = []
     for tool_key, slugs in TOOL_BLOG_MAPPING.items():
         if slug in slugs:
-            tool_conf = seo_data['tools'][tool_key]
-            related_tools.append({
-                'name': tool_conf['name'],
-                'url': CONSOLIDATED_PATHS.get(tool_key, '#')
-            })
+            if tool_key in seo_data['tools']:
+                tool_conf = seo_data['tools'][tool_key]
+                related_tools.append({
+                    'name': tool_conf['name'],
+                    'url': CONSOLIDATED_PATHS.get(tool_key, '#')
+                })
+            elif tool_key in seo_calculators_data:
+                calc_conf = seo_calculators_data[tool_key]
+                name = calc_conf.get('h1', tool_key.replace('-', ' ').title() + ' Calculator')
+                # Format to a clean button label
+                if 'Calculator' not in name:
+                    name = name.split('&')[0].split('|')[0].strip()
+                related_tools.append({
+                    'name': name,
+                    'url': f"/calculators/{tool_key}"
+                })
             
     # Copy post to avoid mutating cache and inject in-text CTA
     post_copy = dict(post)
     post_copy['content'] = inject_cta_into_html(post['content'], related_tools)
             
     return render_template('blog/post.html', post=post_copy, related_tools=related_tools)
+
+@app.route('/llm.txt')
+@app.route('/llms.txt')
+def llm_txt():
+    # Read the llm.txt file at the root and serve it
+    filepath = os.path.join(os.path.dirname(__file__), 'llm.txt')
+    if not os.path.exists(filepath):
+        # Fallback summary in case file doesn't exist
+        fallback_content = "# Urbandigistore\n> Interactive client-side utility tools and calculators.\n"
+        return Response(fallback_content, mimetype='text/plain')
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+    return Response(content, mimetype='text/plain')
 
 @app.route('/robots.txt')
 def robots():

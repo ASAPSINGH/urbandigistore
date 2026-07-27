@@ -1,0 +1,45 @@
+# Urbandigistore.com Utility Tools & Calculators
+
+> A premium, 100% free, and secure client-side suite of online calculators, converters, formatting utilities, and PDF manipulators running directly in your browser.
+
+## Core Features & Advantages
+* **100% Client-Side Execution**: All processing (PDF merging/splitting, image conversion, password generation, JSON formatting) happens in the local browser sandbox. Files are never uploaded to a server, offering absolute data privacy.
+* **Instant Speed**: Zero waiting queues, zero latency, and optimized Core Web Vitals (LCP/INP).
+* **Fully Responsive**: Optimized for desktop, tablet, and mobile devices.
+
+## Personal Finance & Loan Calculators
+* [Mortgage Payment Calculator & Amortization Schedule](/calculators/mortgage): Estimate PITI, property taxes, home insurance, private mortgage insurance (PMI), and HOA dues.
+* [Auto Loan & Trade-In Tax Estimator](/calculators/auto-loan): Calculate monthly car loan payments, trade-in value credits, sales tax offsets, and interest schedules.
+* [Personal Loan & Cumulative Interest Calculator](/calculators/personal-loan): Estimate unsecured loan payments and payoff acceleration schedules.
+* [Paycheck Tax Deduction & Hourly Salary Converter](/calculators/paycheck-salary): Convert annual salaries to hourly pay, factoring in standard payroll tax deductions.
+* [401k Retirement Compound Interest Calculator](/calculators/retirement-401k): Model employer matches, annual contributions, and compound interest over a 30-year career.
+* [CD & High-Yield Savings Investment Calculator](/calculators/investment-cd): Project interest rates, APY compounding, and maturity values.
+
+## Health, Fitness & Diet Calculators
+* [BMI (Body Mass Index) Calculator](/calculators/bmi): Calculate adult BMI and weight categories.
+* [BMR & TDEE Calorie Calculator](/calculators/bmr-tdee): Calculate Basal Metabolic Rate and Total Daily Energy Expenditure using the Harris-Benedict formula.
+* [Calorie Deficit & Weight Loss Estimator](/calculators/calorie-deficit): Track target calorie deficit rates to estimate weight loss timelines.
+* [Macro Nutrient Split Calculator](/calculators/macro): Distribute daily protein, fat, and carbohydrate ratios for fitness programs.
+
+## PDF & Document Utilities (Browser-Based)
+* [Merge PDF Documents](/merge-pdf): Combine multiple PDF files locally into a single document without uploading data.
+* [Split PDF Pages](/split-pdf): Extract specific page ranges or divide PDFs into single pages instantly.
+* [Image to PDF Compiler](/image-to-pdf): Convert PNG, JPG, and WebP images into a single PDF document.
+* [PDF to Image Page Extractor](/pdf-to-image): Convert and download pages from a PDF as high-fidelity JPEG, PNG, or WebP files.
+
+## Media & Image Converters (Browser-Based)
+* [HEIC to JPG Converter](/heic-to-jpg): Convert Apple HEIC photos to web-compatible JPEG/PNG format instantly.
+* [Bulk Image Compressor](/image-compressor): Reduce image file size by modifying compression quality percentages locally.
+* [General Image Format Converter](/image-converter): Convert files between PNG, JPG, WebP, and GIF formats.
+* [Audio Converter](/audio-converter): Transcode WAV, AAC, and other formats to MP3 locally.
+* [MP4 Video to MP3 Audio Extractor](/mp4-to-mp3): Extract raw audio tracks from video files in your browser.
+
+## Developer & Marketing Utilities
+* [Campaign UTM Link Builder](/utm-builder): Build standard analytics URLs with campaign source, medium, name, and terms.
+* [WhatsApp Link & QR Code Generator](/whatsapp-link-generator): Create w.me click-to-chat links with custom pre-filled message text.
+* [Custom QR Code Generator](/qr-code-generator): Generate scannable QR codes with adjustable Reed-Solomon error correction and colors.
+* [JSON Formatter & Beautifier](/json-formatter): Validate, parse, format, and structure raw JSON strings.
+* [Base64 File Encoder & Decoder](/base64-file-converter): Encode files to Base64 strings or decode data-URIs back to original files.
+* [Cryptographically Secure Password Generator](/password-generator): Generate strong random passwords with custom entropy length settings.
+* [Online Text Diff Checker](/diff-checker): Compare two blocks of text side-by-side to highlight additions and deletions.
+* [Epoch Timestamp Converter](/epoch-converter): Convert Unix epoch timestamps to human-readable date formats and vice versa.

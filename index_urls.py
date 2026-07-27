@@ -64,26 +64,48 @@ Once these steps are done, run this script again:
 ========================================================================
 """
 
-def fetch_sitemap_urls(url):
-    print(f"Fetching sitemap from: {url}...")
-    try:
-        response = requests.get(url, timeout=10)
-        response.raise_for_status()
-    except Exception as e:
-        print(f"Error fetching sitemap: {e}")
-        sys.exit(1)
+def get_local_sitemap_urls(base_url="https://urbandigistore.com"):
+    import glob
+    import json
+    urls = []
+    
+    # 1. Home
+    urls.append(f"{base_url}/")
+    
+    # 2. Main Tool Hubs
+    consolidated_paths = [
+        '/image-converter', '/image-cropper', '/utm-builder', '/whatsapp-link-generator',
+        '/json-formatter', '/position-size-calculator', '/fibonacci-calculator', '/character-counter',
+        '/cpm-calculator', '/base64-file-converter', '/merge-pdf', '/split-pdf', '/qr-code-generator',
+        '/password-generator', '/heic-to-jpg', '/image-compressor', '/diff-checker', '/epoch-converter',
+        '/mp4-to-mp3', '/audio-converter', '/pdf-to-image', '/image-to-pdf'
+    ]
+    for pth in consolidated_paths:
+        urls.append(f"{base_url}{pth}")
         
-    try:
-        root = ET.fromstring(response.content)
-        # Handle namespaces in XML sitemaps
-        namespace = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
-        urls = []
-        for url_node in root.findall(f".//{namespace}loc"):
-            urls.append(url_node.text.strip())
-        return urls
-    except Exception as e:
-        print(f"Error parsing sitemap XML: {e}")
-        sys.exit(1)
+    # 3. Calculators Pages
+    urls.append(f"{base_url}/calculators")
+    calc_data_path = os.path.join(os.path.dirname(__file__), 'seo_calculators_data.json')
+    if os.path.exists(calc_data_path):
+        with open(calc_data_path, 'r') as f:
+            calcs = json.load(f)
+            for calc_key in calcs.keys():
+                urls.append(f"{base_url}/calculators/{calc_key}")
+                
+    # 4. Blog Pages
+    urls.append(f"{base_url}/blog")
+    blog_dir = os.path.join(os.path.dirname(__file__), 'content', 'blog')
+    if os.path.exists(blog_dir):
+        for filepath in glob.glob(os.path.join(blog_dir, '*.md')):
+            slug = os.path.basename(filepath).replace('.md', '')
+            urls.append(f"{base_url}/blog/{slug}")
+            
+    # 5. Static Pages
+    urls.append(f"{base_url}/about")
+    urls.append(f"{base_url}/privacy")
+    urls.append(f"{base_url}/terms")
+    
+    return urls
 
 def main():
     # 1. Check for credentials file
@@ -91,9 +113,10 @@ def main():
         print(INSTRUCTIONS)
         sys.exit(1)
         
-    # 2. Fetch URLs from sitemap
-    urls = fetch_sitemap_urls(SITEMAP_URL)
-    print(f"Found {len(urls)} URLs in the sitemap.")
+    # 2. Generate sitemap URLs from local codebase
+    print("Generating sitemap URLs from local codebase...")
+    urls = get_local_sitemap_urls()
+    print(f"Found {len(urls)} URLs in the local codebase configuration.")
     
     # 3. Load credentials and create authorized session
     print("Authenticating with Google Cloud...")
