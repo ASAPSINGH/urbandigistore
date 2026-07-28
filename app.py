@@ -944,7 +944,12 @@ def sitemap():
 @app.route('/blog')
 def blog_index():
     posts = get_blog_posts()
-    return render_template('blog/index.html', posts=posts)
+    return render_template(
+        'blog/index.html', 
+        posts=posts,
+        meta_title="Free Digital Guides & Online Utility Tutorials | Urbandigistore Blog",
+        meta_description="Read educational tutorials and technical documentation on image conversion, PDF editing, tracking parameters, network encoding, and trading calculations."
+    )
 
 def inject_cta_into_html(html_content, related_tools):
     if not related_tools:
@@ -1011,7 +1016,13 @@ def blog_post(slug):
     post_copy = dict(post)
     post_copy['content'] = inject_cta_into_html(post['content'], related_tools)
             
-    return render_template('blog/post.html', post=post_copy, related_tools=related_tools)
+    return render_template(
+        'blog/post.html', 
+        post=post_copy, 
+        related_tools=related_tools,
+        meta_title=f"{post_copy.get('title')} | Urbandigistore Blog",
+        meta_description=post_copy.get('description')
+    )
 
 @app.route('/llm.txt')
 @app.route('/llms.txt')
