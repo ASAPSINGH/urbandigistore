@@ -691,7 +691,7 @@ export const MathGraphingCalculators: React.FC<Props> = ({ subToolId }) => {
             />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-slate-900 text-white p-5 rounded-xl text-center">
+          <div className="grid grid-cols-2 gap-4 bg-slate-900 text-white p-5 rounded-xl text-center">
             <div>
               <span className="text-xs uppercase text-slate-400 font-bold">Mean (Average)</span>
               <div className="text-2xl font-bold text-teal-300 mt-1">{statsRes.mean.toFixed(2)}</div>
@@ -729,7 +729,7 @@ export const MathGraphingCalculators: React.FC<Props> = ({ subToolId }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Triangle */}
             <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
               <h3 className="text-xs font-bold text-slate-800 uppercase flex items-center gap-1">

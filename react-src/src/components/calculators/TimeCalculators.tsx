@@ -242,7 +242,7 @@ export const TimeCalculators: React.FC<Props> = ({ subToolId }) => {
             </table>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 bg-amber-950 text-white rounded-xl p-5">
+          <div className="grid grid-cols-2 gap-4 bg-amber-950 text-white rounded-xl p-5">
             <div>
               <span className="text-xs uppercase font-bold text-amber-400">Total Worked Hours</span>
               <div className="text-3xl font-extrabold text-white mt-1">
@@ -397,7 +397,7 @@ export const TimeCalculators: React.FC<Props> = ({ subToolId }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-teal-950 text-white rounded-xl p-5 text-center">
+          <div className="grid grid-cols-2 gap-4 bg-teal-950 text-white rounded-xl p-5 text-center">
             <div>
               <span className="text-xs uppercase text-teal-300 font-bold">Annual Salary</span>
               <div className="text-2xl font-extrabold text-white mt-1">${annualSalaryVal.toLocaleString()}</div>

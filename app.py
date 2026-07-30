@@ -428,6 +428,7 @@ def home():
     return render_template(
         'home.html', 
         tools=seo_data['tools'],
+        calculators=seo_calculators_data,
         meta_title="100% Free Online Web Utility Tools & Calculators | Urbandigistore",
         meta_description="Run secure, client-side calculators, converters, formatting utilities, and PDF editors online. Free, zero-upload local browser sandbox processing."
     )

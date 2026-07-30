@@ -195,7 +195,7 @@ export const HealthCalculators: React.FC<Props> = ({ subToolId }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-medium text-slate-600 mb-1">Gender</label>
               <div className="flex gap-2">
@@ -309,7 +309,7 @@ export const HealthCalculators: React.FC<Props> = ({ subToolId }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-2 text-center text-xs text-slate-600 font-medium pt-1">
+            <div className="grid grid-cols-2 gap-2 text-center text-xs text-slate-600 font-medium pt-1">
               <div>Underweight (&lt;18.5)</div>
               <div className="text-emerald-700 font-bold">Normal (18.5–24.9)</div>
               <div>Overweight (25–29.9)</div>
@@ -336,7 +336,7 @@ export const HealthCalculators: React.FC<Props> = ({ subToolId }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-medium text-slate-600 mb-1">Age (Years)</label>
               <input
@@ -458,7 +458,7 @@ export const HealthCalculators: React.FC<Props> = ({ subToolId }) => {
             </div>
           </div>
 
-          <div className="bg-slate-900 text-white rounded-xl p-5 grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+          <div className="bg-slate-900 text-white rounded-xl p-5 grid grid-cols-2 gap-4 text-center">
             <div>
               <span className="text-xs uppercase font-bold text-slate-400">Target Daily Calories</span>
               <div className="text-3xl font-extrabold text-emerald-400 mt-1">{targetCalories}</div>
@@ -680,7 +680,7 @@ export const HealthCalculators: React.FC<Props> = ({ subToolId }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-medium text-slate-600 mb-1">Current Weight (lbs)</label>
               <input

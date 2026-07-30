@@ -13,6 +13,7 @@ import { HealthCalculators } from './components/calculators/HealthCalculators';
 import { MathGraphingCalculators } from './components/calculators/MathGraphingCalculators';
 import { TimeCalculators } from './components/calculators/TimeCalculators';
 import { UnitCalculators } from './components/calculators/UnitCalculators';
+import { OtherCalculators } from './components/calculators/OtherCalculators';
 import { Bookmark, ChevronRight, LayoutGrid, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -211,6 +212,13 @@ export default function App() {
                           )}
                           {activeTool.category === 'unit' && (
                             <UnitCalculators subToolId={activeTool.id} />
+                          )}
+                          {(activeTool.category === 'biology' ||
+                            activeTool.category === 'chemistry' ||
+                            activeTool.category === 'physics' ||
+                            activeTool.category === 'sports' ||
+                            activeTool.category === 'everyday') && (
+                            <OtherCalculators subToolId={activeTool.id} />
                           )}
                         </motion.div>
                       </AnimatePresence>

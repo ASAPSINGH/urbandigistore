@@ -13,7 +13,7 @@ class TestWebUtilities(unittest.TestCase):
         """Verify the homepage loads and returns the categories section."""
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Digital Operations Matrix', response.data)
+        self.assertIn(b'Calculators & Tools', response.data)
         
     def test_valid_programmatic_routes(self):
         """Verify that legacy programmatic SEO parameters return 301 redirects."""

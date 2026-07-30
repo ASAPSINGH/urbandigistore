@@ -139,7 +139,7 @@ export const UnitCalculators: React.FC<Props> = ({ subToolId }) => {
               Currency Converter
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 items-center">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 items-center">
               <div>
                 <label className="block text-xs font-medium text-slate-600 mb-1">Amount</label>
                 <input

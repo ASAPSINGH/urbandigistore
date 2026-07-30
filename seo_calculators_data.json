@@ -1028,5 +1028,174 @@
         "answer": "A 12x12 room with 8ft ceilings has 384 sq ft of wall area. Subtracting doors/windows leaves ~340 sq ft, requiring 1 gallon of paint per coat (2 gallons for 2 coats)."
       }
     ]
+  },
+  "pregnancy-due-date": {
+    "toolId": "pregnancy-due-date",
+    "title": "Pregnancy Due Date & Gestational Age Calculator",
+    "metaDescription": "Estimate your estimated baby due date, current gestational age in weeks/days, trimester phase, and conception date. Uses Naegele's rule.",
+    "keywords": [
+      "pregnancy calculator",
+      "due date calculator",
+      "conception calculator",
+      "gestational age calculator",
+      "baby due date"
+    ],
+    "h1": "Pregnancy Due Date & Gestational Age Calculator",
+    "directAnswer": "An estimated due date is calculated by adding 280 days (40 weeks) to the first day of your last menstrual period (LMP), adjusting for cycle length deviations from the standard 28-day model.",
+    "formula": {
+      "title": "Naegele's Rule of Due Date Estimation",
+      "expression": "Due Date = LMP + 280 Days + (Cycle Length - 28 Days)",
+      "explanation": "Conception typically occurs 14 days after LMP under standard 28-day menstrual cycles."
+    },
+    "keyTakeaways": [
+      "Normal human pregnancy lasts approximately 38 weeks from conception or 40 weeks from last period.",
+      "Only 4% of babies are born precisely on their estimated due date.",
+      "Trimesters are broken down into: First (1–12 weeks), Second (13–26 weeks), and Third (27–40+ weeks)."
+    ],
+    "faqs": [
+      {
+        "question": "How accurate is the last menstrual period (LMP) due date?",
+        "answer": "LMP calculations assume a regular 28-day cycle with ovulation occurring on Day 14. For irregular cycles or variable ovulation, early obstetric ultrasounds provide the most accurate clinical due date determination."
+      },
+      {
+        "question": "What is gestational age versus fetal age?",
+        "answer": "Gestational age measures pregnancy progress starting from the first day of your last menstrual period. Fetal age (conception age) measures actual development from the estimated date of fertilization, which is typically 2 weeks younger than gestational age."
+      }
+    ]
+  },
+  "molarity": {
+    "toolId": "molarity",
+    "title": "Chemical Molarity & Solute Concentration Calculator",
+    "metaDescription": "Calculate solution molarity (mol/L), moles of solute, solution volume, or required solute mass using the molecular weight formula.",
+    "keywords": [
+      "molarity calculator",
+      "concentration calculator",
+      "chemical calculator",
+      "molar mass calculator",
+      "chemistry solver"
+    ],
+    "h1": "Chemical Solution Molarity Calculator",
+    "directAnswer": "Molarity (M) is the concentration of a solute in a solution, defined as the number of moles of solute dissolved per liter of solution: M = n / V.",
+    "formula": {
+      "title": "Molarity & Molecular Weight Equations",
+      "expression": "Molarity (M) = [ Solute Mass (g) / Molecular Weight (g/mol) ] / Solution Volume (L)",
+      "explanation": "Where moles of solute (n) is mass divided by formula weight, and volume (V) must be in liters."
+    },
+    "keyTakeaways": [
+      "Molarity changes slightly with temperature due to thermal volume expansion of liquids.",
+      "1 Molar (1 M) solution contains one mole of chemical substance per liter of solution.",
+      "Always add acid to water (never water to acid) when diluting concentrated molar solutions."
+    ],
+    "faqs": [
+      {
+        "question": "What is the difference between molarity and molality?",
+        "answer": "Molarity (M) measures moles of solute per LITER of solution (volume-dependent, changes with temp). Molality (m) measures moles of solute per KILOGRAM of solvent (mass-dependent, remains constant across temperatures)."
+      },
+      {
+        "question": "How do you calculate molarity from mass and volume?",
+        "answer": "First, convert the solute mass to moles by dividing it by the substance's molecular weight. Then, convert the solution volume to liters (divide ml by 1000). Finally, divide the moles by the volume in liters."
+      }
+    ]
+  },
+  "velocity-acceleration": {
+    "toolId": "velocity-acceleration",
+    "title": "Kinematic Velocity, Acceleration & Distance Calculator",
+    "metaDescription": "Solve classical physics kinematics equations. Calculate final velocity, initial speed, constant acceleration, and travel distance over time.",
+    "keywords": [
+      "velocity calculator",
+      "acceleration calculator",
+      "physics calculator",
+      "kinematics calculator",
+      "free fall calculator"
+    ],
+    "h1": "Velocity, Acceleration & Kinematic Motion Calculator",
+    "directAnswer": "Under constant acceleration, kinematic motion variables are solved using equations of motion: final velocity v = v0 + at, and distance d = v0t + 0.5at².",
+    "formula": {
+      "title": "Constant Acceleration Kinematic Equations",
+      "expression": "v = v₀ + a·t  |  d = v₀·t + ½·a·t²",
+      "explanation": "Where v is final velocity, v₀ is initial velocity, a is acceleration rate, t is elapsed time, and d is displacement distance."
+    },
+    "keyTakeaways": [
+      "Acceleration due to gravity on Earth is approximately 9.8 m/s² (32.2 ft/s²).",
+      "Velocity represents speed in a specific direction (vector), whereas speed is scalar.",
+      "Zero acceleration means velocity remains constant, and distance is simply v × t."
+    ],
+    "faqs": [
+      {
+        "question": "What is the difference between speed, velocity, and acceleration?",
+        "answer": "Speed is how fast an object moves (distance/time). Velocity is speed with direction (displacement/time). Acceleration is the rate of change of velocity over time (velocity/time)."
+      },
+      {
+        "question": "How do you calculate velocity in free fall?",
+        "answer": "For an object dropped from rest (v₀ = 0) in vacuum, velocity is simply gravity multiplied by time: v = g · t, where g = 9.8 m/s² on Earth."
+      }
+    ]
+  },
+  "calorie-burn": {
+    "toolId": "calorie-burn",
+    "title": "Exercise Calorie Burn & MET Activity Tracker",
+    "metaDescription": "Calculate estimated calories burned during running, walking, cycling, or swimming using Metabolic Equivalent of Task (MET) ratings and body weight.",
+    "keywords": [
+      "calories burned calculator",
+      "burn calculator",
+      "met calculator",
+      "exercise calorie calculator",
+      "weight loss calorie burn"
+    ],
+    "h1": "Exercise Calorie Burn & MET Activity Calculator",
+    "directAnswer": "Calorie burn is calculated using the Metabolic Equivalent of Task (MET) of the activity, body weight, and duration: Calories = Duration (min) × MET × Weight (kg) × 0.0175.",
+    "formula": {
+      "title": "MET Activity Calorie Equation",
+      "expression": "Calories Burned = Time (min) × MET × Weight (kg) × 0.0175",
+      "explanation": "MET represents metabolic rate relative to resting: 1 MET is resting energy expenditure. Running is ~11.5 METs, walking is ~4.0 METs, cycling is ~8.0 METs."
+    },
+    "keyTakeaways": [
+      "MET stands for Metabolic Equivalent of Task, measuring oxygen consumption per kg per minute.",
+      "Higher intensity activities consume more oxygen and burn significantly more calories per minute.",
+      "Heavier individuals burn more calories performing the same physical activity due to larger work loads."
+    ],
+    "faqs": [
+      {
+        "question": "What is a MET (Metabolic Equivalent) in calorie calculations?",
+        "answer": "A MET is a ratio of the rate of energy expended during an activity compared to the rate of energy expended at rest. One MET is defined as expending 1 kcal/kg/hour, equivalent to sitting quietly."
+      },
+      {
+        "question": "Does weight affect how many calories you burn during exercise?",
+        "answer": "Yes. Carrying more weight requires your muscles to expend more energy to move your body through space. Therefore, a person weighing 90kg will burn about 50% more calories than a person weighing 60kg for the same activity."
+      }
+    ]
+  },
+  "dog-age": {
+    "toolId": "dog-age",
+    "title": "Dog Age to Human Years Calculator (Scientific Model)",
+    "metaDescription": "Convert puppy and senior dog years to equivalent human age. Compare traditional 7-times scaling with modern breed size-aware DNA models.",
+    "keywords": [
+      "dog age calculator",
+      "dog years to human years",
+      "puppy age calculator",
+      "dog life expectancy"
+    ],
+    "h1": "Dog Age to Human Years Scientific Calculator",
+    "directAnswer": "While the traditional rule scales dog years by 7, modern scientific research uses epigenetic DNA methylation models and breed size scaling: Human Age = 16 ln(Dog Age) + 31.",
+    "formula": {
+      "title": "DNA Methylation & Breed Size Models",
+      "expression": "Traditional: Human Age = Dog Age × 7  |  Scientific (Medium): Human Age = 16·ln(Dog Age) + 31",
+      "explanation": "Where ln(Dog Age) is the natural logarithm of the dog's chronological age. Size-aware formulas scale larger breeds faster as they age."
+    },
+    "keyTakeaways": [
+      "Dogs age extremely rapidly in their first two years: a 1-year-old dog is roughly equivalent to a 15-year-old human.",
+      "Smaller dog breeds carry longer average lifespans and age slower in senior years than larger breeds.",
+      "The natural log DNA model was published by UC San Diego researchers studying aging rates in Labrador Retrievers."
+    ],
+    "faqs": [
+      {
+        "question": "Why is the traditional 1 dog year = 7 human years rule inaccurate?",
+        "answer": "The 7-year rule is a simple average that doesn't reflect biological aging curves. Dogs reach sexual maturity in their first year (equivalent to human teens) and age slower in mid-life, which logarithmic equations reflect much more accurately."
+      },
+      {
+        "question": "How does dog size affect how they age in human years?",
+        "answer": "Small dogs mature faster but age slower as seniors (living up to 15-18 years). Large and giant breeds mature slightly slower initially but age rapidly from age 5 onwards, often carrying shorter lifespans of 8-10 years."
+      }
+    ]
   }
 }

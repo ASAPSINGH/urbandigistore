@@ -33,6 +33,11 @@ export const Header: React.FC<Props> = ({
     { id: 'math', name: 'Math & Graphing', icon: '📐', count: allTools.filter((t) => t.category === 'math').length },
     { id: 'time', name: 'Time & Hours', icon: '⏱️', count: allTools.filter((t) => t.category === 'time').length },
     { id: 'unit', name: 'Unit & Materials', icon: '📦', count: allTools.filter((t) => t.category === 'unit').length },
+    { id: 'biology', name: 'Biology', icon: '🧬', count: allTools.filter((t) => t.category === 'biology').length },
+    { id: 'chemistry', name: 'Chemistry', icon: '🧪', count: allTools.filter((t) => t.category === 'chemistry').length },
+    { id: 'physics', name: 'Physics', icon: '🌌', count: allTools.filter((t) => t.category === 'physics').length },
+    { id: 'sports', name: 'Sports', icon: '🏃', count: allTools.filter((t) => t.category === 'sports').length },
+    { id: 'everyday', name: 'Everyday Life', icon: '🗓️', count: allTools.filter((t) => t.category === 'everyday').length },
   ];
 
   return (

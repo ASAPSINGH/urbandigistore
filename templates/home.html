@@ -1,730 +1,293 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 relative">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 relative z-10">
     
-    <!-- Hero Header (Premium Geometric, Minimalist) -->
-    <div class="text-center max-w-3xl mx-auto mb-20 relative z-10">
-        <div class="inline-flex items-center space-x-2 bg-cyberneon/10 border border-cyberneon/30 rounded-full px-4 py-1.5 mb-6">
-            <span class="w-2 h-2 rounded-full bg-cyberneon animate-pulse"></span>
-            <span class="text-xs font-semibold tracking-wider text-cyberneon uppercase">Urbandigistore Tools</span>
+    <!-- Hero Block -->
+    <div class="text-center max-w-3xl mx-auto mb-16 relative">
+        <div class="inline-flex items-center space-x-2 bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-800/40 rounded-full px-4.5 py-1.5 mb-6">
+            <span class="w-2 h-2 rounded-full bg-indigo-600 dark:bg-indigo-400 animate-pulse"></span>
+            <span class="text-xs font-bold tracking-wider text-indigo-700 dark:text-indigo-300 uppercase font-outfit">Urbandigistore Catalog</span>
         </div>
         <h1 class="text-4xl sm:text-6xl font-outfit font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 leading-tight">
-            High-Performance <br/>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyberaccent to-cyberneon">Digital Operations Matrix</span>
+            Your Life in <br/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-sky-500 to-indigo-600 dark:from-indigo-400 dark:via-sky-400 dark:to-indigo-400">35+ Free Calculators & Tools</span>
         </h1>
-        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-light max-w-2xl mx-auto">
-            Execute lightning-fast file conversions, campaign link builders, developer formatting engines, and financial analytics workflows instantly within a centralized, premium dashboard.
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+            Run secure, client-side financial solvers, health trackers, math graphing pads, and unit converters instantly in your local browser sandbox.
         </p>
+
+        <!-- Dynamic Live Search Bar (Omni Style) -->
+        <div class="max-w-xl mx-auto relative">
+            <div class="relative flex items-center">
+                <svg class="w-5 h-5 text-indigo-500 absolute left-4.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input 
+                    type="text" 
+                    id="catalog-search" 
+                    placeholder="Search 35+ calculators (mortgage, molarity, bmi, tax, paint...)" 
+                    class="w-full pl-12 pr-4.5 py-4.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/25 focus:border-indigo-500 transition-all font-semibold text-sm sm:text-base shadow-md hover:shadow-lg"
+                />
+            </div>
+            
+            <!-- Live Search Results Dropdown -->
+            <div 
+                id="search-results-dropdown" 
+                class="hidden absolute left-0 right-0 mt-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl max-h-80 overflow-y-auto z-50 text-left divide-y divide-slate-100 dark:divide-slate-800/50"
+            >
+                <!-- Dynamically populated via JS -->
+            </div>
+        </div>
     </div>
 
-<style>
-/* Media Mockup Animation */
-@keyframes mediaProgress {
-    0% { width: 0%; opacity: 0.8; }
-    50% { width: 100%; opacity: 1; }
-    80% { width: 100%; opacity: 0; }
-    100% { width: 0%; opacity: 0; }
-}
-.media-progress-bar {
-    animation: mediaProgress 3s infinite ease-in-out;
-}
+    <!-- Categories Grid (Omni Style Centered Category Cards) -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto mb-20">
+        <!-- Finance -->
+        <a href="#finance" class="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800/60 hover:border-indigo-500/40 hover:shadow-lg transition-all duration-300 text-center flex flex-col items-center group">
+            <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-950/30 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-105 transition-transform">💰</div>
+            <span class="font-outfit font-bold text-sm text-slate-800 dark:text-slate-200">Finance & Loans</span>
+            <span class="text-[10px] text-slate-400 mt-1">16 calculators</span>
+        </a>
 
-/* Marketing Mockup Parameter Pulse */
-@keyframes tagPulse {
-    0%, 100% { opacity: 0.3; transform: scale(0.95); }
-    50% { opacity: 1; transform: scale(1.02); }
-}
-.marketing-tag-glow {
-    animation: tagPulse 2s infinite ease-in-out;
-}
+        <!-- Health -->
+        <a href="#health" class="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800/60 hover:border-indigo-500/40 hover:shadow-lg transition-all duration-300 text-center flex flex-col items-center group">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-105 transition-transform">🏋️</div>
+            <span class="font-outfit font-bold text-sm text-slate-800 dark:text-slate-200">Health & Body</span>
+            <span class="text-[10px] text-slate-400 mt-1">8 calculators</span>
+        </a>
 
-/* Dev Mockup Formatting Cycle */
-@keyframes devCycle {
-    0%, 100% { content: '{"status":"ok"}'; color: #4f46e5; }
-    50% { content: '{\n  "status": "ok"\n}'; color: #0ea5e9; white-space: pre; }
-}
-.dev-code-animation::after {
-    content: '{"status":"ok"}';
-    animation: devCycle 4s infinite steps(2);
-}
+        <!-- Math -->
+        <a href="#math" class="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800/60 hover:border-indigo-500/40 hover:shadow-lg transition-all duration-300 text-center flex flex-col items-center group">
+            <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-105 transition-transform">📐</div>
+            <span class="font-outfit font-bold text-sm text-slate-800 dark:text-slate-200">Math & Graphing</span>
+            <span class="text-[10px] text-slate-400 mt-1">7 calculators</span>
+        </a>
 
-/* Trading Mockup Price Wave */
-@keyframes waveMotion {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-}
-.trading-price-dot {
-    animation: waveMotion 3s infinite ease-in-out;
-}
+        <!-- Time -->
+        <a href="#time" class="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800/60 hover:border-indigo-500/40 hover:shadow-lg transition-all duration-300 text-center flex flex-col items-center group">
+            <div class="w-12 h-12 rounded-xl bg-sky-100 dark:bg-sky-950/30 text-sky-600 dark:text-sky-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-105 transition-transform">⏱️</div>
+            <span class="font-outfit font-bold text-sm text-slate-800 dark:text-slate-200">Time & Hours</span>
+            <span class="text-[10px] text-slate-400 mt-1">4 calculators</span>
+        </a>
 
-/* Health Mockup Heart Pulse */
-@keyframes heartPulse {
-    0%, 100% { transform: scale(1); opacity: 0.8; }
-    50% { transform: scale(1.12); opacity: 1; }
-}
-.health-heart-pulse {
-    animation: heartPulse 1.5s infinite ease-in-out;
-}
+        <!-- Unit & Materials -->
+        <a href="#unit" class="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800/60 hover:border-indigo-500/40 hover:shadow-lg transition-all duration-300 text-center flex flex-col items-center group">
+            <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-950/30 text-purple-600 dark:text-purple-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-105 transition-transform">📦</div>
+            <span class="font-outfit font-bold text-sm text-slate-800 dark:text-slate-200">Unit & Materials</span>
+            <span class="text-[10px] text-slate-400 mt-1">6 calculators</span>
+        </a>
 
-/* Math Mockup Wave Drawing */
-@keyframes mathWave {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-.math-wave-dot {
-    animation: mathWave 2.5s infinite ease-in-out;
-}
+        <!-- Biology -->
+        <a href="#biology" class="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800/60 hover:border-indigo-500/40 hover:shadow-lg transition-all duration-300 text-center flex flex-col items-center group">
+            <div class="w-12 h-12 rounded-xl bg-pink-100 dark:bg-pink-950/30 text-pink-600 dark:text-pink-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-105 transition-transform">🧬</div>
+            <span class="font-outfit font-bold text-sm text-slate-800 dark:text-slate-200">Biology</span>
+            <span class="text-[10px] text-slate-400 mt-1">1 calculator</span>
+        </a>
 
-/* Time Mockup Clock Hand */
-@keyframes clockTick {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-.time-clock-hand {
-    animation: clockTick 12s infinite linear;
-    transform-origin: bottom center;
-}
+        <!-- Chemistry -->
+        <a href="#chemistry" class="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800/60 hover:border-indigo-500/40 hover:shadow-lg transition-all duration-300 text-center flex flex-col items-center group">
+            <div class="w-12 h-12 rounded-xl bg-teal-100 dark:bg-teal-950/30 text-teal-600 dark:text-teal-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-105 transition-transform">🧪</div>
+            <span class="font-outfit font-bold text-sm text-slate-800 dark:text-slate-200">Chemistry</span>
+            <span class="text-[10px] text-slate-400 mt-1">1 calculator</span>
+        </a>
 
-/* Unit Mockup Cube Spin */
-@keyframes cubeSpin {
-    0% { transform: rotateX(-15deg) rotateY(0deg); }
-    100% { transform: rotateX(-15deg) rotateY(360deg); }
-}
-.unit-cube-spinner {
-    animation: cubeSpin 6s infinite linear;
-    transform-style: preserve-3d;
-}
-</style>
+        <!-- Physics -->
+        <a href="#physics" class="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800/60 hover:border-indigo-500/40 hover:shadow-lg transition-all duration-300 text-center flex flex-col items-center group">
+            <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-105 transition-transform">🌌</div>
+            <span class="font-outfit font-bold text-sm text-slate-800 dark:text-slate-200">Physics</span>
+            <span class="text-[10px] text-slate-400 mt-1">1 calculator</span>
+        </a>
 
-    <!-- Categories Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+        <!-- Sports -->
+        <a href="#sports" class="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800/60 hover:border-indigo-500/40 hover:shadow-lg transition-all duration-300 text-center flex flex-col items-center group">
+            <div class="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-950/30 text-orange-600 dark:text-orange-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-105 transition-transform">🏃</div>
+            <span class="font-outfit font-bold text-sm text-slate-800 dark:text-slate-200">Sports</span>
+            <span class="text-[10px] text-slate-400 mt-1">1 calculator</span>
+        </a>
+
+        <!-- Everyday Life -->
+        <a href="#everyday" class="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800/60 hover:border-indigo-500/40 hover:shadow-lg transition-all duration-300 text-center flex flex-col items-center group">
+            <div class="w-12 h-12 rounded-xl bg-rose-100 dark:bg-rose-950/30 text-rose-600 dark:text-rose-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-105 transition-transform">🗓️</div>
+            <span class="font-outfit font-bold text-sm text-slate-800 dark:text-slate-200">Everyday Life</span>
+            <span class="text-[10px] text-slate-400 mt-1">1 calculator</span>
+        </a>
+    </div>
+
+    <!-- Category Sections -->
+    <div class="max-w-6xl mx-auto space-y-16">
         
-        <!-- Category: Media & Design -->
-        <div id="media" class="glass-panel rounded-2xl p-6 sm:p-8 hover:border-cyberneon/30 transition-all duration-300 group flex flex-col justify-between">
-            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 w-full">
-                <div class="flex-1">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="p-3 bg-cyberneon/10 rounded-xl border border-cyberneon/20 text-cyberneon">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h2 class="font-outfit font-bold text-xl text-white">Media & Design Utilities</h2>
-                            <p class="text-xs text-gray-400">Perform instant image format conversion and social media layouts sizing.</p>
-                        </div>
+        <!-- Category Section macro template helper -->
+        {% macro render_category_section(id, title, icon, color, list) %}
+        <div id="{{ id }}" class="scroll-mt-20">
+            <div class="flex items-center space-x-3 mb-6 border-b border-slate-100 dark:border-slate-850 pb-3">
+                <span class="text-2xl">{{ icon }}</span>
+                <h2 class="text-xl font-outfit font-extrabold text-slate-800 dark:text-white">{{ title }}</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {% for item in list %}
+                <a href="{{ item.url }}" class="p-5 rounded-2xl bg-white dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-850/60 hover:border-{{ color }}-500/40 hover:shadow-md transition-all duration-200 group flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-outfit font-bold text-sm text-slate-800 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors mb-1.5">{{ item.name }}</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-light leading-relaxed line-clamp-2">{{ item.description }}</p>
                     </div>
-                    
-                    <!-- Links subgrid -->
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Image Converters</h3>
-                            <div class="flex flex-wrap gap-2">
-                                {% for inf in tools['image-converter']['params']['input_format'] %}
-                                    {% for outf in tools['image-converter']['params']['output_format'] %}
-                                        {% if inf != outf %}
-                                        <a href="/convert-{{ inf }}-to-{{ outf }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                            {{ inf|upper }} to {{ outf|upper }}
-                                        </a>
-                                        {% endif %}
-                                    {% endfor %}
-                                {% endfor %}
-                            </div>
-                        </div>
-                        
-                        <div class="pt-2">
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Social Image Cropper</h3>
-                            <div class="flex flex-wrap gap-2">
-                                {% for ps in tools['image-cropper']['params']['platform_size'] %}
-                                <a href="/crop-image-for-{{ ps }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Crop for {{ ps.replace('-', ' ').title() }}
-                                </a>
-                                {% endfor %}
-                            </div>
-                        </div>
-
-                        <div class="pt-2">
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">PDF Utilities</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <a href="/merge-pdf" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Merge PDF Documents
-                                </a>
-                                <a href="/split-pdf" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Split & Extract PDF Pages
-                                </a>
-                                <a href="/pdf-to-image" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    PDF to Image Converter
-                                </a>
-                                <a href="/image-to-pdf" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Image to PDF Converter
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="pt-2">
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Image Optimization & Conversion</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <a href="/heic-to-jpg" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    HEIC to JPG Converter
-                                </a>
-                                <a href="/image-compressor" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Image Compressor
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="pt-2">
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Audio & Video Utilities</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <a href="/mp4-to-mp3" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    MP4 to MP3 Converter
-                                </a>
-                                <a href="/audio-converter" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Universal Audio Converter
-                                </a>
-                            </div>
-                        </div>
+                    <div class="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 group-hover:translate-x-0.5 transition-transform mt-4 flex items-center gap-1">
+                        Open Tool
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </div>
-                </div>
-
-                <!-- Animated CSS Mockup Panel -->
-                <div class="hidden lg:flex w-36 h-36 rounded-xl bg-slate-100/80 border border-slate-200/60 items-center justify-center overflow-hidden flex-shrink-0 relative">
-                    <div class="absolute -right-8 -bottom-8 w-16 h-16 bg-cyberneon/10 rounded-full blur-xl pointer-events-none"></div>
-                    <div class="flex flex-col items-center justify-center p-3 text-center w-full h-full">
-                        <div class="w-8 h-8 rounded-lg bg-cyberneon/10 border border-cyberneon/30 text-cyberneon flex items-center justify-center mb-2 animate-bounce">
-                            📸
-                        </div>
-                        <span class="text-[9px] text-slate-500 mb-2">Drop image file</span>
-                        <div class="w-20 h-1.5 bg-slate-200 rounded-full overflow-hidden">
-                            <div class="h-full bg-cyberneon media-progress-bar rounded-full"></div>
-                        </div>
-                        <span class="text-[8px] text-cyberneon mt-1 font-mono">Converting...</span>
-                    </div>
-                </div>
+                </a>
+                {% endfor %}
             </div>
         </div>
+        {% endmacro %}
 
-        <!-- Category: Digital Marketing -->
-        <div id="marketing" class="glass-panel rounded-2xl p-6 sm:p-8 hover:border-cyberaccent/30 transition-all duration-300 group flex flex-col justify-between">
-            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 w-full">
-                <div class="flex-1">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="p-3 bg-cyberaccent/10 rounded-xl border border-cyberaccent/20 text-cyberaccent">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h2 class="font-outfit font-bold text-xl text-white">Digital Marketing</h2>
-                            <p class="text-xs text-gray-400">Generate targeted tracking parameters and quick messaging links.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">UTM Parameter Builders</h3>
-                            <div class="flex flex-wrap gap-2">
-                                {% for p in tools['utm-builder']['params']['platform'] %}
-                                <a href="/utm-builder-for-{{ p }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    UTM: {{ p.replace('-ads', '').replace('-', ' ').title() }}
-                                </a>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        
-                        <div class="pt-2">
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">WhatsApp Click-to-Chat</h3>
-                            <div class="flex flex-wrap gap-2">
-                                {% for c in tools['whatsapp-generator']['params']['country'] %}
-                                <a href="/whatsapp-link-generator-for-{{ c }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Link for {{ c.replace('-', ' ').title() }}
-                                </a>
-                                {% endfor %}
-                            </div>
-                        </div>
+        <!-- Render categories dynamically using helper -->
+        
+        <!-- FINANCE -->
+        {% set finance_list = [] %}
+        {% for k, v in calculators.items() if v.category == 'finance' %}
+            {% set _ = finance_list.append({'name': v.h1 or v.title, 'description': v.metaDescription, 'url': '/calculators/' ~ k}) %}
+        {% endfor %}
+        {{ render_category_section('finance', 'Finance & Loans', '💰', 'amber', finance_list) }}
 
-                        <div class="pt-2">
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Character Counters</h3>
-                            <div class="flex flex-wrap gap-2">
-                                {% for p in tools['character-counter']['params']['platform'] %}
-                                <a href="/character-counter-for-{{ p }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    {{ p.replace('-', ' ').title() }}
-                                </a>
-                                {% endfor %}
-                            </div>
-                        </div>
+        <!-- HEALTH -->
+        {% set health_list = [] %}
+        {% for k, v in calculators.items() if v.category == 'health' %}
+            {% set _ = health_list.append({'name': v.h1 or v.title, 'description': v.metaDescription, 'url': '/calculators/' ~ k}) %}
+        {% endfor %}
+        {{ render_category_section('health', 'Health & Body', '🏋️', 'emerald', health_list) }}
 
-                        <div class="pt-2">
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">CPM & Ad Planners</h3>
-                            <div class="flex flex-wrap gap-2">
-                                {% for ch in tools['cpm-calculator']['params']['channel'] %}
-                                <a href="/cpm-calculator-for-{{ ch }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    CPM: {{ ch.replace('-ads', '').replace('-', ' ').title() }}
-                                </a>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- MATH -->
+        {% set math_list = [] %}
+        {% for k, v in calculators.items() if v.category == 'math' %}
+            {% set _ = math_list.append({'name': v.h1 or v.title, 'description': v.metaDescription, 'url': '/calculators/' ~ k}) %}
+        {% endfor %}
+        {{ render_category_section('math', 'Math & Graphing', '📐', 'indigo', math_list) }}
 
-                <!-- Animated CSS Mockup Panel -->
-                <div class="hidden lg:flex w-36 h-36 rounded-xl bg-slate-100/80 border border-slate-200/60 items-center justify-center overflow-hidden flex-shrink-0 relative">
-                    <div class="absolute -right-8 -bottom-8 w-16 h-16 bg-cyberaccent/10 rounded-full blur-xl pointer-events-none"></div>
-                    <div class="flex flex-col p-3 w-full h-full justify-center">
-                        <div class="text-[8px] text-slate-500 font-mono mb-1">Campaign Link:</div>
-                        <div class="p-2 rounded bg-slate-200/50 border border-slate-200/60 text-[8px] font-mono text-slate-700 leading-tight mb-2 truncate">
-                            site.com<span class="text-cyberaccent marketing-tag-glow font-bold">?utm_source=google</span>
-                        </div>
-                        <span class="text-[8px] text-cyberaccent flex items-center justify-center gap-1 font-semibold">
-                            <span>🚀 Builder Active</span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- TIME -->
+        {% set time_list = [] %}
+        {% for k, v in calculators.items() if v.category == 'time' %}
+            {% set _ = time_list.append({'name': v.h1 or v.title, 'description': v.metaDescription, 'url': '/calculators/' ~ k}) %}
+        {% endfor %}
+        {{ render_category_section('time', 'Time & Hours', '⏱️', 'sky', time_list) }}
 
-        <!-- Category: Developer Utilities -->
-        <div id="dev" class="glass-panel rounded-2xl p-6 sm:p-8 hover:border-cyberaccent/30 transition-all duration-300 group flex flex-col justify-between">
-            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 w-full">
-                <div class="flex-1">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="p-3 bg-cyberaccent/10 rounded-xl border border-cyberaccent/20 text-cyberaccent">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 00-2 2z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h2 class="font-outfit font-bold text-xl text-white">Developer Utilities</h2>
-                            <p class="text-xs text-gray-400">Validate, formatting, and minification tools for common formats.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">JSON Prettifier & Validator</h3>
-                            <div class="flex flex-wrap gap-2">
-                                {% for uc in tools['json-formatter']['params']['use_case'] %}
-                                <a href="/format-json-for-{{ uc }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Format JSON for {{ uc.replace('-', ' ').title() }}
-                                </a>
-                                {% endfor %}
-                            </div>
-                        </div>
+        <!-- UNIT -->
+        {% set unit_list = [] %}
+        {% for k, v in calculators.items() if v.category == 'unit' %}
+            {% set _ = unit_list.append({'name': v.h1 or v.title, 'description': v.metaDescription, 'url': '/calculators/' ~ k}) %}
+        {% endfor %}
+        {{ render_category_section('unit', 'Unit & Materials', '📦', 'purple', unit_list) }}
 
-                        <div class="pt-2">
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Base64 File Decoders</h3>
-                            <div class="flex flex-wrap gap-2">
-                                {% for ft in tools['base64-converter']['params']['file_type'] %}
-                                <a href="/decode-base64-to-{{ ft }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Decode to {{ ft|upper }}
-                                </a>
-                                {% endfor %}
-                            </div>
-                        </div>
+        <!-- BIOLOGY -->
+        {% set biology_list = [] %}
+        {% for k, v in calculators.items() if v.category == 'biology' %}
+            {% set _ = biology_list.append({'name': v.h1 or v.title, 'description': v.metaDescription, 'url': '/calculators/' ~ k}) %}
+        {% endfor %}
+        {{ render_category_section('biology', 'Biology', '🧬', 'pink', biology_list) }}
 
-                        <div class="pt-2">
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">QR Code Generator</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <a href="/qr-code-generator" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Generate Custom QR Codes
-                                </a>
-                            </div>
-                        </div>
+        <!-- CHEMISTRY -->
+        {% set chemistry_list = [] %}
+        {% for k, v in calculators.items() if v.category == 'chemistry' %}
+            {% set _ = chemistry_list.append({'name': v.h1 or v.title, 'description': v.metaDescription, 'url': '/calculators/' ~ k}) %}
+        {% endfor %}
+        {{ render_category_section('chemistry', 'Chemistry', '🧪', 'teal', chemistry_list) }}
 
-                        <div class="pt-2">
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Password Generator</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <a href="/password-generator" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Secure Password Generator
-                                </a>
-                            </div>
-                        </div>
+        <!-- PHYSICS -->
+        {% set physics_list = [] %}
+        {% for k, v in calculators.items() if v.category == 'physics' %}
+            {% set _ = physics_list.append({'name': v.h1 or v.title, 'description': v.metaDescription, 'url': '/calculators/' ~ k}) %}
+        {% endfor %}
+        {{ render_category_section('physics', 'Physics', '🌌', 'blue', physics_list) }}
 
-                        <div class="pt-2">
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Developer Tools</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <a href="/diff-checker" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Side-by-Side Diff Checker
-                                </a>
-                                <a href="/epoch-converter" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Epoch Timestamp Converter
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- SPORTS -->
+        {% set sports_list = [] %}
+        {% for k, v in calculators.items() if v.category == 'sports' %}
+            {% set _ = sports_list.append({'name': v.h1 or v.title, 'description': v.metaDescription, 'url': '/calculators/' ~ k}) %}
+        {% endfor %}
+        {{ render_category_section('sports', 'Sports', '🏃', 'orange', sports_list) }}
 
-                <!-- Animated CSS Mockup Panel -->
-                <div class="hidden lg:flex w-36 h-36 rounded-xl bg-slate-100/80 border border-slate-200/60 items-center justify-center overflow-hidden flex-shrink-0 relative">
-                    <div class="absolute -right-8 -bottom-8 w-16 h-16 bg-cyberaccent/10 rounded-full blur-xl pointer-events-none"></div>
-                    <div class="flex flex-col p-3 w-full h-full justify-center">
-                        <div class="p-2 rounded bg-slate-200/50 border border-slate-200/60 text-[8px] font-mono text-center flex items-center justify-center h-16">
-                            <code class="dev-code-animation text-[8px] leading-relaxed"></code>
-                        </div>
-                        <span class="text-[8px] text-center text-cyberaccent mt-1.5 font-mono">Parser Active</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Category: Crypto & Finance -->
-        <div id="finance" class="glass-panel rounded-2xl p-6 sm:p-8 hover:border-cyberneon/30 transition-all duration-300 group flex flex-col justify-between">
-            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 w-full">
-                <div class="flex-1">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="p-3 bg-cyberneon/10 rounded-xl border border-cyberneon/20 text-cyberneon">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h2 class="font-outfit font-bold text-xl text-white">Crypto & Finance</h2>
-                            <p class="text-xs text-gray-400">Professional trading utilities to calculate positions, interest rates, and loan amortizations.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Trading Calculators</h3>
-                            <div class="flex flex-wrap gap-2">
-                                {% for ac in tools['position-calculator']['params']['asset_class'] %}
-                                <a href="/position-size-calculator-{{ ac }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Sizing for {{ ac.replace('-', ' ').title() }}
-                                </a>
-                                {% endfor %}
-                                {% for uc in tools['fibonacci-calculator']['params']['use_case'] %}
-                                <a href="/fibonacci-retracement-calculator-{{ uc }}" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Fibonacci: {{ uc.replace('-', ' ').title() }}
-                                </a>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        
-                        <div class="pt-2">
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Mortgage & Loan Calculators</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <a href="/calculators/mortgage" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Mortgage & Amortization
-                                </a>
-                                <a href="/calculators/paycheck-salary" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Paycheck & Salary Tax
-                                </a>
-                                <a href="/calculators/auto-loan" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Auto & Car Loan
-                                </a>
-                                <a href="/calculators/investment-cd" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    CD & Compound Interest
-                                </a>
-                                <a href="/calculators/credit-card-payoff" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Credit Card & Debt Snowball
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="pt-2 flex items-center justify-between">
-                            <a href="/calculators" class="text-xs font-bold text-cyberaccent hover:underline flex items-center gap-1">
-                                View all 16 financial calculators
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Animated CSS Mockup Panel -->
-                <div class="hidden lg:flex w-36 h-36 rounded-xl bg-slate-100/80 border border-slate-200/60 items-center justify-center overflow-hidden flex-shrink-0 relative">
-                    <div class="absolute -right-8 -bottom-8 w-16 h-16 bg-cyberneon/10 rounded-full blur-xl pointer-events-none"></div>
-                    <div class="flex flex-col p-2 w-full h-full justify-center relative">
-                        <div class="absolute inset-x-2 h-px bg-slate-200/40 top-[30%]"></div>
-                        <div class="absolute inset-x-2 h-px bg-cyberneon/20 top-[50%]">
-                            <span class="absolute -top-2 right-0 text-[6px] text-cyberneon font-mono">0.618</span>
-                        </div>
-                        <div class="absolute inset-x-2 h-px bg-slate-200/40 top-[70%]"></div>
-                        
-                        <div class="flex justify-around items-end h-16 pt-2 z-10">
-                            <div class="w-2.5 h-8 bg-red-100 border border-red-200 rounded-sm"></div>
-                            <div class="w-2.5 h-12 bg-red-100 border border-red-200 rounded-sm"></div>
-                            <div class="w-2.5 h-6 bg-green-100 border border-green-200 rounded-sm trading-price-dot"></div>
-                            <div class="w-2.5 h-9 bg-green-100 border border-green-200 rounded-sm trading-price-dot"></div>
-                        </div>
-                        <span class="text-[8px] text-center text-cyberneon mt-1.5 font-mono">Golden Ratio</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Category: Health & Fitness -->
-        <div id="health" class="glass-panel rounded-2xl p-6 sm:p-8 hover:border-cyberaccent/30 transition-all duration-300 group flex flex-col justify-between">
-            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 w-full">
-                <div class="flex-1">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="p-3 bg-cyberaccent/10 rounded-xl border border-cyberaccent/20 text-cyberaccent">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h2 class="font-outfit font-bold text-xl text-white">Health & Fitness</h2>
-                            <p class="text-xs text-gray-400">Calculate metabolic rate, body mass index, water intake, and caloric deficit schedules.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Body Metrics & Charting</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <a href="/calculators/bmi" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    BMI Category & Healthy Range
-                                </a>
-                                <a href="/calculators/body-fat-navy" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Body Fat % (US Navy Method)
-                                </a>
-                                <a href="/calculators/ideal-weight-water" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Ideal Body Weight & Hydration
-                                </a>
-                                <a href="/calculators/bra-size" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Bra Band & Cup Converter
-                                </a>
-                                <a href="/calculators/height-predictor" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Height Predictor & Growth
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="pt-2">
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Metabolic Rate & Nutrition</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <a href="/calculators/bmr-tdee" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    BMR & TDEE (Energy Spend)
-                                </a>
-                                <a href="/calculators/calorie-deficit" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Calorie Deficit & Loss Target
-                                </a>
-                                <a href="/calculators/macro" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Macronutrients Split (Protein/Carb/Fat)
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Animated CSS Mockup Panel -->
-                <div class="hidden lg:flex w-36 h-36 rounded-xl bg-slate-100/80 border border-slate-200/60 items-center justify-center overflow-hidden flex-shrink-0 relative">
-                    <div class="absolute -right-8 -bottom-8 w-16 h-16 bg-cyberaccent/10 rounded-full blur-xl pointer-events-none"></div>
-                    <div class="flex flex-col items-center justify-center p-3 text-center w-full h-full">
-                        <div class="w-9 h-9 rounded-full bg-cyberaccent/10 border border-cyberaccent/30 text-cyberaccent flex items-center justify-center mb-2 health-heart-pulse">
-                            ❤️
-                        </div>
-                        <span class="text-[9px] text-slate-500 mb-2">Target Calories</span>
-                        <div class="w-20 h-1.5 bg-slate-200 rounded-full overflow-hidden">
-                            <div class="h-full bg-cyberaccent w-[70%] rounded-full"></div>
-                        </div>
-                        <span class="text-[8px] text-cyberaccent mt-1 font-mono">BMR: 1,650 kcal</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Category: Math & Academic -->
-        <div id="math" class="glass-panel rounded-2xl p-6 sm:p-8 hover:border-cyberaccent/30 transition-all duration-300 group flex flex-col justify-between">
-            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 w-full">
-                <div class="flex-1">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="p-3 bg-cyberaccent/10 rounded-xl border border-cyberaccent/20 text-cyberaccent">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h2 class="font-outfit font-bold text-xl text-white">Math & Academic</h2>
-                            <p class="text-xs text-gray-400">TI-84 function graphers, algebra equations solvers, statistics standard deviations, and GPA charts.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Equation & Graph Solvers</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <a href="/calculators/scientific-graphing" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    TI-84 / Desmos Graphing Canvas
-                                </a>
-                                <a href="/calculators/math-solver" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Quadratic, Slope & Factoring
-                                </a>
-                                <a href="/calculators/advanced-calculus-algebra" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Calculus Series & Sim Equations
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="pt-2">
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Academic & Matrix Utilities</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <a href="/calculators/gpa-calculator" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    GPA & Grade Calculator (Weighted)
-                                </a>
-                                <a href="/calculators/statistics-matrix" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Statistics & Matrix Multiplication
-                                </a>
-                                <a href="/calculators/fraction-percentage" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Fraction Operations & % Change
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Animated CSS Mockup Panel -->
-                <div class="hidden lg:flex w-36 h-36 rounded-xl bg-slate-100/80 border border-slate-200/60 items-center justify-center overflow-hidden flex-shrink-0 relative">
-                    <div class="absolute -right-8 -bottom-8 w-16 h-16 bg-cyberaccent/10 rounded-full blur-xl pointer-events-none"></div>
-                    <div class="flex flex-col p-2 w-full h-full justify-center relative">
-                        <div class="absolute inset-x-2 h-px bg-slate-200/40 top-[50%]"></div>
-                        <div class="absolute inset-y-2 w-px bg-slate-200/40 left-[50%]"></div>
-                        
-                        <div class="flex justify-around items-end h-16 pt-2 z-10 w-full relative">
-                            <div class="w-2 h-2 rounded-full bg-cyberaccent absolute left-[15%] bottom-[10%] math-wave-dot"></div>
-                            <div class="w-2 h-2 rounded-full bg-cyberaccent absolute left-[35%] bottom-[60%] math-wave-dot" style="animation-delay: 0.5s;"></div>
-                            <div class="w-2 h-2 rounded-full bg-cyberaccent absolute left-[55%] bottom-[40%] math-wave-dot" style="animation-delay: 1s;"></div>
-                            <div class="w-2 h-2 rounded-full bg-cyberaccent absolute left-[75%] bottom-[80%] math-wave-dot" style="animation-delay: 1.5s;"></div>
-                        </div>
-                        <span class="text-[8px] text-center text-cyberaccent mt-1.5 font-mono">y = sin(x)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Category: Productivity & Time -->
-        <div id="time" class="glass-panel rounded-2xl p-6 sm:p-8 hover:border-cyberneon/30 transition-all duration-300 group flex flex-col justify-between">
-            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 w-full">
-                <div class="flex-1">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="p-3 bg-cyberneon/10 rounded-xl border border-cyberneon/20 text-cyberneon">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h2 class="font-outfit font-bold text-xl text-white">Productivity & Time</h2>
-                            <p class="text-xs text-gray-400">Track work timesheets, calculate business day durations, age ranges, and salary conversions.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Time Card & Work Schedules</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <a href="/calculators/time-clock" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Work Hours & Timesheet Clock
-                                </a>
-                                <a href="/calculators/hourly-to-salary" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Hourly to Annual Salary Converter
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="pt-2">
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Dates & Business Calendars</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <a href="/calculators/date-time-duration" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Date Duration & Age Calculator
-                                </a>
-                                <a href="/calculators/time-zone-calendar" class="text-xs bg-white/5 border border-white/10 hover:border-cyberneon/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Business Work Days Counter
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Animated CSS Mockup Panel -->
-                <div class="hidden lg:flex w-36 h-36 rounded-xl bg-slate-100/80 border border-slate-200/60 items-center justify-center overflow-hidden flex-shrink-0 relative">
-                    <div class="absolute -right-8 -bottom-8 w-16 h-16 bg-cyberneon/10 rounded-full blur-xl pointer-events-none"></div>
-                    <div class="flex flex-col items-center justify-center p-3 w-full h-full">
-                        <div class="w-10 h-10 rounded-full border-2 border-cyberneon flex items-center justify-center mb-2 relative">
-                            <div class="w-[2px] h-[12px] bg-cyberneon absolute bottom-[18px] time-clock-hand"></div>
-                            <div class="w-[2px] h-[8px] bg-cyberaccent absolute bottom-[18px] transform rotate-[70deg]"></div>
-                            <div class="w-1.5 h-1.5 rounded-full bg-cyberneon absolute top-[17px]"></div>
-                        </div>
-                        <span class="text-[8px] text-cyberneon mt-1 font-mono">UTC Sync Running</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Category: Unit & Construction -->
-        <div id="unit" class="glass-panel rounded-2xl p-6 sm:p-8 hover:border-cyberaccent/30 transition-all duration-300 group flex flex-col justify-between">
-            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 w-full">
-                <div class="flex-1">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="p-3 bg-cyberaccent/10 rounded-xl border border-cyberaccent/20 text-cyberaccent">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h2 class="font-outfit font-bold text-xl text-white">Unit & Construction</h2>
-                            <p class="text-xs text-gray-400">Universal unit converter, square footage concrete yards, mulch/gravel estimators, paint estimators, and physics Ohm's laws.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Universal Converters</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <a href="/calculators/unit-converter" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Universal Unit & Currency
-                                </a>
-                                <a href="/calculators/land-area-volume" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    m² / m³ Land Area Converter
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="pt-2">
-                            <h3 class="text-xs font-semibold text-gray-400 tracking-wider uppercase mb-2">Construction & DIY Estimators</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <a href="/calculators/area-concrete" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Square Footage & Concrete Bags
-                                </a>
-                                <a href="/calculators/construction-materials" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Mulch, Soil, Gravel & Asphalt
-                                </a>
-                                <a href="/calculators/paint-stair" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Paint gallons & Stair rise/run
-                                </a>
-                                <a href="/calculators/electrical-physics" class="text-xs bg-white/5 border border-white/10 hover:border-cyberaccent/50 px-2.5 py-1 rounded text-gray-300 hover:text-white transition">
-                                    Ohm's Law, Volts & Electricity bills
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Animated CSS Mockup Panel -->
-                <div class="hidden lg:flex w-36 h-36 rounded-xl bg-slate-100/80 border border-slate-200/60 items-center justify-center overflow-hidden flex-shrink-0 relative">
-                    <div class="absolute -right-8 -bottom-8 w-16 h-16 bg-cyberaccent/10 rounded-full blur-xl pointer-events-none"></div>
-                    <div class="flex flex-col items-center justify-center p-3 text-center w-full h-full relative" style="perspective: 400px;">
-                        <!-- Spinning 3D Wireframe Cube Layout -->
-                        <div class="w-10 h-10 relative unit-cube-spinner flex items-center justify-center">
-                            <!-- front -->
-                            <div class="absolute inset-0 border border-cyberaccent/50 bg-cyberaccent/5 transform translate-z-[20px]"></div>
-                            <!-- back -->
-                            <div class="absolute inset-0 border border-cyberaccent/50 bg-cyberaccent/5 transform rotate-y-180 translate-z-[20px]"></div>
-                            <!-- top -->
-                            <div class="absolute inset-0 border border-cyberaccent/50 bg-cyberaccent/5 transform rotate-x-90 translate-z-[20px]"></div>
-                            <!-- bottom -->
-                            <div class="absolute inset-0 border border-cyberaccent/50 bg-cyberaccent/5 transform rotate-x-270 translate-z-[20px]"></div>
-                            <!-- left -->
-                            <div class="absolute inset-0 border border-cyberaccent/50 bg-cyberaccent/5 transform rotate-y-270 translate-z-[20px]"></div>
-                            <!-- right -->
-                            <div class="absolute inset-0 border border-cyberaccent/50 bg-cyberaccent/5 transform rotate-y-90 translate-z-[20px]"></div>
-                        </div>
-                        <span class="text-[8px] text-cyberaccent mt-3 font-mono">1 m³ ⇄ 35.3 ft³</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- EVERYDAY LIFE -->
+        {% set everyday_list = [] %}
+        {% for k, v in calculators.items() if v.category == 'everyday' %}
+            {% set _ = everyday_list.append({'name': v.h1 or v.title, 'description': v.metaDescription, 'url': '/calculators/' ~ k}) %}
+        {% endfor %}
+        {{ render_category_section('everyday', 'Everyday Life', '🗓️', 'rose', everyday_list) }}
 
     </div>
 </section>
+
+<!-- Embedded Search dataset & Live filtering controller -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Gather all calculator items dynamically from the Jinja context
+    const searchDatabase = [];
+    
+    // Add Calculators
+    {% for k, v in calculators.items() %}
+    searchDatabase.push({
+        id: "{{ k }}",
+        name: "{{ v.h1 or v.title }}",
+        description: "{{ v.metaDescription }}",
+        url: "/calculators/{{ k }}",
+        keywords: {{ (v.keywords or [])|tojson }}
+    });
+    {% endfor %}
+
+    // Add general/Flask operations tools
+    searchDatabase.push({ id: "image-converter", name: "Universal Image Converter", description: "Convert image formats (PNG, JPG, WEBP, AVIF) online.", url: "/image-converter", keywords: ["png to webp", "jpg to png", "heic to jpg"] });
+    searchDatabase.push({ id: "image-cropper", name: "Social Media Image Cropper", description: "Crop images for Instagram, Facebook, and Twitter.", url: "/image-cropper", keywords: ["crop image", "image crop", "instagram size"] });
+    searchDatabase.push({ id: "utm-builder", name: "Google Analytics UTM Builder", description: "Generate campaign tracking link parameters.", url: "/utm-builder", keywords: ["utm generator", "utm campaign link"] });
+    searchDatabase.push({ id: "whatsapp-generator", name: "WhatsApp Direct Link Generator", description: "Create click-to-chat links with custom prefilled messages.", url: "/whatsapp-link-generator", keywords: ["wa.me link", "whatsapp chat link"] });
+    searchDatabase.push({ id: "json-formatter", name: "JSON Formatter, Validator & Minifier", description: "Beautify, validate, and minify JSON data structures.", url: "/json-formatter", keywords: ["pretty print json", "json parser"] });
+    searchDatabase.push({ id: "base64-converter", name: "Base64 File & Image Decoder", description: "Convert files and images to Base64 strings or decode back.", url: "/base64-file-converter", keywords: ["base64 decode", "image to base64"] });
+    searchDatabase.push({ id: "merge-pdf", name: "PDF Merge & Document Compiler", description: "Combine multiple PDF files into a single document.", url: "/merge-pdf", keywords: ["combine pdf", "pdf joiner"] });
+    searchDatabase.push({ id: "split-pdf", name: "PDF Page Splitter & Extractor", description: "Split PDF pages or extract a specific range into a new file.", url: "/split-pdf", keywords: ["extract pdf page", "pdf divide"] });
+    searchDatabase.push({ id: "qr-generator", name: "Dynamic QR Code Generator", description: "Create custom QR codes for URLs, text, and Wi-Fi networks.", url: "/qr-code-generator", keywords: ["qr maker", "wifi qr code"] });
+    searchDatabase.push({ id: "password-generator", name: "Secure Password Generator", description: "Generate strong, cryptographically secure passwords.", url: "/password-generator", keywords: ["password maker", "secure key"] });
+    searchDatabase.push({ id: "diff-checker", name: "Text Diff Checker & Compare", description: "Compare two text documents side-by-side to find differences.", url: "/diff-checker", keywords: ["compare files", "text compare"] });
+    searchDatabase.push({ id: "epoch-converter", name: "Epoch Unix Timestamp Converter", description: "Convert Unix epoch seconds to human-readable dates.", url: "/epoch-converter", keywords: ["unix time", "epoch dates"] });
+
+    const searchInput = document.getElementById('catalog-search');
+    const dropdown = document.getElementById('search-results-dropdown');
+
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        if (!query) {
+            dropdown.classList.add('hidden');
+            dropdown.innerHTML = '';
+            return;
+        }
+
+        // Filter database
+        const matches = searchDatabase.filter(item => {
+            return item.name.toLowerCase().includes(query) ||
+                   item.description.toLowerCase().includes(query) ||
+                   item.keywords.some(kw => kw.toLowerCase().includes(query));
+        }).slice(0, 8); // Limit to 8 results
+
+        if (matches.length === 0) {
+            dropdown.innerHTML = `<div class="p-4 text-xs text-slate-400 text-center">No calculators match "${query}"</div>`;
+            dropdown.classList.remove('hidden');
+            return;
+        }
+
+        // Render matches
+        dropdown.innerHTML = matches.map(item => `
+            <a href="${item.url}" class="block p-4 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition duration-150">
+                <div class="text-xs font-bold text-slate-800 dark:text-white">${item.name}</div>
+                <div class="text-[10px] text-slate-400 truncate mt-0.5">${item.description}</div>
+            </a>
+        `).join('');
+        dropdown.classList.remove('hidden');
+    });
+
+    // Close search dropdown on click outside
+    document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.add('hidden');
+        }
+    });
+});
+</script>
 {% endblock %}

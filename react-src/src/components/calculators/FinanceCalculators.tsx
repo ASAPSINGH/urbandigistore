@@ -421,7 +421,7 @@ export const FinanceCalculators: React.FC<Props> = ({ subToolId }) => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-medium text-slate-600 mb-1">Home Price ($)</label>
               <input
@@ -729,7 +729,7 @@ export const FinanceCalculators: React.FC<Props> = ({ subToolId }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-medium text-slate-600 mb-1">Loan Amount ($)</label>
               <input
@@ -1072,7 +1072,7 @@ export const FinanceCalculators: React.FC<Props> = ({ subToolId }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-medium text-slate-600 mb-1">Initial Deposit ($)</label>
               <input
@@ -1249,7 +1249,7 @@ export const FinanceCalculators: React.FC<Props> = ({ subToolId }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-medium text-slate-600 mb-1">Current Loan Balance ($)</label>
               <input
@@ -1403,7 +1403,7 @@ export const FinanceCalculators: React.FC<Props> = ({ subToolId }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-medium text-slate-600 mb-1">Student Loan Balance ($)</label>
               <input
@@ -1669,7 +1669,7 @@ export const FinanceCalculators: React.FC<Props> = ({ subToolId }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-medium text-slate-600 mb-1">Commercial Property Value ($)</label>
               <input
@@ -1731,7 +1731,7 @@ export const FinanceCalculators: React.FC<Props> = ({ subToolId }) => {
             <h3 className="text-base font-bold text-slate-800 flex items-center gap-2">
               <span>🏷️</span> Bond Yield to Maturity (YTM) & Price Analysis
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-xs text-slate-600 mb-1">Face Value ($)</label>
                 <input
