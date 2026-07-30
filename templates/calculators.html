@@ -43,8 +43,8 @@
 
 {% block scripts %}
 <!-- Mount Compiled React Calculator App bundles -->
-<link rel="stylesheet" href="{{ url_for('static', filename='calculators_dist/assets/index.css') }}">
-<script type="module" src="{{ url_for('static', filename='calculators_dist/assets/index.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='calculators_dist/assets/index.css') }}?v=20260731">
+<script type="module" src="{{ url_for('static', filename='calculators_dist/assets/index.js') }}?v=20260731"></script>
 
 <!-- Server-Side Structured Schema Data (SEO & AI Crawler indexing) -->
 {% if meta %}
