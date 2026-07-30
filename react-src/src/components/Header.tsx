@@ -32,12 +32,15 @@ export const Header: React.FC<Props> = ({
     { id: 'health', name: 'Health & Body', icon: '🏋️', count: allTools.filter((t) => t.category === 'health').length },
     { id: 'math', name: 'Math & Graphing', icon: '📐', count: allTools.filter((t) => t.category === 'math').length },
     { id: 'time', name: 'Time & Hours', icon: '⏱️', count: allTools.filter((t) => t.category === 'time').length },
-    { id: 'unit', name: 'Unit & Materials', icon: '📦', count: allTools.filter((t) => t.category === 'unit').length },
+    { id: 'unit', name: 'Unit & Construction', icon: '📦', count: allTools.filter((t) => t.category === 'unit').length },
     { id: 'biology', name: 'Biology', icon: '🧬', count: allTools.filter((t) => t.category === 'biology').length },
     { id: 'chemistry', name: 'Chemistry', icon: '🧪', count: allTools.filter((t) => t.category === 'chemistry').length },
     { id: 'physics', name: 'Physics', icon: '🌌', count: allTools.filter((t) => t.category === 'physics').length },
     { id: 'sports', name: 'Sports', icon: '🏃', count: allTools.filter((t) => t.category === 'sports').length },
     { id: 'everyday', name: 'Everyday Life', icon: '🗓️', count: allTools.filter((t) => t.category === 'everyday').length },
+    { id: 'ecology', name: 'Ecology', icon: '🌿', count: allTools.filter((t) => t.category === 'ecology').length },
+    { id: 'food', name: 'Food & Cooking', icon: '🍳', count: allTools.filter((t) => t.category === 'food').length },
+    { id: 'statistics', name: 'Statistics', icon: '📊', count: allTools.filter((t) => t.category === 'statistics').length },
   ];
 
   return (
@@ -53,7 +56,7 @@ export const Header: React.FC<Props> = ({
           >
             <div className="flex items-center gap-2.5 truncate">
               <Search className="w-4 h-4 text-indigo-500 shrink-0" />
-              <span className="truncate">Search 30+ calculators (mortgage, bmi, tax, algebra...)</span>
+              <span className="truncate">Search 57+ calculators (mortgage, bmi, z-score, carbon footprint, pace...)</span>
             </div>
             <kbd className="hidden sm:inline-block px-2.5 py-0.5 text-[9px] bg-[var(--bg-panel)] border border-[var(--border-panel)] rounded-lg text-[var(--text-muted)] font-mono shadow-2xs">
               ⌘K

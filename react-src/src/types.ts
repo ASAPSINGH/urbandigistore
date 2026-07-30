@@ -1,4 +1,4 @@
-export type CategoryId = 'finance' | 'health' | 'math' | 'time' | 'unit' | 'biology' | 'chemistry' | 'physics' | 'sports' | 'everyday';
+export type CategoryId = 'finance' | 'health' | 'math' | 'time' | 'unit' | 'biology' | 'chemistry' | 'physics' | 'sports' | 'everyday' | 'ecology' | 'food' | 'statistics';
 
 export interface ToolItem {
   id: string;

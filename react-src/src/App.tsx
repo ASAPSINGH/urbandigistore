@@ -217,7 +217,10 @@ export default function App() {
                             activeTool.category === 'chemistry' ||
                             activeTool.category === 'physics' ||
                             activeTool.category === 'sports' ||
-                            activeTool.category === 'everyday') && (
+                            activeTool.category === 'everyday' ||
+                            activeTool.category === 'ecology' ||
+                            activeTool.category === 'food' ||
+                            activeTool.category === 'statistics') && (
                             <OtherCalculators subToolId={activeTool.id} />
                           )}
                         </motion.div>
