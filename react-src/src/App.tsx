@@ -183,37 +183,45 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Dynamic Calculator Component Renderer */}
-                <div className="bg-[var(--bg-panel)] backdrop-blur-md rounded-3xl border border-[var(--border-panel)] shadow-xl p-4 sm:p-6 overflow-hidden">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeTool.id}
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -12 }}
-                      transition={{ duration: 0.2, ease: 'easeOut' }}
-                    >
-                      {activeTool.category === 'finance' && (
-                        <FinanceCalculators subToolId={activeTool.id} />
-                      )}
-                      {activeTool.category === 'health' && (
-                        <HealthCalculators subToolId={activeTool.id} />
-                      )}
-                      {activeTool.category === 'math' && (
-                        <MathGraphingCalculators subToolId={activeTool.id} />
-                      )}
-                      {activeTool.category === 'time' && (
-                        <TimeCalculators subToolId={activeTool.id} />
-                      )}
-                      {activeTool.category === 'unit' && (
-                        <UnitCalculators subToolId={activeTool.id} />
-                      )}
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
+                {/* Active Tool Dynamic Two-Column Workspace (Omni Calculator Style) */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                  
+                  {/* Left Column: Interactive Calculator Widget (sticky on desktop) */}
+                  <div className="lg:col-span-5 lg:sticky lg:top-20 space-y-6">
+                    <div className="bg-[var(--bg-panel)] backdrop-blur-md rounded-3xl border border-[var(--border-panel)] shadow-xl p-4 sm:p-6 overflow-hidden">
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={activeTool.id}
+                          initial={{ opacity: 0, y: 12 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -12 }}
+                          transition={{ duration: 0.2, ease: 'easeOut' }}
+                        >
+                          {activeTool.category === 'finance' && (
+                            <FinanceCalculators subToolId={activeTool.id} />
+                          )}
+                          {activeTool.category === 'health' && (
+                            <HealthCalculators subToolId={activeTool.id} />
+                          )}
+                          {activeTool.category === 'math' && (
+                            <MathGraphingCalculators subToolId={activeTool.id} />
+                          )}
+                          {activeTool.category === 'time' && (
+                            <TimeCalculators subToolId={activeTool.id} />
+                          )}
+                          {activeTool.category === 'unit' && (
+                            <UnitCalculators subToolId={activeTool.id} />
+                          )}
+                        </motion.div>
+                      </AnimatePresence>
+                    </div>
+                  </div>
 
-                {/* Collapsible Formula & FAQ Guideline Section */}
-                <SEOSection toolId={selectedToolId} />
+                  {/* Right Column: Rich Theoretical Content & Formula Guideline */}
+                  <div className="lg:col-span-7">
+                    <SEOSection toolId={selectedToolId} />
+                  </div>
+                </div>
 
                 {/* Related Calculators Ribbon */}
                 {relatedTools.length > 0 && (

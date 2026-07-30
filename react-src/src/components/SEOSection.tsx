@@ -11,7 +11,7 @@ export const SEOSection: React.FC<Props> = ({ toolId }) => {
   const seoData = SEO_DATA_MAP[toolId] || SEO_DATA_MAP['mortgage'];
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [copied, setCopied] = useState<boolean>(false);
-  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const [isExpanded, setIsExpanded] = useState<boolean>(true);
 
   // Dynamic JSON-LD FAQ Schema injection for Google SERP Rich Snippets & AI Crawlers
   useEffect(() => {
@@ -58,7 +58,7 @@ export const SEOSection: React.FC<Props> = ({ toolId }) => {
   };
 
   return (
-    <article className="mt-8 border-t border-[var(--border-panel)] pt-6 space-y-4">
+    <article className="space-y-4">
       {/* Header Toggle */}
       <div className="bg-[var(--bg-panel)] backdrop-blur-md border border-[var(--border-panel)] rounded-2xl p-5 shadow-sm flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">

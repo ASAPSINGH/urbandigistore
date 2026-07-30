@@ -28,35 +28,19 @@
         </p>
     </div>
 
-    <!-- Snippet-Friendly Direct Definition (AEO Support) -->
-    {% if aeo_definition %}
-    <div class="p-4 rounded-xl bg-cyberneon/5 border border-cyberneon/20 mb-10 max-w-3xl glass-panel relative overflow-hidden">
-        <div class="absolute -right-16 -top-16 w-32 h-32 bg-cyberneon/5 rounded-full blur-2xl pointer-events-none"></div>
-        <div class="flex items-start space-x-3">
-            <div class="p-1 rounded bg-cyberneon/10 text-cyberneon mt-0.5">
-                <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-            </div>
-            <div>
-                <h3 class="text-[10px] font-bold text-cyberneon tracking-wider uppercase mb-1">Direct Answer / Definition</h3>
-                <p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-light">{{ aeo_definition }}</p>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-
-    <!-- MAIN INTERACTIVE TOOL INTERFACE (Above the fold, no extra scrolling needed) -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12 items-start">
-        <div class="lg:col-span-2 glass-panel rounded-2xl p-6 sm:p-8 relative overflow-hidden border border-white/10 shadow-2xl">
-            <!-- Accent Glow Ring inside panel -->
-            <div class="absolute -right-32 -bottom-32 w-64 h-64 bg-cyberneon/10 rounded-full blur-3xl pointer-events-none"></div>
-            
-            <!-- Inject Tool Component HTML -->
-            {% include 'tools/' ~ tool_key ~ '.html' %}
-        </div>
+    <!-- Two-Column Grid Layout (Omni Calculator Style) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12">
         
-        <div class="lg:col-span-1 space-y-6">
+        <!-- LEFT COLUMN: Sticky Interactive Tool Workspace (5/12 width) -->
+        <div class="lg:col-span-5 lg:sticky lg:top-20 space-y-6">
+            <div class="glass-panel rounded-2xl p-6 sm:p-8 relative overflow-hidden border border-white/10 shadow-2xl">
+                <!-- Accent Glow Ring inside panel -->
+                <div class="absolute -right-32 -bottom-32 w-64 h-64 bg-cyberneon/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <!-- Inject Tool Component HTML -->
+                {% include 'tools/' ~ tool_key ~ '.html' %}
+            </div>
+            
             {% if affiliate_partner %}
             <div class="glass-panel rounded-2xl p-6 border border-white/10 relative overflow-hidden flex flex-col justify-between hover:border-cyberneon/30 transition-all duration-300 shadow-xl group">
                 <!-- Glow accent -->
@@ -90,7 +74,7 @@
             {% endif %}
             
             {% if adsense_client_id %}
-            <!-- Sidebar Ad Unit (Smart Placement: Doesn't block tool workspace) -->
+            <!-- Sidebar Ad Unit -->
             <div class="w-full flex justify-center">
                 <ins class="adsbygoogle"
                      style="display:block;width:100%;min-height:250px;"
@@ -103,120 +87,137 @@
                 </script>
             </div>
             {% endif %}
-        </div>
-    </div>
 
-    {% if adsense_client_id %}
-    <!-- Mid-Page Horizontal Ad Banner (Engagement Zone: Below Tool workspace, above FAQs) -->
-    <div class="w-full flex justify-center my-10">
-        <ins class="adsbygoogle"
-             style="display:block;width:100%;"
-             data-ad-client="{{ adsense_client_id }}"
-             data-ad-slot="mid-page-tool-ad"
-             data-ad-format="horizontal"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-    {% endif %}
-
-    <!-- Technical Specs & Standards Table (GEO Support) -->
-    {% if technical_comparison and technical_comparison.headers %}
-    <div class="mt-16 border-t border-white/5 pt-12">
-        <h2 class="text-2xl font-outfit font-bold text-white mb-6 flex items-center">
-            <span class="w-1.5 h-6 bg-cyberneon rounded-full mr-3"></span>
-            {{ technical_comparison.title }}
-        </h2>
-        <div class="glass-panel rounded-xl overflow-hidden border border-white/10 shadow-xl mb-4">
-            <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-white/5 text-left text-xs sm:text-sm">
-                    <thead class="bg-white/5">
-                        <tr>
-                            {% for header in technical_comparison.headers %}
-                            <th scope="col" class="px-6 py-3.5 font-semibold text-gray-300 tracking-wider">
-                                {{ header }}
-                            </th>
-                            {% endfor %}
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-white/5">
-                        {% for row in technical_comparison.rows %}
-                        <tr class="hover:bg-white/5 transition-colors">
-                            {% for cell in row %}
-                            <td class="px-6 py-4 font-light text-gray-400">
-                                {{ cell }}
-                            </td>
-                            {% endfor %}
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+            {% if adsense_client_id %}
+            <!-- Mid-Page Horizontal Ad Banner (placed below tool block on left column) -->
+            <div class="w-full flex justify-center mt-6">
+                <ins class="adsbygoogle"
+                     style="display:block;width:100%;"
+                     data-ad-client="{{ adsense_client_id }}"
+                     data-ad-slot="mid-page-tool-ad"
+                     data-ad-format="horizontal"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
+            {% endif %}
         </div>
-        {% if geo_reference %}
-        <p class="text-xs text-gray-500 italic flex items-center pl-2 border-l-2 border-cyberaccent/40">
-            <svg class="w-4 h-4 mr-2 text-cyberaccent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-            Reference Specification: {{ geo_reference }}
-        </p>
-        {% endif %}
-    </div>
-    {% endif %}
-
-    <!-- SEO content sections (Below the fold) -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-16 border-t border-white/5 pt-12">
         
-        <!-- How it works (2 cols) -->
-        <div class="lg:col-span-2 space-y-6">
-            <h2 class="text-2xl font-outfit font-bold text-white mb-6 flex items-center">
-                <span class="w-1.5 h-6 bg-cyberaccent rounded-full mr-3"></span>
-                How to Use the {{ h1 }}
-            </h2>
-            <div class="relative pl-6 border-l border-white/5 space-y-8">
-                {% for step in steps %}
-                <div class="relative">
-                    <!-- Numeric circular marker -->
-                    <div class="absolute -left-[35px] top-0 w-[20px] h-[20px] rounded-full bg-cyberaccent/20 border border-cyberaccent flex items-center justify-center text-[10px] text-cyberaccent font-bold">
-                        {{ loop.index }}
+        <!-- RIGHT COLUMN: Rich Informational Content, Guides & FAQs (7/12 width) -->
+        <div class="lg:col-span-7 space-y-8">
+            
+            <!-- AEO Direct Definition Callout Box -->
+            {% if aeo_definition %}
+            <div class="p-6 rounded-2xl bg-cyberneon/5 border border-cyberneon/20 glass-panel relative overflow-hidden shadow-xl">
+                <div class="absolute -right-16 -top-16 w-32 h-32 bg-cyberneon/5 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="flex items-start space-x-3">
+                    <div class="p-1 rounded bg-cyberneon/10 text-cyberneon mt-0.5">
+                        <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
                     </div>
-                    <p class="text-sm text-gray-300 leading-relaxed font-light">
-                        {{ step }}
+                    <div>
+                        <h3 class="text-[10px] font-bold text-cyberneon tracking-wider uppercase mb-1">Direct Answer / Definition</h3>
+                        <p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-light">{{ aeo_definition }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Technical Specs & Standards Table (GEO Support) -->
+            {% if technical_comparison and technical_comparison.headers %}
+            <div class="space-y-4">
+                <h3 class="text-lg font-outfit font-bold text-white flex items-center">
+                    <span class="w-1.5 h-5 bg-cyberneon rounded-full mr-2.5"></span>
+                    {{ technical_comparison.title }}
+                </h3>
+                <div class="glass-panel rounded-xl overflow-hidden border border-white/10 shadow-xl">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-white/5 text-left text-xs sm:text-sm">
+                            <thead class="bg-white/5">
+                                <tr>
+                                    {% for header in technical_comparison.headers %}
+                                    <th scope="col" class="px-6 py-3.5 font-semibold text-gray-300 tracking-wider">
+                                        {{ header }}
+                                    </th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                {% for row in technical_comparison.rows %}
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    {% for cell in row %}
+                                    <td class="px-6 py-4 font-light text-gray-400">
+                                        {{ cell }}
+                                    </td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% if geo_reference %}
+                <p class="text-[10px] text-gray-500 italic flex items-center pl-2 border-l border-cyberaccent/40">
+                    <svg class="w-3.5 h-3.5 mr-1.5 text-cyberaccent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    Reference Specification: {{ geo_reference }}
+                </p>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <!-- How it works -->
+            <div class="glass-panel p-6 rounded-2xl border border-white/10 shadow-xl space-y-6">
+                <h2 class="text-xl font-outfit font-bold text-white flex items-center">
+                    <span class="w-1.5 h-5 bg-cyberaccent rounded-full mr-2.5"></span>
+                    How to Use the {{ h1 }}
+                </h2>
+                <div class="relative pl-6 border-l border-white/5 space-y-8">
+                    {% for step in steps %}
+                    <div class="relative">
+                        <!-- Numeric circular marker -->
+                        <div class="absolute -left-[35px] top-0 w-[20px] h-[20px] rounded-full bg-cyberaccent/20 border border-cyberaccent flex items-center justify-center text-[10px] text-cyberaccent font-bold">
+                            {{ loop.index }}
+                        </div>
+                        <p class="text-sm text-gray-300 leading-relaxed font-light">
+                            {{ step }}
+                        </p>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="p-5 bg-white/5 rounded-xl border border-white/5 mt-6">
+                    <h3 class="text-xs font-semibold text-white mb-1.5">⚡ Compliance & Security Guarantee</h3>
+                    <p class="text-[11px] text-gray-400 leading-relaxed">
+                        This execution gateway is fully sandboxed and compliant with standard information security guidelines, ensuring total regulatory transmission safety.
                     </p>
                 </div>
-                {% endfor %}
             </div>
             
-            <div class="p-6 bg-white/5 rounded-xl border border-white/5 mt-8">
-                <h3 class="text-sm font-semibold text-white mb-2">⚡ Compliance & Security Guarantee</h3>
-                <p class="text-xs text-gray-400 leading-relaxed">
-                    This execution gateway is fully sandboxed and compliant with standard information security guidelines, ensuring total regulatory transmission safety.
-                </p>
-            </div>
-        </div>
-        
-        <!-- FAQs Column (1 col) -->
-        <div class="space-y-6">
-            <h2 class="text-2xl font-outfit font-bold text-white mb-6 flex items-center">
-                <span class="w-1.5 h-6 bg-cyberneon rounded-full mr-3"></span>
-                Frequently Asked Questions
-            </h2>
-            <div class="space-y-4">
-                {% for faq in faqs %}
-                <div class="p-5 rounded-xl bg-white/5 border border-white/5 hover:border-cyberneon/20 transition-all duration-300">
-                    <h3 class="font-outfit font-bold text-sm text-white mb-2">
-                        {{ faq.q }}
-                    </h3>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        {{ faq.a }}
-                    </p>
+            <!-- FAQs Section -->
+            <div class="glass-panel p-6 rounded-2xl border border-white/10 shadow-xl space-y-6">
+                <h2 class="text-xl font-outfit font-bold text-white flex items-center">
+                    <span class="w-1.5 h-5 bg-cyberneon rounded-full mr-2.5"></span>
+                    Frequently Asked Questions
+                </h2>
+                <div class="space-y-4">
+                    {% for faq in faqs %}
+                    <div class="p-5 rounded-xl bg-white/5 border border-white/5 hover:border-cyberneon/20 transition-all duration-300">
+                        <h3 class="font-outfit font-bold text-sm text-white mb-2">
+                            {{ faq.q }}
+                        </h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            {{ faq.a }}
+                        </p>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
         </div>
-
     </div>
 
-    <!-- Hub-to-Spoke Content Clusters (GEO content depth & internal linking) -->
+    <!-- Hub-to-Spoke Content Clusters -->
     {% if related_blog_posts %}
     <div class="mt-16 border-t border-white/5 pt-12">
         <h2 class="text-2xl font-outfit font-bold text-white mb-4 flex items-center">
@@ -250,7 +251,7 @@
     </div>
     {% endif %}
 
-    <!-- Cluster Internal Linking Section (SEO Spoke to Spoke clustering) -->
+    <!-- Cluster Internal Linking Section -->
     {% if related_links or sibling_tools %}
     <div class="{% if related_blog_posts %}mt-8{% else %}mt-16 border-t border-white/5 pt-12{% endif %}">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
