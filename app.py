@@ -12,13 +12,18 @@ seo_data_path = os.path.join(os.path.dirname(__file__), 'seo_data.json')
 with open(seo_data_path, 'r') as f:
     seo_data = json.load(f)
 
-# Load calculators SEO data
-seo_calc_path = os.path.join(os.path.dirname(__file__), 'seo_calculators_data.json')
-if os.path.exists(seo_calc_path):
-    with open(seo_calc_path, 'r') as f:
-        seo_calculators_data = json.load(f)
-else:
-    seo_calculators_data = {}
+# Load calculators SEO data dynamically
+def get_seo_calculators_data():
+    seo_calc_path = os.path.join(os.path.dirname(__file__), 'seo_calculators_data.json')
+    if os.path.exists(seo_calc_path):
+        try:
+            with open(seo_calc_path, 'r') as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {}
+
+seo_calculators_data = get_seo_calculators_data()
 
 # Helper function to load and parse blog posts
 def get_blog_posts():
@@ -428,7 +433,7 @@ def home():
     return render_template(
         'home.html', 
         tools=seo_data['tools'],
-        calculators=seo_calculators_data,
+        calculators=get_seo_calculators_data(),
         meta_title="100% Free Online Web Utility Tools & Calculators | Urbandigistore",
         meta_description="Run secure, client-side calculators, converters, formatting utilities, and PDF editors online. Free, zero-upload local browser sandbox processing."
     )
