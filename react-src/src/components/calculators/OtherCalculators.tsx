@@ -288,6 +288,165 @@ export const OtherCalculators: React.FC<Props> = ({ subToolId }) => {
   const p = ssProp / 100;
   const sampleSize = Math.ceil((ssZ * ssZ * p * (1 - p)) / Math.pow(ssMoe / 100, 2));
 
+  // ── INFLATION CALCULATOR ────────────────────────────
+  const [infAmt, setInfAmt] = useState<number>(1000);
+  const [infRate, setInfRate] = useState<number>(3.5);
+  const [infYears, setInfYears] = useState<number>(10);
+  const infFuture = infAmt * Math.pow(1 + infRate / 100, infYears);
+  const infLossPct = infFuture > 0 ? (((infFuture - infAmt) / infFuture) * 100).toFixed(1) : '0';
+
+  // ── VAT & SALES TAX ─────────────────────────────────
+  const [vatPrice, setVatPrice] = useState<number>(100);
+  const [vatRate, setVatRate] = useState<number>(20);
+  const [vatMode, setVatMode] = useState<'add' | 'remove'>('add');
+  const vatTaxAmt = vatMode === 'add' ? (vatPrice * vatRate) / 100 : vatPrice - vatPrice / (1 + vatRate / 100);
+  const vatTotal = vatMode === 'add' ? vatPrice + vatTaxAmt : vatPrice / (1 + vatRate / 100);
+
+  // ── CAR DEPRECIATION ────────────────────────────────
+  const [carCost, setCarCost] = useState<number>(30000);
+  const [carAge, setCarAge] = useState<number>(3);
+  const [deprCarMiles, setDeprCarMiles] = useState<number>(12000);
+  const carVal = Math.max(0, carCost * Math.pow(0.85, carAge) - (deprCarMiles * carAge * 0.05));
+  const carDeprPct = carCost > 0 ? (((carCost - carVal) / carCost) * 100).toFixed(1) : '0';
+
+  // ── SIMPLE INTEREST ────────────────────────────────
+  const [siP, setSiP] = useState<number>(5000);
+  const [siR, setSiR] = useState<number>(5);
+  const [siT, setSiT] = useState<number>(3);
+  const siInterest = (siP * siR * siT) / 100;
+  const siTotal = siP + siInterest;
+
+  // ── WATER INTAKE ────────────────────────────────────
+  const [wiWeight, setWiWeight] = useState<number>(70);
+  const [wiExercise, setWiExercise] = useState<number>(30);
+  const wiLiters = (wiWeight * 0.033) + ((wiExercise / 30) * 0.35);
+  const wiCups = Math.round(wiLiters * 4.2268);
+
+  // ── TARGET HEART RATE ───────────────────────────────
+  const [thrAge, setThrAge] = useState<number>(30);
+  const [thrRest, setThrRest] = useState<number>(65);
+  const thrMax = 220 - thrAge;
+  const thrHrr = thrMax - thrRest;
+  const thrFatBurn = Math.round(thrRest + thrHrr * 0.55);
+  const thrAerobic = Math.round(thrRest + thrHrr * 0.70);
+  const thrAnaerobic = Math.round(thrRest + thrHrr * 0.85);
+
+  // ── BODY SURFACE AREA ───────────────────────────────
+  const [bsaHt, setBsaHt] = useState<number>(175);
+  const [bsaWt, setBsaWt] = useState<number>(70);
+  const bsaMosteller = Math.sqrt((bsaHt * bsaWt) / 3600).toFixed(2);
+  const bsaDuBois = (0.007184 * Math.pow(bsaHt, 0.725) * Math.pow(bsaWt, 0.425)).toFixed(2);
+
+  // ── PERCENTAGE CHANGE ───────────────────────────────
+  const [pctV1, setPctV1] = useState<number>(100);
+  const [pctV2, setPctV2] = useState<number>(125);
+  const pctDiff = pctV1 !== 0 ? (((pctV2 - pctV1) / Math.abs(pctV1)) * 100).toFixed(2) : '0';
+  const pctAbs = Math.abs(pctV2 - pctV1).toFixed(2);
+
+  // ── RATIO CALCULATOR ────────────────────────────────
+  const [ratioA, setRatioA] = useState<number>(4);
+  const [ratioB, setRatioB] = useState<number>(3);
+  const [ratioC, setRatioC] = useState<number>(16);
+  const ratioD = ratioA !== 0 ? ((ratioB * ratioC) / ratioA).toFixed(2) : '0';
+
+  // ── PYTHAGOREAN THEOREM ─────────────────────────────
+  const [pythA, setPythA] = useState<number>(3);
+  const [pythB, setPythB] = useState<number>(4);
+  const pythC = Math.sqrt(pythA * pythA + pythB * pythB).toFixed(2);
+  const pythArea = (0.5 * pythA * pythB).toFixed(2);
+
+  // ── AGE CALCULATOR ──────────────────────────────────
+  const [birthDate, setBirthDate] = useState<string>('1995-06-15');
+  const ageCalcRes = (() => {
+    if (!birthDate) return null;
+    const b = new Date(birthDate);
+    const now = new Date();
+    if (isNaN(b.getTime())) return null;
+    let yrs = now.getFullYear() - b.getFullYear();
+    let mos = now.getMonth() - b.getMonth();
+    let days = now.getDate() - b.getDate();
+    if (days < 0) { mos--; days += 30; }
+    if (mos < 0) { yrs--; mos += 12; }
+    const totalDays = Math.floor((now.getTime() - b.getTime()) / 86400000);
+    return { yrs, mos, days, totalDays };
+  })();
+
+  // ── TIME CARD ───────────────────────────────────────
+  const [tcIn, setTcIn] = useState<string>('09:00');
+  const [tcOut, setTcOut] = useState<string>('17:30');
+  const [tcBreak, setTcBreak] = useState<number>(30);
+  const [tcRate, setTcRate] = useState<number>(25);
+  const tcHours = (() => {
+    const [h1, m1] = tcIn.split(':').map(Number);
+    const [h2, m2] = tcOut.split(':').map(Number);
+    const totalMins = (h2 * 60 + m2) - (h1 * 60 + m1) - tcBreak;
+    return Math.max(0, totalMins / 60);
+  })();
+  const tcPay = (tcHours * tcRate).toFixed(2);
+
+  // ── SPEED DISTANCE TIME ─────────────────────────────
+  const [sdtDist, setSdtDist] = useState<number>(120);
+  const [sdtTime, setSdtTime] = useState<number>(2);
+  const sdtSpeed = sdtTime > 0 ? (sdtDist / sdtTime).toFixed(1) : '0';
+  const sdtSpeedKmh = sdtTime > 0 ? ((sdtDist * 1.60934) / sdtTime).toFixed(1) : '0';
+
+  // ── ASPECT RATIO ────────────────────────────────────
+  const [arW, setArW] = useState<number>(1920);
+  const [arH, setArH] = useState<number>(1080);
+  const [arNewW, setArNewW] = useState<number>(1280);
+  const arNewH = arW > 0 ? Math.round((arH * arNewW) / arW) : 0;
+  const arMp = ((arW * arH) / 1000000).toFixed(2);
+
+  // ── DENSITY CALCULATOR ──────────────────────────────
+  const [denMass, setDenMass] = useState<number>(500); // g
+  const [denVol, setDenVol] = useState<number>(250); // cm³
+  const density = denVol > 0 ? (denMass / denVol).toFixed(3) : '0';
+  const denBuoyancy = Number(density) < 1 ? 'Floats in Water' : 'Sinks in Water';
+
+  // ── TORQUE CALCULATOR ───────────────────────────────
+  const [torqF, setTorqF] = useState<number>(50); // N
+  const [torqR, setTorqR] = useState<number>(0.5); // m
+  const [torqDeg, setTorqDeg] = useState<number>(90);
+  const torqueNm = torqF * torqR * Math.sin((torqDeg * Math.PI) / 180);
+  const torqueFtLb = (torqueNm * 0.737562).toFixed(2);
+
+  // ── HALF LIFE ───────────────────────────────────────
+  const [hlN0, setHlN0] = useState<number>(100);
+  const [hlHalf, setHlHalf] = useState<number>(5.27);
+  const [hlTime, setHlTime] = useState<number>(10);
+  const hlNt = hlN0 * Math.pow(0.5, hlTime / (hlHalf || 1));
+  const hlDecayed = hlN0 - hlNt;
+
+  // ── BAKING CONVERSION ───────────────────────────────
+  const [flourGrams, setFlourGrams] = useState<number>(500);
+  const [waterPct, setWaterPct] = useState<number>(68);
+  const [saltPct, setSaltPct] = useState<number>(2);
+  const bakeWater = (flourGrams * waterPct) / 100;
+  const bakeSalt = (flourGrams * saltPct) / 100;
+  const bakeTotal = flourGrams + bakeWater + bakeSalt;
+
+  // ── TREE CO2 ────────────────────────────────────────
+  const [treeCount, setTreeCount] = useState<number>(10);
+  const [treeYears, setTreeYears] = useState<number>(10);
+  const treeCo2AnnualKg = treeCount * 22;
+  const treeCo2TotalTons = ((treeCo2AnnualKg * treeYears) / 1000).toFixed(2);
+
+  // ── STANDARD DEVIATION ──────────────────────────────
+  const [statsInput, setStatsInput] = useState<string>('12, 15, 18, 22, 30, 35, 40');
+  const statsRes = (() => {
+    const nums = statsInput.split(',').map(s => parseFloat(s.trim())).filter(n => !isNaN(n));
+    if (nums.length === 0) return null;
+    const n = nums.length;
+    const sum = nums.reduce((a, b) => a + b, 0);
+    const mean = sum / n;
+    const sqDiffs = nums.map(x => Math.pow(x - mean, 2));
+    const popVar = sqDiffs.reduce((a, b) => a + b, 0) / n;
+    const popSd = Math.sqrt(popVar);
+    const sampleVar = n > 1 ? sqDiffs.reduce((a, b) => a + b, 0) / (n - 1) : 0;
+    const sampleSd = Math.sqrt(sampleVar);
+    return { count: n, mean: mean.toFixed(2), popSd: popSd.toFixed(2), sampleSd: sampleSd.toFixed(2) };
+  })();
+
   // ── RENDER ────────────────────────────────────────────
   return (
     <div className="space-y-8">
@@ -805,6 +964,322 @@ export const OtherCalculators: React.FC<Props> = ({ subToolId }) => {
           </div>
           <Row label="Required Sample Size" value={sampleSize.toLocaleString()} unit="responses" accent="violet" />
           <p className="text-xs text-slate-400 text-center">Use 50% proportion when unknown — this maximises the sample size conservatively.</p>
+        </div>
+      )}
+
+      {/* 30 - INFLATION CALCULATOR */}
+      {subToolId === 'inflation-calculator' && (
+        <div className={card}>
+          <Header2 emoji="📉" title="Inflation & Purchasing Power" subtitle="Calculate purchasing power loss and future price levels." badge="Finance" color="amber" />
+          <div className={grid3}>
+            <Field label="Initial Amount ($)"><input type="number" value={infAmt} onChange={e => setInfAmt(Number(e.target.value))} className={inputCls('amber')} /></Field>
+            <Field label="Annual Inflation Rate (%)"><input type="number" value={infRate} step={0.1} onChange={e => setInfRate(Number(e.target.value))} className={inputCls('amber')} /></Field>
+            <Field label="Time Horizon (Years)"><input type="number" value={infYears} min={1} max={50} onChange={e => setInfYears(Number(e.target.value))} className={inputCls('amber')} /></Field>
+          </div>
+          <div className={grid2}>
+            <Row label="Future Cost of Same Basket" value={`$${infFuture.toFixed(2)}`} accent="amber" />
+            <Row label="Purchasing Power Loss" value={`${infLossPct}%`} accent="amber" />
+          </div>
+        </div>
+      )}
+
+      {/* 31 - VAT & SALES TAX */}
+      {subToolId === 'vat-tax' && (
+        <div className={card}>
+          <Header2 emoji="🏷️" title="VAT & Sales Tax Calculator" subtitle="Add or remove VAT/sales tax from prices." badge="Finance" color="indigo" />
+          <div className={grid3}>
+            <Field label="Amount ($)"><input type="number" value={vatPrice} onChange={e => setVatPrice(Number(e.target.value))} className={inputCls('indigo')} /></Field>
+            <Field label="Tax Rate (%)"><input type="number" value={vatRate} step={0.5} onChange={e => setVatRate(Number(e.target.value))} className={inputCls('indigo')} /></Field>
+            <Field label="Mode">
+              <select value={vatMode} onChange={e => setVatMode(e.target.value as 'add' | 'remove')} className={selectCls('indigo')}>
+                <option value="add">Add Tax to Net Price</option>
+                <option value="remove">Remove Tax from Gross Price</option>
+              </select>
+            </Field>
+          </div>
+          <div className={grid2}>
+            <Row label="Tax Amount" value={`$${vatTaxAmt.toFixed(2)}`} accent="indigo" />
+            <Row label="Final Amount" value={`$${vatTotal.toFixed(2)}`} accent="indigo" />
+          </div>
+        </div>
+      )}
+
+      {/* 32 - CAR DEPRECIATION */}
+      {subToolId === 'car-depreciation' && (
+        <div className={card}>
+          <Header2 emoji="🚗" title="Car & Vehicle Depreciation" subtitle="Estimate car value loss over 1 to 10 years." badge="Finance" color="blue" />
+          <div className={grid3}>
+            <Field label="Purchase Price ($)"><input type="number" value={carCost} onChange={e => setCarCost(Number(e.target.value))} className={inputCls('blue')} /></Field>
+            <Field label="Vehicle Age (Years)"><input type="number" value={carAge} min={1} max={15} onChange={e => setCarAge(Number(e.target.value))} className={inputCls('blue')} /></Field>
+            <Field label="Annual Mileage"><input type="number" value={deprCarMiles} step={1000} onChange={e => setDeprCarMiles(Number(e.target.value))} className={inputCls('blue')} /></Field>
+          </div>
+          <div className={grid2}>
+            <Row label="Estimated Resale Value" value={`$${Math.round(carVal).toLocaleString()}`} accent="blue" />
+            <Row label="Total Depreciation" value={`${carDeprPct}%`} accent="blue" />
+          </div>
+        </div>
+      )}
+
+      {/* 33 - SIMPLE INTEREST */}
+      {subToolId === 'simple-interest' && (
+        <div className={card}>
+          <Header2 emoji="🔢" title="Simple Interest Calculator" subtitle="Calculate growth using I = P × r × t." badge="Finance" color="teal" />
+          <div className={grid3}>
+            <Field label="Principal ($)"><input type="number" value={siP} onChange={e => setSiP(Number(e.target.value))} className={inputCls('teal')} /></Field>
+            <Field label="Annual Rate (%)"><input type="number" value={siR} step={0.1} onChange={e => setSiR(Number(e.target.value))} className={inputCls('teal')} /></Field>
+            <Field label="Time (Years)"><input type="number" value={siT} step={0.5} onChange={e => setSiT(Number(e.target.value))} className={inputCls('teal')} /></Field>
+          </div>
+          <div className={grid2}>
+            <Row label="Interest Earned" value={`$${siInterest.toFixed(2)}`} accent="teal" />
+            <Row label="Total Ending Balance" value={`$${siTotal.toFixed(2)}`} accent="teal" />
+          </div>
+        </div>
+      )}
+
+      {/* 34 - WATER INTAKE */}
+      {subToolId === 'water-intake' && (
+        <div className={card}>
+          <Header2 emoji="💧" title="Daily Water Intake" subtitle="Calculate personalized hydration requirements." badge="Health" color="cyan" />
+          <div className={grid2}>
+            <Field label="Body Weight (kg)"><input type="number" value={wiWeight} onChange={e => setWiWeight(Number(e.target.value))} className={inputCls('cyan')} /></Field>
+            <Field label="Daily Exercise (Minutes)"><input type="number" value={wiExercise} onChange={e => setWiExercise(Number(e.target.value))} className={inputCls('cyan')} /></Field>
+          </div>
+          <div className={grid2}>
+            <Row label="Recommended Water Intake" value={wiLiters.toFixed(2)} unit="Liters/day" accent="cyan" />
+            <Row label="Equivalent Cups" value={wiCups} unit="cups (8 oz)" accent="cyan" />
+          </div>
+        </div>
+      )}
+
+      {/* 35 - TARGET HEART RATE */}
+      {subToolId === 'target-heart-rate' && (
+        <div className={card}>
+          <Header2 emoji="💓" title="Target Heart Rate Zones" subtitle="Aerobic & fat-burning zones (Karvonen method)." badge="Health" color="rose" />
+          <div className={grid2}>
+            <Field label="Age (Years)"><input type="number" value={thrAge} onChange={e => setThrAge(Number(e.target.value))} className={inputCls('rose')} /></Field>
+            <Field label="Resting Heart Rate (BPM)"><input type="number" value={thrRest} onChange={e => setThrRest(Number(e.target.value))} className={inputCls('rose')} /></Field>
+          </div>
+          <div className={grid3}>
+            <Row label="Fat Burn Zone (55%)" value={`${thrFatBurn} BPM`} accent="rose" />
+            <Row label="Aerobic Zone (70%)" value={`${thrAerobic} BPM`} accent="rose" />
+            <Row label="Anaerobic Zone (85%)" value={`${thrAnaerobic} BPM`} accent="rose" />
+          </div>
+        </div>
+      )}
+
+      {/* 36 - BODY SURFACE AREA */}
+      {subToolId === 'body-surface-area' && (
+        <div className={card}>
+          <Header2 emoji="📐" title="Body Surface Area (BSA)" subtitle="Calculate medical BSA in square meters." badge="Health" color="emerald" />
+          <div className={grid2}>
+            <Field label="Height (cm)"><input type="number" value={bsaHt} onChange={e => setBsaHt(Number(e.target.value))} className={inputCls('emerald')} /></Field>
+            <Field label="Weight (kg)"><input type="number" value={bsaWt} onChange={e => setBsaWt(Number(e.target.value))} className={inputCls('emerald')} /></Field>
+          </div>
+          <div className={grid2}>
+            <Row label="Mosteller Formula" value={bsaMosteller} unit="m²" accent="emerald" />
+            <Row label="Du Bois Formula" value={bsaDuBois} unit="m²" accent="emerald" />
+          </div>
+        </div>
+      )}
+
+      {/* 37 - PERCENTAGE CHANGE */}
+      {subToolId === 'percentage-change' && (
+        <div className={card}>
+          <Header2 emoji="📊" title="Percentage Change & Difference" subtitle="Calculate % increase, decrease, or variance." badge="Math" color="purple" />
+          <div className={grid2}>
+            <Field label="Original Value (V₁)"><input type="number" value={pctV1} onChange={e => setPctV1(Number(e.target.value))} className={inputCls('purple')} /></Field>
+            <Field label="New Value (V₂)"><input type="number" value={pctV2} onChange={e => setPctV2(Number(e.target.value))} className={inputCls('purple')} /></Field>
+          </div>
+          <div className={grid2}>
+            <Row label="Percentage Change" value={`${pctDiff}%`} accent="purple" />
+            <Row label="Absolute Difference" value={pctAbs} accent="purple" />
+          </div>
+        </div>
+      )}
+
+      {/* 38 - RATIO CALCULATOR */}
+      {subToolId === 'ratio-calculator' && (
+        <div className={card}>
+          <Header2 emoji="➗" title="Ratio & Proportion Solver" subtitle="Solve A : B = C : X for missing terms." badge="Math" color="indigo" />
+          <div className={grid3}>
+            <Field label="Value A"><input type="number" value={ratioA} onChange={e => setRatioA(Number(e.target.value))} className={inputCls('indigo')} /></Field>
+            <Field label="Value B"><input type="number" value={ratioB} onChange={e => setRatioB(Number(e.target.value))} className={inputCls('indigo')} /></Field>
+            <Field label="Value C"><input type="number" value={ratioC} onChange={e => setRatioC(Number(e.target.value))} className={inputCls('indigo')} /></Field>
+          </div>
+          <Row label="Missing Value X" value={ratioD} accent="indigo" />
+        </div>
+      )}
+
+      {/* 39 - PYTHAGOREAN THEOREM */}
+      {subToolId === 'pythagorean-theorem' && (
+        <div className={card}>
+          <Header2 emoji="🔺" title="Pythagorean Theorem Solver" subtitle="Calculate hypotenuse (c = √(a² + b²)) and area." badge="Math" color="violet" />
+          <div className={grid2}>
+            <Field label="Side a"><input type="number" value={pythA} min={0.1} onChange={e => setPythA(Number(e.target.value))} className={inputCls('violet')} /></Field>
+            <Field label="Side b"><input type="number" value={pythB} min={0.1} onChange={e => setPythB(Number(e.target.value))} className={inputCls('violet')} /></Field>
+          </div>
+          <div className={grid2}>
+            <Row label="Hypotenuse c" value={pythC} accent="violet" />
+            <Row label="Triangle Area" value={pythArea} accent="violet" />
+          </div>
+        </div>
+      )}
+
+      {/* 40 - AGE CALCULATOR */}
+      {subToolId === 'age-calculator' && (
+        <div className={card}>
+          <Header2 emoji="🎂" title="Exact Chronological Age" subtitle="Calculate age in years, months, and total days." badge="Time" color="pink" />
+          <Field label="Date of Birth"><input type="date" value={birthDate} onChange={e => setBirthDate(e.target.value)} className={inputCls('pink')} /></Field>
+          {ageCalcRes && (
+            <div className={grid2}>
+              <Row label="Exact Age" value={`${ageCalcRes.yrs}y ${ageCalcRes.mos}m ${ageCalcRes.days}d`} accent="pink" />
+              <Row label="Total Lived Days" value={ageCalcRes.totalDays.toLocaleString()} unit="days" accent="pink" />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* 41 - TIME CARD */}
+      {subToolId === 'time-card' && (
+        <div className={card}>
+          <Header2 emoji="⏱️" title="Work Time Card & Paid Hours" subtitle="Calculate net work hours and total daily pay." badge="Time" color="sky" />
+          <div className={grid2}>
+            <Field label="Clock In"><input type="time" value={tcIn} onChange={e => setTcIn(e.target.value)} className={inputCls('sky')} /></Field>
+            <Field label="Clock Out"><input type="time" value={tcOut} onChange={e => setTcOut(e.target.value)} className={inputCls('sky')} /></Field>
+            <Field label="Lunch Break (Minutes)"><input type="number" value={tcBreak} onChange={e => setTcBreak(Number(e.target.value))} className={inputCls('sky')} /></Field>
+            <Field label="Hourly Rate ($/hr)"><input type="number" value={tcRate} onChange={e => setTcRate(Number(e.target.value))} className={inputCls('sky')} /></Field>
+          </div>
+          <div className={grid2}>
+            <Row label="Paid Hours" value={tcHours.toFixed(2)} unit="hrs" accent="sky" />
+            <Row label="Daily Gross Pay" value={`$${tcPay}`} accent="sky" />
+          </div>
+        </div>
+      )}
+
+      {/* 42 - SPEED DISTANCE TIME */}
+      {subToolId === 'speed-distance-time' && (
+        <div className={card}>
+          <Header2 emoji="🚀" title="Speed, Distance & Time" subtitle="Solve s = d/t with integrated unit conversions." badge="Unit & Materials" color="orange" />
+          <div className={grid2}>
+            <Field label="Distance (Miles)"><input type="number" value={sdtDist} onChange={e => setSdtDist(Number(e.target.value))} className={inputCls('orange')} /></Field>
+            <Field label="Travel Time (Hours)"><input type="number" value={sdtTime} step={0.25} onChange={e => setSdtTime(Number(e.target.value))} className={inputCls('orange')} /></Field>
+          </div>
+          <div className={grid2}>
+            <Row label="Average Speed (mph)" value={sdtSpeed} unit="mph" accent="orange" />
+            <Row label="Average Speed (km/h)" value={sdtSpeedKmh} unit="km/h" accent="orange" />
+          </div>
+        </div>
+      )}
+
+      {/* 43 - ASPECT RATIO */}
+      {subToolId === 'aspect-ratio' && (
+        <div className={card}>
+          <Header2 emoji="🖥️" title="Aspect Ratio & Resolution" subtitle="Scale resolution dimensions proportionately." badge="Unit & Materials" color="indigo" />
+          <div className={grid3}>
+            <Field label="Width (px)"><input type="number" value={arW} onChange={e => setArW(Number(e.target.value))} className={inputCls('indigo')} /></Field>
+            <Field label="Height (px)"><input type="number" value={arH} onChange={e => setArH(Number(e.target.value))} className={inputCls('indigo')} /></Field>
+            <Field label="New Target Width (px)"><input type="number" value={arNewW} onChange={e => setArNewW(Number(e.target.value))} className={inputCls('indigo')} /></Field>
+          </div>
+          <div className={grid2}>
+            <Row label="Scaled Height" value={arNewH} unit="px" accent="indigo" />
+            <Row label="Total Megapixels" value={arMp} unit="MP" accent="indigo" />
+          </div>
+        </div>
+      )}
+
+      {/* 44 - DENSITY CALCULATOR */}
+      {subToolId === 'density-calculator' && (
+        <div className={card}>
+          <Header2 emoji="📦" title="Mass, Volume & Density" subtitle="Solve ρ = m/V and check buoyancy." badge="Physics" color="blue" />
+          <div className={grid2}>
+            <Field label="Mass (grams)"><input type="number" value={denMass} onChange={e => setDenMass(Number(e.target.value))} className={inputCls('blue')} /></Field>
+            <Field label="Volume (cm³)"><input type="number" value={denVol} onChange={e => setDenVol(Number(e.target.value))} className={inputCls('blue')} /></Field>
+          </div>
+          <div className={grid2}>
+            <Row label="Density" value={density} unit="g/cm³" accent="blue" />
+            <Row label="Water Buoyancy" value={denBuoyancy} accent="blue" />
+          </div>
+        </div>
+      )}
+
+      {/* 45 - TORQUE CALCULATOR */}
+      {subToolId === 'torque-calculator' && (
+        <div className={card}>
+          <Header2 emoji="🔄" title="Torque & Rotational Force" subtitle="Calculate τ = F × r × sin θ." badge="Physics" color="amber" />
+          <div className={grid3}>
+            <Field label="Force (N)"><input type="number" value={torqF} onChange={e => setTorqF(Number(e.target.value))} className={inputCls('amber')} /></Field>
+            <Field label="Lever Arm Distance (m)"><input type="number" value={torqR} step={0.1} onChange={e => setTorqR(Number(e.target.value))} className={inputCls('amber')} /></Field>
+            <Field label="Angle (Degrees)"><input type="number" value={torqDeg} min={0} max={180} onChange={e => setTorqDeg(Number(e.target.value))} className={inputCls('amber')} /></Field>
+          </div>
+          <div className={grid2}>
+            <Row label="Torque (N·m)" value={torqueNm.toFixed(2)} unit="N·m" accent="amber" />
+            <Row label="Torque (ft-lb)" value={torqueFtLb} unit="ft-lb" accent="amber" />
+          </div>
+        </div>
+      )}
+
+      {/* 46 - HALF LIFE */}
+      {subToolId === 'half-life' && (
+        <div className={card}>
+          <Header2 emoji="⚛️" title="Radioactive Half-Life & Decay" subtitle="Calculate isotope decay over time." badge="Chemistry" color="purple" />
+          <div className={grid3}>
+            <Field label="Initial Quantity (N₀)"><input type="number" value={hlN0} onChange={e => setHlN0(Number(e.target.value))} className={inputCls('purple')} /></Field>
+            <Field label="Half-Life Period"><input type="number" value={hlHalf} step={0.1} onChange={e => setHlHalf(Number(e.target.value))} className={inputCls('purple')} /></Field>
+            <Field label="Elapsed Time"><input type="number" value={hlTime} onChange={e => setHlTime(Number(e.target.value))} className={inputCls('purple')} /></Field>
+          </div>
+          <div className={grid2}>
+            <Row label="Remaining Quantity" value={hlNt.toFixed(2)} accent="purple" />
+            <Row label="Decayed Amount" value={hlDecayed.toFixed(2)} accent="purple" />
+          </div>
+        </div>
+      )}
+
+      {/* 47 - BAKING CONVERSION */}
+      {subToolId === 'baking-conversion' && (
+        <div className={card}>
+          <Header2 emoji="🥖" title="Baker's Percentage & Dough Ratios" subtitle="Scale dough batch quantities by flour weight." badge="Food" color="orange" />
+          <div className={grid3}>
+            <Field label="Flour Weight (grams)"><input type="number" value={flourGrams} onChange={e => setFlourGrams(Number(e.target.value))} className={inputCls('orange')} /></Field>
+            <Field label="Water / Hydration (%)"><input type="number" value={waterPct} onChange={e => setWaterPct(Number(e.target.value))} className={inputCls('orange')} /></Field>
+            <Field label="Salt (%)"><input type="number" value={saltPct} step={0.5} onChange={e => setSaltPct(Number(e.target.value))} className={inputCls('orange')} /></Field>
+          </div>
+          <div className={grid3}>
+            <Row label="Water Needed" value={bakeWater.toFixed(0)} unit="g" accent="orange" />
+            <Row label="Salt Needed" value={bakeSalt.toFixed(1)} unit="g" accent="orange" />
+            <Row label="Total Dough Weight" value={bakeTotal.toFixed(0)} unit="g" accent="orange" />
+          </div>
+        </div>
+      )}
+
+      {/* 48 - TREE CO2 */}
+      {subToolId === 'tree-co2' && (
+        <div className={card}>
+          <Header2 emoji="🌳" title="Tree CO₂ Absorption & Offset" subtitle="Estimate carbon sequestration over time." badge="Ecology" color="green" />
+          <div className={grid2}>
+            <Field label="Number of Trees"><input type="number" value={treeCount} onChange={e => setTreeCount(Number(e.target.value))} className={inputCls('green')} /></Field>
+            <Field label="Time Horizon (Years)"><input type="number" value={treeYears} onChange={e => setTreeYears(Number(e.target.value))} className={inputCls('green')} /></Field>
+          </div>
+          <div className={grid2}>
+            <Row label="Annual CO₂ Absorbed" value={treeCo2AnnualKg.toLocaleString()} unit="kg/year" accent="green" />
+            <Row label="Total Carbon Offset" value={treeCo2TotalTons} unit="Metric Tonnes CO₂" accent="green" />
+          </div>
+        </div>
+      )}
+
+      {/* 49 - STANDARD DEVIATION */}
+      {subToolId === 'standard-deviation' && (
+        <div className={card}>
+          <Header2 emoji="📈" title="Standard Deviation & Variance" subtitle="Calculate mean, sample SD, and population SD." badge="Statistics" color="violet" />
+          <Field label="Comma-Separated Data Values">
+            <input type="text" value={statsInput} onChange={e => setStatsInput(e.target.value)} className={inputCls('violet')} />
+          </Field>
+          {statsRes && (
+            <div className={grid3}>
+              <Row label="Mean (Average)" value={statsRes.mean} accent="violet" />
+              <Row label="Sample SD (s)" value={statsRes.sampleSd} accent="violet" />
+              <Row label="Population SD (σ)" value={statsRes.popSd} accent="violet" />
+            </div>
+          )}
         </div>
       )}
 

@@ -35,8 +35,7 @@
         "question": "What is the 28/36 rule for mortgage qualification?",
         "answer": "The 28/36 rule dictates that a homebuyer should spend no more than 28% of their gross monthly income on housing expenses (PITI) and no more than 36% on total debt obligations (housing + student loans + car loans + credit cards)."
       }
-    ],
-    "category": "finance"
+    ]
   },
   "auto-loan": {
     "toolId": "auto-loan",
@@ -70,8 +69,7 @@
         "question": "Is a 60-month or 72-month car loan better?",
         "answer": "A 60-month loan offers a better balance between manageable monthly payments and total interest costs. 72-month loans lower monthly payments slightly but significantly increase total interest paid and increase risk of negative equity (owing more than the car is worth)."
       }
-    ],
-    "category": "finance"
+    ]
   },
   "personal-loan": {
     "toolId": "personal-loan",
@@ -101,8 +99,7 @@
         "question": "What is the difference between APR and interest rate on a personal loan?",
         "answer": "Interest rate is the cost of borrowing the principal amount. APR (Annual Percentage Rate) includes the interest rate PLUS mandatory fees like origination fees, offering a truer picture of total loan cost."
       }
-    ],
-    "category": "finance"
+    ]
   },
   "paycheck-salary": {
     "toolId": "paycheck-salary",
@@ -132,8 +129,7 @@
         "question": "Why is my take-home pay lower than expected?",
         "answer": "Take-home pay is reduced by mandatory federal and state income taxes, FICA taxes (7.65%), and voluntary employee benefits such as 401(k) contributions, health insurance premiums, and flexible spending accounts (FSA)."
       }
-    ],
-    "category": "finance"
+    ]
   },
   "retirement-401k": {
     "toolId": "retirement-401k",
@@ -162,8 +158,7 @@
         "question": "What is the 401(k) annual contribution limit for 2026?",
         "answer": "For 2026, the individual employee elective deferral limit for 401(k) accounts is $23,500 ($31,000 for workers aged 50 and older with catch-up contributions)."
       }
-    ],
-    "category": "finance"
+    ]
   },
   "investment-cd": {
     "toolId": "investment-cd",
@@ -192,8 +187,7 @@
         "question": "What is the Rule of 72 in investing?",
         "answer": "The Rule of 72 estimates how many years it takes for an investment to double: divide 72 by the annual expected rate of return (e.g. 72 / 8% = 9 years to double)."
       }
-    ],
-    "category": "finance"
+    ]
   },
   "margin-tip": {
     "toolId": "margin-tip",
@@ -221,8 +215,7 @@
         "question": "What is the difference between profit margin and markup?",
         "answer": "Profit margin measures profit as a percentage of final sales revenue. Markup measures profit as a percentage of the wholesale cost paid to produce or buy the product."
       }
-    ],
-    "category": "finance"
+    ]
   },
   "bmi": {
     "toolId": "bmi",
@@ -256,8 +249,7 @@
         "question": "Is BMI calculated differently for women and men?",
         "answer": "The mathematical BMI formula is identical for adult men and women. However, women naturally carry higher body fat percentage than men at the same BMI score."
       }
-    ],
-    "category": "health"
+    ]
   },
   "bmr-tdee": {
     "toolId": "bmr-tdee",
@@ -287,8 +279,7 @@
         "question": "What is the difference between BMR and TDEE?",
         "answer": "BMR is calories burned doing nothing in 24 hours (breathing, organ function). TDEE includes BMR plus physical activity, walking, work duties, and exercise."
       }
-    ],
-    "category": "health"
+    ]
   },
   "calorie-deficit": {
     "toolId": "calorie-deficit",
@@ -317,8 +308,7 @@
         "question": "How many calories make a 1 pound deficit?",
         "answer": "Approximately 3,500 calories equal 1 pound of body fat. A daily deficit of 500 calories yields 3,500 calories per week (1 lb loss)."
       }
-    ],
-    "category": "health"
+    ]
   },
   "macro": {
     "toolId": "macro",
@@ -345,8 +335,7 @@
         "question": "How many calories are in a gram of protein, carb, and fat?",
         "answer": "1 gram of Protein = 4 calories, 1 gram of Carbohydrate = 4 calories, 1 gram of Fat = 9 calories, and 1 gram of Alcohol = 7 calories."
       }
-    ],
-    "category": "health"
+    ]
   },
   "bra-size": {
     "toolId": "bra-size",
@@ -373,8 +362,7 @@
         "question": "How do I know if my bra size is correct?",
         "answer": "A proper fit has the band sitting flat and level without riding up, underwire resting flat against breastbone without pinching, and cups smooth without spilling over."
       }
-    ],
-    "category": "health"
+    ]
   },
   "height-predictor": {
     "toolId": "height-predictor",
@@ -401,8 +389,7 @@
         "question": "How accurate are child height predictors?",
         "answer": "Mid-parental height formulas predict adult height within ±2 inches (5 cm) for 90% of healthy children."
       }
-    ],
-    "category": "health"
+    ]
   },
   "scientific-graphing": {
     "toolId": "scientific-graphing",
@@ -444,8 +431,7 @@
         "question": "How do I plot trigonometric functions like sin(x) and cos(x)?",
         "answer": "Type `sin(x)` or `cos(x)` into the function equation field and click Plot. Toggle between DEG (degrees) and RAD (radians) for angle evaluation."
       }
-    ],
-    "category": "math"
+    ]
   },
   "math-solver": {
     "toolId": "math-solver",
@@ -475,8 +461,7 @@
         "question": "What is the quadratic formula used for?",
         "answer": "The quadratic formula x = [-b ± √(b² - 4ac)] / (2a) calculates the x-intercepts (roots or zeros) where a second-degree polynomial equation ax² + bx + c = 0 crosses the x-axis."
       }
-    ],
-    "category": "math"
+    ]
   },
   "fraction-percentage": {
     "toolId": "fraction-percentage",
@@ -505,8 +490,7 @@
         "question": "What is the difference between percentage change and percentage difference?",
         "answer": "Percentage change compares a final value to a starting original value with directional increase/decrease. Percentage difference compares two values where neither is considered an official baseline."
       }
-    ],
-    "category": "math"
+    ]
   },
   "time-clock": {
     "toolId": "time-clock",
@@ -535,8 +519,7 @@
         "question": "How do you convert minutes to decimal hours for payroll?",
         "answer": "Divide the number of minutes by 60. E.g. 30 minutes / 60 = 0.5 hours. 45 minutes / 60 = 0.75 hours."
       }
-    ],
-    "category": "time"
+    ]
   },
   "date-time-duration": {
     "toolId": "date-time-duration",
@@ -567,8 +550,7 @@
         "question": "How many days are between two dates?",
         "answer": "Enter any start date and end date in the calculator above to instantly compute total elapsed days, weekdays (business days), weeks, months, and years."
       }
-    ],
-    "category": "time"
+    ]
   },
   "unit-converter": {
     "toolId": "unit-converter",
@@ -603,8 +585,7 @@
         "question": "How many pounds (lbs) are in 1 kilogram (kg)?",
         "answer": "There are exactly 2.20462 pounds in 1 kilogram. To convert kg to lbs, multiply kilograms by 2.20462."
       }
-    ],
-    "category": "unit"
+    ]
   },
   "area-concrete": {
     "toolId": "area-concrete",
@@ -632,8 +613,7 @@
         "question": "How many 80lb bags of concrete do I need for 1 cubic yard?",
         "answer": "It takes 45 80-pound bags (or 60 60-pound bags) of premixed concrete to equal 1 cubic yard of poured concrete."
       }
-    ],
-    "category": "unit"
+    ]
   },
   "refinance-heloc": {
     "toolId": "refinance-heloc",
@@ -663,8 +643,7 @@
         "question": "How is a HELOC monthly payment calculated?",
         "answer": "During the 10-year draw period, monthly payments equal interest accrued on the borrowed balance (Balance × Rate / 12). During the repayment phase, payments amortize both principal and interest."
       }
-    ],
-    "category": "finance"
+    ]
   },
   "credit-card-payoff": {
     "toolId": "credit-card-payoff",
@@ -693,8 +672,7 @@
         "question": "What is the fastest way to pay off credit card debt?",
         "answer": "Focus all extra funds on the debt with the highest interest rate (Avalanche method) while paying minimums on others, or use a 0% APR balance transfer offer."
       }
-    ],
-    "category": "finance"
+    ]
   },
   "student-loan": {
     "toolId": "student-loan",
@@ -723,8 +701,7 @@
         "question": "How do extra payments reduce my student loan balance?",
         "answer": "When you specify extra payments toward loan principal, you reduce the balance on which daily interest accrues, paying off the loan months or years ahead of schedule."
       }
-    ],
-    "category": "finance"
+    ]
   },
   "business-roi-cagr": {
     "toolId": "business-roi-cagr",
@@ -753,8 +730,7 @@
         "question": "How do I calculate CAGR in Excel or online?",
         "answer": "Divide ending investment value by beginning value, raise to the power of (1 / number of years), and subtract 1."
       }
-    ],
-    "category": "finance"
+    ]
   },
   "social-security-retirement": {
     "toolId": "social-security-retirement",
@@ -783,8 +759,7 @@
         "question": "Is it better to claim Social Security at 62 or 70?",
         "answer": "Claiming at 62 provides immediate income, but delaying to 70 yields a 76% larger monthly check for life, making delaying optimal for those in good health with other savings."
       }
-    ],
-    "category": "finance"
+    ]
   },
   "dti-budget": {
     "toolId": "dti-budget",
@@ -812,8 +787,7 @@
         "question": "What is a good Debt-to-Income ratio for buying a home?",
         "answer": "A DTI ratio of 36% or lower is ideal for home buyers, ensuring easy loan qualification and comfortable monthly cash flow."
       }
-    ],
-    "category": "finance"
+    ]
   },
   "body-fat-navy": {
     "toolId": "body-fat-navy",
@@ -842,8 +816,7 @@
         "question": "How accurate is the US Navy body fat formula?",
         "answer": "The US Navy method is accurate within 3% to 4% of clinical DEXA hydrostatic weighing when measurements are taken precisely with flexible tape."
       }
-    ],
-    "category": "health"
+    ]
   },
   "ideal-weight-water": {
     "toolId": "ideal-weight-water",
@@ -871,8 +844,7 @@
         "question": "How much water should I drink per day for my weight?",
         "answer": "A general rule is to drink 0.5 to 1.0 ounce of water per pound of body weight daily (e.g. 160 lbs = 80 to 120 oz of water)."
       }
-    ],
-    "category": "health"
+    ]
   },
   "gpa-calculator": {
     "toolId": "gpa-calculator",
@@ -901,8 +873,7 @@
         "question": "How do I calculate what I need on my final exam to get an A?",
         "answer": "Required Final Score = [ (Target Grade % - (Current Grade % × (1 - Final Weight %))) / Final Weight % ]. E.g., if you have 88% and the final is worth 20%, you need 98% on the final to reach 90% overall."
       }
-    ],
-    "category": "math"
+    ]
   },
   "statistics-matrix": {
     "toolId": "statistics-matrix",
@@ -931,8 +902,7 @@
         "question": "What is the difference between sample and population standard deviation?",
         "answer": "Sample standard deviation divides variance by (n - 1) to account for sample estimation bias, whereas population standard deviation divides by N."
       }
-    ],
-    "category": "math"
+    ]
   },
   "hourly-to-salary": {
     "toolId": "hourly-to-salary",
@@ -965,8 +935,7 @@
         "question": "$100,000 a year is how much an hour?",
         "answer": "$100,000 a year is $48.08 per hour for a 40-hour weekly schedule."
       }
-    ],
-    "category": "time"
+    ]
   },
   "time-zone-calendar": {
     "toolId": "time-zone-calendar",
@@ -995,8 +964,7 @@
         "question": "How many business days are in a month?",
         "answer": "On average, there are 21 to 22 business days (working days) in a standard calendar month."
       }
-    ],
-    "category": "time"
+    ]
   },
   "construction-materials": {
     "toolId": "construction-materials",
@@ -1030,8 +998,7 @@
         "question": "How much area does 1 cubic yard of gravel cover?",
         "answer": "1 cubic yard of gravel covers 100 square feet at 3 inches deep."
       }
-    ],
-    "category": "unit"
+    ]
   },
   "paint-stair": {
     "toolId": "paint-stair",
@@ -1060,8 +1027,7 @@
         "question": "How many gallons of paint do I need for a 12x12 room?",
         "answer": "A 12x12 room with 8ft ceilings has 384 sq ft of wall area. Subtracting doors/windows leaves ~340 sq ft, requiring 1 gallon of paint per coat (2 gallons for 2 coats)."
       }
-    ],
-    "category": "unit"
+    ]
   },
   "pregnancy-due-date": {
     "toolId": "pregnancy-due-date",
@@ -1095,8 +1061,7 @@
         "question": "What is gestational age versus fetal age?",
         "answer": "Gestational age measures pregnancy progress starting from the first day of your last menstrual period. Fetal age (conception age) measures actual development from the estimated date of fertilization, which is typically 2 weeks younger than gestational age."
       }
-    ],
-    "category": "biology"
+    ]
   },
   "molarity": {
     "toolId": "molarity",
@@ -1130,8 +1095,7 @@
         "question": "How do you calculate molarity from mass and volume?",
         "answer": "First, convert the solute mass to moles by dividing it by the substance's molecular weight. Then, convert the solution volume to liters (divide ml by 1000). Finally, divide the moles by the volume in liters."
       }
-    ],
-    "category": "chemistry"
+    ]
   },
   "velocity-acceleration": {
     "toolId": "velocity-acceleration",
@@ -1165,8 +1129,7 @@
         "question": "How do you calculate velocity in free fall?",
         "answer": "For an object dropped from rest (v₀ = 0) in vacuum, velocity is simply gravity multiplied by time: v = g · t, where g = 9.8 m/s² on Earth."
       }
-    ],
-    "category": "physics"
+    ]
   },
   "calorie-burn": {
     "toolId": "calorie-burn",
@@ -1200,8 +1163,7 @@
         "question": "Does weight affect how many calories you burn during exercise?",
         "answer": "Yes. Carrying more weight requires your muscles to expend more energy to move your body through space. Therefore, a person weighing 90kg will burn about 50% more calories than a person weighing 60kg for the same activity."
       }
-    ],
-    "category": "sports"
+    ]
   },
   "dog-age": {
     "toolId": "dog-age",
@@ -1234,603 +1196,6 @@
         "question": "How does dog size affect how they age in human years?",
         "answer": "Small dogs mature faster but age slower as seniors (living up to 15-18 years). Large and giant breeds mature slightly slower initially but age rapidly from age 5 onwards, often carrying shorter lifespans of 8-10 years."
       }
-    ],
-    "category": "everyday"
-  },
-  "ovulation-calculator": {
-    "toolId": "ovulation-calculator",
-    "category": "biology",
-    "title": "Ovulation & Fertility Window Calculator (2026)",
-    "metaDescription": "Calculate your ovulation day, fertile window (5 days), and best conception dates based on the first day of your last period and cycle length.",
-    "keywords": [
-      "ovulation calculator",
-      "fertility calculator",
-      "fertile window calculator",
-      "conception calculator"
-    ],
-    "h1": "Ovulation & Fertility Window Calculator",
-    "directAnswer": "Ovulation occurs 14 days before your next period. The fertile window spans 5 days before and 1 day after.",
-    "formula": {
-      "title": "Ovulation Day",
-      "expression": "Ovulation = LMP + (Cycle Length − 14)",
-      "explanation": "LMP = first day of last period."
-    },
-    "keyTakeaways": [
-      "Fertile window is 6 days total.",
-      "Sperm survive up to 5 days inside.",
-      "Normal cycles: 21–35 days."
-    ],
-    "faqs": []
-  },
-  "blood-pressure": {
-    "toolId": "blood-pressure",
-    "category": "biology",
-    "title": "Blood Pressure Categories & MAP Calculator (AHA 2026)",
-    "metaDescription": "Classify systolic/diastolic readings into AHA categories — Normal, Elevated, Stage 1/2 Hypertension. Calculate Mean Arterial Pressure.",
-    "keywords": [
-      "blood pressure calculator",
-      "blood pressure chart",
-      "hypertension calculator",
-      "mean arterial pressure"
-    ],
-    "h1": "Blood Pressure Categories & Mean Arterial Pressure Calculator",
-    "directAnswer": "Normal blood pressure is below 120/80 mmHg. MAP = Diastolic + (Systolic − Diastolic)/3.",
-    "formula": {
-      "title": "Mean Arterial Pressure",
-      "expression": "MAP = Diastolic + (Systolic − Diastolic) / 3",
-      "explanation": "Normal MAP is 70–100 mmHg."
-    },
-    "keyTakeaways": [
-      "Normal: <120/80 mmHg.",
-      "Crisis: ≥180/120 mmHg.",
-      "MAP <60 mmHg impairs organs."
-    ],
-    "faqs": []
-  },
-  "bmi-children": {
-    "toolId": "bmi-children",
-    "category": "biology",
-    "title": "Child BMI & Growth Percentile Calculator (CDC 2026)",
-    "metaDescription": "Calculate BMI-for-age for children aged 2–20. Determine underweight, healthy weight, overweight, or obese classification.",
-    "keywords": [
-      "child bmi calculator",
-      "pediatric bmi",
-      "bmi for age percentile",
-      "growth percentile"
-    ],
-    "h1": "Child BMI & CDC Growth Percentile Calculator",
-    "directAnswer": "Healthy weight is 5th–84th percentile. Overweight: 85th–94th. Obese: ≥95th.",
-    "formula": {
-      "title": "BMI Formula",
-      "expression": "BMI = Weight (kg) / Height (m)²",
-      "explanation": "Must be plotted on CDC growth charts for children."
-    },
-    "keyTakeaways": [
-      "Child BMI is age- and sex-specific.",
-      "Underweight: <5th percentile.",
-      "CDC charts use 1963–1994 reference data."
-    ],
-    "faqs": []
-  },
-  "ph-calculator": {
-    "toolId": "ph-calculator",
-    "category": "chemistry",
-    "title": "pH & Acid-Base Calculator — Find pH from [H⁺]",
-    "metaDescription": "Calculate pH and pOH from hydrogen ion concentration. Classify solutions as acidic, neutral, or basic on the 0–14 scale.",
-    "keywords": [
-      "ph calculator",
-      "acid base calculator",
-      "hydrogen ion concentration",
-      "poh calculator"
-    ],
-    "h1": "pH & Acid-Base Strength Calculator",
-    "directAnswer": "pH = −log₁₀[H⁺]. pH 7 = neutral, below 7 = acidic, above 7 = basic. pOH = 14 − pH.",
-    "formula": {
-      "title": "pH Formula",
-      "expression": "pH = −log₁₀[H⁺]",
-      "explanation": "Each pH unit = 10× change in acidity."
-    },
-    "keyTakeaways": [
-      "pH 0 = most acidic, pH 14 = most basic.",
-      "Blood pH: 7.35–7.45.",
-      "Logarithmic scale."
-    ],
-    "faqs": []
-  },
-  "ideal-gas-law": {
-    "toolId": "ideal-gas-law",
-    "category": "chemistry",
-    "title": "Ideal Gas Law Calculator — PV = nRT Solver",
-    "metaDescription": "Solve PV = nRT for temperature given pressure, volume, and moles. Results in Kelvin and Celsius.",
-    "keywords": [
-      "ideal gas law calculator",
-      "pv nrt calculator",
-      "gas law calculator"
-    ],
-    "h1": "Ideal Gas Law Calculator (PV = nRT)",
-    "directAnswer": "PV = nRT where R = 0.08206 L·atm/mol·K. At STP, 1 mole = 22.4 L.",
-    "formula": {
-      "title": "Ideal Gas Law",
-      "expression": "T = PV / (nR)",
-      "explanation": "R = 0.08206 L·atm·mol⁻¹·K⁻¹."
-    },
-    "keyTakeaways": [
-      "1 mol at STP = 22.4 L.",
-      "R = 8.314 J/mol·K.",
-      "Real gases deviate at high P or low T."
-    ],
-    "faqs": []
-  },
-  "dilution-calculator": {
-    "toolId": "dilution-calculator",
-    "category": "chemistry",
-    "title": "Solution Dilution Calculator — C₁V₁ = C₂V₂",
-    "metaDescription": "Calculate final volume when diluting a stock solution. Use C₁V₁ = C₂V₂ to find any unknown.",
-    "keywords": [
-      "dilution calculator",
-      "c1v1 c2v2",
-      "stock solution dilution",
-      "lab dilution"
-    ],
-    "h1": "Solution Dilution Calculator (C₁V₁ = C₂V₂)",
-    "directAnswer": "V₂ = (C₁ × V₁) / C₂. Moles of solute are conserved during dilution.",
-    "formula": {
-      "title": "Dilution Equation",
-      "expression": "C₁V₁ = C₂V₂",
-      "explanation": "Conservation of moles."
-    },
-    "keyTakeaways": [
-      "Moles preserved during dilution.",
-      "Always add acid to water.",
-      "Serial dilutions multiply factors."
-    ],
-    "faqs": []
-  },
-  "projectile-motion": {
-    "toolId": "projectile-motion",
-    "category": "physics",
-    "title": "Projectile Motion Calculator — Range, Height & Time of Flight",
-    "metaDescription": "Calculate horizontal range, maximum height, time of flight, and impact velocity for any launch angle and speed.",
-    "keywords": [
-      "projectile motion calculator",
-      "range of projectile",
-      "trajectory calculator"
-    ],
-    "h1": "Projectile Motion Calculator",
-    "directAnswer": "Range = v₀² sin(2θ)/g. Max Height = v₀² sin²(θ)/(2g). Max range at 45°.",
-    "formula": {
-      "title": "Projectile Equations",
-      "expression": "Range = v₀² sin(2θ)/g | H = v₀² sin²θ/(2g)",
-      "explanation": "g = 9.81 m/s²."
-    },
-    "keyTakeaways": [
-      "Max range at 45°.",
-      "Complementary angles give same range.",
-      "No air resistance assumed."
-    ],
-    "faqs": []
-  },
-  "ohms-law": {
-    "toolId": "ohms-law",
-    "category": "physics",
-    "title": "Ohm's Law Calculator — Voltage, Current, Resistance & Power",
-    "metaDescription": "Solve Ohm's Law (V = IR) and power (P = IV) for any unknown in electrical circuits.",
-    "keywords": [
-      "ohm's law calculator",
-      "voltage resistance calculator",
-      "electrical power calculator"
-    ],
-    "h1": "Ohm's Law & Electrical Power Calculator",
-    "directAnswer": "V = I × R. Power P = V × I = I²R = V²/R.",
-    "formula": {
-      "title": "Ohm's Law",
-      "expression": "V = I × R | P = V × I",
-      "explanation": "V = Volts, I = Amps, R = Ohms, P = Watts."
-    },
-    "keyTakeaways": [
-      "Applies to linear (ohmic) devices.",
-      "Doubling R halves I.",
-      "Power = voltage × current."
-    ],
-    "faqs": []
-  },
-  "energy-work": {
-    "toolId": "energy-work",
-    "category": "physics",
-    "title": "Work, Energy & Power Calculator — PE, KE, Joules & Watts",
-    "metaDescription": "Calculate gravitational PE, kinetic energy KE, mechanical work done, and power output.",
-    "keywords": [
-      "work energy power calculator",
-      "potential energy calculator",
-      "kinetic energy calculator"
-    ],
-    "h1": "Work, Energy & Power Calculator",
-    "directAnswer": "PE = mgh, KE = ½mv², Power P = W/t.",
-    "formula": {
-      "title": "Energy Equations",
-      "expression": "PE = mgh | KE = ½mv² | P = W/t",
-      "explanation": "1 Joule = 1 N·m. 1 Watt = 1 J/s."
-    },
-    "keyTakeaways": [
-      "1 J = 1 kg·m²/s².",
-      "1 W = 1 J/s.",
-      "Energy is conserved in closed systems."
-    ],
-    "faqs": []
-  },
-  "pace-calculator": {
-    "toolId": "pace-calculator",
-    "category": "sports",
-    "title": "Running Pace Calculator — 5K, 10K, Half & Full Marathon Times",
-    "metaDescription": "Calculate predicted finish time for 5K, 10K, half marathon, and full marathon from your pace per mile.",
-    "keywords": [
-      "pace calculator",
-      "running pace calculator",
-      "marathon time calculator",
-      "5k pace"
-    ],
-    "h1": "Running Pace & Race Time Calculator",
-    "directAnswer": "Finish Time = Pace × Distance. A 9:00/mile pace finishes a marathon in ~3h 56m.",
-    "formula": {
-      "title": "Race Time",
-      "expression": "Finish Time = Pace (min/mi) × Distance (miles)",
-      "explanation": "5K=3.107mi, 10K=6.214mi, Half=13.109mi, Full=26.219mi."
-    },
-    "keyTakeaways": [
-      "Negative splits improve marathon performance.",
-      "Boston qualifying: 3:00–3:40.",
-      "Most beginners run 10–14 min/mile."
-    ],
-    "faqs": []
-  },
-  "vo2-max": {
-    "toolId": "vo2-max",
-    "category": "sports",
-    "title": "VO₂ Max Calculator — Aerobic Fitness Level Estimator",
-    "metaDescription": "Estimate VO₂ Max using resting and max heart rate. Classify aerobic fitness as Poor, Fair, Good, Excellent, or Superior.",
-    "keywords": [
-      "vo2 max calculator",
-      "aerobic fitness calculator",
-      "maximal oxygen uptake"
-    ],
-    "h1": "VO₂ Max & Aerobic Fitness Level Estimator",
-    "directAnswer": "VO₂ Max ≈ 15 × (HRmax / HRrest). Average untrained adult: 35–45 mL/kg/min.",
-    "formula": {
-      "title": "HR Ratio Method",
-      "expression": "VO₂ Max ≈ 15 × (HRmax / HRrest)",
-      "explanation": "More accurate via lab treadmill test."
-    },
-    "keyTakeaways": [
-      "Elite athletes: 65–85 mL/kg/min.",
-      "Declines 1%/year after 25 without training.",
-      "HIIT improves VO₂ Max 15–20%."
-    ],
-    "faqs": []
-  },
-  "one-rep-max": {
-    "toolId": "one-rep-max",
-    "category": "sports",
-    "title": "1RM One Rep Max Calculator — Brzycki, Epley & Lombardi",
-    "metaDescription": "Estimate 1RM for bench press, squat, or deadlift from reps and weight using three proven formulas.",
-    "keywords": [
-      "one rep max calculator",
-      "1rm calculator",
-      "bench press max",
-      "powerlifting strength"
-    ],
-    "h1": "1RM One Rep Max & Powerlifting Calculator",
-    "directAnswer": "Epley: 1RM = Weight × (1 + Reps/30). Best tested with a spotter.",
-    "formula": {
-      "title": "Epley Formula",
-      "expression": "1RM = Weight × (1 + Reps / 30)",
-      "explanation": "Accurate for 1–10 rep sets."
-    },
-    "keyTakeaways": [
-      "Most accurate at 3–6 reps.",
-      "Work sets: 70–85% of 1RM.",
-      "Never test without warm-up and spotter."
-    ],
-    "faqs": []
-  },
-  "sleep-calculator": {
-    "toolId": "sleep-calculator",
-    "category": "everyday",
-    "title": "Sleep Cycle Calculator — Best Bedtime & Wake-Up Time",
-    "metaDescription": "Calculate the ideal bedtime to wake up refreshed based on 90-minute sleep cycles. Enter wake time and find when to sleep.",
-    "keywords": [
-      "sleep calculator",
-      "bedtime calculator",
-      "sleep cycle calculator",
-      "when should i sleep"
-    ],
-    "h1": "Sleep Cycle & Optimal Bedtime Calculator",
-    "directAnswer": "Waking at the end of a 90-min cycle reduces grogginess. Adults need 5–6 cycles (7.5–9 hours).",
-    "formula": {
-      "title": "Sleep Cycle",
-      "expression": "Bedtime = Wake Time − (Cycles × 90 min) − 14 min",
-      "explanation": "14 min = avg sleep onset time."
-    },
-    "keyTakeaways": [
-      "Adults need 7–9 hours (5–6 cycles).",
-      "Consistent schedule improves sleep quality.",
-      "Waking mid-cycle causes grogginess."
-    ],
-    "faqs": []
-  },
-  "fuel-cost": {
-    "toolId": "fuel-cost",
-    "category": "everyday",
-    "title": "Road Trip Fuel Cost Calculator — Gas Cost & MPG Estimator",
-    "metaDescription": "Calculate total gas cost for any road trip based on distance, MPG, and gas price per gallon.",
-    "keywords": [
-      "fuel cost calculator",
-      "gas cost calculator",
-      "road trip calculator",
-      "mpg calculator"
-    ],
-    "h1": "Road Trip Fuel Cost & MPG Calculator",
-    "directAnswer": "Fuel Cost = (Miles ÷ MPG) × Gas Price. A 500-mile trip at 30 MPG with $3.50/gal costs $58.33.",
-    "formula": {
-      "title": "Fuel Cost",
-      "expression": "Cost = (Miles / MPG) × Price per Gallon",
-      "explanation": "EPA MPG is 20–30% higher than real-world."
-    },
-    "keyTakeaways": [
-      "Peak efficiency: 45–60 mph.",
-      "70 mph vs 55 mph: 15–25% more fuel.",
-      "Tire pressure affects MPG significantly."
-    ],
-    "faqs": []
-  },
-  "discount-calculator": {
-    "toolId": "discount-calculator",
-    "category": "everyday",
-    "title": "Discount & Sale Price Calculator — Percent Off Calculator",
-    "metaDescription": "Calculate final sale price after any percentage discount, total savings, and effective discount rate.",
-    "keywords": [
-      "discount calculator",
-      "percent off calculator",
-      "sale price calculator",
-      "savings calculator"
-    ],
-    "h1": "Discount & Sale Price Calculator",
-    "directAnswer": "Sale Price = Original × (1 − Discount/100). A 25% discount on $200 saves $50.",
-    "formula": {
-      "title": "Sale Price",
-      "expression": "Sale Price = Original × (1 − Discount / 100)",
-      "explanation": "Stacked discounts multiply, not add."
-    },
-    "keyTakeaways": [
-      "30% off = pay 70% of original.",
-      "Stacked 20% + 10% off = 28% off total.",
-      "Always verify reference price."
-    ],
-    "faqs": []
-  },
-  "carbon-footprint": {
-    "toolId": "carbon-footprint",
-    "category": "ecology",
-    "title": "Personal Carbon Footprint Calculator — Annual CO₂ Emissions",
-    "metaDescription": "Calculate your annual carbon footprint in tonnes CO₂ from electricity, car travel, flights, and diet.",
-    "keywords": [
-      "carbon footprint calculator",
-      "co2 calculator",
-      "carbon emissions calculator",
-      "climate calculator"
-    ],
-    "h1": "Personal Carbon Footprint Calculator",
-    "directAnswer": "US average: ~16 tonnes CO₂/year. Paris target: <2 tonnes/person/year by 2050.",
-    "formula": {
-      "title": "Carbon Estimation",
-      "expression": "Annual CO₂ = Electricity + Driving + Flights + Diet",
-      "explanation": "Electricity: 0.386 kg CO₂/kWh, Car: 0.404 kg/mile."
-    },
-    "keyTakeaways": [
-      "Switching to renewables cuts ~25% of emissions.",
-      "One transatlantic flight ≈ 1.5–2 tonnes CO₂.",
-      "Plant-based diet emits 50–70% less."
-    ],
-    "faqs": []
-  },
-  "solar-panel-savings": {
-    "toolId": "solar-panel-savings",
-    "category": "ecology",
-    "title": "Solar Panel Savings & Payback Period Calculator (2026)",
-    "metaDescription": "Estimate annual electricity savings, 25-year ROI, and payback period for residential solar installation.",
-    "keywords": [
-      "solar panel calculator",
-      "solar savings calculator",
-      "solar payback period",
-      "solar roi"
-    ],
-    "h1": "Solar Panel Savings & Payback Period Calculator",
-    "directAnswer": "Annual kWh = System kW × 4 hrs × 365. Payback = Installation Cost ÷ Annual Savings.",
-    "formula": {
-      "title": "Solar Savings",
-      "expression": "Annual Savings = Annual kWh × Electricity Rate",
-      "explanation": "30% federal ITC through 2032 reduces effective cost."
-    },
-    "keyTakeaways": [
-      "Federal solar ITC = 30% through 2032.",
-      "Panels last 25–30 years.",
-      "Net metering allows selling excess power."
-    ],
-    "faqs": []
-  },
-  "water-footprint": {
-    "toolId": "water-footprint",
-    "category": "ecology",
-    "title": "Water Footprint & Household Water Usage Calculator",
-    "metaDescription": "Calculate your daily household water consumption in gallons from showers, laundry, and faucet use.",
-    "keywords": [
-      "water footprint calculator",
-      "household water usage",
-      "daily water consumption",
-      "water conservation"
-    ],
-    "h1": "Water Footprint & Daily Usage Calculator",
-    "directAnswer": "Average American uses 80–100 gallons/day. Shower: 2.1 gal/min. Laundry: ~19 gal/load.",
-    "formula": {
-      "title": "Daily Water Use",
-      "expression": "Daily Gallons = Shower + Laundry + Faucet + Toilet",
-      "explanation": "Standard showerhead: 2.1 gal/min."
-    },
-    "keyTakeaways": [
-      "Fixing a leak saves 3,000+ gal/year.",
-      "Front-load washers use 40–60% less water.",
-      "5-min shower saves ~10 gal vs 10-min."
-    ],
-    "faqs": []
-  },
-  "cooking-conversion": {
-    "toolId": "cooking-conversion",
-    "category": "food",
-    "title": "Cooking Measurement Converter — Cups, ml, oz, tbsp, tsp",
-    "metaDescription": "Convert cooking measurements between cups, milliliters, tablespoons, teaspoons, ounces, pints, and liters.",
-    "keywords": [
-      "cooking measurement converter",
-      "cups to ml",
-      "tablespoon to cup",
-      "cooking unit converter",
-      "recipe converter"
-    ],
-    "h1": "Cooking Measurement Converter",
-    "directAnswer": "1 cup = 236.6 mL = 16 tbsp = 48 tsp = 8 fl oz = 0.5 pint.",
-    "formula": {
-      "title": "Key Conversions",
-      "expression": "1 cup = 236.588 mL | 1 tbsp = 14.787 mL | 1 tsp = 4.929 mL",
-      "explanation": "US customary measurements. UK cup = 284 mL."
-    },
-    "keyTakeaways": [
-      "1 cup = 16 tbsp = 48 tsp.",
-      "1 liter ≈ 4.23 US cups.",
-      "US and UK cups differ slightly."
-    ],
-    "faqs": []
-  },
-  "calorie-density": {
-    "toolId": "calorie-density",
-    "category": "food",
-    "title": "Calorie Density Calculator — kcal per Gram Food Energy",
-    "metaDescription": "Calculate calorie density (kcal/g) of any food. Compare energy density to make healthier dietary choices.",
-    "keywords": [
-      "calorie density calculator",
-      "food energy density",
-      "calories per gram",
-      "kcal per gram"
-    ],
-    "h1": "Calorie Density & Food Energy Calculator",
-    "directAnswer": "Calorie density = kcal ÷ grams. Low-density foods (<1.5 kcal/g) ideal for weight management.",
-    "formula": {
-      "title": "Calorie Density",
-      "expression": "Density = Calories (kcal) / Weight (g)",
-      "explanation": "Low: <1.5 kcal/g · Medium: 1.5–4 · High: >4 kcal/g."
-    },
-    "keyTakeaways": [
-      "Vegetables: 0.2–0.5 kcal/g.",
-      "Rice (cooked): 1.3 kcal/g.",
-      "Nuts: 5–7 kcal/g."
-    ],
-    "faqs": []
-  },
-  "alcohol-units": {
-    "toolId": "alcohol-units",
-    "category": "food",
-    "title": "Alcohol Units & BAC Calculator — Blood Alcohol Content",
-    "metaDescription": "Calculate alcohol units in drinks, estimated BAC, and time to return to sober. Legal limit in US: 0.08% BAC.",
-    "keywords": [
-      "alcohol unit calculator",
-      "bac calculator",
-      "blood alcohol content calculator",
-      "drink calculator"
-    ],
-    "h1": "Alcohol Units & Blood Alcohol Content (BAC) Calculator",
-    "directAnswer": "BAC ≈ (Drinks × 0.6 × 5.14) / (Weight × r). Liver clears ~0.015% BAC/hour.",
-    "formula": {
-      "title": "Widmark Formula",
-      "expression": "BAC = (Drinks × 0.6 × 5.14) / (Weight lbs × r)",
-      "explanation": "r = 0.73 (male), 0.66 (female)."
-    },
-    "keyTakeaways": [
-      "Legal driving limit: 0.08% in US.",
-      "Only time sobers you up.",
-      "BAC 0.10–0.15%: impaired coordination."
-    ],
-    "faqs": []
-  },
-  "z-score": {
-    "toolId": "z-score",
-    "category": "statistics",
-    "title": "Z-Score Calculator — Standard Score & Percentile Rank",
-    "metaDescription": "Calculate z-score from raw score, mean, and standard deviation. Find the percentile rank in a normal distribution.",
-    "keywords": [
-      "z score calculator",
-      "standard score calculator",
-      "z score percentile",
-      "normal distribution calculator"
-    ],
-    "h1": "Z-Score & Percentile Rank Calculator",
-    "directAnswer": "z = (X − μ) / σ. z=0 is the mean; z=1.0 ≈ 84th percentile; z=2.0 ≈ 97.7th percentile.",
-    "formula": {
-      "title": "Z-Score Formula",
-      "expression": "z = (X − μ) / σ",
-      "explanation": "X = raw score, μ = mean, σ = standard deviation."
-    },
-    "keyTakeaways": [
-      "±1σ covers 68.3% of data.",
-      "±2σ covers 95.4% of data.",
-      "±3σ covers 99.7% of data."
-    ],
-    "faqs": []
-  },
-  "confidence-interval": {
-    "toolId": "confidence-interval",
-    "category": "statistics",
-    "title": "Confidence Interval Calculator — 90%, 95% & 99% CI",
-    "metaDescription": "Calculate confidence interval for a sample mean at 90%, 95%, or 99% level. Find margin of error and upper/lower bounds.",
-    "keywords": [
-      "confidence interval calculator",
-      "95 confidence interval",
-      "margin of error calculator",
-      "ci calculator"
-    ],
-    "h1": "Confidence Interval Calculator",
-    "directAnswer": "CI = x̄ ± z × (σ/√n). For 95%, z = 1.96. Wider CI = less precision.",
-    "formula": {
-      "title": "CI Formula",
-      "expression": "CI = x̄ ± z* × (σ / √n)",
-      "explanation": "z*: 90%=1.645, 95%=1.96, 99%=2.576."
-    },
-    "keyTakeaways": [
-      "Doubling n reduces margin of error by √2.",
-      "95% CI is the scientific standard.",
-      "Wider CI = less precision."
-    ],
-    "faqs": []
-  },
-  "sample-size": {
-    "toolId": "sample-size",
-    "category": "statistics",
-    "title": "Sample Size Calculator — Surveys, Polls & A/B Tests",
-    "metaDescription": "Calculate the minimum statistically valid sample size for surveys or A/B tests at any confidence level.",
-    "keywords": [
-      "sample size calculator",
-      "survey sample size",
-      "ab test sample size",
-      "statistical significance"
-    ],
-    "h1": "Sample Size Calculator for Surveys & A/B Tests",
-    "directAnswer": "n = z² × p(1−p) / e². For 95% CI and 5% margin: n = 384.",
-    "formula": {
-      "title": "Sample Size",
-      "expression": "n = z² × p(1−p) / e²",
-      "explanation": "z=1.96 for 95%, p=0.5 is most conservative."
-    },
-    "keyTakeaways": [
-      "n=384 for 95% CI, 5% margin (any population size).",
-      "p=0.5 gives largest sample estimate.",
-      "Sample size barely changes beyond pop. 20,000."
-    ],
-    "faqs": []
+    ]
   }
 }

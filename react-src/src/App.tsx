@@ -199,19 +199,29 @@ export default function App() {
                           transition={{ duration: 0.2, ease: 'easeOut' }}
                         >
                           {activeTool.category === 'finance' && (
-                            <FinanceCalculators subToolId={activeTool.id} />
+                            ['inflation-calculator', 'vat-tax', 'car-depreciation', 'simple-interest'].includes(activeTool.id)
+                              ? <OtherCalculators subToolId={activeTool.id} />
+                              : <FinanceCalculators subToolId={activeTool.id} />
                           )}
                           {activeTool.category === 'health' && (
-                            <HealthCalculators subToolId={activeTool.id} />
+                            ['water-intake', 'target-heart-rate', 'body-surface-area'].includes(activeTool.id)
+                              ? <OtherCalculators subToolId={activeTool.id} />
+                              : <HealthCalculators subToolId={activeTool.id} />
                           )}
                           {activeTool.category === 'math' && (
-                            <MathGraphingCalculators subToolId={activeTool.id} />
+                            ['percentage-change', 'ratio-calculator', 'pythagorean-theorem'].includes(activeTool.id)
+                              ? <OtherCalculators subToolId={activeTool.id} />
+                              : <MathGraphingCalculators subToolId={activeTool.id} />
                           )}
                           {activeTool.category === 'time' && (
-                            <TimeCalculators subToolId={activeTool.id} />
+                            ['age-calculator', 'time-card'].includes(activeTool.id)
+                              ? <OtherCalculators subToolId={activeTool.id} />
+                              : <TimeCalculators subToolId={activeTool.id} />
                           )}
                           {activeTool.category === 'unit' && (
-                            <UnitCalculators subToolId={activeTool.id} />
+                            ['speed-distance-time', 'aspect-ratio'].includes(activeTool.id)
+                              ? <OtherCalculators subToolId={activeTool.id} />
+                              : <UnitCalculators subToolId={activeTool.id} />
                           )}
                           {(activeTool.category === 'biology' ||
                             activeTool.category === 'chemistry' ||
