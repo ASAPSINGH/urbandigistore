@@ -234,29 +234,29 @@
 {% block scripts %}
 <!-- Structured JSON-LD Schema: BlogPosting (AEO / GEO support) -->
 <script type="application/ld+json">
-{
+{{ {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "{{ post.title|replace('"', '\\"') }}",
-  "description": "{{ post.description|replace('"', '\\"') }}",
-  "datePublished": "{{ post.date }}",
+  "headline": post.title,
+  "description": post.description,
+  "datePublished": post.date | string,
   "author": {
     "@type": "Person",
-    "name": "{{ post.author|replace('"', '\\"') }}"
+    "name": post.author
   },
   "publisher": {
     "@type": "Organization",
     "name": "Urbandigistore Platform",
     "logo": {
       "@type": "ImageObject",
-      "url": "{{ request.url_root.rstrip('/') }}/static/images/logo.png"
+      "url": request.url_root.rstrip('/') ~ "/static/images/logo.png"
     }
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "{{ request.url }}"
+    "@id": request.url
   }
-}
+} | tojson | safe }}
 </script>
 
 <script>

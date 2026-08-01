@@ -308,60 +308,61 @@
 
 <!-- Structured JSON-LD schemas (SEO/GEO/AEO @graph schema markup) -->
 <script type="application/ld+json">
-{
+{% set graph = [
+  {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": request.url_root.rstrip('/') ~ "/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": tool_key.replace('-', ' ').title(),
+        "item": request.url
+      }
+    ]
+  }
+] %}
+{% if steps %}
+  {% set step_entities = [] %}
+  {% for step in steps %}
+    {% set _ = step_entities.append({
+      "@type": "HowToStep",
+      "position": loop.index,
+      "text": step
+    }) %}
+  {% endfor %}
+  {% set _ = graph.append({
+    "@type": "HowTo",
+    "name": h1,
+    "description": description,
+    "step": step_entities
+  }) %}
+{% endif %}
+{% if faqs %}
+  {% set faq_entities = [] %}
+  {% for faq in faqs %}
+    {% set _ = faq_entities.append({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }) %}
+  {% endfor %}
+  {% set _ = graph.append({
+    "@type": "FAQPage",
+    "mainEntity": faq_entities
+  }) %}
+{% endif %}
+{{ {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "{{ request.url_root.rstrip('/') }}/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "{{ tool_key.replace('-', ' ').title() }}",
-          "item": "{{ request.url }}"
-        }
-      ]
-    }
-    {% if steps %},
-    {
-      "@type": "HowTo",
-      "name": "{{ h1|replace('"', '\\"') }}",
-      "description": "{{ description|replace('"', '\\"') }}",
-      "step": [
-        {% for step in steps %}
-        {
-          "@type": "HowToStep",
-          "position": {{ loop.index }},
-          "text": "{{ step|replace('"', '\\"') }}"
-        }{% if not loop.last %},{% endif %}
-        {% endfor %}
-      ]
-    }
-    {% endif %}
-    {% if faqs %},
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {% for faq in faqs %}
-        {
-          "@type": "Question",
-          "name": "{{ faq.q|replace('"', '\\"') }}",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "{{ faq.a|replace('"', '\\"') }}"
-          }
-        }{% if not loop.last %},{% endif %}
-        {% endfor %}
-      ]
-    }
-    {% endif %}
-  ]
-}
+  "@graph": graph
+} | tojson | safe }}
 </script>
 {% endblock %}

@@ -49,42 +49,43 @@
 <!-- Server-Side Structured Schema Data (SEO & AI Crawler indexing) -->
 {% if meta %}
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "{{ meta.h1|replace('"', '\\"') }}",
-      "url": "{{ request.url }}",
-      "applicationCategory": "EducationalApplication, UtilityApplication, BusinessApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "description": "{{ meta.metaDescription|replace('"', '\\"') }}",
-      "offers": {
-        "@type": "Offer",
-        "price": "0.00",
-        "priceCurrency": "USD"
+{% set graph = [
+  {
+    "@type": "WebApplication",
+    "name": meta.h1,
+    "url": request.url,
+    "applicationCategory": "EducationalApplication, UtilityApplication, BusinessApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "description": meta.metaDescription,
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "USD"
+    }
+  }
+] %}
+{% if meta.faqs %}
+  {% set faq_list = [] %}
+  {% for faq in meta.faqs %}
+    {% set _ = faq_list.append({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
       }
-    }
-    {% if meta.faqs %},
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {% for faq in meta.faqs %}
-        {
-          "@type": "Question",
-          "name": "{{ faq.question|replace('"', '\\"') }}",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "{{ faq.answer|replace('"', '\\"') }}"
-          }
-        }{% if not loop.last %},{% endif %}
-        {% endfor %}
-      ]
-    }
-    {% endif %}
-  ]
-}
+    }) %}
+  {% endfor %}
+  {% set _ = graph.append({
+    "@type": "FAQPage",
+    "mainEntity": faq_list
+  }) %}
+{% endif %}
+{{ {
+  "@context": "https://schema.org",
+  "@graph": graph
+} | tojson | safe }}
 </script>
 {% endif %}
 {% endblock %}

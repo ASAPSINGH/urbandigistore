@@ -331,21 +331,21 @@
     <!-- Dynamic Structured Schema Data (SEO best practice) -->
     {% if tool_key %}
     <script type="application/ld+json">
-    {
+    {{ {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "{{ h1|replace('"', '\\"') }}",
-      "url": "{{ request.url }}",
-      "applicationCategory": "{% if category == 'media' %}MultimediaApplication{% elif category == 'marketing' %}BusinessApplication{% elif category == 'dev' %}DeveloperApplication{% else %}UtilityApplication{% endif %}",
+      "name": h1,
+      "url": request.url,
+      "applicationCategory": "MultimediaApplication" if category == "media" else "BusinessApplication" if category == "marketing" else "DeveloperApplication" if category == "dev" else "UtilityApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript. HTML5 Canvas.",
-      "description": "{{ meta_description|replace('"', '\\"') }}",
+      "description": meta_description,
       "offers": {
         "@type": "Offer",
         "price": "0.00",
         "priceCurrency": "USD"
       }
-    }
+    } | tojson | safe }}
     </script>
     {% endif %}
     
