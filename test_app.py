@@ -149,9 +149,14 @@ class TestWebUtilities(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.data, b'google-site-verification: google419e02c86ce25995.html')
 
+        resp = self.app.get('/googletdqqvyxBhPF3HI1QMDLclCOCsHdFGJH-hQxl5.html')
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.data, b'google-site-verification: googletdqqvyxBhPF3HI1QMDLclCOCsHdFGJH-hQxl5.html')
+
         resp = self.app.get('/')
         self.assertEqual(resp.status_code, 200)
         self.assertIn(b'<meta name="google-site-verification" content="nH_m5gZ-2Oi7zqLQ18lLOFedJm-mZUVdS_p8hd7proY" />', resp.data)
+        self.assertIn(b'<meta name="google-site-verification" content="tdqqvyxBhPF3HI1QMDLclCOCsHdFGJH-hQxl5" />', resp.data)
 
     def test_robots_txt(self):
         """Verify the robots.txt route returns plain text pointing to the sitemap."""

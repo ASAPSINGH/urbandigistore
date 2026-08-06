@@ -1063,6 +1063,10 @@ def google_verification():
 def google_verification_new():
     return "google-site-verification: google419e02c86ce25995.html"
 
+@app.route('/googletdqqvyxBhPF3HI1QMDLclCOCsHdFGJH-hQxl5.html')
+def google_verification_latest():
+    return "google-site-verification: googletdqqvyxBhPF3HI1QMDLclCOCsHdFGJH-hQxl5.html"
+
 @app.route('/subscribe', methods=['POST'])
 def subscribe():
     import csv
